@@ -1,0 +1,45 @@
+
+!!! IMPORTANTE ANTES DE TODO ARREGLAR LAS URL DE LA API PARA QUE FUNCIONE CORRRECTAMENTE !!!!
+
+-arreglar la pagina de schedule que pasa si no estas logueado (jacobo sabe lo de history)
+
+-Filtrar la pagina de schedule que solo muestre de las citas del doctor logueado y que el admin pueda ver todas las
+citas con el nombre del doctor alado
+
+-Pensar bien que informacion mostrar de los doctores ya que todos los doctores se van a poder buscar entre si
+
+-Aplicar en los formularios de registro que deba repetir la contraseña para confirmar y tambien 
+ Supported elements de bootstrap
+
+-Averiguar como hacer para que respete el nombre y apellido de inico (Hola ...)
+
+-Cambiar el header y el cuerpo de pagina segun el usuario logueado
+ Por ejemplo: los usuarios que puedan crear y ver sus citas
+              los doctores que vean las citas pendientes con un poco de informacion (como en un modal)
+              los admins ??
+
+-Al hacer las citas poder elegir al doctor primero 
+
+-filtrar los horarios dependiendo las disponibildad de cada doctor con su fecha
+
+-Aplicar el modo pago y se puede que existan los descuentos
+
+-Buscar servicio de confirmacion de cuenta y notificaciones de citas
+
+-meter css en la pagina de faq
+
+-footer (usar bien fontawesome)
+
+-poner chat
+
+-hacer pagina de perfil de usuario, doctor y administrador pudiendo eliminar e editar su cuenta
+
+-Como cambiar contraseñas 
+
+-Que te saque de la sesion cuando se venza el token
+
+-Preguntar sobre el tema de subir archivos e imagenes a la api
+
+-Ordenar archivos y las rutas corespondientes de paginas
+
+

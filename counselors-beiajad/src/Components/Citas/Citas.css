@@ -1,0 +1,17 @@
+.citas{
+    background-color: #e9e5f3;
+    opacity:0.8;
+}
+.table td{ 
+    margin-bottom: 0;
+    padding: .15rem;
+}
+.lista{
+    font-size: 15px;
+}
+.absolute3{
+    position: sticky;
+    top: 0;
+    background-color: #e9e5f3;
+   
+}

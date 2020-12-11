@@ -1,0 +1,8 @@
+.reg{
+    margin: 20px 5px 0 125px;
+    /* EL margen de abajo no aplica por la clase mb-4*/
+}
+.form-regis{
+    margin-top: 50px ;
+    margin-bottom: 50px;
+}
