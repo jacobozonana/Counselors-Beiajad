@@ -122,11 +122,17 @@ module.exports = {
         let role = info.role;
         if (role !== "admin" && role !== "user") res.status(400).json({message: 'No tienes acceso'})
         else {
+          User.findById(req.params.id2)
+            .then((info) => {
+              let role = info.role;
+              if (role !== "user") res.status(400).json({message: 'El ID que desea editar no es usuario'})
+              else {
         const { body } = req
         User.findByIdAndUpdate(req.params.id2, body, {new: true})
            .then((resDB)=> res.status(200).json(resDB))
            .catch((err)=> res.status(400).json(err))}
-    })
+    })}
+  })
     },
     changeDoctors:(req, res)=>{
         User.findById(req.params.id)
@@ -134,11 +140,17 @@ module.exports = {
            let role = info.role;
            if (role !== "admin" && role !== "doctor") res.status(400).json({message: 'No tienes acceso'})
            else {
+            User.findById(req.params.id2)
+            .then((info) => {
+              let role = info.role;
+              if (role !== "doctor") res.status(400).json({message: 'El ID que desea editar no es doctor'})
+              else {
            const { body } = req
            User.findByIdAndUpdate(req.params.id2, body, {new: true})
               .then((resDB)=> res.status(200).json(resDB))
               .catch((err)=> res.status(400).json(err))}
-       })
+       })}
+      })
     },
     changeAdmins:(req, res)=>{
         User.findById(req.params.id)
@@ -146,11 +158,17 @@ module.exports = {
            let role = info.role;
            if (role !== "admin") res.status(400).json({message: 'No tienes acceso'})
            else {
+            User.findById(req.params.id2)
+            .then((info) => {
+              let role = info.role;
+              if (role !== "admin") res.status(400).json({message: 'El ID que desea editar no es administrador'})
+              else {
            const { body } = req
            User.findByIdAndUpdate(req.params.id2, body, {new: true})
               .then((resDB)=> res.status(200).json(resDB))
               .catch((err)=> res.status(400).json(err))}
-       })
+       })}
+      })
     },
     deleteUsers:(req, res)=>{
     User.findById(req.params.id)
@@ -158,10 +176,16 @@ module.exports = {
         let role = info.role;
         if (role !== "admin" && role !== "user") res.status(400).json({message: 'No tienes acceso'})
         else {
+          User.findById(req.params.id2)
+      .then((info) => {
+        let role = info.role;
+        if (role !== "user") res.status(400).json({message: 'El ID que desea borrar no es usuario'})
+        else {
         User.findByIdAndDelete(req.params.id2)
            .then(res.status(200).json({message: 'Usuario borrado'}))
            .catch((err)=> res.status(400).json(err))}
-     })
+     })}
+    })
     },
     deleteDoctors:(req, res)=>{
         User.findById(req.params.id)
@@ -169,10 +193,16 @@ module.exports = {
             let role = info.role;
             if (role !== "admin" && role !== "doctor") res.status(400).json({message: 'No tienes acceso'})
             else {
+              User.findById(req.params.id2)
+      .then((info) => {
+        let role = info.role;
+        if (role !== "doctor") res.status(400).json({message: 'El ID que desea borrar no es doctor'})
+        else {
             User.findByIdAndDelete(req.params.id2)
                .then(res.status(200).json({message: 'Doctor borrado'}))
                .catch((err)=> res.status(400).json(err))}
-     })
+     })}
+    })
     },
     deleteAdmins:(req, res)=>{
         User.findById(req.params.id)
@@ -180,20 +210,16 @@ module.exports = {
             let role = info.role;
             if (role !== "admin") res.status(400).json({message: 'No tienes acceso'})
             else {
+              User.findById(req.params.id2)
+      .then((info) => {
+        let role = info.role;
+        if (role !== "admin") res.status(400).json({message: 'El ID que desea borrar no es administrador'})
+        else {
             User.findByIdAndDelete(req.params.id2)
                .then(res.status(200).json({message: 'Administrador borrado'}))
                .catch((err)=> res.status(400).json(err))}
-     })
+     })}
+    })
     },
-    /*findRole: (req, res) => {
-        User.findById(req.params.id)
-        .then((info) => {
-            let role = info.role;
-            if (role !== "admin") res.status(400).json({message: 'No tienes acceso'})
-            else {User.find()
-                .then((resDB) => res.status(200).json(resDB))
-                .catch((Error)=> console.log(Error))} 
-      })       
-    },*/  
 }
 

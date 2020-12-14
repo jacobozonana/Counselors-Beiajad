@@ -3,11 +3,12 @@ const router = express.Router();
 
 const { UserController } = require('../controllers');
 const { UserValidator } = require('../validators')
+const { verifyToken } = require('../middlewares')
 
 router.post('/login', UserController.login)
 router.post('/signupuser', UserValidator.create, UserController.signupUser)
-router.post('/signupdoctor/:id', UserValidator.create, UserController.signupDoctor)
-router.post('/signupadmin/:id', UserValidator.create, UserController.signupAdmin)
+router.post('/signupdoctor/:id', verifyToken, UserValidator.create, UserController.signupDoctor)
+router.post('/signupadmin/:id', verifyToken, UserValidator.create, UserController.signupAdmin)
 
 
 
