@@ -47,7 +47,7 @@ module.exports = {
       })
     },
     findOne: (req, res) => {
-       User.findById(req.params.id2)
+       User.findById(req.params.id)
       .then((resDB) => res.status(200).json(resDB))
       .catch((Error)=> console.log(Error))
     },
