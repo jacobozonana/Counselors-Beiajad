@@ -52,7 +52,7 @@ module.exports = {
                 if (role !== "admin" && role !== "user" ) res.status(400).json({message: 'No tienes acceso'})
                 else {
         Schedule.findByIdAndDelete(req.params.id2)
-           .then((resDB)=> res.status(204).json(resDB))
+           .then((resDB)=> res.status(200).json({message: 'Cita borrada'}))
            .catch((err)=> res.status(400).json(err))}
     })
     },
