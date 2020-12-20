@@ -40,7 +40,7 @@ module.exports = {
                 if (role !== "admin" && role !== "user" ) res.status(400).json({message: 'No tienes acceso'})
                 else {
         const { body } = req
-       Schedule.findByIdAndUpdate(req.params.id2, body, {new: true})
+        Schedule.findByIdAndUpdate(req.params.id2, body, {new: true})
            .then((resDB)=> res.status(200).json(resDB))
            .catch((err)=> res.status(400).json(err))}
     })
