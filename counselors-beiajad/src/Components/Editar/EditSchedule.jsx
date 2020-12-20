@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import '../Apointment/Apointment.css'
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "react-modern-calendar-datepicker";
 import { Container, Row, Col, Modal, ModalFooter, Button } from 'reactstrap';
 import Swal from 'sweetalert2'
+import { AuthContext } from '../../contexts/AuthContext';
 
 
 function EditSchedule(props) {
@@ -19,9 +20,9 @@ function EditSchedule(props) {
     month: month,
     day: day,
   };
-      
-    const URLG = "http://localhost:8000/api/v1/schedule/"
-    const URLP = `http://localhost:8000/api/v1/schedule/${props.id}`
+    const { user1 } = useContext(AuthContext)  
+    const URLG = `http://localhost:8000/api/v1/schedules/${user1.id}`
+    const URLP = `http://localhost:8000/api/v1/schedule/${user1.id}/${props.id}`
     const [schedule, setSchedule] = useState([]);
     const [date, setDate] = useState('')
     const [time, setTime] = useState('')

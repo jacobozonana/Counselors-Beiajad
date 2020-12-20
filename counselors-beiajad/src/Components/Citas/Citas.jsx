@@ -17,7 +17,7 @@ function Citas() {
 
   const scrollContainerStyle = { width: "100%", maxHeight: "400px" };
 
-  const URL_GET_USER = `http://localhost:8000/api/v1/schedule/`;
+  const URL_GET_USER = `http://localhost:8000/api/v1/schedules/${user1.id}`;
 
   useEffect(() => {
     axios.get(URL_GET_USER, {

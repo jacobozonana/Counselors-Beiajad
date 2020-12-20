@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Link, Redirect } from 'react-router-dom'
 import axios from "axios";
 import { Table, Button, Container, Row, Col } from 'reactstrap';
 import DeleteShedule from '../Delete/DeleteSchedule'
@@ -27,7 +26,7 @@ function ScheduleList() {
   };
 
 
-  const { isAuth } = useContext(AuthContext);
+  const { isAuth, user1 } = useContext(AuthContext);
   const [schedule, setSchedule] = useState([]);
   const [data, setData] = useState([]);
   const [selectedDay, setSelectedDay] = useState(defaultValue);
@@ -40,8 +39,7 @@ function ScheduleList() {
   
   const scrollContainerStyle = { width: "100%", maxHeight: "400px" };
   
-  
-  const URL_GET_SCHEDULE = "http://localhost:8000/api/v1/schedule";
+  const URL_GET_SCHEDULE = `http://localhost:8000/api/v1/schedules/${user1.id}`
 
   useEffect(() => {
     axios
@@ -52,9 +50,9 @@ function ScheduleList() {
       })
       .then((data) => (setSchedule(data.data), setData(data.data)))
       .catch((err) => console.log(err));
-  }, []);
+  }, [isAuth]);
      
-  
+  console.log(data)
 
   const toFind = (selectedDay) => {
     let dia = selectedDay.day

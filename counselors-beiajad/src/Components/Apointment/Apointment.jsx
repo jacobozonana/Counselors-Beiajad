@@ -22,7 +22,8 @@ function Apointment() {
   };
   
     const { user1 } = useContext(AuthContext)    
-    const URL = "http://localhost:8000/api/v1/schedule/"
+    const URLGET = `http://localhost:8000/api/v1/schedules/${user1.id}`
+    const URLPOST = `http://localhost:8000/api/v1/schedule/${user1.id}`
     const [schedule, setSchedule] = useState([]);
     const [date, setDate] = useState('')
     const [time, setTime] = useState('')
@@ -40,7 +41,7 @@ function Apointment() {
     
     useEffect(() => {
       axios
-        .get(URL, {
+        .get(URLGET, {
           headers: {
             Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
           },
@@ -130,7 +131,7 @@ function Apointment() {
         cancelButtonText: 'Cancelar',
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.post(URL, {
+          axios.post(URLPOST, {
         
             date,
             time,

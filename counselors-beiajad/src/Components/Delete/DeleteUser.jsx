@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from "axios";
 import Swal from 'sweetalert2'
+import { AuthContext } from '../../contexts/AuthContext';
 
 function DeleteUser (props) {
-       
+    
+    const { user1 } = useContext(AuthContext)
     const [schedule, setSchedule] = useState([]);
-    const URL_GET_USER = `http://localhost:8000/api/v1/schedule/`;
+    const URL_GET_USER = `http://localhost:8000/api/v1/schedules/${user1.id}`;
      
     useEffect(() => {
 
@@ -32,7 +34,7 @@ function DeleteUser (props) {
 
     for (let i = 0; i < usuarioFiltrado.length; i++) {
 
-      const URLDELETECITAS = `http://localhost:8000/api/v1/schedule/${usuarioFiltrado[i]}`;
+      const URLDELETECITAS = `http://localhost:8000/api/v1/schedule/${user1.id}/${usuarioFiltrado[i]}`;
 
       axios.delete(URLDELETECITAS, {
         headers: {
@@ -52,7 +54,7 @@ function DeleteUser (props) {
   
     const BorrarUser =  () => {
 
-      const URLDELETE = `http://localhost:8000/api/v1/users/${props.id}`;
+      const URLDELETE = `http://localhost:8000/api/v1/deleteusers/${user1.id}/${props.id}`;
 
        axios.delete(URLDELETE, {
           headers: {

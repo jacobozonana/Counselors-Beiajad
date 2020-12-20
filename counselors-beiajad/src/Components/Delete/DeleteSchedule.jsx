@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useContext } from 'react'
 import axios from "axios";
 import Swal from 'sweetalert2'
+import { AuthContext } from '../../contexts/AuthContext';
 
 function DeleteSchedule(props) {
 
-const URLDELETE = `http://localhost:8000/api/v1/schedule/${props.id}`;
+const { user1 } = useContext(AuthContext)
+const URLDELETE = `http://localhost:8000/api/v1/schedule/${user1.id}/${props.id}`;
 
 const Borrar = () => {
     Swal.fire({

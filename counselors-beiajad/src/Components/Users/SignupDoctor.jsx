@@ -10,14 +10,8 @@ import Swal from 'sweetalert2'
 import { useHistory } from "react-router-dom";
 
 const SignupDoctor = () => {
-   /*
-  JACOBO: LO QUE HICE EN ESTE ARCHIVO, FUE AGREGAR EL IMPORT DE AUTHCONTEXT PARA
-  PODER JALAR EL USER1 (LINEA 20) Y ASI PODER OBTENER EL ID DEL QUE ESTA LOGUEADO.
-  ESTE LO PEDIMOS EN LA LINEA 48 
-  UNA VEZ LEIDO SE PUEDE BORRAR, POR QUE SIGUES LEYENDO YA BORRALO, BUENO TU GANAS SI NO QUIERES
-  NO LO BORRES.
-  */
-  const { isAuth, user1 } = useContext(AuthContext);
+   
+  const { user1 } = useContext(AuthContext);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -43,7 +37,13 @@ const SignupDoctor = () => {
 
   const SIGNUP_URL = `http://localhost:8000/api/v1/signupdoctor/${user1.id}`
     try {
-      await axios.post(SIGNUP_URL, jsonSend)
+      await axios.post(SIGNUP_URL, jsonSend,
+        {
+          headers: {
+            Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+          },
+        }
+        )
       setFirstName('')
       setLastName('')
       setEmail('')
@@ -62,7 +62,10 @@ const SignupDoctor = () => {
       console.log(error)
       Swal.fire({
         icon: 'error',
-        title: 'Algo salio mal',
+        title: 'No se puede crear doctor',
+        text: 'Algo salio mal',
+        timer: 3000,
+        timerProgressBar: true,
       })
     }
   };
