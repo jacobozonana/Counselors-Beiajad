@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Modal, ModalFooter } from 'reactstrap';
+import { Modal } from 'reactstrap';
 import './Logi.css'
 import Login from '../Users/Login'
-import { Link } from "react-router-dom";
 
 
 function Logi(props) {
@@ -16,14 +15,8 @@ function Logi(props) {
       const toggle = () => setModal(!modal);
     return (
     <div>
-      <Link color="info" onClick={toggle}>Iniciar Sesión</Link>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
-        
-        <ModalFooter>
-          <Login/>      
-        </ModalFooter>
-        
-      </Modal>
+      <h2 className="alineacion"  color="info" onClick={toggle}>Iniciar Sesión</h2>
+      <Modal color="info" onClick={toggle} isOpen={modal} toggle={toggle} className={className}><Login/></Modal>
     </div>
     )
 }

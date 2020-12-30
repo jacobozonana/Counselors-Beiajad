@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { Table } from 'reactstrap';
 import axios from "axios";
 import EditSchedule from '../Editar/EditSchedule';
@@ -81,7 +81,7 @@ function Citas() {
     
    
     ) : (
-      <Link to="/login"> Ir a inicio </Link>  
+      <Redirect to="/" />  
     )} 
     </>     
   ); 

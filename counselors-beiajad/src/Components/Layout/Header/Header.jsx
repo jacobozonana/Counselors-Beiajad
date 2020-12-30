@@ -7,7 +7,6 @@ import {
   Navbar,
   NavbarToggler,
   NavbarBrand,
-  NavLink,
 } from "reactstrap";
 import Contact from "../../Contact/Contact";
 import './Header.css'
@@ -30,21 +29,25 @@ const Header = (props) => {
           {isAuth ? (
             <>
               <div className="links">
-              <NavLink className="alineacion">
-                  <Link to="/">Inicio</Link>
-                </NavLink>
+
+              <Link className="alineacion" to="/">Inicio</Link>
               
-                <NavLink className="alineacion">
-                <Link to="/faq">Preguntas Frecuentes</Link>
-                </NavLink>
-              
-              <NavLink className="alineacion">
-                  <Link to="/logout">Cerrar Sesión</Link>
-                </NavLink>
+              <Link className="alineacion" to="/faq">Preguntas Frecuentes</Link>
+
+              <Link className="alineacion" to="/users">Listas</Link> 
+
+              <Link className="alineacion" to="/schedule">Todas las citas</Link>
+
+              <Link className="alineacion" to="/signupadmin">Registrar Administrador</Link>   
+
+              <Link className="alineacion" to="/signupdoctor">Registrar Doctor</Link>              
+
+
+              <Link><Contact/></Link>
+
+              <Link className="alineacion" to="/logout">Cerrar sesión</Link>
                
-                <NavLink>
-                  <Contact/>
-                </NavLink>
+
               </div>
                
             </>
@@ -52,27 +55,17 @@ const Header = (props) => {
      
            <>
               <div className="links">
-                <NavLink className="alineacion">
-                  <Link to="/">Inicio</Link>
-                </NavLink>
 
-                <NavLink className="alineacion">
-                <Link to="/faq">Preguntas Frecuentes</Link>
-                </NavLink>
+              <Link className="alineacion" to="/">Inicio</Link>
 
-                <NavLink className="alineacion">
-                  <Link to="/register">Registrate</Link>
-                </NavLink>
-              
+              <Link className="alineacion" to="/faq">Preguntas Frecuentes</Link>
+
+              <Link className="alineacion" to="/register">Registrate</Link>              
             
-                <NavLink className="alineacion">
-                  <Logi />
-                </NavLink>
+              <Link to="/"><Contact/></Link>
 
-               
-                <NavLink>
-                  <Contact/>
-                </NavLink>
+              <Link className="alineacion" to="/"><Logi /></Link>
+
               </div>
                
                 </>

@@ -26,7 +26,7 @@ function ScheduleList() {
   };
 
 
-  const { isAuth, user1 } = useContext(AuthContext);
+  const { user1, isAuth } = useContext(AuthContext);
   const [schedule, setSchedule] = useState([]);
   const [data, setData] = useState([]);
   const [selectedDay, setSelectedDay] = useState(defaultValue);
@@ -39,11 +39,10 @@ function ScheduleList() {
   
   const scrollContainerStyle = { width: "100%", maxHeight: "400px" };
   
-  const URL_GET_SCHEDULE = `http://localhost:8000/api/v1/schedules/${user1.id}`
+  const URL_GET_SCHEDULE = `http://localhost:8000/api/v1/schedules/${user1.id}`;
 
   useEffect(() => {
-    axios
-      .get(URL_GET_SCHEDULE, {
+    axios.get(URL_GET_SCHEDULE, {
         headers: {
           Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
         },
@@ -52,7 +51,7 @@ function ScheduleList() {
       .catch((err) => console.log(err));
   }, [isAuth]);
      
-  console.log(data)
+  console.log(URL_GET_SCHEDULE)
 
   const toFind = (selectedDay) => {
     let dia = selectedDay.day
