@@ -5,7 +5,7 @@ import AuthContextProvider  from './contexts/AuthContext'
 import Home from "./Pages/Home/Home";
 import Login from "./Components/Users/Login.jsx";
 import Logout from "./Components/Users/Logout.jsx";
-import Register from "./Components/Users/Signup.jsx";
+import Signup from "./Components/Users/Signup.jsx";
 import ScheduleList from "./Components/ScheduleList/ScheduleList.jsx"; 
 import Faq from './Pages/Faq/Faq';
 import SignupDoctor from "./Components/Users/SignupDoctor.jsx";
@@ -20,7 +20,7 @@ function Routes() {
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/logout" component={Logout} />
-        <Route exact path="/register" component={Register} />
+        <Route exact path="/register" component={Signup} />
         <Route exact path="/signupdoctor" component={SignupDoctor} />
         <Route exact path="/signupadmin" component={SignupAdmin} />
         <Route exact path="/users" component={UsersList} />

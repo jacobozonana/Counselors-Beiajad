@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Faq from "react-faq-component";
 import { Container, Row, Col } from 'reactstrap';
 import './Preguntas.css'

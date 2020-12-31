@@ -10,7 +10,6 @@ function DeleteUser (props) {
     const URL_GET_USER = `http://localhost:8000/api/v1/schedules/${user1.id}`;
      
     useEffect(() => {
-
       axios.get(URL_GET_USER, {
         headers: {
           Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
@@ -18,39 +17,31 @@ function DeleteUser (props) {
       })
       .then((data) => setSchedule(data.data))
       .catch((err) => console.log(err))
-    }, []);  
+    },[]);  
 
-   const Borrar = () => {
-
-    const IdUser = schedule.filter((idUsuario) => {
-      if(idUsuario.user[0]._id === props.id){
-        return idUsuario  
-      }
-    });
+    const Borrar = () => {
+      const IdUser = schedule.filter((idUsuario) => {
+        if(idUsuario.user[0]._id === props.id){
+          return idUsuario  
+        }
+      });
 
     const usuarioFiltrado = IdUser.map((user) => {
       return user._id
     })
 
     for (let i = 0; i < usuarioFiltrado.length; i++) {
-
       const URLDELETECITAS = `http://localhost:8000/api/v1/schedule/${user1.id}/${usuarioFiltrado[i]}`;
-
       axios.delete(URLDELETECITAS, {
         headers: {
           Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
-        },
-      })
-      .then((response)=> {
-          console.log(response.data)    
-    }) 
-    .catch((error) => {
-          console.log(error)
-    })
-
-    }
-  }
-
+            },
+          })
+          .catch((error) => {
+              console.log(error)
+          })
+          }
+        }
   
     const BorrarUser =  () => {
 
@@ -59,17 +50,12 @@ function DeleteUser (props) {
        axios.delete(URLDELETE, {
           headers: {
             Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
-          },
-        })
-        .then((response)=> {
-            console.log(response.data)
-           
-     
-     })  .catch((error) => {
-            console.log(error)
-     
-     })
-  }
+            },
+          })
+            .catch((error) => {
+                console.log(error)     
+          })
+        }
 
      const Eliminate =  () => {
 
@@ -105,12 +91,11 @@ function DeleteUser (props) {
          })
         } 
       })
-    }
-    
+    }    
 
     return (
         <>
-           <button onClick={Eliminate} className="btn btn-dark boton">Borrar</button> 
+          <button onClick={Eliminate} className="btn btn-dark boton">Borrar</button> 
         </>
     )
 }
