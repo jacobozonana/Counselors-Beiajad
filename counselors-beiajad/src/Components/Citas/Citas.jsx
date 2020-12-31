@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Redirect } from 'react-router-dom'
-import { Table } from 'reactstrap';
+import { Table } from 'react-bootstrap';
 import { MDBContainer } from "mdbreact";
 import DeleteSchedule from "../Delete/DeleteSchedule";
 import axios from "axios";

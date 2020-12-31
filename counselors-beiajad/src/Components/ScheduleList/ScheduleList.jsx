@@ -150,8 +150,8 @@ function ScheduleList() {
         </tr>
       </thead>
       <tbody>
-      {data.map((user) => (
-        <tr>         
+      {data.map((user, i) => (
+        <tr key={i}>         
           
           <td >{user.date.split("T")[0]}</td>
           <td >{user.time}</td>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
+import { AuthContext } from '../../contexts/AuthContext';
 import axios from "axios";
 import Swal from 'sweetalert2'
-import { AuthContext } from '../../contexts/AuthContext';
+
 
 function DeleteUser (props) {
     
@@ -17,7 +18,7 @@ function DeleteUser (props) {
       })
       .then((data) => setSchedule(data.data))
       .catch((err) => console.log(err))
-    },[]);  
+    });  
 
     const Borrar = () => {
       const IdUser = schedule.filter((idUsuario) => {

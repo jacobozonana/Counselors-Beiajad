@@ -225,8 +225,8 @@ function EditSchedule(props) {
                   </>
                 ):(
                   <>
-                  {botones.map((hora) => ( 
-                    <button onClick={() => escogeHora(hora)} className={apa}>{hora}</button>
+                  {botones.map((hora, i) => ( 
+                    <button key={i} onClick={() => escogeHora(hora)} className={apa}>{hora}</button>
                 ))}
                   </>
                 )}

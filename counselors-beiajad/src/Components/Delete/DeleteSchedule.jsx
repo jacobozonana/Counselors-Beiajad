@@ -36,7 +36,7 @@ const Borrar = () => {
                    window.location.reload()
                  })
               
-            })  .catch((error) => {
+            }).catch(() => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',

@@ -4,7 +4,7 @@ import './Apointment.css'
 import { AuthContext } from '../../contexts/AuthContext';
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "react-modern-calendar-datepicker";
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import Citas from '../Citas/Citas'
 import Swal from 'sweetalert2'
 
