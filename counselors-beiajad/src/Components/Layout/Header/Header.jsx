@@ -27,11 +27,15 @@ const Header = () => {
                   <Nav.Link className="alineacion" href="/">Inicio</Nav.Link>
                   <Nav.Link className="alineacion" href="/faq">Preguntas Frecuentes</Nav.Link>
                   <NavDropdown className="alineacion" title="Back Office" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="/users">Listas</NavDropdown.Item>
+                    <NavDropdown.Item href="/alllist">Lista de todos</NavDropdown.Item>
+                    <NavDropdown.Item href="/adminslist">Lista de administradores</NavDropdown.Item>
+                    <NavDropdown.Item href="/doctorslist">Lista de doctores</NavDropdown.Item>
+                    <NavDropdown.Item href="/userslist">Lista de Usuarios</NavDropdown.Item>
                     <NavDropdown.Item href="/schedule">Citas</NavDropdown.Item>
+
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/sigunpadmin">Alta administrador</NavDropdown.Item>
-                    <NavDropdown.Item href="/sigundoctor">Alta doctor</NavDropdown.Item>        
+                    <NavDropdown.Item href="/signupadmin">Alta administrador</NavDropdown.Item>
+                    <NavDropdown.Item href="/signupdoctor">Alta doctor</NavDropdown.Item>        
                   </NavDropdown>
                 </Nav>                
               </Navbar.Collapse>

@@ -74,6 +74,7 @@ function AdminList(props) {
       <Table striped>
       <thead>
         <tr>
+          <th className="absolute3">Tipo</th>
           <th className="absolute3">Nombre</th>
           <th className="absolute3">Apellido</th>
           <th className="absolute3">Especialidad</th>
@@ -89,7 +90,8 @@ function AdminList(props) {
       <tbody>
       {data.map((user, i) => (
         
-       <tr key={i}>         
+       <tr key={i}>
+        <td >{user.role}</td>
         <td >{user.first_name}</td>
         <td >{user.last_name}</td>
         <td >{user.specialty}</td>

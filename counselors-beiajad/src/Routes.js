@@ -10,6 +10,10 @@ import Faq from './Pages/Faq/Faq';
 import SignupDoctor from "./Components/Users/SignupDoctor.jsx";
 import SignupAdmin from "./Components/Users/SignupAdmin.jsx";
 import UsersList from "./Components/UsersList/UsersList.jsx";
+import DoctorsList from "./Components/UsersList/DoctorsList.jsx";
+import AdminsList from "./Components/UsersList/AdminsList.jsx";
+import AllList from "./Components/UsersList/AllList.jsx";
+
 
 function Routes() {
   return (
@@ -22,7 +26,10 @@ function Routes() {
         <Route exact path="/register" component={Signup} />
         <Route exact path="/signupdoctor" component={SignupDoctor} />
         <Route exact path="/signupadmin" component={SignupAdmin} />
-        <Route exact path="/users" component={UsersList} />
+        <Route exact path="/userslist" component={UsersList} />
+        <Route exact path="/doctorslist" component={DoctorsList} />
+        <Route exact path="/adminslist" component={AdminsList} />
+        <Route exact path="/alllist" component={AllList} />
         <Route exact path="/schedule" component={ScheduleList} />
         <Route exact path="/faq" component={Faq} />
       </Switch>

@@ -18,7 +18,7 @@ function UsersList() {
         <div className="headerSchedule">
         <Header/>
         </div>
-        <List lista="usuarios" titulo="Usuarios" />
+        <List lista="doctors" titulo="Doctores" />
         </>
     ) : (
       undefined

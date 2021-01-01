@@ -80,7 +80,7 @@ const SignupAdmin = () => {
     <>
     <Header />
       <Container className="themed-container" fluid={true}>
-      <h1 className="mb-4 reg">Registrate</h1>
+      <h1 className="mb-4 reg">Registra un administrador nuevo</h1>
       <Form className="container form-regis" onSubmit={handleForm}>
       <FormGroup>
        <Label>Nombre</Label>
