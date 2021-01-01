@@ -1,12 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react'
-import axios from 'axios'
-import './Apointment.css'
 import { AuthContext } from '../../contexts/AuthContext';
-import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "react-modern-calendar-datepicker";
 import { Container, Row, Col } from 'react-bootstrap';
+import axios from 'axios'
 import Citas from '../Citas/Citas'
 import Swal from 'sweetalert2'
+import './Apointment.css'
+import "react-modern-calendar-datepicker/lib/DatePicker.css";
+
+
 
 function Apointment() {
   
@@ -21,7 +23,7 @@ function Apointment() {
     day: day,
   };
   
-    const { user1 } = useContext(AuthContext)    
+    const { user1, isAuth } = useContext(AuthContext)    
     const URLGET = `http://localhost:8000/api/v1/schedules/${user1.id}`
     const URLPOST = `http://localhost:8000/api/v1/schedule/${user1.id}`
     const [schedule, setSchedule] = useState([]);
@@ -197,66 +199,70 @@ function Apointment() {
 
     return (
      <>
-      <div className="calendar">
-        <Container fluid>
-          <Row >
-            <Col s="4">  
+     {isAuth ? (
+        <div className="calendar">
+          <Container fluid>
+            <Row >
+              <Col s="4">  
 
-              <h1>Escoge tu cita</h1>
-              <Calendar
-                value={selectedDay}
-                onChange={setSelectedDay, (e)=>{diaSeleccionado(e)}}
-                shouldHighlightWeekends
-                //calendarTodayClassName="custom-today-day"
-              />                     
-                
-            </Col>
-            <Col s="2">
-
-              <div className="fondoCita">
-                <h4 className="CitaSeleccionada">Horas Disponibles</h4>
-
-                {sinHoras ? (
-                  <>
-                  <h6 className="CitaSeleccionada sinhoras">Ups! no hay horas disponibles.<br></br>Escoge otro dia por favor</h6>
-                  </>
-                ):(
-                  <>
-                  {botones.map((hora) => ( 
-                    <button onClick={() => escogeHora(hora)} className={apa}>{hora}</button>
-                ))}
-                  </>
-                )}
-                 
-                <div className="absolute">
+                <h1>Escoge tu cita</h1>
+                <Calendar
+                  value={selectedDay}
+                  onChange={setSelectedDay, (e)=>{diaSeleccionado(e)}}
+                  shouldHighlightWeekends
+                  //calendarTodayClassName="custom-today-day"
+                />                     
                   
-                  <label className="CitaSeleccionada">Nota</label> 
-                  <textarea
-                  className="form-control note"
-                  placeholder={note}
-                  rows="3"
-                  onChange={(e)=>{setNote(e.target.value)}}
-                  />
-                  <h6 className="CitaSeleccionada">Fecha escogida:</h6>
+              </Col>
+              <Col s="2">
 
-                  <h5 className="CitaSeleccionada">{fecha.replace("T", " ")}</h5>
+                <div className="fondoCita">
+                  <h4 className="CitaSeleccionada">Horas Disponibles</h4>
 
-                  <div className="absolute2">
-                    <button type="submit" onClick={() => {saveDate()}} className="btn btn-danger boton">Siguiente</button>
-                  </div>
+                  {sinHoras ? (
+                    <>
+                    <h6 className="CitaSeleccionada sinhoras">Ups! no hay horas disponibles.<br></br>Escoge otro dia por favor</h6>
+                    </>
+                  ):(
+                    <>
+                    {botones.map((hora, i) => ( 
+                      <button onClick={() => escogeHora(hora, i)} key={i}className={apa}>{hora}</button>
+                  ))}
+                    </>
+                  )}
+                  
+                  <div className="absolute">
+                    
+                    <label className="CitaSeleccionada">Nota</label> 
+                    <textarea
+                    className="form-control note"
+                    placeholder={note}
+                    rows="3"
+                    onChange={(e)=>{setNote(e.target.value)}}
+                    />
+                    <h6 className="CitaSeleccionada">Fecha escogida:</h6>
 
-                </div>                
+                    <h5 className="CitaSeleccionada">{fecha.replace("T", " ")}</h5>
 
-              </div>              
-               
-            </Col>
-            <Col lg="6">              
-              <Citas />
-            </Col>
-          </Row>
-        </Container>
+                    <div className="absolute2">
+                      <button type="submit" onClick={() => {saveDate()}} className="btn btn-danger boton">Siguiente</button>
+                    </div>
 
-    </div>
+                  </div>                
+
+                </div>              
+                
+              </Col>
+              <Col lg="6">              
+                <Citas />
+              </Col>
+            </Row>
+          </Container>
+
+        </div>
+      ) : (
+        undefined
+      )} 
     </>
     )
 }

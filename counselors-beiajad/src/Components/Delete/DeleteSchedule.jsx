@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
+import { AuthContext } from '../../contexts/AuthContext';
 import axios from "axios";
 import Swal from 'sweetalert2'
-import { AuthContext } from '../../contexts/AuthContext';
+
 
 function DeleteSchedule(props) {
 

@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AuthContextProvider  from './contexts/AuthContext'
-//Views
 import Home from "./Pages/Home/Home";
 import Login from "./Components/Users/Login.jsx";
 import Logout from "./Components/Users/Logout.jsx";

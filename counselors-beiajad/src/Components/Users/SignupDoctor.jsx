@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Container } from 'reactstrap';
+import { useHistory } from "react-router-dom";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Header from "../Layout/Header/Header";
 import Footer from "../Layout/Footer/Footer"
-import './Signup.css'
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import axios from "axios";
 import Swal from 'sweetalert2'
-import { useHistory } from "react-router-dom";
+import './Signup.css'
 
 const SignupDoctor = () => {
    

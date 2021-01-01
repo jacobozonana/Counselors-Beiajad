@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import axios from "axios";
 import { Table } from 'reactstrap';
+import axios from "axios";
 import DeleteUser from "../Delete/DeleteUser";
-import Home from '../../Pages/Home/Home'
 import './List.css'
 
 function AdminList(props) {
@@ -113,7 +112,7 @@ function AdminList(props) {
     
     </>
     ) : (
-      <Home/>
+      undefined
     )} 
     </>     
   );

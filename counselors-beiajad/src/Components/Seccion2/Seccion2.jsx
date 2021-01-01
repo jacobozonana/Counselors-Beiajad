@@ -1,10 +1,11 @@
 import React from 'react'
 import { Card, CardImg, CardTitle, CardText, CardGroup, CardBody, Row, Col } from 'reactstrap';
-  import './Seccion2.css'
-  import tel from '../../Imagenes/tel1.png'
-  import confia1 from '../../Imagenes/confia1.png'
-  import diploma from '../../Imagenes/diploma1.png'
-  import happi from '../../Imagenes/happi1.png'
+import tel from '../../Imagenes/tel1.png'
+import confia1 from '../../Imagenes/confia1.png'
+import diploma from '../../Imagenes/diploma1.png'
+import happi from '../../Imagenes/happi1.png'
+import './Seccion2.css'
+
 
 
 function Seccion2() {

@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
-import { Nav, NavDropdown, Navbar } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Nav, NavDropdown, Navbar, Button } from 'react-bootstrap';
 import Logo from'../../../Counselor/Logo.jpg'
 import Contact from "../../Contact/Contact";
+import Login from '../../Users/Login'
 import './Header.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Header = () => {
   
@@ -32,10 +33,10 @@ const Header = () => {
                     <NavDropdown.Item href="/sigunpadmin">Alta administrador</NavDropdown.Item>
                     <NavDropdown.Item href="/sigundoctor">Alta doctor</NavDropdown.Item>        
                   </NavDropdown>
-                  <Nav.Link className="alineacion" href="/logout">Cerrar sesión</Nav.Link>
-                  <Nav.Link className="alineacion" href="/"><Contact /></Nav.Link>
                 </Nav>                
               </Navbar.Collapse>
+              <Contact />
+              <Button variant="info" href="/logout">Cerrar sesión</Button>
             </Navbar>
 
     ) : (
@@ -51,11 +52,11 @@ const Header = () => {
                 <Nav className="mr-auto">
                   <Nav.Link className="alineacion" href="/">Inicio</Nav.Link>                  
                   <Nav.Link className="alineacion" href="/faq">Preguntas Frecuentes</Nav.Link>                  
-                  <Nav.Link className="alineacion" href="/login">Mi Cuenta</Nav.Link>
-                  <Nav.Link className="alineacion" href="/"><Contact /></Nav.Link>
                 </Nav>                
               </Navbar.Collapse>
-      </Navbar>
+              <Contact />
+              <Login />
+            </Navbar>
     
   )}
   </>

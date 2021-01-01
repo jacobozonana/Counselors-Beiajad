@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal } from 'react-bootstrap';
 import './Contact.css'
 
-function Contact(props) {
+function Contact() {
     
-    const {
-        className
-      } = props;
-    
-      const [modal, setModal] = useState(false);
-    
-      const toggle = () => setModal(!modal);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
     return (
     <div>
-      <Button color="info" onClick={toggle}>Contáctanos</Button>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Contactanos!</ModalHeader>
-        <ModalFooter>
-          <Button color="primary" href="mailto:couselorsbeiajad@gmail.com" onClick={toggle}>Correo electronico</Button>{' '}
-          <Button id="Whatsapp" href="https://api.whatsapp.com/send?phone=5491152470444" onClick={toggle}>WhatsApp</Button>{' '}
-          
-        </ModalFooter>
+      <Button variant="info" onClick={handleShow}>Contáctanos</Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Contactanos!</Modal.Title>
+        </Modal.Header>        
+        <Modal.Footer>
+          <Button variant="primary" href="mailto:couselorsbeiajad@gmail.com" onClick={handleClose}>Correo electronico</Button>
+          <Button id="Whatsapp" href="https://api.whatsapp.com/send?phone=5491152470444" onClick={handleClose}>Whatsapp</Button>
+        </Modal.Footer>
       </Modal>
     </div>
     )

@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react'
-import axios from 'axios'
-import '../Apointment/Apointment.css'
-import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "react-modern-calendar-datepicker";
 import { Container, Row, Col, Modal, ModalFooter, Button } from 'reactstrap';
-import Swal from 'sweetalert2'
 import { AuthContext } from '../../contexts/AuthContext';
+import axios from 'axios'
+import Swal from 'sweetalert2'
+import '../Apointment/Apointment.css'
+import "react-modern-calendar-datepicker/lib/DatePicker.css";
+
+
 
 
 function EditSchedule(props) {

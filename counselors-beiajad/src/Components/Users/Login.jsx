@@ -1,14 +1,9 @@
 import React, { useState, useContext} from 'react';
 import { useHistory } from "react-router-dom";
-import { Button, Form } from 'react-bootstrap';
 import { AuthContext } from '../../contexts/AuthContext';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap';
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import Header from '../Layout/Header/Header'
-import Seccion2 from '../../Components/Seccion2/Seccion2'
-import Seccion3 from '../../Components/Seccion3/Seccion3'
-import Footer from '../../Components/Layout/Footer/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '././../../Pages/Home/Home.css'
 
@@ -18,7 +13,11 @@ import '././../../Pages/Home/Home.css'
   const [password, setPassword] = useState('');  
   const { loginUser } = useContext(AuthContext)
   const LOGIN_URL= `http://localhost:8000/api/v1/login/`
-  let history = useHistory();
+  const history = useHistory();
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleSubmit = async (event)=>{
     event.preventDefault();
@@ -47,11 +46,11 @@ import '././../../Pages/Home/Home.css'
 
   return (
     <>
-      <Header />
-      <div id="start">
-        <div className="seccion1">                
-          <h1 className="texto1">Inicia Sesion</h1>
-            <Form className="container" onSubmit={handleSubmit}>
+      <Button variant="info" onClick={handleShow}>Mi cuenta</Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Body>
+        <Form className="container" onSubmit={handleSubmit}>
               <Container>
                 <Row>
                   <Col>
@@ -65,7 +64,7 @@ import '././../../Pages/Home/Home.css'
                           onChange={(e) => setEmail(e.target.value)}
                           type="email"
                           name="email"
-                          placeholder="Email"
+                          placeholder="Correo Electronico"
                         />
                       </Form.Group>
                     </Col>
@@ -91,14 +90,9 @@ import '././../../Pages/Home/Home.css'
                     </Col>
                 </Row>
               </Container>
-            </Form>          
-        </div>
-      </div>
-      <br/><br/>
-      <Seccion2 />
-      <br/><br/>
-      <Seccion3 />
-      <Footer/>  
+            </Form>
+        </Modal.Body>
+      </Modal>
     </>
   )
 }

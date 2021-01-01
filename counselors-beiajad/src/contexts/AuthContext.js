@@ -38,7 +38,9 @@ export const AuthContext = createContext();
       setUser1({})
       Swal.fire({
         icon: 'warning',
-        title: 'Tu sesión a caducado',
+        title: 'Tu sesión caducó',
+      }).then(() => {
+        window.location.href='/'
       })
     }
   }

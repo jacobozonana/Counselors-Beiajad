@@ -1,16 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import axios from "axios";
+import { Calendar } from "react-modern-calendar-datepicker";
 import { Table, Button, Container, Row, Col } from 'reactstrap';
+import { MDBContainer } from "mdbreact";
 import DeleteShedule from '../Delete/DeleteSchedule'
 import EditSchedule from '../Editar/EditSchedule'
-import Home from '../../Pages/Home/Home'
-
-import { Calendar } from "react-modern-calendar-datepicker";
-import './ScheduleList.css'
-import { MDBContainer } from "mdbreact";
+import axios from "axios";
 import Header from "../Layout/Header/Header";
 import Footer from "../Layout/Footer/Footer";
+import './ScheduleList.css'
 
 function ScheduleList() {
 
@@ -184,7 +182,7 @@ function ScheduleList() {
     <Footer/>
     </>
     ) : (
-       <Home />
+      undefined
      )} 
     </>     
   );
