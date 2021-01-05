@@ -1,10 +1,14 @@
 
-!!! IMPORTANTE ANTES DE TODO ARREGLAR LAS URL DE LA API PARA QUE FUNCIONE CORRRECTAMENTE !!!!
+X-!!! IMPORTANTE ANTES DE TODO ARREGLAR LAS URL DE LA API PARA QUE FUNCIONE CORRRECTAMENTE !!!! (Hecho)
 
--arreglar la pagina de schedule que pasa si no estas logueado (jacobo sabe lo de history)
+X-arreglar la pagina de schedule que pasa si no estas logueado (jacobo sabe lo de history) (Hecho, se pone undefined, y la pagina sale en blanco si no estas logueado)
+
+X-footer (usar bien fontawesome) (Hecho)
+
+-Hacer un solo CSS para toda la pagina
 
 -Filtrar la pagina de schedule que solo muestre de las citas del doctor logueado y que el admin pueda ver todas las
-citas con el nombre del doctor alado
+citas con el nombre del doctor a lado
 
 -Pensar bien que informacion mostrar de los doctores ya que todos los doctores se van a poder buscar entre si
 
@@ -28,7 +32,6 @@ citas con el nombre del doctor alado
 
 -meter css en la pagina de faq
 
--footer (usar bien fontawesome)
 
 -poner chat
 

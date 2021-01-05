@@ -16,11 +16,7 @@ const Header = () => {
     {isAuth ? (
 
             <Navbar bg="light" expand="lg">
-              <Navbar.Brand href="/"><img
-                    src={Logo}
-                    className="d-inline-block align-top logo"
-                    alt="Counselors-Beiajad"
-                  /></Navbar.Brand>
+              <Navbar.Brand href="/"><img src={Logo} className="d-inline-block align-top logo" alt="Counselors-Beiajad" /></Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
