@@ -11,7 +11,7 @@ import './Signup.css'
 
 const SignupAdmin = () => {
   
-  const { user1 } = useContext(AuthContext);  
+  const { user1, isAuth } = useContext(AuthContext);  
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -78,6 +78,8 @@ const SignupAdmin = () => {
 
   return (
     <>
+    {isAuth ? (
+      <>
     <Header />
       <Container className="themed-container" fluid={true}>
       <h1 className="mb-4 reg">Registra un administrador nuevo</h1>
@@ -186,6 +188,10 @@ const SignupAdmin = () => {
       </Container>
       <Footer/>
     </>
+      ) : (
+        undefined
+       )}
+      </>
   );
 };
 

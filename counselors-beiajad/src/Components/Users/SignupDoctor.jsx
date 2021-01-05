@@ -11,7 +11,7 @@ import './Signup.css'
 
 const SignupDoctor = () => {
    
-  const { user1 } = useContext(AuthContext);
+  const { user1, isAuth } = useContext(AuthContext);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -71,6 +71,8 @@ const SignupDoctor = () => {
   };
 
   return (
+    <>
+    {isAuth ? (
     <>
     <Header />
       <Container className="themed-container" fluid={true}>
@@ -158,6 +160,10 @@ const SignupDoctor = () => {
       </Container>
       <Footer/>
     </>
+    ) : (
+      undefined
+     )}
+     </>
   );
 };
 
