@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
-import { Container } from 'reactstrap';
 import { AuthContext } from "../../contexts/AuthContext";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Container, Button, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import Header from "../Layout/Header/Header";
 import Footer from "../Layout/Footer/Footer"
@@ -84,9 +83,9 @@ const SignupAdmin = () => {
       <Container className="themed-container" fluid={true}>
       <h1 className="mb-4 reg">Registra un administrador nuevo</h1>
       <Form className="container form-regis" onSubmit={handleForm}>
-      <FormGroup>
-       <Label>Nombre</Label>
-       <Input
+      <Form.Group>
+       <Form.Label>Nombre</Form.Label>
+       <Form.Control
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
         type="text"
@@ -94,10 +93,10 @@ const SignupAdmin = () => {
         name="inputFirstName"
         placeholder="Escribe tu nombre"
       />
-      </FormGroup>
-        <FormGroup>
-          <Label>Apellido</Label>
-          <Input
+      </Form.Group>
+        <Form.Group>
+          <Form.Label>Apellido</Form.Label>
+          <Form.Control
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             type="text"
@@ -105,10 +104,10 @@ const SignupAdmin = () => {
             id="inputLastname"
             placeholder="Escribe tu apellido"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>Especialidad</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Especialidad</Form.Label>
+          <Form.Control
             value={specialty}
             onChange={(e) => setSpecialty(e.target.value)}
             type="string"
@@ -116,10 +115,10 @@ const SignupAdmin = () => {
             id="exampleage"
             placeholder="Escribe tu especialidad"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>Edad</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Edad</Form.Label>
+          <Form.Control
             value={age}
             onChange={(e) => setAge(e.target.value)}
             type="number"
@@ -127,10 +126,10 @@ const SignupAdmin = () => {
             id="exampleage"
             placeholder="Escribe tu edad"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>Comunidad</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Comunidad</Form.Label>
+          <Form.Control
             value={comunity}
             onChange={(e) => setComunity(e.target.value)}
             type="comunity"
@@ -138,10 +137,10 @@ const SignupAdmin = () => {
             id="examplecomunity"
             placeholder="Comunidad que asistes"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>País</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>País</Form.Label>
+          <Form.Control
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             type="text"
@@ -149,10 +148,10 @@ const SignupAdmin = () => {
             name="inputcountry"
             placeholder="País de residencia"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>Tel</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Tel</Form.Label>
+          <Form.Control
             value={tel}
             onChange={(e) => setTel(e.target.value)}
             type="number"
@@ -160,10 +159,10 @@ const SignupAdmin = () => {
             id="inputTel"
             placeholder="Teléfono"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>Email</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Email</Form.Label>
+          <Form.Control
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
@@ -171,10 +170,10 @@ const SignupAdmin = () => {
             id="exampleEmail"
             placeholder="Correo electronico"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>Contraseña</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Contraseña</Form.Label>
+          <Form.Control
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type="password"
@@ -182,7 +181,7 @@ const SignupAdmin = () => {
             id="examplePassword"
             placeholder="Escribe tu contraseña"
           />
-        </FormGroup>
+        </Form.Group>
         <Button color='info'>Enviar</Button>
       </Form>
       </Container>

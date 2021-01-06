@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Container } from 'reactstrap';
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Container, Button, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Swal from 'sweetalert2'
@@ -68,9 +67,9 @@ const Register = () => {
       <Container className="themed-container" fluid={true}>
       <h1 className="mb-4 reg">Registrate</h1>
       <Form className="container form-regis" onSubmit={handleForm}>
-      <FormGroup>
-       <Label>Nombre</Label>
-       <Input
+      <Form.Group>
+       <Form.Label>Nombre</Form.Label>
+       <Form.Control
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
         type="text"
@@ -78,10 +77,10 @@ const Register = () => {
         name="inputFirstName"
         placeholder="Escribe tu nombre"
       />
-      </FormGroup>
-        <FormGroup>
-          <Label>Apellido</Label>
-          <Input
+      </Form.Group>
+        <Form.Group>
+          <Form.Label>Apellido</Form.Label>
+          <Form.Control
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             type="text"
@@ -89,10 +88,10 @@ const Register = () => {
             id="inputLastname"
             placeholder="Escribe tu apellido"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>Edad</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Edad</Form.Label>
+          <Form.Control
             value={age}
             onChange={(e) => setAge(e.target.value)}
             type="number"
@@ -100,10 +99,10 @@ const Register = () => {
             id="exampleage"
             placeholder="Escribe tu edad"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>Comunidad</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Comunidad</Form.Label>
+          <Form.Control
             value={comunity}
             onChange={(e) => setComunity(e.target.value)}
             type="comunity"
@@ -111,10 +110,10 @@ const Register = () => {
             id="examplecomunity"
             placeholder="Comunidad que asistes"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>País</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>País</Form.Label>
+          <Form.Control
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             type="text"
@@ -122,10 +121,10 @@ const Register = () => {
             name="inputcountry"
             placeholder="País de residencia"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>Tel</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Tel</Form.Label>
+          <Form.Control
             value={tel}
             onChange={(e) => setTel(e.target.value)}
             type="number"
@@ -133,10 +132,10 @@ const Register = () => {
             id="inputTel"
             placeholder="Teléfono"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>Email</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Email</Form.Label>
+          <Form.Control
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
@@ -144,10 +143,10 @@ const Register = () => {
             id="exampleEmail"
             placeholder="Correo electronico"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>Contraseña</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Contraseña</Form.Label>
+          <Form.Control
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type="password"
@@ -155,8 +154,8 @@ const Register = () => {
             id="examplePassword"
             placeholder="Escribe tu contraseña"
           />
-        </FormGroup>
-        <Button color='info'>Enviar</Button>
+        </Form.Group>
+        <Button variant='info'>Enviar</Button>
       </Form>
       </Container>
       <Footer/>

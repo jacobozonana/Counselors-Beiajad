@@ -1,8 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Container } from 'reactstrap';
 import { useHistory } from "react-router-dom";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Container, Button, Form } from "react-bootstrap";
 import Header from "../Layout/Header/Header";
 import Footer from "../Layout/Footer/Footer"
 import axios from "axios";
@@ -78,9 +77,9 @@ const SignupDoctor = () => {
       <Container className="themed-container" fluid={true}>
       <h1 className="mb-4 reg">Registra un doctor nuevo</h1>
       <Form className="container form-regis" onSubmit={handleForm}>
-      <FormGroup>
-       <Label>Nombre</Label>
-       <Input
+      <Form.Group>
+       <Form.Label>Nombre</Form.Label>
+       <Form.Control
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
         type="text"
@@ -88,10 +87,10 @@ const SignupDoctor = () => {
         name="inputFirstName"
         placeholder="Escribe tu nombre"
       />
-      </FormGroup>
-        <FormGroup>
-          <Label>Apellido</Label>
-          <Input
+      </Form.Group>
+        <Form.Group>
+          <Form.Label>Apellido</Form.Label>
+          <Form.Control
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             type="text"
@@ -99,10 +98,10 @@ const SignupDoctor = () => {
             id="inputLastname"
             placeholder="Escribe tu apellido"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>Especialidad</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Especialidad</Form.Label>
+          <Form.Control
             value={specialty}
             onChange={(e) => setSpecialty(e.target.value)}
             type="string"
@@ -110,10 +109,10 @@ const SignupDoctor = () => {
             id="exampleage"
             placeholder="Escribe tu especialidad"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>País</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>País</Form.Label>
+          <Form.Control
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             type="text"
@@ -121,10 +120,10 @@ const SignupDoctor = () => {
             name="inputcountry"
             placeholder="País de residencia"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>Tel</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Tel</Form.Label>
+          <Form.Control
             value={tel}
             onChange={(e) => setTel(e.target.value)}
             type="number"
@@ -132,10 +131,10 @@ const SignupDoctor = () => {
             id="inputTel"
             placeholder="Teléfono"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>Email</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Email</Form.Label>
+          <Form.Control
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
@@ -143,10 +142,10 @@ const SignupDoctor = () => {
             id="exampleEmail"
             placeholder="Correo electronico"
           />
-        </FormGroup>
-        <FormGroup>
-          <Label>Contraseña</Label>
-          <Input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Contraseña</Form.Label>
+          <Form.Control
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type="password"
@@ -154,7 +153,7 @@ const SignupDoctor = () => {
             id="examplePassword"
             placeholder="Escribe tu contraseña"
           />
-        </FormGroup>
+        </Form.Group>
         <Button color='info'>Enviar</Button>
       </Form>
       </Container>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import Foto1 from '../../Imagenes/secretaria.jpg'
 import Manos from '../../Imagenes/libre.jpg'
 import './Seccion3.css'

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Table } from 'reactstrap';
+import { Table } from 'react-bootstrap';
 import axios from "axios";
 import DeleteUser from "../Delete/DeleteUser";
 import './List.css'

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Calendar } from "react-modern-calendar-datepicker";
-import { Container, Row, Col, Modal, ModalFooter, Button } from 'reactstrap';
+import { Container, Row, Col, Modal, Button } from 'react-bootstrap';
 import { AuthContext } from '../../contexts/AuthContext';
 import axios from 'axios'
 import Swal from 'sweetalert2'
@@ -29,7 +29,6 @@ function EditSchedule(props) {
     const [date, setDate] = useState('')
     const [time, setTime] = useState('')
     const [note, setNote] = useState('Escribe aqui algun comentario a tu cita')
-    const [modal, setModal] = useState(false);
     const [selectedDay, setSelectedDay] = useState(defaultValue);
     const [fecha, setFecha] = useState('')
     const [data, setData] = useState([]);
@@ -38,8 +37,10 @@ function EditSchedule(props) {
     const [apa, setApa] = useState("btn btn-info boton apagado")
     const [sinHoras, setSinHoras] = useState (false) 
     const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"];   // excluye datos del arreglo del filtro
-    const toggle = () => setModal(!modal);
     const { className } = props;
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     
     useEffect(() => {
       axios
@@ -199,9 +200,12 @@ function EditSchedule(props) {
 
     return (
      <>
-    <Button color="info boton" onClick={toggle}>Editar</Button>
-        <Modal isOpen={modal} toggle={toggle} className={className}>
-            <ModalFooter>
+    <Button variant="info boton" onClick={handleShow}>Editar</Button>
+        <Modal show={show} onHide={handleClose} className={className}>
+        <Modal.Header closeButton>
+        <Modal.Title>Edita tu cita</Modal.Title>
+          </Modal.Header>
+            <Modal.Footer>
       <div className="calendar">
         <Container fluid>
           <Row >
@@ -212,7 +216,7 @@ function EditSchedule(props) {
                 value={selectedDay}
                 onChange={setSelectedDay, (e)=>{diaSeleccionado(e)}}
                 shouldHighlightWeekends
-                //calendarTodayClassName="custom-today-day"
+                calendarTodayClassName="custom-today-day"
               />                     
                 
             </Col>
@@ -259,7 +263,7 @@ function EditSchedule(props) {
         </Container>
 
     </div>
-    </ModalFooter>
+    </Modal.Footer>
    </Modal>
     </>
     )

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Calendar } from "react-modern-calendar-datepicker";
-import { Table, Button, Container, Row, Col } from 'reactstrap';
+import { Table, Button, Container, Row, Col } from 'react-bootstrap';
 import { MDBContainer } from "mdbreact";
 import DeleteShedule from '../Delete/DeleteSchedule'
 import EditSchedule from '../Editar/EditSchedule'
@@ -111,8 +111,7 @@ function ScheduleList() {
      
     <Container className="themed-container" fluid={true}>
       <h1 className="titulo">Agenda</h1>
-     <Row>
-      <Col className="padCal"  xl={{ size: 4}}>
+     <Col className="padCal"  xl={{ size: 4}}>
 
       <Calendar
       value={selectedDay}
@@ -174,8 +173,7 @@ function ScheduleList() {
     </MDBContainer>
    
       </Col>
-    </Row>
-   </Container>   
+    </Container>   
    
      
   
