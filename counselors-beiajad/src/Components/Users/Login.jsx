@@ -1,11 +1,11 @@
 import React, { useState, useContext} from 'react';
 import { useHistory } from "react-router-dom";
 import { AuthContext } from '../../contexts/AuthContext';
-import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap';
+import { Container, Row, Col, Button, Modal, Form, Nav } from 'react-bootstrap';
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '././../../Pages/Home/Home.css'
+import '../../index.css'
 
   const Login = () => {
     
@@ -14,18 +14,17 @@ import '././../../Pages/Home/Home.css'
   const { loginUser } = useContext(AuthContext)
   const LOGIN_URL= `http://localhost:8000/api/v1/login/`
   const history = useHistory();
-
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  
   const handleSubmit = async (event)=>{
     event.preventDefault();
     const jsonSend ={
       email,
       password
-    };    
-
+    };
+    
     try {
       const res = await axios.post(LOGIN_URL, jsonSend)
       loginUser(res.data.token)
@@ -46,51 +45,34 @@ import '././../../Pages/Home/Home.css'
 
   return (
     <>
-      <Button variant="info" onClick={handleShow}>Mi cuenta</Button>
-
+      <Nav.Link variant="outline-info" onClick={handleShow}><h4 className="alineacion" ><i className="far fa-user"></i></h4></Nav.Link>
       <Modal show={show} onHide={handleClose}>
         <Modal.Body>
-        <Form className="container" onSubmit={handleSubmit}>
-              <Container>
-                <Row>
-                  <Col>
-                    <Form.Group controlId="formBasicEmail">
-                      <Form.Label>
-                        Correo Electronico
-                      </Form.Label>
-                        <Form.Control 
-                          className="buscador"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          type="email"
-                          name="email"
-                          placeholder="Correo Electronico"
-                        />
-                      </Form.Group>
-                    </Col>
-                    <Col>
-                      <Form.Group controlId="formBasicPassword">
-                        <Form.Label>
-                          Contraseña
-                        </Form.Label>
-                        <Form.Control
-                        className="buscador" 
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        type="password" 
-                        name="password"
-                        placeholder="Contraseña"
-                        />
-                      </Form.Group>
-                    </Col>
-                    <Col>
-                      <Button variant="info" type="submit">
-                        Iniciar Sesión
-                      </Button>
-                    </Col>
-                </Row>
-              </Container>
-            </Form>
+          <Form onSubmit={handleSubmit}>               
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Correo Electronico</Form.Label>
+                <Form.Control 
+                  className="buscador"          
+                  value={email}          
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="email"
+                  name="email"
+                  placeholder="Correo Electronico"
+                  />          
+            </Form.Group>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Contraseña</Form.Label>
+                <Form.Control
+                  className="buscador" 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  type="password" 
+                  name="password"
+                  placeholder="Contraseña"
+                  />
+            </Form.Group>
+            <Button variant="info" type="submit">Iniciar Sesión</Button>
+          </Form>
         </Modal.Body>
       </Modal>
     </>

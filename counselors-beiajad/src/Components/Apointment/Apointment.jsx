@@ -5,7 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios'
 import Citas from '../Citas/Citas'
 import Swal from 'sweetalert2'
-import './Apointment.css'
+import '../../index.css'
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 
 
@@ -200,7 +200,7 @@ function Apointment() {
     return (
      <>
      {isAuth ? (
-        <div className="calendar">
+        <div className="calendar1">
           <Container fluid>
             <Row >
               <Col s="4">  
@@ -210,7 +210,8 @@ function Apointment() {
                   value={selectedDay}
                   onChange={setSelectedDay, (e)=>{diaSeleccionado(e)}}
                   shouldHighlightWeekends
-                  //calendarTodayClassName="custom-today-day"
+                  calendarToday
+                  ClassName="custom-today-day"
                 />                     
                   
               </Col>
@@ -235,7 +236,7 @@ function Apointment() {
                     
                     <label className="CitaSeleccionada">Nota</label> 
                     <textarea
-                    className="form-control note"
+                    className="note"
                     placeholder={note}
                     rows="3"
                     onChange={(e)=>{setNote(e.target.value)}}

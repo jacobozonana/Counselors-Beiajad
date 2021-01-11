@@ -5,7 +5,7 @@ import axios from "axios";
 import Swal from 'sweetalert2'
 import Header from "../Layout/Header/Header";
 import Footer from "../Layout/Footer/Footer"
-import './Signup.css'
+import '../../index.css'
 
 
 const Register = () => {

@@ -4,7 +4,7 @@ import { Container, Row, Col, Modal, Button } from 'react-bootstrap';
 import { AuthContext } from '../../contexts/AuthContext';
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import '../Apointment/Apointment.css'
+import '../../index.css'
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 
 
@@ -200,7 +200,7 @@ function EditSchedule(props) {
 
     return (
      <>
-    <Button variant="info boton" onClick={handleShow}>Editar</Button>
+    <Button variant="info boton" onClick={handleShow}><i class="far fa-edit"></i></Button>
         <Modal show={show} onHide={handleClose} className={className}>
         <Modal.Header closeButton>
         <Modal.Title>Edita tu cita</Modal.Title>
@@ -241,7 +241,7 @@ function EditSchedule(props) {
                   
                   <label className="CitaSeleccionada">Nota</label> 
                   <textarea
-                  className="form-control note"
+                  className="note"
                   placeholder={note}
                   rows="3"
                   onChange={(e)=>{setNote(e.target.value)}}

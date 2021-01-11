@@ -3,7 +3,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { Table } from 'react-bootstrap';
 import axios from "axios";
 import DeleteUser from "../Delete/DeleteUser";
-import './List.css'
+import '../../index.css'
 
 function AdminList(props) {
   const { isAuth, user1 } = useContext(AuthContext);
@@ -63,7 +63,7 @@ function AdminList(props) {
         
       <div>
         <label>Busqueda</label>
-        <input className="form-control buscador"
+        <input className="buscador"
         style={{ marginLeft: 5 }}
         type="text"
         value={searchText}

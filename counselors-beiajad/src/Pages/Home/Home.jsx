@@ -6,7 +6,7 @@ import Header from '../../Components/Layout/Header/Header'
 import Seccion3 from '../../Components/Seccion3/Seccion3'
 import Seccion2 from '../../Components/Seccion2/Seccion2'
 import Footer from '../../Components/Layout/Footer/Footer';
-import './Home.css'
+import '../../index.css'
 
 function Home() {
   
@@ -19,7 +19,7 @@ function Home() {
           <Header /> 
           <div id="start" className="seccion1">
             <Container className="themed-container" fluid={true}>
-            <h1 className="bienvenido">Hola, {user1.first_name }{user1.last_name }</h1>
+            <h1 className="bienvenido">Hola, {user1.first_name} {user1.last_name}</h1>
             <Apointment />
             </Container>
           </div>

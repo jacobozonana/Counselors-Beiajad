@@ -5,7 +5,7 @@ import { MDBContainer } from "mdbreact";
 import DeleteSchedule from "../Delete/DeleteSchedule";
 import axios from "axios";
 import EditSchedule from '../Editar/EditSchedule';
-import './Citas.css'
+import '../../index.css'
 
 function Citas() {
 

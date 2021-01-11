@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import Logo from'../../../Counselor/Logo.jpg'
-import './Footer.css'
+import '../../../index.css'
 
 function Footer() {
     
