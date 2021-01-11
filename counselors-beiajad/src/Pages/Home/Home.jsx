@@ -17,14 +17,12 @@ function Home() {
         {isAuth ? (
         <>  
           <Header /> 
-          <div id="start" className="seccion1">
+          <div className="seccion1">
             <Container className="themed-container" fluid={true}>
             <h1 className="bienvenido">Hola, {user1.first_name} {user1.last_name}</h1>
             <Apointment />
             </Container>
           </div>
-          <Seccion2 />
-          <Seccion3 />
           <Footer/>        
         </>
       ) : (
