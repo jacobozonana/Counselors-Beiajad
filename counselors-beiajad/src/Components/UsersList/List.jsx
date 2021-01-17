@@ -23,7 +23,7 @@ function AdminList(props) {
       })
       .then((data) => (setUsers(data.data), setData(data.data), setSearchText("")))
       .catch((err) => console.log(err));
-  }, [isAuth]);
+  }, []);
   
   // ESTE CODIGO BUSCA EN EL ARREGLO UN SOLO DATO EN ESTE CASO EL APELLIDO.
   // useEffect(() => {

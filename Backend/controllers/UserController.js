@@ -4,7 +4,6 @@ const { comparePasswords, createToken } = require('../utils')
 
 
 module.exports = {
-
     findAll:(req, res)=>{
     User.findById(req.params.id)
       .then((info) => {

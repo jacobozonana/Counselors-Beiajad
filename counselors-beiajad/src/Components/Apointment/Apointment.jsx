@@ -206,7 +206,7 @@ function Apointment() {
         console.log(escogida + "escogida para comparar") 
       
   */
-console.log(user)
+
   return (
      <>
      {isAuth ? (
@@ -218,7 +218,7 @@ console.log(user)
                 <label className="bienvenido">Escoge tu doctor</label>
                   <select onChange={(e) => {setDoctor(e.target.value)}}>
                     {doctors.map((user, i) => (
-                      <option value={user._id}>{user.first_name}</option>
+                      <option key={i} value={user._id}>{user.first_name}</option>
                      ))}
                   </select>  
 

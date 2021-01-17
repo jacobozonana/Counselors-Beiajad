@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useEffect, useState, useContext } from "react";
 import { Calendar } from "react-modern-calendar-datepicker";
 import { Container, Row, Col, Modal, Button } from 'react-bootstrap';
 import { AuthContext } from '../../contexts/AuthContext';
