@@ -155,7 +155,7 @@ const Register = () => {
             placeholder="Escribe tu contraseña"
           />
         </Form.Group>
-        <Button variant='info'>Enviar</Button>
+        <Button variant='info' type="submit">Enviar</Button>
       </Form>
       </Container>
       <Footer/>

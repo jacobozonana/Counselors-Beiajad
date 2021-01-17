@@ -21,6 +21,7 @@ const Header = () => {
                 <Nav className="mr-auto">
                   <Nav.Link href="/"><h4 className="alineacion">Inicio</h4></Nav.Link>
                   <Nav.Link href="/faq"><h4 className="alineacion">Preguntas frecuentes</h4></Nav.Link>         
+                  </Nav>       
                   <DropdownButton variant="outline-info" id="dropdown-basic-button" title="Back office">
                     <Dropdown.Item href="/alllist"><h4 className="alineacion">Lista de todos</h4></Dropdown.Item>
                     <Dropdown.Item href="/adminslist"><h4 className="alineacion">Lista de administradores</h4></Dropdown.Item>
@@ -30,7 +31,6 @@ const Header = () => {
                     <Dropdown.Item href="/signupadmin"><h4 className="alineacion">Alta administrador</h4></Dropdown.Item>
                     <Dropdown.Item href="/signupdoctor"><h4 className="alineacion">Alta doctor</h4></Dropdown.Item>
                   </DropdownButton>
-                </Nav>       
               </Navbar.Collapse>
               <Nav.Link  href="mailto:couselorsbeiajad@gmail.com"><h4 id="contact" className="alineacion"><i className="far fa-envelope"></i></h4></Nav.Link>                         
               <Nav.Link  href="https://api.whatsapp.com/send?phone=5491152470444"><h4 className="alineacion"><i className="fab fa-whatsapp"></i></h4></Nav.Link>                         

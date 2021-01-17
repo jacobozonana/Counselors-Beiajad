@@ -22,7 +22,11 @@ const scheduleSchema = new Schema({
     user: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-      }]
+      }],
+    doctor: [{
+       type: mongoose.Schema.Types.ObjectId,
+       ref: 'User',
+     }]  
 },
    {
     timestamps: true,

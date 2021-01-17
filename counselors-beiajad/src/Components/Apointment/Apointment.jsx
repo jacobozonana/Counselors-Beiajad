@@ -9,7 +9,6 @@ import '../../index.css'
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 
 
-
 function Apointment() {
   
   let d = new Date();
@@ -24,13 +23,16 @@ function Apointment() {
   };
   
     const { user1, isAuth } = useContext(AuthContext)    
-    const URLGET = `http://localhost:8000/api/v1/schedules/${user1.id}`
-    const URLPOST = `http://localhost:8000/api/v1/schedule/${user1.id}`
+    const SCHGET = `http://localhost:8000/api/v1/schedules/${user1.id}`
+    const DOCGET = `http://localhost:8000/api/v1/doctors/${user1.id}`
+    const SCHPOST = `http://localhost:8000/api/v1/schedule/${user1.id}`
     const [schedule, setSchedule] = useState([]);
+    const [doctors, setDoctors] = useState([]);
     const [date, setDate] = useState('')
     const [time, setTime] = useState('')
     const [note, setNote] = useState('Escribe aqui algun comentario a tu cita')
     const [user] = useState(user1.id)
+    const [doctor, setDoctor] = useState('hola')
     const [selectedDay, setSelectedDay] = useState(defaultValue);
     const [fecha, setFecha] = useState('')
     const [data, setData] = useState([]);
@@ -42,13 +44,20 @@ function Apointment() {
     
     
     useEffect(() => {
-      axios
-        .get(URLGET, {
+      axios.get(SCHGET, {
           headers: {
             Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
           },
         })
         .then((data) => (setSchedule(data.data)))
+        .catch((err) => console.log(err));
+
+        axios.get(DOCGET, {
+          headers: {
+            Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+          },
+        })
+        .then((data) => (setDoctors(data.data)))
         .catch((err) => console.log(err));
     }, []);
 
@@ -133,12 +142,13 @@ function Apointment() {
         cancelButtonText: 'Cancelar',
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.post(URLPOST, {
+          axios.post(SCHPOST, {
         
             date,
             time,
             note,
-            user,
+            user: user,
+            doctor: doctor,
       
            },
            {
@@ -196,14 +206,21 @@ function Apointment() {
         console.log(escogida + "escogida para comparar") 
       
   */
-
-    return (
+console.log(user)
+  return (
      <>
      {isAuth ? (
         <div className="calendar1">
           <Container fluid>
             <Row >
-              <Col s="4">  
+              <Col s="4">
+                
+                <label className="bienvenido">Escoge tu doctor</label>
+                  <select onChange={(e) => {setDoctor(e.target.value)}}>
+                    {doctors.map((user, i) => (
+                      <option value={user._id}>{user.first_name}</option>
+                     ))}
+                  </select>  
 
                 <h1>Escoge tu cita</h1>
                 <Calendar
@@ -227,7 +244,7 @@ function Apointment() {
                   ):(
                     <>
                     {botones.map((hora, i) => ( 
-                      <button onClick={() => escogeHora(hora, i)} key={i}className={apa}>{hora}</button>
+                      <button onClick={() => escogeHora(hora, i)} key={i} className={apa}>{hora}</button>
                   ))}
                     </>
                   )}
@@ -259,7 +276,6 @@ function Apointment() {
               </Col>
             </Row>
           </Container>
-
         </div>
       ) : (
         undefined

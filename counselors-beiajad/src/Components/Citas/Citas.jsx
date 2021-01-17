@@ -44,6 +44,7 @@ function Citas() {
                   <th className="absolute3">Fecha</th>
                   <th className="absolute3">Hora</th>
                   <th className="absolute3">Nota</th>
+                  <th className="absolute3">Doctor</th>
                   <th className="absolute3">Editar</th>
                   <th className="absolute3">Borrar</th>
                 </tr>
@@ -54,6 +55,7 @@ function Citas() {
                   <td width="95">{user.date.split("T")[0]}</td>
                   <td width="75">{user.time}</td>
                   <td width="300">{user.note}</td>
+                  <td width="75">{user.doctor[0].first_name}</td>
                   <td><EditSchedule id={user._id}/></td>
                   <td><DeleteSchedule id={user._id}/></td>      
                 </tr>

@@ -5,7 +5,11 @@ X-arreglar la pagina de schedule que pasa si no estas logueado (jacobo sabe lo d
 
 X-footer (usar bien fontawesome) (Hecho)
 
--Hacer un solo CSS para toda la pagina
+X-Hacer un solo CSS para toda la pagina (Hecho)
+
+X-Averiguar como hacer para que respete el nombre y apellido de inico (Hola ...) (Hecho)
+
+X-Al hacer las citas poder elegir al doctor primero (Hecho) 
 
 -Filtrar la pagina de schedule que solo muestre de las citas del doctor logueado y que el admin pueda ver todas las
 citas con el nombre del doctor a lado
@@ -15,14 +19,10 @@ citas con el nombre del doctor a lado
 -Aplicar en los formularios de registro que deba repetir la contraseña para confirmar y tambien 
  Supported elements de bootstrap
 
--Averiguar como hacer para que respete el nombre y apellido de inico (Hola ...)
-
 -Cambiar el header y el cuerpo de pagina segun el usuario logueado
  Por ejemplo: los usuarios que puedan crear y ver sus citas
               los doctores que vean las citas pendientes con un poco de informacion (como en un modal)
               los admins ??
-
--Al hacer las citas poder elegir al doctor primero 
 
 -filtrar los horarios dependiendo las disponibildad de cada doctor con su fecha
 
@@ -31,7 +31,6 @@ citas con el nombre del doctor a lado
 -Buscar servicio de confirmacion de cuenta y notificaciones de citas
 
 -meter css en la pagina de faq
-
 
 -poner chat
 
@@ -45,4 +44,53 @@ citas con el nombre del doctor a lado
 
 -Ordenar archivos y las rutas corespondientes de paginas
 
+
+Pendientes con Chapan y Dani
+hacer uncheck en las citas
+validador para no hacer citas el mismo dia
+validador que no se puede cancelar la cita con un limite de tiempo
+cuando se genera la cita mandar mail y mensaje de texto de confirmacion
+y recordatorios de citas mismo dia y misma semana
+doctor que puedo bloquear ciertos horarios y dias
+despues del swal poner history .push para redireccionar
+.env para el front las URL tambien
+sendgrid
+jsPDF
+jspdf autotable
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
+import autoTable from "jspdf-autotable";
+import ExportJsonExcel from "js-export-excel";
+
+para mandar emails
+import encode from "nodejs-base64-encode";
+var att = doc.output("arraybuffer");
+    var base64File = encode.encode(att, "base64");
+estas 2 ultimas lineas son las mas mas mas importantes
+
+
+PassWord:
+
+<NavbarText>
+                  <NavLink className="titulosNav">
+                    <Dropdown direction="left" isOpen={dropdownOpen} toggle={toggleLogout}>
+                      <DropdownToggle color="link">
+                        <i class="fas fa-user-cog fa-2x"></i>
+                      </DropdownToggle>
+                      <DropdownMenu>
+                        <DropdownItem href="/logout">Logout</DropdownItem>
+                        <DropdownItem onClick={togglePassword}>Password</DropdownItem>
+                      </DropdownMenu>
+                    </Dropdown>
+                  </NavLink>
+                </NavbarText>
+                <Modal size="sm" isOpen={modalPassword} toggle={togglePassword}>
+                  <ModalHeader toggle={togglePassword}>
+                    <h4>Cambio de contraseña</h4>
+                  </ModalHeader>
+                  <ModalBody>
+                    <Password />
+                  </ModalBody>
+                </Modal>
+              </Collapse>
 

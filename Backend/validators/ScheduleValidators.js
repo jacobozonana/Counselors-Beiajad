@@ -7,6 +7,7 @@ module.exports = {
             time: Joi.string().required(),
             note: Joi.string(),
             user: Joi.string().required(),
+            doctor: Joi.string().required(),
         }),
     }),
     change: celebrate({
@@ -15,6 +16,7 @@ module.exports = {
             time: Joi.string(),
             note: Joi.string(),
             user: Joi.string(),
+            doctor: Joi.string(),
         }),
     }),
 };

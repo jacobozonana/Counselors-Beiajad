@@ -200,7 +200,7 @@ function EditSchedule(props) {
 
     return (
      <>
-    <Button variant="info boton" onClick={handleShow}><i class="far fa-edit"></i></Button>
+    <Button variant="info boton" onClick={handleShow}><i className="far fa-edit"></i></Button>
         <Modal show={show} onHide={handleClose} className={className}>
         <Modal.Header closeButton>
         <Modal.Title>Edita tu cita</Modal.Title>

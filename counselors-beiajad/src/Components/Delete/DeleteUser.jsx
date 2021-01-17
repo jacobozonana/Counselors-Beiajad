@@ -96,7 +96,7 @@ function DeleteUser (props) {
 
     return (
         <>
-          <button onClick={Eliminate} className="btn btn-dark boton"><i class="far fa-trash-alt"></i></button> 
+          <button onClick={Eliminate} className="btn btn-dark boton"><i className="far fa-trash-alt"></i></button> 
         </>
     )
 }

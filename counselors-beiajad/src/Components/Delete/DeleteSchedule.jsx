@@ -51,7 +51,7 @@ const Borrar = () => {
 
     return (
         <>
-           <button onClick={Borrar} className="btn btn-dark boton"><i class="far fa-trash-alt"></i></button> 
+           <button onClick={Borrar} className="btn btn-dark boton"><i className="far fa-trash-alt"></i></button> 
         </>
     )
 }

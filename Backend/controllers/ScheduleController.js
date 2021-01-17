@@ -10,6 +10,7 @@ module.exports = {
             else {
        Schedule.find()
             .populate("user")
+            .populate("doctor")
             .then((resDB) => res.status(200).json(resDB))
             .catch((Error)=> console.log(Error))}
     }) 
@@ -17,6 +18,7 @@ module.exports = {
     findOne: (req, res) => {
       Schedule.findById(req.params.id)
             .populate("user")
+            .populate("doctor")
             .then((resDB) => res.status(200).json(resDB))
             .catch((Error)=> console.log(Error)) 
     },

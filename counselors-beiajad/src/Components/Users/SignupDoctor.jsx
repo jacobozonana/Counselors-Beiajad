@@ -154,7 +154,7 @@ const SignupDoctor = () => {
             placeholder="Escribe tu contraseña"
           />
         </Form.Group>
-        <Button color='info'>Enviar</Button>
+        <Button variant='info' type="submit">Enviar</Button>
       </Form>
       </Container>
       <Footer/>
