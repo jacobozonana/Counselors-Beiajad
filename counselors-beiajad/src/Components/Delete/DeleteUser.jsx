@@ -18,7 +18,7 @@ function DeleteUser (props) {
       })
       .then((data) => setSchedule(data.data))
       .catch((err) => console.log(err))
-    });  
+    }, []);
 
     const Borrar = () => {
       const IdUser = schedule.filter((idUsuario) => {
