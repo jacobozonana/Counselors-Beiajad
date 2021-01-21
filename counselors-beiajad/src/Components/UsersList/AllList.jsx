@@ -13,8 +13,7 @@ function UsersList() {
   return (
     <>
     {isAuth ? (
-      <>
-    
+      <>    
         <div className="headerSchedule">
         <Header/>
         </div>
