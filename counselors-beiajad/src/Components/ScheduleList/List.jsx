@@ -22,7 +22,6 @@ function ScheduleList(props) {
     day: day,
   };
 
-
   const { user1, isAuth } = useContext(AuthContext);
   const [schedule, setSchedule] = useState([]);
   const [data, setData] = useState([]);
@@ -30,12 +29,8 @@ function ScheduleList(props) {
   const [searchText, setSearchText] = useState()
   const [apa, setApa] = useState("btn btn-info off")
   const [apa1, setApa1] = useState("off")
-
-
-  const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"];   // excluye datos del arreglo del filtro
-  
-  const scrollContainerStyle = { width: "100%", maxHeight: "400px" };
-  
+  const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"];   // excluye datos del arreglo del filtro  
+  const scrollContainerStyle = { width: "100%", maxHeight: "400px" };  
   const URL_GET_SCHEDULE = `http://localhost:8000/api/v1/${props.lista}/${user1.id}`;
 
   useEffect(() => {
@@ -46,8 +41,7 @@ function ScheduleList(props) {
       })
       .then((data) => (setSchedule(data.data), setData(data.data)))
       .catch((err) => console.log(err));
-  }, []);
-     
+  }, []);     
 
   const toFind = (selectedDay) => {
     let dia = selectedDay.day
@@ -69,13 +63,10 @@ function ScheduleList(props) {
     }else{
       filterData(`${year}-${month}-${dia}`);
       setSearchText(`${dia}/${month}/${year}`);
-
       }
-    }
-  
+    }  
     setApa("btn btn-info")
     setApa1("")
-
   }
 
   const filterData = (value) => {
@@ -98,85 +89,75 @@ function ScheduleList(props) {
     setApa1("off")
     }
 
-    const DoctorDates = data.filter((a) => {    
-      if(a.doctor[0]._id === user1.id){
-        return a
-      }    
-    }); 
-   
+  const DoctorDates = data.filter((a) => {    
+    if(a.doctor[0]._id === user1.id){
+      return a
+    }    
+  }); 
+  
   return (
     <>
     {isAuth ? (
       <> 
      
     <Container className="themed-container" fluid={true}>
-      <h1 className="titulo">Agenda</h1>
-     <Col className="padCal"  xl={{ size: 4}}>
+        <h1 className="titulo">Agenda</h1>
+      <Col className="padCal"  xl={{ size: 4}}>
 
       <Calendar
-      value={selectedDay}
-      onChange={setSelectedDay, (e) => {toFind(e)}}
-      shouldHighlightWeekends
-      calendarTodayClassName="custom-today-day"
-      />
+        value={selectedDay}
+        onChange={setSelectedDay, (e) => {toFind(e)}}
+        shouldHighlightWeekends
+        calendarTodayClassName="custom-today-day"
+        />
 
       </Col>
 
-     <Col xl={{ size: 8}}>
+      <Col xl={{ size: 8}}>
 
-     <div className="fechaActual">
-       <h1 id="searchText" className={apa1}>{searchText}</h1>
-       <Button id="todas" className={apa} onClick={Todas}>Ver todas las citas</Button >
-     </div>
+        <div className="fechaActual">
+          <h1 id="searchText" className={apa1}>{searchText}</h1>
+          <Button id="todas" className={apa} onClick={Todas}>Ver todas las citas</Button >
+        </div>
 
-     <MDBContainer>
-      <div className="scrollbar scrollbar-info  mt-5 mx-auto" style={scrollContainerStyle}>
-      <Table striped>
-      <thead>
-        <tr>
-          
-          <th className="absolute3">Fecha</th>
-          <th className="absolute3">Hora</th>
-          <th className="absolute3">Nota</th>
-          <th className="absolute3">Nombre</th>
-          <th className="absolute3">Apellido</th>
-          <th className="absolute3">Tel</th>
-          <th className="absolute3">Editar</th>
-          <th className="absolute3">Borrar</th>
+        <MDBContainer>
+          <div className="scrollbar scrollbar-info  mt-5 mx-auto" style={scrollContainerStyle}>
+            <Table striped>
+              <thead>
+                <tr>
+                  <th className="absolute3">Fecha</th>
+                  <th className="absolute3">Hora</th>
+                  <th className="absolute3">Nota</th>
+                  <th className="absolute3">Nombre</th>
+                  <th className="absolute3">Apellido</th>
+                  <th className="absolute3">Tel</th>
+                  <th className="absolute3">Editar</th>
+                  <th className="absolute3">Borrar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {DoctorDates.map((user, i) => (
+                  <tr key={i}>         
+                    <td >{user.date.split("T")[0]}</td>
+                    <td >{user.time}</td>
+                    <td >{user.note}</td>
+                    <td >{user.user[0].first_name}</td>
+                    <td >{user.user[0].last_name}</td>
+                    <td >{user.user[0].tel}</td>
+                    <td><EditSchedule id={user._id}/></td>
+                    <td><DeleteShedule id={user._id}/></td>
+                </tr>
+                  ))}
+              </tbody>
+            </Table>
 
-        </tr>
-      </thead>
-      <tbody>
-      {DoctorDates.map((user, i) => (
-        <tr key={i}>         
-          
-          <td >{user.date.split("T")[0]}</td>
-          <td >{user.time}</td>
-          <td >{user.note}</td>
-          <td >{user.user[0].first_name}</td>
-          <td >{user.user[0].last_name}</td>
-          <td >{user.user[0].tel}</td>
-          <td><EditSchedule id={user._id}/></td>
-          <td><DeleteShedule id={user._id}/></td>
-            
-        </tr>
-        ))}
-        
-      </tbody>
-    </Table>
-
-    <div className="clearboth">
-    {data.length === 0 && <span>Hoy no hay citas</span>}
-    </div>
-
-      </div>
-    </MDBContainer>
-   
+            <div className="clearboth">
+              {data.length === 0 && <span>Hoy no hay citas</span>}
+            </div>
+          </div>
+        </MDBContainer>
       </Col>
-    </Container>   
-   
-     
-  
+    </Container>     
     <Footer/>
     </>
     ) : (
