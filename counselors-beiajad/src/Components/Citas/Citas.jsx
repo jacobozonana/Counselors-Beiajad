@@ -12,7 +12,7 @@ function Citas() {
   const { user1, isAuth } = useContext(AuthContext)
   const [schedule, setSchedule] = useState([]);
   const scrollContainerStyle = { width: "100%", maxHeight: "400px" };
-  const URL_GET_USER = `http://localhost:8000/api/v1/schedules/${user1.id}`;
+  const URL_GET_USER = `http://localhost:8000/api/v1/schedulesbyuser/${user1.id}/${user1.id}`;
 
   useEffect(() => {
     axios.get(URL_GET_USER, {
@@ -64,7 +64,6 @@ function Citas() {
             </Table>
           </div>
        </MDBContainer>
-
       ) : (
         undefined
       )} 

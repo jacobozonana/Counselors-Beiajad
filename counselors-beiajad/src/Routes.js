@@ -6,6 +6,7 @@ import Login from "./Components/Users/Login.jsx";
 import Logout from "./Components/Users/Logout.jsx";
 import Signup from "./Components/Users/Signup.jsx";
 import ScheduleList from "./Components/ScheduleList/ScheduleList.jsx"; 
+import ScheduleListByDoctor from "./Components/ScheduleList/ScheduleListByDoctor.jsx"; 
 import Faq from './Pages/Faq/Faq';
 import SignupDoctor from "./Components/Users/SignupDoctor.jsx";
 import SignupAdmin from "./Components/Users/SignupAdmin.jsx";
@@ -31,6 +32,7 @@ function Routes() {
         <Route exact path="/adminslist" component={AdminsList} />
         <Route exact path="/alllist" component={AllList} />
         <Route exact path="/schedule" component={ScheduleList} />
+        <Route exact path="/schedulesbydoctor" component={ScheduleListByDoctor} />
         <Route exact path="/faq" component={Faq} />
       </Switch>
       </AuthContextProvider>

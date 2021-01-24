@@ -5,9 +5,9 @@ import Header from "../Layout/Header/Header";
 
 
 
-function ScheduleList() {
+function ScheduListByDoctor() {
 
-  const { isAuth } = useContext(AuthContext);
+  const { isAuth, user1 } = useContext(AuthContext);
 
 
   return (
@@ -17,7 +17,7 @@ function ScheduleList() {
         <div className="headerSchedule">
         <Header/>
         </div>
-        <List lista="schedules" log=""/>
+        <List lista="schedulesbydoctor" log={user1.id} />
         </>
     ) : (
       undefined
@@ -26,4 +26,4 @@ function ScheduleList() {
   )
 }
 
-export default ScheduleList
+export default ScheduListByDoctor

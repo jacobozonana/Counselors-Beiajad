@@ -13,7 +13,6 @@ const Header = () => {
   return (
   <> 
     {isAuth ? (
-
             <Navbar sticky="top" bg="light" expand="lg">
               <Navbar.Brand href="/"><img src={Logo} className="d-inline-block align-top logo" alt="Counselors-Beiajad" /></Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -27,7 +26,8 @@ const Header = () => {
                     <Dropdown.Item href="/adminslist"><h4 className="alineacion">Lista de administradores</h4></Dropdown.Item>
                     <Dropdown.Item href="/doctorslist"><h4 className="alineacion">Lista de doctores</h4></Dropdown.Item>
                     <Dropdown.Item href="/userslist"><h4 className="alineacion">Lista de Usuarios</h4></Dropdown.Item>
-                    <Dropdown.Item href="/schedule"><h4 className="alineacion">Citas</h4></Dropdown.Item>
+                    <Dropdown.Item href="/schedule"><h4 className="alineacion">Citas todas (administradores)</h4></Dropdown.Item>
+                    <Dropdown.Item href="/schedulesbydoctor"><h4 className="alineacion">Citas por doctor (doctores)</h4></Dropdown.Item>
                     <Dropdown.Item href="/signupadmin"><h4 className="alineacion">Alta administrador</h4></Dropdown.Item>
                     <Dropdown.Item href="/signupdoctor"><h4 className="alineacion">Alta doctor</h4></Dropdown.Item>
                   </DropdownButton>
@@ -36,9 +36,7 @@ const Header = () => {
               <Nav.Link  href="https://api.whatsapp.com/send?phone=5491152470444"><h4 className="alineacion"><i className="fab fa-whatsapp"></i></h4></Nav.Link>                         
               <Nav.Link  href="/logout"><h4 className="alineacion"><i className="fas fa-sign-out-alt"></i></h4></Nav.Link>
             </Navbar>
-
     ) : (
-
             <Navbar bg="light" expand="lg">
               <Navbar.Brand href="/"><img
                     src={Logo}
@@ -56,8 +54,7 @@ const Header = () => {
               <Nav.Link  href="mailto:couselorsbeiajad@gmail.com"><h4 id="contact" className="alineacion"><i className="far fa-envelope"></i></h4></Nav.Link>                         
               <Nav.Link  href="https://api.whatsapp.com/send?phone=5491152470444"><h4 className="alineacion"><i className="fab fa-whatsapp"></i></h4></Nav.Link>              
               <Login />
-            </Navbar>
-    
+            </Navbar>    
   )}
   </>
   );

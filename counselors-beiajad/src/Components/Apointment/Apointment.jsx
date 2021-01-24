@@ -8,8 +8,100 @@ import Swal from 'sweetalert2'
 import '../../index.css'
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 
-
 function Apointment() {
+
+  const myCustomLocale = {
+    // months list by order
+    months: [
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre',
+    ],
+  
+    // week days by order
+    weekDays: [
+      {
+        name: 'Domingo', // used for accessibility 
+        short: 'D', // displayed at the top of days' rows
+        isWeekend: true, // is it a formal weekend or not?
+      },
+      {
+        name: 'Lunes',
+        short: 'L',
+      },
+      {
+        name: 'Martes',
+        short: 'M',
+      },
+      {
+        name: 'Miercoles',
+        short: 'M',
+      },
+      {
+        name: 'Jueves',
+        short: 'J',
+      },
+      {
+        name: 'Viernes',
+        short: 'V',
+      },
+      {
+        name: 'Sabado',
+        short: 'S',
+        isWeekend: true,
+      },
+    ],
+  
+    // just play around with this number between 0 and 6
+    weekStartingIndex: 0,
+  
+    // return a { year: number, month: number, day: number } object
+    getToday(gregorainTodayObject) {
+      return gregorainTodayObject;
+    },
+  
+    // return a native JavaScript date here
+    toNativeDate(date) {
+      return new Date(date.year, date.month - 1, date.day);
+    },
+  
+    // return a number for date's month length
+    getMonthLength(date) {
+      return new Date(date.year, date.month, 0).getDate();
+    },
+  
+    // return a transformed digit to your locale
+    transformDigit(digit) {
+      return digit;
+    },
+  
+    // texts in the date picker
+    nextMonth: 'Next Month',
+    previousMonth: 'Previous Month',
+    openMonthSelector: 'Open Month Selector',
+    openYearSelector: 'Open Year Selector',
+    closeMonthSelector: 'Close Month Selector',
+    closeYearSelector: 'Close Year Selector',
+    defaultPlaceholder: 'Select...',
+   
+    // used for input value when multi dates are selected
+    digitSeparator: ',',
+  
+    // if your provide -2 for example, year will be 2 digited
+    yearLetterSkip: 0,
+  
+    // is your language rtl or ltr?
+    isRtl: false,
+  }
   
   let d = new Date();
   let year = d.getFullYear();
@@ -23,7 +115,6 @@ function Apointment() {
   };
   
     const { user1, isAuth } = useContext(AuthContext)    
-    const SCHGET = `http://localhost:8000/api/v1/schedules/${user1.id}`
     const DOCGET = `http://localhost:8000/api/v1/doctors/${user1.id}`
     const SCHPOST = `http://localhost:8000/api/v1/schedule/${user1.id}`
     const [schedule, setSchedule] = useState([]);
@@ -32,7 +123,7 @@ function Apointment() {
     const [time, setTime] = useState('')
     const [note, setNote] = useState('Escribe aqui algun comentario a tu cita')
     const [user] = useState(user1.id)
-    const [doctor, setDoctor] = useState('')
+    const [doctor, setDoctor] = useState(user1.id)
     const [selectedDay, setSelectedDay] = useState(defaultValue);
     const [fecha, setFecha] = useState('')
     const [data, setData] = useState([]);
@@ -41,17 +132,10 @@ function Apointment() {
     const [apa, setApa] = useState("btn btn-info boton apagado")
     const [sinHoras, setSinHoras] = useState (false) 
     const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"];   // excluye datos del arreglo del filtro
+    const SCHGET = `http://localhost:8000/api/v1/schedulesbydoctor/${user1.id}/${doctor}`
     
     
     useEffect(() => {
-      axios.get(SCHGET, {
-          headers: {
-            Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
-          },
-        })
-        .then((data) => (setSchedule(data.data)))
-        .catch((err) => console.log(err));
-
         axios.get(DOCGET, {
           headers: {
             Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
@@ -60,6 +144,16 @@ function Apointment() {
         .then((data) => (setDoctors(data.data)))
         .catch((err) => console.log(err));
     }, []);
+
+    useEffect(() => {
+      axios.get(SCHGET, {
+        headers: {
+          Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+        },
+      })
+      .then((data) => (setSchedule(data.data)))
+      .catch((err) => console.log(err));
+    }, [doctor])
 
     const diaSeleccionado = (selectedDay) => {
 
@@ -226,8 +320,10 @@ function Apointment() {
                 <Calendar
                   value={selectedDay}
                   onChange={setSelectedDay, (e)=>{diaSeleccionado(e)}}
+                  colorPrimary="#25a1b7"
+                  calendarClassName="responsive-calendar" // added this
+                  locale={myCustomLocale} // custom locale object
                   shouldHighlightWeekends
-                  calendarToday
                   ClassName="custom-today-day"
                 />                     
                   

@@ -10,6 +10,4 @@ router.post('/signupuser', UserValidator.create, UserController.signupUser)
 router.post('/signupdoctor/:id', verifyToken, UserValidator.create, UserController.signupDoctor)
 router.post('/signupadmin/:id', verifyToken, UserValidator.create, UserController.signupAdmin)
 
-
-
 module.exports = router;
