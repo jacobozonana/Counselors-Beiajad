@@ -23,7 +23,7 @@ function EditSchedule(props) {
     day: day,
   };
     const { user1 } = useContext(AuthContext)  
-    const URLG = `http://localhost:8000/api/v1/schedules/${user1.id}`
+    const URLG = `http://localhost:8000/api/v1/schedulesbyuser/${user1.id}/${user1.id}`
     const URLP = `http://localhost:8000/api/v1/schedule/${user1.id}/${props.id}`
     const [schedule, setSchedule] = useState([]);
     const [date, setDate] = useState('')

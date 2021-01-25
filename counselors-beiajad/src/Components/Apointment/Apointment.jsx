@@ -10,6 +10,8 @@ import "react-modern-calendar-datepicker/lib/DatePicker.css";
 
 function Apointment() {
 
+
+//---------------All this its react-modern-calendar-datepicker config---------------------------------
   const myCustomLocale = {
     // months list by order
     months: [
@@ -113,7 +115,10 @@ function Apointment() {
     month: month,
     day: day,
   };
-  
+
+//-------------------------------------------------------------------------------------------------
+
+
     const { user1, isAuth } = useContext(AuthContext)    
     const DOCGET = `http://localhost:8000/api/v1/doctors/${user1.id}`
     const SCHPOST = `http://localhost:8000/api/v1/schedule/${user1.id}`
@@ -124,6 +129,8 @@ function Apointment() {
     const [note, setNote] = useState('Escribe aqui algun comentario a tu cita')
     const [user] = useState(user1.id)
     const [doctor, setDoctor] = useState(user1.id)
+    const [usrdates, setUsrdates] = useState([])
+    const [usdat, setUsdat] = useState([])
     const [selectedDay, setSelectedDay] = useState(defaultValue);
     const [fecha, setFecha] = useState('')
     const [data, setData] = useState([]);
@@ -132,10 +139,28 @@ function Apointment() {
     const [apa, setApa] = useState("btn btn-info boton apagado")
     const [sinHoras, setSinHoras] = useState (false) 
     const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"];   // excluye datos del arreglo del filtro
-    const SCHGET = `http://localhost:8000/api/v1/schedulesbydoctor/${user1.id}/${doctor}`
+    const SCHDOCGET = `http://localhost:8000/api/v1/schedulesbydoctor/${user1.id}/${doctor}`
+    const SCHUSRGET = `http://localhost:8000/api/v1/schedulesbyuser/${user1.id}/${user1.id}`
+   
+//---------------All this its react-modern-calendar-datepicker config---------------------------------
+  
+    const disabledDays = usdat;
+    const handleDisabledSelect = disabledDay => {
+      console.log('Tried selecting a disabled day', disabledDay);
+    };
     
+//------------------------------------------------------------------------------------------------------
+
     
     useEffect(() => {
+        axios.get(SCHUSRGET, {
+          headers: {
+            Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+          },
+        })
+        .then((data) => (setUsrdates(data.data)))
+        .catch((err) => console.log(err));
+
         axios.get(DOCGET, {
           headers: {
             Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
@@ -146,7 +171,7 @@ function Apointment() {
     }, []);
 
     useEffect(() => {
-      axios.get(SCHGET, {
+      axios.get(SCHDOCGET, {
         headers: {
           Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
         },
@@ -225,6 +250,29 @@ function Apointment() {
        }      
      }
 
+     useEffect(() => {
+      udates()
+    }, [usrdates])
+    
+      const udates = () => {
+        let usdates = [] 
+          usrdates.map((info) => (           
+          usdates.push(info.date)))  
+          let year = usdates.map(v => parseInt( v.slice(0, 4)))
+          let month = usdates.map(v => parseInt(v.slice(5, 7)))
+          let day = usdates.map(v => parseInt(v.slice(8, 10)))
+          let datos  = [];
+      
+          for(var i= 0; i < year.length; i++) {
+            datos.push({ 
+                  "year"    : year[i],
+                  "month"  : month[i],
+                  "day"    : day[i] 
+              });
+              setUsdat(datos)
+          }
+      }
+
     const saveDate = ()=>{
       Swal.fire({
         title: `Tu cita sera programada para el ${fecha.replace("T", " a las")} hrs.`,
@@ -272,8 +320,7 @@ function Apointment() {
            })
           
         }
-      })
-  
+      })  
         }
        
    /*     
@@ -323,6 +370,8 @@ function Apointment() {
                   colorPrimary="#25a1b7"
                   calendarClassName="responsive-calendar" // added this
                   locale={myCustomLocale} // custom locale object
+                  disabledDays={disabledDays} // here we pass them
+                  onDisabledDayError={handleDisabledSelect} // handle error
                   shouldHighlightWeekends
                   ClassName="custom-today-day"
                 />                     
