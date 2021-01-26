@@ -1,4 +1,3 @@
-
 X-!!! IMPORTANTE ANTES DE TODO ARREGLAR LAS URL DE LA API PARA QUE FUNCIONE CORRRECTAMENTE !!!! (Hecho)
 
 X-arreglar la pagina de schedule que pasa si no estas logueado (jacobo sabe lo de history) (Hecho, se pone undefined, y la pagina sale en blanco si no estas logueado)
@@ -15,6 +14,8 @@ X-Filtrar la pagina de schedule que solo muestre de las citas del doctor loguead
 citas con el nombre del doctor a lado (Hecho)
 
 X-filtrar los horarios dependiendo las disponibildad de cada doctor con su fecha (Hecho)
+
+X-Bloquear el dia en que cada usuario hace una cita par que no se hagan 2 citas el mismo dia del mismo usuario (Hecho)
 
 -Pensar bien que informacion mostrar de los doctores ya que todos los doctores se van a poder buscar entre si
 

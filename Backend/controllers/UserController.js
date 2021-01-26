@@ -190,7 +190,7 @@ module.exports = {
         User.findById(req.params.id)
           .then((info) => {
             let role = info.role;
-            if (role !== "admin" && role !== "doctor") res.status(400).json({message: 'No tienes acceso'})
+            if (role !== "admin" ) res.status(400).json({message: 'No tienes acceso'})
             else {
               User.findById(req.params.id2)
       .then((info) => {
@@ -221,4 +221,3 @@ module.exports = {
     })
     },
 }
-
