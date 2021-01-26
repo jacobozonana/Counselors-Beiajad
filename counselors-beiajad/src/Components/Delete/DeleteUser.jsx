@@ -8,10 +8,10 @@ function DeleteUser (props) {
     
     const { user1 } = useContext(AuthContext)
     const [schedule, setSchedule] = useState([]);
-    const URL_GET_USER = `http://localhost:8000/api/v1/schedules/${user1.id}`;
+    const URLGETUSERDATES = `http://localhost:8000/api/v1/schedulesbyuser/${user1.id}/${props.id}`;
      
     useEffect(() => {
-      axios.get(URL_GET_USER, {
+      axios.get(URLGETUSERDATES, {
         headers: {
           Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
         },
@@ -20,46 +20,34 @@ function DeleteUser (props) {
       .catch((err) => console.log(err))
     }, []);
 
-    const Borrar = () => {
-      const IdUser = schedule.filter((idUsuario) => {
-        if(idUsuario.user[0]._id === props.id){
-          return idUsuario  
-        }
-      });
-
-    const usuarioFiltrado = IdUser.map((user) => {
+    const Delete = () => {     
+      const dates = schedule.map((user) => {
       return user._id
     })
-
-    for (let i = 0; i < usuarioFiltrado.length; i++) {
-      const URLDELETECITAS = `http://localhost:8000/api/v1/schedule/${user1.id}/${usuarioFiltrado[i]}`;
-      axios.delete(URLDELETECITAS, {
-        headers: {
-          Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
-            },
-          })
-          .catch((error) => {
-              console.log(error)
-          })
+      for (let i = 0; i < dates.length; i++) {
+        const URLDELETEDATES = `http://localhost:8000/api/v1/schedule/${user1.id}/${dates[i]}`;
+          axios.delete(URLDELETEDATES, {
+            headers: {
+              Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+                },
+              })
+                .catch((error) => {console.log(error)
+              })
+              }
           }
-        }
   
-    const BorrarUser =  () => {
-
-      const URLDELETE = `http://localhost:8000/api/v1/deleteusers/${user1.id}/${props.id}`;
-
-       axios.delete(URLDELETE, {
+    const DeleteUser =  () => {
+      const URLDELETEUSER = `http://localhost:8000/api/v1/deleteusers/${user1.id}/${props.id}`;
+       axios.delete(URLDELETEUSER, {
           headers: {
             Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
             },
           })
-            .catch((error) => {
-                console.log(error)     
+            .catch((error) => {console.log(error)     
           })
         }
 
      const Eliminate =  () => {
-
       Swal.fire({
         title: '¿Estas seguro?',
         text: "Esta acción no se puede revertir",
@@ -71,8 +59,8 @@ function DeleteUser (props) {
         denyButtonText: `Cancelar`,
       }).then((result) => {
         if (result.isConfirmed) {
-          Borrar()
-          BorrarUser()
+          Delete()
+          DeleteUser()
           Swal.fire({
             icon: 'success',
             title: 'Se elimino con exito',
