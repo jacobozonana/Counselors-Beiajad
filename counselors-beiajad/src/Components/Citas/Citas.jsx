@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Table } from 'react-bootstrap';
-import { MDBContainer } from "mdbreact";
+import { MDBDataTable } from 'mdbreact';
 import DeleteSchedule from "../Delete/DeleteSchedule";
 import axios from "axios";
 import EditSchedule from '../Editar/EditSchedule';
@@ -11,7 +10,6 @@ function Citas() {
 
   const { user1, isAuth } = useContext(AuthContext)
   const [schedule, setSchedule] = useState([]);
-  const scrollContainerStyle = { width: "100%", maxHeight: "400px" };
   const URL_GET_USER = `http://localhost:8000/api/v1/schedulesbyuser/${user1.id}/${user1.id}`;
 
   useEffect(() => {
@@ -33,42 +31,74 @@ function Citas() {
   }); 
 
   return (
-    <>
+  <>
       {isAuth ? (
-    
-        <MDBContainer>          
-          <div className="scrollbar scrollbar-primary  mt-5 mx-auto" style={scrollContainerStyle}>   
-            <Table className="citas" striped>
-              <thead className="absolute3">
-                <tr>
-                  <th className="absolute3">Fecha</th>
-                  <th className="absolute3">Hora</th>
-                  <th className="absolute3">Nota</th>
-                  <th className="absolute3">Doctor</th>
-                  <th className="absolute3">Editar</th>
-                  <th className="absolute3">Borrar</th>
-                </tr>
-              </thead>
-              <tbody>
-                {IdUser.map((user, i) => (
-                <tr key={i}>                
-                  <td width="95">{user.date.split("T")[0]}</td>
-                  <td width="75">{user.time}</td>
-                  <td width="300">{user.note}</td>
-                  <td width="75">{user.doctor[0].first_name}</td>
-                  <td><EditSchedule id={user._id}/></td>
-                  <td><DeleteSchedule id={user._id}/></td>      
-                </tr>
-                ))}
-              </tbody>
-            </Table>
-          </div>
-       </MDBContainer>
-      ) : (
-        undefined
-      )} 
-
-    </>     
+    <>    
+      <MDBDataTable 
+      scrollX
+      scrollY
+      maxHeight="300px"
+      striped
+      bordered
+      paging={false}
+      searching={true}
+      responsive
+      data={{
+        columns: [
+          {
+            label: 'Fecha',
+            field: 'dat',
+            sort: 'asc',
+            width: 115
+          },
+          {
+            label: 'Hora',
+            field: 'tim',
+            sort: 'asc',
+            width: 30
+          },
+          {
+            label: 'Nota',
+            field: 'not',
+            sort: 'asc',
+            width: 370
+          },
+          {
+            label: 'Doctor',
+            field: 'doc',
+            sort: 'asc',
+            width: 100
+          },
+          {
+            label: 'Editar',
+            field: 'edi',
+            sort: 'asc',
+            width: 70
+          },
+          {
+            label: 'Borrar',
+            field: 'del',
+            sort: 'asc',
+            width: 70
+          }
+        ],
+        rows: IdUser.map((date, i) => (
+          {
+            dat: date.date.split("T")[0],
+            tim: date.time,
+            not: date.note,
+            doc: date.doctor[0].first_name,
+            edi: <EditSchedule id={date._id}/>,
+            del: <DeleteSchedule id={date._id}/>,
+            }
+          ))
+      }}
+    />    
+  </>
+      ) : (        
+        undefined        
+      )}
+</>     
   ); 
 }
 

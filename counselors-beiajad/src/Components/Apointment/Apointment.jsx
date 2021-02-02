@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { AuthContext } from '../../contexts/AuthContext';
-import { Calendar } from "react-modern-calendar-datepicker";
-import { Container, Row, Col } from 'react-bootstrap';
+import DatePicker from "react-modern-calendar-datepicker";
+import { Dropdown, DropdownButton, Form, Button, Modal, Col, Row } from 'react-bootstrap';
 import axios from 'axios'
 import Citas from '../Citas/Citas'
 import Swal from 'sweetalert2'
@@ -9,7 +9,6 @@ import '../../index.css'
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 
 function Apointment() {
-
 
 //---------------All this its react-modern-calendar-datepicker config---------------------------------
   const myCustomLocale = {
@@ -129,6 +128,8 @@ function Apointment() {
     const [note, setNote] = useState('Escribe aqui algun comentario a tu cita')
     const [user] = useState(user1.id)
     const [doctor, setDoctor] = useState(user1.id)
+    const [doctorName, setDoctorName] = useState('')
+    const [doctorLname, setDoctorLname] = useState('')
     const [usrdates, setUsrdates] = useState([])
     const [usdat, setUsdat] = useState([])
     const [selectedDay, setSelectedDay] = useState(defaultValue);
@@ -141,6 +142,11 @@ function Apointment() {
     const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"];   // excluye datos del arreglo del filtro
     const SCHDOCGET = `http://localhost:8000/api/v1/schedulesbydoctor/${user1.id}/${doctor}`
     const SCHUSRGET = `http://localhost:8000/api/v1/schedulesbyuser/${user1.id}/${user1.id}`
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
    
 //---------------All this its react-modern-calendar-datepicker config---------------------------------
   
@@ -148,6 +154,24 @@ function Apointment() {
     const handleDisabledSelect = disabledDay => {
       console.log('Tried selecting a disabled day', disabledDay);
     };
+
+     // render regular HTML input element
+     const renderCustomInput = ({ ref }) => (
+      <input
+        readOnly
+        ref={ref} // necessary
+        value={'Fecha'}
+        style={{
+          textAlign: 'center',
+          width:'95px',
+          height:'40px',
+          border: '1px solid #25a1b7',
+          borderRadius: '5px',
+          color: '#25a1b7',
+        }}
+        className="my-custom-input-class" // a styling class
+      />
+    )
     
 //------------------------------------------------------------------------------------------------------
 
@@ -160,20 +184,22 @@ function Apointment() {
         })
         .then((data) => (setUsrdates(data.data)))
         .catch((err) => console.log(err));
-
-        axios.get(DOCGET, {
-          headers: {
-            Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
-          },
-        })
-        .then((data) => (setDoctors(data.data)))
-        .catch((err) => console.log(err));
     }, []);
+
+    useEffect(() => {
+     axios.get(DOCGET, {
+        headers: {
+          Authorization: `Bearer: ${localStorage.getItem("app_token")}`
+        },
+      })
+      .then((data) => (setDoctors(data.data)))
+      .catch((err) => console.log(err));
+  }, [usrdates]);
 
     useEffect(() => {
       axios.get(SCHDOCGET, {
         headers: {
-          Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+          Authorization: `Bearer: ${localStorage.getItem("app_token")}`
         },
       })
       .then((data) => (setSchedule(data.data)))
@@ -216,7 +242,7 @@ function Apointment() {
       let x = date.slice(0, 11)
       let y = fecha.slice(0, 11)
       setDate(`${x}${horario}`)
-      setFecha(`${y}  ${horario}`)
+      setFecha(`${y}  ${horario} hrs`)
     }
         
     const filterData = (value) => {
@@ -275,7 +301,7 @@ function Apointment() {
 
     const saveDate = ()=>{
       Swal.fire({
-        title: `Tu cita sera programada para el ${fecha.replace("T", " a las")} hrs.`,
+        title: `Tu cita con el Dr. ${doctorName} ${doctorLname}, sera programada para el ${fecha.replace("T", " a las")} hrs.`,
         icon: 'info',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -351,76 +377,86 @@ function Apointment() {
   return (
      <>
      {isAuth ? (
-        <div className="calendar1">
-          <Container fluid>
-            <Row >
-              <Col s="4">
-                
-                <label className="bienvenido">Escoge tu doctor</label>
-                  <select onChange={(e) => {setDoctor(e.target.value)}}>
-                    {doctors.map((user, i) => (
-                      <option key={i} value={user._id}>{user.first_name}</option>
-                     ))}
-                  </select>  
+      <div className="calendar1">
+        <Button variant="primary" onClick={handleShow}>
+          Agendar cita
+        </Button>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Cita</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Row>
+                <Col>
+                  <Form.Group controlId="formBasicEmail">
+                    <DropdownButton variant="outline-info" id="dropdown-basic-button" title='Doctor'>
+                      {doctors.map((user, i) => (
+                        <Dropdown.Item onClick={() => {
+                          setDoctor(user._id) 
+                          setDoctorName(user.first_name)
+                          setDoctorLname(user.last_name)
+                          }} key={i}>
+                          <h4 className="alineacion">{user.first_name} {user.last_name}</h4>
+                        </Dropdown.Item>
+                      ))}
+                    </DropdownButton> 
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId="formBasicPassword">
+                    <DatePicker
+                      value={selectedDay}
+                      onChange={setSelectedDay, (e)=>{diaSeleccionado(e)}}
+                      colorPrimary="#25a1b7"
+                      calendarClassName="responsive-calendar" // added this
+                      locale={myCustomLocale} // custom locale object
+                      disabledDays={disabledDays} // here we pass them
+                      onDisabledDayError={handleDisabledSelect} // handle error
+                      shouldHighlightWeekends
+                      renderInput={renderCustomInput} // render a custom input
+                      ClassName="custom-today-day"
+                      />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId="formBasicCheckbox">
+                    <DropdownButton variant="outline-info" id="dropdown-basic-button" title="Hora">
+                      {sinHoras ? (
+                        <>
+                          <h6 className="CitaSeleccionada sinhoras">Ups! no hay horas disponibles.<br></br>Escoge otro dia por favor</h6>
+                            </>
+                                ):(
+                        <>                     
+                          {botones.map((hora, i) => (
+                            <Dropdown.Item onClick={() => escogeHora(hora, i)} key={i} className={apa}><h4 className="alineacion">{hora}</h4></Dropdown.Item>
+                          ))}
+                        </>
+                                )}
+                    </DropdownButton>
+                  </Form.Group>
+                </Col>
+              </Row>              
+              <Form.Group controlId="formBasicCheckbox">
+                <textarea
+                className="note"
+                placeholder={note}
+                rows="3"
+                onChange={(e)=>{setNote(e.target.value)}}
+                />
+                <h5 className="CitaSeleccionada">Resumen de cita:</h5>
+                <h5 className="CitaSeleccionada">Dr. {doctorName} {doctorLname}</h5>
+                <h5 className="CitaSeleccionada">Fecha: {fecha.replace("T", " ")}</h5>
 
-                <h1>Escoge tu cita</h1>
-                <Calendar
-                  value={selectedDay}
-                  onChange={setSelectedDay, (e)=>{diaSeleccionado(e)}}
-                  colorPrimary="#25a1b7"
-                  calendarClassName="responsive-calendar" // added this
-                  locale={myCustomLocale} // custom locale object
-                  disabledDays={disabledDays} // here we pass them
-                  onDisabledDayError={handleDisabledSelect} // handle error
-                  shouldHighlightWeekends
-                  ClassName="custom-today-day"
-                />                     
-                  
-              </Col>
-              <Col s="2">
-
-                <div className="fondoCita">
-                  <h4 className="CitaSeleccionada">Horas Disponibles</h4>
-
-                  {sinHoras ? (
-                    <>
-                    <h6 className="CitaSeleccionada sinhoras">Ups! no hay horas disponibles.<br></br>Escoge otro dia por favor</h6>
-                    </>
-                  ):(
-                    <>
-                    {botones.map((hora, i) => ( 
-                      <button onClick={() => escogeHora(hora, i)} key={i} className={apa}>{hora}</button>
-                  ))}
-                    </>
-                  )}
-                  
-                  <div className="absolute">
-                    
-                    <label className="CitaSeleccionada">Nota</label> 
-                    <textarea
-                    className="note"
-                    placeholder={note}
-                    rows="3"
-                    onChange={(e)=>{setNote(e.target.value)}}
-                    />
-                    <h6 className="CitaSeleccionada">Fecha escogida:</h6>
-
-                    <h5 className="CitaSeleccionada">{fecha.replace("T", " ")}</h5>
-
-                    <div className="absolute2">
-                      <button type="submit" onClick={() => {saveDate()}} className="btn btn-danger boton">Siguiente</button>
-                    </div>
-
-                  </div>                
-
-                </div>              
-                
-              </Col>
-              <Col lg="6">              
-                <Citas />
-              </Col>
-            </Row>
-          </Container>
+              </Form.Group>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
+            <Button type="submit" onClick={() => {saveDate()}} className="btn btn-info boton">Siguiente</Button>
+          </Modal.Footer>
+        </Modal>
+        <Citas />
         </div>
       ) : (
         undefined

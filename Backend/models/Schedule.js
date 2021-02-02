@@ -21,10 +21,13 @@ const scheduleSchema = new Schema({
     },
     user: [{
         type: mongoose.Schema.Types.ObjectId,
+        required: true,
         ref: 'User',
       }],
     doctor: [{
        type: mongoose.Schema.Types.ObjectId,
+       default: 'Sin doctor',
+       required: true,
        ref: 'User',
      }]  
 },

@@ -17,15 +17,17 @@ X-filtrar los horarios dependiendo las disponibildad de cada doctor con su fecha
 
 X-Bloquear el dia en que cada usuario hace una cita par que no se hagan 2 citas el mismo dia del mismo usuario (Hecho)
 
--Pensar bien que informacion mostrar de los doctores ya que todos los doctores se van a poder buscar entre si
-
--Aplicar en los formularios de registro que deba repetir la contraseña para confirmar y tambien 
- Supported elements de bootstrap
-
 -Cambiar el header y el cuerpo de pagina segun el usuario logueado
  Por ejemplo: los usuarios que puedan crear y ver sus citas
               los doctores que vean las citas pendientes con un poco de informacion (como en un modal)
               los admins ??
+
+-hacer pagina de perfil de usuario, doctor y administrador pudiendo eliminar e editar su cuenta
+
+-Pensar bien que informacion mostrar de los doctores ya que todos los doctores se van a poder buscar entre si
+
+-Aplicar en los formularios de registro que deba repetir la contraseña para confirmar y tambien 
+ Supported elements de bootstrap
 
 -Aplicar el modo pago y se puede que existan los descuentos
 
@@ -35,26 +37,26 @@ X-Bloquear el dia en que cada usuario hace una cita par que no se hagan 2 citas 
 
 -poner chat
 
--hacer pagina de perfil de usuario, doctor y administrador pudiendo eliminar e editar su cuenta
-
 -Como cambiar contraseñas 
 
 -Que te saque de la sesion cuando se venza el token
 
 -Preguntar sobre el tema de subir archivos e imagenes a la api
 
--Ordenar archivos y las rutas corespondientes de paginas
+X-Ordenar archivos y las rutas corespondientes de paginas (Hecho)
 
 
 Pendientes con Chapan y Dani
-hacer uncheck en las citas
-validador para no hacer citas el mismo dia
+hacer uncheck en las citas si atendio la cita o no.
+poder hacer comentario sobre los doctores.
+X-validador para no hacer citas el mismo dia (Hecho)
 validador que no se puede cancelar la cita con un limite de tiempo
 cuando se genera la cita mandar mail y mensaje de texto de confirmacion
 y recordatorios de citas mismo dia y misma semana
 doctor que puedo bloquear ciertos horarios y dias
 despues del swal poner history .push para redireccionar
-.env para el front las URL tambien
+.env para el front las URL tambien del front
+
 sendgrid
 jsPDF
 jspdf autotable
