@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { AuthContext } from '../../contexts/AuthContext';
-import DatePicker from "react-modern-calendar-datepicker";
 import { Dropdown, DropdownButton, Form, Button, Modal, Col, Row } from 'react-bootstrap';
+import DatePicker from "react-modern-calendar-datepicker";
 import axios from 'axios'
 import Citas from '../Citas/Citas'
 import Swal from 'sweetalert2'
@@ -123,12 +123,12 @@ function Apointment() {
     const SCHPOST = `http://localhost:8000/api/v1/schedule/${user1.id}`
     const [schedule, setSchedule] = useState([]);
     const [doctors, setDoctors] = useState([]);
-    const [date, setDate] = useState('')
-    const [time, setTime] = useState('')
+    const [date, setDate] = useState('Fecha')
+    const [time, setTime] = useState('Hora')
     const [note, setNote] = useState('Escribe aqui algun comentario a tu cita')
     const [user] = useState(user1.id)
-    const [doctor, setDoctor] = useState(user1.id)
-    const [doctorName, setDoctorName] = useState('')
+    const [doctor, setDoctor] = useState('')
+    const [doctorName, setDoctorName] = useState('Doctor')
     const [doctorLname, setDoctorLname] = useState('')
     const [usrdates, setUsrdates] = useState([])
     const [usdat, setUsdat] = useState([])
@@ -138,13 +138,12 @@ function Apointment() {
     const [botones, setBotones] = useState (["10:00","11:00","12:00","13:00","14:00","15:00"])
     const [borbot, setBorbot] = useState ([])
     const [apa, setApa] = useState("btn btn-info boton apagado")
-    const [sinHoras, setSinHoras] = useState (false) 
+    const [sinHoras, setSinHoras] = useState (false)
+    const titleedbot = `${doctorName} ${doctorLname}`
     const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"];   // excluye datos del arreglo del filtro
     const SCHDOCGET = `http://localhost:8000/api/v1/schedulesbydoctor/${user1.id}/${doctor}`
     const SCHUSRGET = `http://localhost:8000/api/v1/schedulesbyuser/${user1.id}/${user1.id}`
-
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
    
@@ -160,10 +159,10 @@ function Apointment() {
       <input
         readOnly
         ref={ref} // necessary
-        value={'Fecha'}
+        value={date.slice(0,10)}
         style={{
           textAlign: 'center',
-          width:'95px',
+          width:'135px',
           height:'40px',
           border: '1px solid #25a1b7',
           borderRadius: '5px',
@@ -301,7 +300,7 @@ function Apointment() {
 
     const saveDate = ()=>{
       Swal.fire({
-        title: `Tu cita con el Dr. ${doctorName} ${doctorLname}, sera programada para el ${fecha.replace("T", " a las")} hrs.`,
+        title: `Tu cita con el Dr. ${doctorName} ${doctorLname}, sera programada para el ${fecha.replace("T", " a las")}`,
         icon: 'info',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -373,7 +372,7 @@ function Apointment() {
         console.log(escogida + "escogida para comparar") 
       
   */
-
+ 
   return (
      <>
      {isAuth ? (
@@ -383,14 +382,14 @@ function Apointment() {
         </Button>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Cita</Modal.Title>
+            <Modal.Title>Escoge tu cita</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>
               <Row>
                 <Col>
-                  <Form.Group controlId="formBasicEmail">
-                    <DropdownButton variant="outline-info" id="dropdown-basic-button" title='Doctor'>
+                  <Form.Group>
+                    <DropdownButton variant="outline-info" id="dropdown-basic-button" title={titleedbot}>
                       {doctors.map((user, i) => (
                         <Dropdown.Item onClick={() => {
                           setDoctor(user._id) 
@@ -404,7 +403,7 @@ function Apointment() {
                   </Form.Group>
                 </Col>
                 <Col>
-                  <Form.Group controlId="formBasicPassword">
+                  <Form.Group>
                     <DatePicker
                       value={selectedDay}
                       onChange={setSelectedDay, (e)=>{diaSeleccionado(e)}}
@@ -420,8 +419,8 @@ function Apointment() {
                   </Form.Group>
                 </Col>
                 <Col>
-                  <Form.Group controlId="formBasicCheckbox">
-                    <DropdownButton variant="outline-info" id="dropdown-basic-button" title="Hora">
+                  <Form.Group>
+                    <DropdownButton variant="outline-info" id="dropdown-basic-button" title={time}>
                       {sinHoras ? (
                         <>
                           <h6 className="CitaSeleccionada sinhoras">Ups! no hay horas disponibles.<br></br>Escoge otro dia por favor</h6>
@@ -437,17 +436,13 @@ function Apointment() {
                   </Form.Group>
                 </Col>
               </Row>              
-              <Form.Group controlId="formBasicCheckbox">
+              <Form.Group>
                 <textarea
                 className="note"
                 placeholder={note}
                 rows="3"
                 onChange={(e)=>{setNote(e.target.value)}}
                 />
-                <h5 className="CitaSeleccionada">Resumen de cita:</h5>
-                <h5 className="CitaSeleccionada">Dr. {doctorName} {doctorLname}</h5>
-                <h5 className="CitaSeleccionada">Fecha: {fecha.replace("T", " ")}</h5>
-
               </Form.Group>
             </Form>
           </Modal.Body>
@@ -457,7 +452,7 @@ function Apointment() {
           </Modal.Footer>
         </Modal>
         <Citas />
-        </div>
+      </div>
       ) : (
         undefined
       )} 

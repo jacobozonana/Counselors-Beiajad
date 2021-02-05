@@ -17,7 +17,7 @@ function ScheduleList() {
         <div className="headerSchedule">
         <Header/>
         </div>
-        <List lista="schedules" log=""/>
+        <List lista="schedules" log="" />
         </>
     ) : (
       undefined

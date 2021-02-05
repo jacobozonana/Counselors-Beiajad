@@ -43,11 +43,6 @@ code {
 .apagado{
   display: none;
 }
-#todas{
-  margin-top: 2%;
-  height: 35px;
-  width: 250px;
-}
 .fondoCita{
   margin-top: 57px;
   background:  rgba(233, 229, 243, 0.8);
@@ -373,4 +368,8 @@ select{
   border: 5px solid transparent;
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
   cursor: pointer;
+}
+.alldat{
+  margin-left: 10px;
+  margin-bottom: 2px;
 }
