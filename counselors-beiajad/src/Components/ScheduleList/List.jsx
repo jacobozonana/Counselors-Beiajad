@@ -309,7 +309,7 @@ const defaultValue = {
             tel: date.user[0].tel,
             doc: date.doctor[0].first_name,
             dla: date.doctor[0].last_name,
-            not: <Button variant="warning" onClick={()=> (handleShow(),setNoteonmodal(date.note))}><i class="far fa-sticky-note"></i></Button>,
+            not: <Button variant="warning" onClick={()=> (handleShow(),setNoteonmodal(date.note))}><i className="far fa-sticky-note"></i></Button>,
             edi: <EditSchedule id={date._id} datee={date.date} timee={date.time} notee={date.note} doctore={date.doctor[0]._id} doctorefn={date.doctor[0].first_name} doctoreln={date.doctor[0].last_name} />,
             del: <DeleteSchedule id={date._id} />,
             }

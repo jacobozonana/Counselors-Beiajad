@@ -127,7 +127,7 @@ function Apointment() {
     const [time, setTime] = useState('Hora')
     const [note, setNote] = useState('Escribe aqui algun comentario a tu cita')
     const [user] = useState(user1.id)
-    const [doctor, setDoctor] = useState('')
+    const [doctor, setDoctor] = useState(user1.id)
     const [doctorName, setDoctorName] = useState('Doctor')
     const [doctorLname, setDoctorLname] = useState('')
     const [usrdates, setUsrdates] = useState([])
