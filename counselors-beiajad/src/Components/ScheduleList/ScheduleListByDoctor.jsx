@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { AuthContext } from "../../contexts/AuthContext";
 import List from './List'
-import Header from "../Layout/Header/Header";
 
 
 
@@ -13,12 +12,13 @@ function ScheduListByDoctor() {
   return (
     <>
     {isAuth ? (
-      <>    
-        <div className="headerSchedule">
-        <Header/>
-        </div>
-        <List lista="schedulesbydoctor" log={user1.id} />
+      user1.role==="doctor" ? (
+        <> 
+          <List lista="schedulesbydoctor" log={user1.id} />
         </>
+    ) : (
+      undefined
+    )
     ) : (
       undefined
      )}

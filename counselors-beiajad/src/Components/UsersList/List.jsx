@@ -58,61 +58,160 @@ function AdminList(props) {
    
   return (
     <>
-    {isAuth ? (
+      {isAuth ? (
+        user1.role==="admin" ? (
+          <>
+          <div>
+            <label>Busqueda</label>
+            <input className="buscador"
+            style={{ marginLeft: 5 }}
+            type="text"
+            value={searchText}
+            onChange={e => handleChange(e.target.value)}
+          />
+          </div>
+          <h1>{props.titulo}</h1>
+          <Table striped>
+          <thead>
+            <tr>
+              <th className="absolute3">Tipo</th>
+              <th className="absolute3">Nombre</th>
+              <th className="absolute3">Apellido</th>
+              <th className="absolute3">Especialidad</th>
+              <th className="absolute3">Email</th>
+              <th className="absolute3">Edad</th>
+              <th className="absolute3">Comunidad</th>
+              <th className="absolute3">País</th>
+              <th className="absolute3">Teléfono</th>
+              <th className="absolute3">Borrar</th>
+              <th className="absolute3">Editar</th>          
+            </tr>
+          </thead>
+          <tbody>
+          {data.map((user, i) => (
+            
+          <tr key={i}>
+            <td >{user.role}</td>
+            <td >{user.first_name}</td>
+            <td >{user.last_name}</td>
+            <td >{user.specialty}</td>
+            <td >{user.email}</td>
+            <td >{user.age}</td>
+            <td >{user.comunity}</td>
+            <td >{user.country}</td>
+            <td >{user.tel}</td>
+            <td><DeleteUser id={user._id}/></td>
+          </tr>
+          ))}
+          
+          </tbody>
+        </Table> 
+          
+            <div className="clearboth">
+            {data.length === 0 && <span>No hay resultados!</span>}
+            </div>
+    </>
+    ) :
+     user1.role==="doctor" ? (
       <>
-        
-      <div>
-        <label>Busqueda</label>
-        <input className="buscador"
-        style={{ marginLeft: 5 }}
-        type="text"
-        value={searchText}
-        onChange={e => handleChange(e.target.value)}
-      />
-      </div>
-      <h1>{props.titulo}</h1>
-      <Table striped>
-      <thead>
-        <tr>
-          <th className="absolute3">Tipo</th>
-          <th className="absolute3">Nombre</th>
-          <th className="absolute3">Apellido</th>
-          <th className="absolute3">Especialidad</th>
-          <th className="absolute3">Email</th>
-          <th className="absolute3">Edad</th>
-          <th className="absolute3">Comunidad</th>
-          <th className="absolute3">País</th>
-          <th className="absolute3">Teléfofo</th>
-          <th className="absolute3">Borrar</th>
-          <th className="absolute3">Editar</th>          
+        <div>
+          <label>Busqueda</label>
+          <input className="buscador"
+          style={{ marginLeft: 5 }}
+          type="text"
+          value={searchText}
+          onChange={e => handleChange(e.target.value)}
+        />
+        </div>
+        <h1>{props.titulo}</h1>
+        <Table striped>
+        <thead>
+          <tr>
+            <th className="absolute3">Tipo</th>
+            <th className="absolute3">Nombre</th>
+            <th className="absolute3">Apellido</th>
+            <th className="absolute3">Especialidad</th>
+            <th className="absolute3">Email</th>
+            <th className="absolute3">Edad</th>
+            <th className="absolute3">Comunidad</th>
+            <th className="absolute3">País</th>
+            <th className="absolute3">Teléfono</th>
+          </tr>
+        </thead>
+        <tbody>
+        {data.map((user, i) => (
+          
+        <tr key={i}>
+          <td >{user.role}</td>
+          <td >{user.first_name}</td>
+          <td >{user.last_name}</td>
+          <td >{user.specialty}</td>
+          <td >{user.email}</td>
+          <td >{user.age}</td>
+          <td >{user.comunity}</td>
+          <td >{user.country}</td>
+          <td >{user.tel}</td>
         </tr>
-      </thead>
-      <tbody>
-      {data.map((user, i) => (
+        ))}
         
-       <tr key={i}>
-        <td >{user.role}</td>
-        <td >{user.first_name}</td>
-        <td >{user.last_name}</td>
-        <td >{user.specialty}</td>
-        <td >{user.email}</td>
-        <td >{user.age}</td>
-        <td >{user.comunity}</td>
-        <td >{user.country}</td>
-        <td >{user.tel}</td>
-        <td><DeleteUser id={user._id}/></td>
-       </tr>
-      ))}
+        </tbody>
+        </Table> 
       
-      </tbody>
-    </Table> 
-       
         <div className="clearboth">
         {data.length === 0 && <span>No hay resultados!</span>}
         </div>
+      </>
+      ) :
+      user1.role==="user" ? (
+       <>
+         <div>
+           <label>Busqueda</label>
+           <input className="buscador"
+           style={{ marginLeft: 5 }}
+           type="text"
+           value={searchText}
+           onChange={e => handleChange(e.target.value)}
+         />
+         </div>
+         <h1>{props.titulo}</h1>
+         <Table striped>
+         <thead>
+           <tr>
+             <th className="absolute3">Nombre</th>
+             <th className="absolute3">Apellido</th>
+             <th className="absolute3">Especialidad</th>
+             <th className="absolute3">Email</th>
+             <th className="absolute3">Edad</th>
+             <th className="absolute3">Comunidad</th>
+             <th className="absolute3">País</th>
+             <th className="absolute3">Teléfono</th>
+           </tr>
+         </thead>
+         <tbody>
+         {data.map((user, i) => (
            
-    
-    </>
+         <tr key={i}>
+           <td >{user.first_name}</td>
+           <td >{user.last_name}</td>
+           <td >{user.specialty}</td>
+           <td >{user.email}</td>
+           <td >{user.age}</td>
+           <td >{user.comunity}</td>
+           <td >{user.country}</td>
+           <td >{user.tel}</td>
+         </tr>
+         ))}
+         
+         </tbody>
+         </Table> 
+       
+         <div className="clearboth">
+         {data.length === 0 && <span>No hay resultados!</span>}
+         </div>
+       </>
+    ) : (
+      undefined
+    )
     ) : (
       undefined
     )} 

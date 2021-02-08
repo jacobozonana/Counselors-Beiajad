@@ -72,93 +72,97 @@ const SignupDoctor = () => {
   return (
     <>
     {isAuth ? (
-    <>
-    <Header />
-      <Container className="themed-container" fluid={true}>
-      <h1 className="mb-4 reg">Registra un doctor nuevo</h1>
-      <Form className="container form-regis" onSubmit={handleForm}>
-      <Form.Group>
-       <Form.Label>Nombre</Form.Label>
-       <Form.Control
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-        type="text"
-        id="firstName"
-        name="inputFirstName"
-        placeholder="Escribe tu nombre"
-      />
-      </Form.Group>
-        <Form.Group>
-          <Form.Label>Apellido</Form.Label>
-          <Form.Control
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            type="text"
-            name="lastName"
-            id="inputLastname"
-            placeholder="Escribe tu apellido"
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Especialidad</Form.Label>
-          <Form.Control
-            value={specialty}
-            onChange={(e) => setSpecialty(e.target.value)}
-            type="string"
-            name="specialty"
-            id="exampleage"
-            placeholder="Escribe tu especialidad"
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>País</Form.Label>
-          <Form.Control
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            type="text"
-            id="country"
-            name="inputcountry"
-            placeholder="País de residencia"
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Tel</Form.Label>
-          <Form.Control
-            value={tel}
-            onChange={(e) => setTel(e.target.value)}
-            type="number"
-            name="tel"
-            id="inputTel"
-            placeholder="Teléfono"
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            name="email"
-            id="exampleEmail"
-            placeholder="Correo electronico"
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Contraseña</Form.Label>
-          <Form.Control
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            name="password"
-            id="examplePassword"
-            placeholder="Escribe tu contraseña"
-          />
-        </Form.Group>
-        <Button variant='info' type="submit">Enviar</Button>
-      </Form>
-      </Container>
-      <Footer/>
-    </>
+      user1.role==="admin" ? (       
+         <>
+          <Header />
+            <Container className="themed-container" fluid={true}>
+            <h1 className="mb-4 reg">Registra un doctor nuevo</h1>
+            <Form className="container form-regis" onSubmit={handleForm}>
+            <Form.Group>
+            <Form.Label>Nombre</Form.Label>
+            <Form.Control
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              type="text"
+              id="firstName"
+              name="inputFirstName"
+              placeholder="Escribe tu nombre"
+            />
+            </Form.Group>
+              <Form.Group>
+                <Form.Label>Apellido</Form.Label>
+                <Form.Control
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  type="text"
+                  name="lastName"
+                  id="inputLastname"
+                  placeholder="Escribe tu apellido"
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Especialidad</Form.Label>
+                <Form.Control
+                  value={specialty}
+                  onChange={(e) => setSpecialty(e.target.value)}
+                  type="string"
+                  name="specialty"
+                  id="exampleage"
+                  placeholder="Escribe tu especialidad"
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>País</Form.Label>
+                <Form.Control
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                  type="text"
+                  id="country"
+                  name="inputcountry"
+                  placeholder="País de residencia"
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Tel</Form.Label>
+                <Form.Control
+                  value={tel}
+                  onChange={(e) => setTel(e.target.value)}
+                  type="number"
+                  name="tel"
+                  id="inputTel"
+                  placeholder="Teléfono"
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="email"
+                  name="email"
+                  id="exampleEmail"
+                  placeholder="Correo electronico"
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Contraseña</Form.Label>
+                <Form.Control
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  type="password"
+                  name="password"
+                  id="examplePassword"
+                  placeholder="Escribe tu contraseña"
+                />
+              </Form.Group>
+              <Button variant='info' type="submit">Enviar</Button>
+            </Form>
+            </Container>
+            <Footer/>
+          </>
+    ) : (
+      undefined
+    )
     ) : (
       undefined
      )}

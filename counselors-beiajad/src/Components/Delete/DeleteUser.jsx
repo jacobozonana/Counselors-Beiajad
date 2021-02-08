@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 
 function DeleteUser (props) {
     
-    const { user1 } = useContext(AuthContext)
+    const { isAuth, user1 } = useContext(AuthContext)
     const [schedule, setSchedule] = useState([]);
     const URLGETUSERDATES = `http://localhost:8000/api/v1/schedulesbyuser/${user1.id}/${props.id}`;
      
@@ -83,9 +83,17 @@ function DeleteUser (props) {
     }    
 
     return (
-        <>
-          <button onClick={Eliminate} className="btn btn-dark boton"><i className="far fa-trash-alt"></i></button> 
-        </>
+      <>
+        {isAuth ? (
+          user1.role=="admin" ? (   
+            <button onClick={Eliminate} className="btn btn-dark boton"><i className="far fa-trash-alt"></i></button> 
+          ) : (
+            undefined
+          )
+          ) : (        
+            undefined        
+          )}
+          </>
     )
 }
 

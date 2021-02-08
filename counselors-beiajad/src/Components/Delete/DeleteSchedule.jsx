@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 
 function DeleteSchedule(props) {
 
-const { user1 } = useContext(AuthContext)
+const { isAuth, user1 } = useContext(AuthContext)
 const URLDELETE = `http://localhost:8000/api/v1/schedule/${user1.id}/${props.id}`;
 
 const Borrar = () => {
@@ -50,10 +50,18 @@ const Borrar = () => {
     
 
     return (
-        <>
-           <button onClick={Borrar} className="btn btn-dark boton"><i className="far fa-trash-alt"></i></button> 
+      <>
+       {isAuth ? (
+          user1.role==="admin" || user1.role ==="user" ? (        
+           <button onClick={Borrar} className="btn btn-dark boton"><i className="far fa-trash-alt"></i></button>        
+        ) : (
+          undefined
+        )
+        ) : (        
+          undefined        
+        )}
         </>
-    )
+    );
 }
 
 export default DeleteSchedule

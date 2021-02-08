@@ -6,7 +6,6 @@ import DatePicker from "react-modern-calendar-datepicker";
 import DeleteSchedule from '../Delete/DeleteSchedule'
 import EditSchedule from '../Editar/EditSchedule'
 import axios from "axios";
-import Footer from "../Layout/Footer/Footer";
 import '../../index.css'
 
 function ScheduleList(props) {
@@ -209,121 +208,218 @@ const defaultValue = {
   return (
     <>
       {isAuth ? (
-        <>
-        <Container>
-          <Row>
-            <Col md={4}>
-              <DatePicker
-                value={selectedDay}
-                onChange={setSelectedDay, (e) => {toFind(e)}}
-                colorPrimary="#25a1b7"
-                calendarClassName="responsive-calendar" // added this
-                locale={myCustomLocale} // custom locale object
-                shouldHighlightWeekends
-                renderInput={renderCustomInput} // render a custom input
-                calendarTodayClassName="custom-today-day"
-                />
-                <Button className="alldat" variant="outline-info" onClick={Todas}>Ver todas las citas</Button >
-            </Col>
-           </Row>
-        </Container>     
+        user1.role ==="admin" ? (  
+          <>
+          <Container>
+                 <DatePicker
+                  value={selectedDay}
+                  onChange={setSelectedDay, (e) => {toFind(e)}}
+                  colorPrimary="#25a1b7"
+                  calendarClassName="responsive-calendar" // added this
+                  locale={myCustomLocale} // custom locale object
+                  shouldHighlightWeekends
+                  renderInput={renderCustomInput} // render a custom input
+                  calendarTodayClassName="custom-today-day"
+                  />
+                  <Button className="alldat" variant="outline-info" onClick={Todas}>Ver todas las citas</Button >
+          </Container>     
 
 
-        <MDBDataTableV5
-        hover
-        entriesOptions={[3, 5, 15]}
-        entries={3}
-        pagesAmount={4}
-        pagingTop
-        searchTop
-        searchBottom={false}
-        data={{
-        columns: [
-          {
-            label: 'Fecha',
-            field: 'dat',
-            sort: 'asc',
-            width: 115
-          },
-          {
-            label: 'Hora',
-            field: 'tim',
-            sort: 'asc',
-            width: 30
-          },         
-          {
-            label: 'Nombre',
-            field: 'nam',
-            sort: 'asc',
-            width: 70
-          },
-          {
-            label: 'Apellido',
-            field: 'las',
-            sort: 'asc',
-            width: 70
-          },
-          {
-            label: 'Telefono',
-            field: 'tel',
-            sort: 'asc',
-            width: 70
-          },
-          {
-            label: 'Doctor',
-            field: 'doc',
-            sort: 'asc',
-            width: 100
-          },
-          {
-            label: 'Doctor',
-            field: 'dla',
-            sort: 'asc',
-            width: 100
-          },
-          {
-            label: 'Nota',
-            field: 'not',
-            sort: 'disabled',
-            width: 370
-          },
-          {
-            label: 'Editar',
-            field: 'edi',
-            sort: 'disabled',
-            width: 70
-          },
-          {
-            label: 'Borrar',
-            field: 'del',
-            sort: 'disabled',
-            width: 70
-          }
-        ],
-        rows: data.map((date, i) => (
-          {
-            dat: date.date.split("T")[0],
-            tim: date.time,
-            nam: date.user[0].first_name,
-            las: date.user[0].last_name,
-            tel: date.user[0].tel,
-            doc: date.doctor[0].first_name,
-            dla: date.doctor[0].last_name,
-            not: <Button variant="warning" onClick={()=> (handleShow(),setNoteonmodal(date.note))}><i className="far fa-sticky-note"></i></Button>,
-            edi: <EditSchedule id={date._id} datee={date.date} timee={date.time} notee={date.note} doctore={date.doctor[0]._id} doctorefn={date.doctor[0].first_name} doctoreln={date.doctor[0].last_name} />,
-            del: <DeleteSchedule id={date._id} />,
+          <MDBDataTableV5
+          hover
+          entriesOptions={[3, 5, 15]}
+          entries={3}
+          pagesAmount={4}
+          pagingTop
+          searchTop
+          searchBottom={false}
+          data={{
+          columns: [
+            {
+              label: 'Fecha',
+              field: 'dat',
+              sort: 'asc',
+              width: 115
+            },
+            {
+              label: 'Hora',
+              field: 'tim',
+              sort: 'asc',
+              width: 30
+            },         
+            {
+              label: 'Nombre',
+              field: 'nam',
+              sort: 'asc',
+              width: 70
+            },
+            {
+              label: 'Apellido',
+              field: 'las',
+              sort: 'asc',
+              width: 70
+            },
+            {
+              label: 'Telefono',
+              field: 'tel',
+              sort: 'asc',
+              width: 70
+            },
+            {
+              label: 'Doctor',
+              field: 'doc',
+              sort: 'asc',
+              width: 100
+            },
+            {
+              label: 'Doctor',
+              field: 'dla',
+              sort: 'asc',
+              width: 100
+            },
+            {
+              label: 'Nota',
+              field: 'not',
+              sort: 'disabled',
+              width: 370
+            },
+            {
+              label: 'Editar',
+              field: 'edi',
+              sort: 'disabled',
+              width: 70
+            },
+            {
+              label: 'Borrar',
+              field: 'del',
+              sort: 'disabled',
+              width: 70
             }
-          ))
-      }}
-    />
-    <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Nota</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{noteonmodal}</Modal.Body>
-      </Modal> 
-      <Footer/>
-    </>
+          ],
+          rows: data.map((date, i) => (
+            {
+              dat: date.date.split("T")[0],
+              tim: date.time,
+              nam: date.user[0].first_name,
+              las: date.user[0].last_name,
+              tel: date.user[0].tel,
+              doc: date.doctor[0].first_name,
+              dla: date.doctor[0].last_name,
+              not: <Button variant="warning" onClick={()=> (handleShow(),setNoteonmodal(date.note))}><i className="far fa-sticky-note"></i></Button>,
+              edi: <EditSchedule id={date._id} datee={date.date} timee={date.time} notee={date.note} doctore={date.doctor[0]._id} doctorefn={date.doctor[0].first_name} doctoreln={date.doctor[0].last_name} />,
+              del: <DeleteSchedule id={date._id} />,
+              }
+            ))
+        }}
+      />
+      <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Nota</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>{noteonmodal}</Modal.Body>
+        </Modal> 
+      </>
+      ) :
+      user1.role==="doctor" ? (
+        <>
+          <Container className="centrar">            
+                <DatePicker
+                  value={selectedDay}
+                  onChange={setSelectedDay, (e) => {toFind(e)}}
+                  colorPrimary="#25a1b7"
+                  calendarClassName="responsive-calendar" // added this
+                  locale={myCustomLocale} // custom locale object
+                  shouldHighlightWeekends
+                  renderInput={renderCustomInput} // render a custom input
+                  calendarTodayClassName="custom-today-day"
+                  />
+                  <Button className="alldat" variant="outline-info" onClick={Todas}>Ver todas las citas</Button>            
+          </Container>
+          <MDBDataTableV5
+          hover
+          entriesOptions={[3, 5, 15]}
+          entries={3}
+          pagesAmount={4}
+          pagingTop
+          searchTop
+          searchBottom={false}
+          data={{
+          columns: [
+            {
+              label: 'Fecha',
+              field: 'dat',
+              sort: 'asc',
+              width: 115
+            },
+            {
+              label: 'Hora',
+              field: 'tim',
+              sort: 'asc',
+              width: 30
+            },         
+            {
+              label: 'Nombre',
+              field: 'nam',
+              sort: 'asc',
+              width: 70
+            },
+            {
+              label: 'Apellido',
+              field: 'las',
+              sort: 'asc',
+              width: 70
+            },
+            {
+              label: 'Telefono',
+              field: 'tel',
+              sort: 'asc',
+              width: 70
+            },
+            {
+              label: 'Doctor',
+              field: 'doc',
+              sort: 'asc',
+              width: 100
+            },
+            {
+              label: 'Doctor',
+              field: 'dla',
+              sort: 'asc',
+              width: 100
+            },
+            {
+              label: 'Nota',
+              field: 'not',
+              sort: 'disabled',
+              width: 370
+            }
+          ],
+          rows: data.map((date, i) => (
+            {
+              dat: date.date.split("T")[0],
+              tim: date.time,
+              nam: date.user[0].first_name,
+              las: date.user[0].last_name,
+              tel: date.user[0].tel,
+              doc: date.doctor[0].first_name,
+              dla: date.doctor[0].last_name,
+              not: <Button variant="warning" onClick={()=> (handleShow(),setNoteonmodal(date.note))}><i className="far fa-sticky-note"></i></Button>,
+              edi: <EditSchedule id={date._id} datee={date.date} timee={date.time} notee={date.note} doctore={date.doctor[0]._id} doctorefn={date.doctor[0].first_name} doctoreln={date.doctor[0].last_name} />,
+              del: <DeleteSchedule id={date._id} />,
+              }
+            ))
+        }}
+      />
+      <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Nota</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>{noteonmodal}</Modal.Body>
+        </Modal>
+      </>
+    ) : (
+      undefined
+    )
     ) : (
       undefined
     )} 

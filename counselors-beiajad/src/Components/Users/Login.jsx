@@ -1,7 +1,7 @@
 import React, { useState, useContext} from 'react';
 import { useHistory } from "react-router-dom";
 import { AuthContext } from '../../contexts/AuthContext';
-import { Container, Row, Col, Button, Modal, Form, Nav } from 'react-bootstrap';
+import { Button, Modal, Form, Nav } from 'react-bootstrap';
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import 'bootstrap/dist/css/bootstrap.min.css';

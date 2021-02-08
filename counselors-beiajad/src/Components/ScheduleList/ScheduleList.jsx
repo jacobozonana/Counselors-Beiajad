@@ -1,24 +1,24 @@
 import React, { useContext } from 'react'
 import { AuthContext } from "../../contexts/AuthContext";
 import List from './List'
-import Header from "../Layout/Header/Header";
 
 
 
 function ScheduleList() {
 
-  const { isAuth } = useContext(AuthContext);
+  const { isAuth, user1 } = useContext(AuthContext);
 
 
   return (
     <>
     {isAuth ? (
-      <>    
-        <div className="headerSchedule">
-        <Header/>
-        </div>
-        <List lista="schedules" log="" />
+      user1.role==="admin" ? (       
+        <>    
+          <List lista="schedules" log="" />
         </>
+    ) : (
+      undefined
+    )
     ) : (
       undefined
      )}
