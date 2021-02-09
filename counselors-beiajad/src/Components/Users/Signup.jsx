@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Button, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -14,6 +14,7 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [age, setAge] = useState("");
   const [comunity, setComunity] = useState("");
   const [country, setCountry] = useState(""); 
@@ -21,44 +22,50 @@ const Register = () => {
   const history = useHistory();
 
   const handleForm = async (event) =>{
-  event.preventDefault();
+    event.preventDefault();
 
-  const jsonSend = {
-    first_name: firstName,
-    last_name: lastName,
-    email,
-    password,
-    age,
-    comunity,
-    country,
-    tel
-  };
-
-  const SIGNUP_URL = `http://localhost:8000/api/v1/signupuser/`
-    try {
-      await axios.post(SIGNUP_URL, jsonSend)
-      setFirstName('')
-      setLastName('')
-      setEmail('')
-      setPassword('')
-      setAge('')
-      setComunity('')
-      setCountry('')
-      setTel('')
-      Swal.fire({
-        icon: 'success',
-        title: 'Usuario creado con exito',
-        text: 'Inicia sesión',
-        timer: 3000,
-        timerProgressBar: true,
-      }).then(history.push("/"))
-    }catch (error){
-      console.log(error)
+    if (password !== confirmPassword) {
       Swal.fire({
         icon: 'error',
-        title: 'Algo salio mal',
+        title: 'Verifica tu contraseña',
       })
-    }
+    } else {
+      const jsonSend = {
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        password,
+        age,
+        comunity,
+        country,
+        tel
+      };
+    
+      const SIGNUP_URL = `http://localhost:8000/api/v1/signupuser/`
+        try {
+          await axios.post(SIGNUP_URL, jsonSend)
+          setFirstName('')
+          setLastName('')
+          setEmail('')
+          setPassword('')
+          setAge('')
+          setComunity('')
+          setCountry('')
+          setTel('')
+          Swal.fire({
+            icon: 'success',
+            title: 'Usuario creado con exito',
+            text: 'Inicia sesión',
+            timer: 3000,
+            timerProgressBar: true,
+          }).then(history.push("/"))
+        }catch (error){
+          Swal.fire({
+            icon: 'error',
+            title: 'Algo salio mal',
+          })
+        }
+      }  
   };
 
   return (
@@ -156,6 +163,18 @@ const Register = () => {
           <Form.Control
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            name="password"
+            id="examplePassword"
+            placeholder="Escribe tu contraseña"
+            required
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Verificar contraseña</Form.Label>
+          <Form.Control
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             type="password"
             name="password"
             id="examplePassword"

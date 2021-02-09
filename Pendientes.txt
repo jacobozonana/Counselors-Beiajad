@@ -21,13 +21,14 @@ X-Cambiar el header y el cuerpo de pagina segun el usuario logueado
  Por ejemplo: los usuarios que puedan crear y ver sus citas
               los doctores que vean las citas pendientes con un poco de informacion (como en un modal)
               los admins ?? (Hecho)
+
+X-Aplicar en los formularios de registro que deba repetir la contraseña para confirmar y tambien 
+ Supported elements de bootstrap (Hecho)
               
 -hacer pagina de perfil de usuario, doctor y administrador pudiendo eliminar e editar su cuenta
 
 -Pensar bien que informacion mostrar de los doctores ya que todos los doctores se van a poder buscar entre si
 
--Aplicar en los formularios de registro que deba repetir la contraseña para confirmar y tambien 
- Supported elements de bootstrap
 
 -Aplicar el modo pago y se puede que existan los descuentos
 

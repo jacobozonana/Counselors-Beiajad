@@ -15,6 +15,7 @@ const SignupAdmin = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [age, setAge] = useState("");
   const [comunity, setComunity] = useState("");
   const [specialty, setSpecialty] = useState("");
@@ -25,55 +26,62 @@ const SignupAdmin = () => {
   const handleForm = async (event) =>{
   event.preventDefault();
 
-  const jsonSend = {
-    role: "admin",
-    first_name: firstName,
-    last_name: lastName,
-    email,
-    password,
-    age,
-    comunity,
-    specialty,
-    country,
-    tel
-  };
-
-  const SIGNUP_URL = `http://localhost:8000/api/v1/signupadmin/${user1.id}`
-    try {
-      await axios.post(SIGNUP_URL, jsonSend,
-        {
-        headers: {
-          Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
-        },
+  if (password !== confirmPassword) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Verifica tu contraseña',
+    })
+  } else {
+    const jsonSend = {
+      role: "admin",
+      first_name: firstName,
+      last_name: lastName,
+      email,
+      password,
+      age,
+      comunity,
+      specialty,
+      country,
+      tel
+    };
+  
+    const SIGNUP_URL = `http://localhost:8000/api/v1/signupadmin/${user1.id}`
+      try {
+        await axios.post(SIGNUP_URL, jsonSend,
+          {
+          headers: {
+            Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+          },
+        }
+        )
+        setFirstName('')
+        setLastName('')
+        setEmail('')
+        setPassword('')
+        setAge('')
+        setComunity('')
+        setSpecialty('')
+        setCountry('')
+        setTel('')
+        Swal.fire({
+          icon: 'success',
+          title: 'Administrador creado con exito',
+          text: 'Inicia sesión',
+          timer: 3000,
+          timerProgressBar: true,
+        }).then(history.push("/"))
+      }catch (error){
+        console.log(error)
+        Swal.fire({
+          icon: 'error',
+          title: 'No se puede crear administrador',
+          text: 'Algo salio mal',
+          timer: 3000,
+          timerProgressBar: true,
+        })
       }
-      )
-      setFirstName('')
-      setLastName('')
-      setEmail('')
-      setPassword('')
-      setAge('')
-      setComunity('')
-      setSpecialty('')
-      setCountry('')
-      setTel('')
-      Swal.fire({
-        icon: 'success',
-        title: 'Administrador creado con exito',
-        text: 'Inicia sesión',
-        timer: 3000,
-        timerProgressBar: true,
-      }).then(history.push("/"))
-    }catch (error){
-      console.log(error)
-      Swal.fire({
-        icon: 'error',
-        title: 'No se puede crear administrador',
-        text: 'Algo salio mal',
-        timer: 3000,
-        timerProgressBar: true,
-      })
-    }
-  };
+    };
+  }  
 
   return (
     <>
@@ -185,6 +193,18 @@ const SignupAdmin = () => {
                 <Form.Control
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  type="password"
+                  name="password"
+                  id="examplePassword"
+                  placeholder="Escribe tu contraseña"
+                  required
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Verificar contraseña</Form.Label>
+                <Form.Control
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   type="password"
                   name="password"
                   id="examplePassword"

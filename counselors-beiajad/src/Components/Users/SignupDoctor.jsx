@@ -15,6 +15,7 @@ const SignupDoctor = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [specialty, setSpecialty] = useState("");
   const [country, setCountry] = useState(""); 
   const [tel, setTel] = useState("");
@@ -23,51 +24,58 @@ const SignupDoctor = () => {
   const handleForm = async (event) =>{
   event.preventDefault();
 
-  const jsonSend = {
-    role: "doctor",
-    first_name: firstName,
-    last_name: lastName,
-    email,
-    password,
-    specialty,
-    country,
-    tel
-  };
-
-  const SIGNUP_URL = `http://localhost:8000/api/v1/signupdoctor/${user1.id}`
-    try {
-      await axios.post(SIGNUP_URL, jsonSend,
-        {
-          headers: {
-            Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
-          },
-        }
-        )
-      setFirstName('')
-      setLastName('')
-      setEmail('')
-      setPassword('')
-      setSpecialty('')
-      setCountry('')
-      setTel('')
-      Swal.fire({
-        icon: 'success',
-        title: 'Doctor creado con exito',
-        text: 'Inicia sesión',
-        timer: 3000,
-        timerProgressBar: true,
-      }).then(history.push("/"))
-    }catch (error){
-      console.log(error)
-      Swal.fire({
-        icon: 'error',
-        title: 'No se puede crear doctor',
-        text: 'Algo salio mal',
-        timer: 3000,
-        timerProgressBar: true,
-      })
-    }
-  };
+  if (password !== confirmPassword) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Verifica tu contraseña',
+    })
+  } else {
+    const jsonSend = {
+      role: "doctor",
+      first_name: firstName,
+      last_name: lastName,
+      email,
+      password,
+      specialty,
+      country,
+      tel
+    };
+  
+    const SIGNUP_URL = `http://localhost:8000/api/v1/signupdoctor/${user1.id}`
+      try {
+        await axios.post(SIGNUP_URL, jsonSend,
+          {
+            headers: {
+              Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+            },
+          }
+          )
+        setFirstName('')
+        setLastName('')
+        setEmail('')
+        setPassword('')
+        setSpecialty('')
+        setCountry('')
+        setTel('')
+        Swal.fire({
+          icon: 'success',
+          title: 'Doctor creado con exito',
+          text: 'Inicia sesión',
+          timer: 3000,
+          timerProgressBar: true,
+        }).then(history.push("/"))
+      }catch (error){
+        console.log(error)
+        Swal.fire({
+          icon: 'error',
+          title: 'No se puede crear doctor',
+          text: 'Algo salio mal',
+          timer: 3000,
+          timerProgressBar: true,
+        })
+      }
+    };
+  } 
 
   return (
     <>
@@ -155,6 +163,18 @@ const SignupDoctor = () => {
                 <Form.Control
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  type="password"
+                  name="password"
+                  id="examplePassword"
+                  placeholder="Escribe tu contraseña"
+                  required
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Verificar contraseña</Form.Label>
+                <Form.Control
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   type="password"
                   name="password"
                   id="examplePassword"
