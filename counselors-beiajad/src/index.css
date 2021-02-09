@@ -373,6 +373,29 @@ select{
   margin-left: 10px;
   margin-bottom: 2px;
 }
-.centrar{
-  text-align: center;
+input {
+  border: 2px solid;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin: 0.25rem;
+  min-width: 125px;
+  padding: 0.5rem;
+  transition: border-color 0.5s ease-out;
+}
+input:optional {
+  border-color: gray;
+}
+input:required:valid {
+  border-color: limegreen;
+}
+input:invalid {
+  border-color: pink;
+}
+input:required:focus:valid {
+  background: url(./Imagenes/check-solid.svg) no-repeat 95% 50% rgb(234, 251, 233);
+  background-size: 17px;
+}
+input:focus:invalid {
+  background: url(./Imagenes/exclamation-solid.svg) no-repeat 95% 50% rgb(255, 227, 227);
+  background-size: 7px;
 }

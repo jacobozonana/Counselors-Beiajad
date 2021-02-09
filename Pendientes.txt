@@ -17,11 +17,11 @@ X-filtrar los horarios dependiendo las disponibildad de cada doctor con su fecha
 
 X-Bloquear el dia en que cada usuario hace una cita par que no se hagan 2 citas el mismo dia del mismo usuario (Hecho)
 
--Cambiar el header y el cuerpo de pagina segun el usuario logueado
+X-Cambiar el header y el cuerpo de pagina segun el usuario logueado
  Por ejemplo: los usuarios que puedan crear y ver sus citas
               los doctores que vean las citas pendientes con un poco de informacion (como en un modal)
-              los admins ??
-
+              los admins ?? (Hecho)
+              
 -hacer pagina de perfil de usuario, doctor y administrador pudiendo eliminar e editar su cuenta
 
 -Pensar bien que informacion mostrar de los doctores ya que todos los doctores se van a poder buscar entre si

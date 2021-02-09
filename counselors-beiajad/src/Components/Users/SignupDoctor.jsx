@@ -87,6 +87,7 @@ const SignupDoctor = () => {
               id="firstName"
               name="inputFirstName"
               placeholder="Escribe tu nombre"
+              required
             />
             </Form.Group>
               <Form.Group>
@@ -98,6 +99,7 @@ const SignupDoctor = () => {
                   name="lastName"
                   id="inputLastname"
                   placeholder="Escribe tu apellido"
+                  required
                 />
               </Form.Group>
               <Form.Group>
@@ -109,6 +111,7 @@ const SignupDoctor = () => {
                   name="specialty"
                   id="exampleage"
                   placeholder="Escribe tu especialidad"
+                  required
                 />
               </Form.Group>
               <Form.Group>
@@ -120,6 +123,7 @@ const SignupDoctor = () => {
                   id="country"
                   name="inputcountry"
                   placeholder="País de residencia"
+                  required
                 />
               </Form.Group>
               <Form.Group>
@@ -131,6 +135,7 @@ const SignupDoctor = () => {
                   name="tel"
                   id="inputTel"
                   placeholder="Teléfono"
+                  required
                 />
               </Form.Group>
               <Form.Group>
@@ -142,6 +147,7 @@ const SignupDoctor = () => {
                   name="email"
                   id="exampleEmail"
                   placeholder="Correo electronico"
+                  required
                 />
               </Form.Group>
               <Form.Group>
@@ -153,6 +159,7 @@ const SignupDoctor = () => {
                   name="password"
                   id="examplePassword"
                   placeholder="Escribe tu contraseña"
+                  required
                 />
               </Form.Group>
               <Button variant='info' type="submit">Enviar</Button>

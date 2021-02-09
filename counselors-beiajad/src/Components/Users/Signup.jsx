@@ -76,6 +76,7 @@ const Register = () => {
         id="firstName"
         name="inputFirstName"
         placeholder="Escribe tu nombre"
+        required
       />
       </Form.Group>
         <Form.Group>
@@ -87,6 +88,7 @@ const Register = () => {
             name="lastName"
             id="inputLastname"
             placeholder="Escribe tu apellido"
+            required
           />
         </Form.Group>
         <Form.Group>
@@ -98,6 +100,7 @@ const Register = () => {
             name="age"
             id="exampleage"
             placeholder="Escribe tu edad"
+            required
           />
         </Form.Group>
         <Form.Group>
@@ -109,6 +112,7 @@ const Register = () => {
             name="comunity"
             id="examplecomunity"
             placeholder="Comunidad que asistes"
+            required
           />
         </Form.Group>
         <Form.Group>
@@ -120,6 +124,7 @@ const Register = () => {
             id="country"
             name="inputcountry"
             placeholder="País de residencia"
+            required
           />
         </Form.Group>
         <Form.Group>
@@ -131,6 +136,7 @@ const Register = () => {
             name="tel"
             id="inputTel"
             placeholder="Teléfono"
+            required
           />
         </Form.Group>
         <Form.Group>
@@ -142,6 +148,7 @@ const Register = () => {
             name="email"
             id="exampleEmail"
             placeholder="Correo electronico"
+            required
           />
         </Form.Group>
         <Form.Group>
@@ -153,6 +160,7 @@ const Register = () => {
             name="password"
             id="examplePassword"
             placeholder="Escribe tu contraseña"
+            required
           />
         </Form.Group>
         <Button variant='info' type="submit">Enviar</Button>

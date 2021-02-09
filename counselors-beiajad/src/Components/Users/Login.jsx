@@ -58,6 +58,7 @@ import '../../index.css'
                   type="email"
                   name="email"
                   placeholder="Correo Electronico"
+                  required
                   />          
             </Form.Group>
             <Form.Group controlId="formBasicPassword">
@@ -69,6 +70,7 @@ import '../../index.css'
                   type="password" 
                   name="password"
                   placeholder="Contraseña"
+                  required
                   />
             </Form.Group>
             <Button variant="info" type="submit">Iniciar Sesión</Button>

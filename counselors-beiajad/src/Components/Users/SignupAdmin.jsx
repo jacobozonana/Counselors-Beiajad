@@ -93,6 +93,7 @@ const SignupAdmin = () => {
               id="firstName"
               name="inputFirstName"
               placeholder="Escribe tu nombre"
+              required
             />
             </Form.Group>
               <Form.Group>
@@ -104,6 +105,7 @@ const SignupAdmin = () => {
                   name="lastName"
                   id="inputLastname"
                   placeholder="Escribe tu apellido"
+                  required
                 />
               </Form.Group>
               <Form.Group>
@@ -115,6 +117,7 @@ const SignupAdmin = () => {
                   name="specialty"
                   id="exampleage"
                   placeholder="Escribe tu especialidad"
+                  required
                 />
               </Form.Group>
               <Form.Group>
@@ -126,6 +129,7 @@ const SignupAdmin = () => {
                   name="age"
                   id="exampleage"
                   placeholder="Escribe tu edad"
+                  required
                 />
               </Form.Group>
               <Form.Group>
@@ -137,6 +141,7 @@ const SignupAdmin = () => {
                   name="comunity"
                   id="examplecomunity"
                   placeholder="Comunidad que asistes"
+                  required
                 />
               </Form.Group>
               <Form.Group>
@@ -148,6 +153,7 @@ const SignupAdmin = () => {
                   id="country"
                   name="inputcountry"
                   placeholder="País de residencia"
+                  required
                 />
               </Form.Group>
               <Form.Group>
@@ -159,6 +165,7 @@ const SignupAdmin = () => {
                   name="tel"
                   id="inputTel"
                   placeholder="Teléfono"
+                  required
                 />
               </Form.Group>
               <Form.Group>
@@ -170,6 +177,7 @@ const SignupAdmin = () => {
                   name="email"
                   id="exampleEmail"
                   placeholder="Correo electronico"
+                  required
                 />
               </Form.Group>
               <Form.Group>
@@ -181,6 +189,7 @@ const SignupAdmin = () => {
                   name="password"
                   id="examplePassword"
                   placeholder="Escribe tu contraseña"
+                  required
                 />
               </Form.Group>
               <Button variant='info' type="submit">Enviar</Button>
