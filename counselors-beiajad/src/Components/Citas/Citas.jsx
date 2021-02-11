@@ -41,6 +41,7 @@ function Citas() {
         user1.role==="user" ? (
           <>
             <MDBDataTableV5
+              small
               hover
               entriesOptions={[3, 5, 15]}
               entries={3}

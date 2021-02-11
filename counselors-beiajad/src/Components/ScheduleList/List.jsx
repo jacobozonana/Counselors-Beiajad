@@ -226,92 +226,93 @@ const defaultValue = {
 
 
           <MDBDataTableV5
-          hover
-          entriesOptions={[3, 5, 15]}
-          entries={3}
-          pagesAmount={4}
-          pagingTop
-          searchTop
-          searchBottom={false}
-          data={{
-          columns: [
-            {
-              label: 'Fecha',
-              field: 'dat',
-              sort: 'asc',
-              width: 115
-            },
-            {
-              label: 'Hora',
-              field: 'tim',
-              sort: 'asc',
-              width: 30
-            },         
-            {
-              label: 'Nombre',
-              field: 'nam',
-              sort: 'asc',
-              width: 70
-            },
-            {
-              label: 'Apellido',
-              field: 'las',
-              sort: 'asc',
-              width: 70
-            },
-            {
-              label: 'Telefono',
-              field: 'tel',
-              sort: 'asc',
-              width: 70
-            },
-            {
-              label: 'Doctor',
-              field: 'doc',
-              sort: 'asc',
-              width: 100
-            },
-            {
-              label: 'Doctor',
-              field: 'dla',
-              sort: 'asc',
-              width: 100
-            },
-            {
-              label: 'Nota',
-              field: 'not',
-              sort: 'disabled',
-              width: 370
-            },
-            {
-              label: 'Editar',
-              field: 'edi',
-              sort: 'disabled',
-              width: 70
-            },
-            {
-              label: 'Borrar',
-              field: 'del',
-              sort: 'disabled',
-              width: 70
-            }
-          ],
-          rows: data.map((date, i) => (
-            {
-              dat: date.date.split("T")[0],
-              tim: date.time,
-              nam: date.user[0].first_name,
-              las: date.user[0].last_name,
-              tel: date.user[0].tel,
-              doc: date.doctor[0].first_name,
-              dla: date.doctor[0].last_name,
-              not: <Button variant="warning" onClick={()=> (handleShow(),setNoteonmodal(date.note))}><i className="far fa-sticky-note"></i></Button>,
-              edi: <EditSchedule id={date._id} datee={date.date} timee={date.time} notee={date.note} doctore={date.doctor[0]._id} doctorefn={date.doctor[0].first_name} doctoreln={date.doctor[0].last_name} />,
-              del: <DeleteSchedule id={date._id} />,
+            small
+            hover
+            entriesOptions={[3, 5, 15]}
+            entries={3}
+            pagesAmount={4}
+            pagingTop
+            searchTop
+            searchBottom={false}
+            data={{
+            columns: [
+              {
+                label: 'Fecha',
+                field: 'dat',
+                sort: 'asc',
+                width: 115
+              },
+              {
+                label: 'Hora',
+                field: 'tim',
+                sort: 'asc',
+                width: 30
+              },         
+              {
+                label: 'Nombre',
+                field: 'nam',
+                sort: 'asc',
+                width: 70
+              },
+              {
+                label: 'Apellido',
+                field: 'las',
+                sort: 'asc',
+                width: 70
+              },
+              {
+                label: 'Telefono',
+                field: 'tel',
+                sort: 'asc',
+                width: 70
+              },
+              {
+                label: 'Nombre Dr.',
+                field: 'doc',
+                sort: 'asc',
+                width: 100
+              },
+              {
+                label: 'Apellido Dr.',
+                field: 'dla',
+                sort: 'asc',
+                width: 100
+              },
+              {
+                label: 'Nota',
+                field: 'not',
+                sort: 'disabled',
+                width: 370
+              },
+              {
+                label: 'Editar',
+                field: 'edi',
+                sort: 'disabled',
+                width: 70
+              },
+              {
+                label: 'Borrar',
+                field: 'del',
+                sort: 'disabled',
+                width: 70
               }
-            ))
-        }}
-      />
+            ],
+            rows: data.map((date, i) => (
+              {
+                dat: date.date.split("T")[0],
+                tim: date.time,
+                nam: date.user[0].first_name,
+                las: date.user[0].last_name,
+                tel: date.user[0].tel,
+                doc: date.doctor[0].first_name,
+                dla: date.doctor[0].last_name,
+                not: <Button variant="warning" onClick={()=> (handleShow(),setNoteonmodal(date.note))}><i className="far fa-sticky-note"></i></Button>,
+                edi: <EditSchedule id={date._id} datee={date.date} timee={date.time} notee={date.note} doctore={date.doctor[0]._id} doctorefn={date.doctor[0].first_name} doctoreln={date.doctor[0].last_name} />,
+                del: <DeleteSchedule id={date._id} />,
+                }
+              ))
+            }}
+          />
       <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Nota</Modal.Title>
@@ -376,18 +377,6 @@ const defaultValue = {
               width: 70
             },
             {
-              label: 'Doctor',
-              field: 'doc',
-              sort: 'asc',
-              width: 100
-            },
-            {
-              label: 'Doctor',
-              field: 'dla',
-              sort: 'asc',
-              width: 100
-            },
-            {
               label: 'Nota',
               field: 'not',
               sort: 'disabled',
@@ -401,8 +390,6 @@ const defaultValue = {
               nam: date.user[0].first_name,
               las: date.user[0].last_name,
               tel: date.user[0].tel,
-              doc: date.doctor[0].first_name,
-              dla: date.doctor[0].last_name,
               not: <Button variant="warning" onClick={()=> (handleShow(),setNoteonmodal(date.note))}><i className="far fa-sticky-note"></i></Button>,
               edi: <EditSchedule id={date._id} datee={date.date} timee={date.time} notee={date.note} doctore={date.doctor[0]._id} doctorefn={date.doctor[0].first_name} doctoreln={date.doctor[0].last_name} />,
               del: <DeleteSchedule id={date._id} />,
