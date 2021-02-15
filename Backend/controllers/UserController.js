@@ -1,6 +1,8 @@
 const { User } = require('../models');
 const { UserService } = require('../services');
 const { comparePasswords, createToken } = require('../utils')
+const bcrypt = require('bcrypt');
+const SALT_WORK_FACTOR = 10;
 
 
 module.exports = {
@@ -169,6 +171,23 @@ module.exports = {
        })}
       })
     },
+    changePas: (req, res)=>{
+      User.findById(req.params.id)
+      .then((info) => {
+        let role = info.role;
+        if (role !== "admin") res.status(400).json({message: 'No tienes acceso'})
+        else {
+        const password = req.body.password
+      try {
+        const hash = bcrypt.hashSync(password, SALT_WORK_FACTOR);
+        User.findByIdAndUpdate(req.params.id2, {password: hash}, {new: true})
+              .then(()=> res.status(200).json({message: 'La contraseña se cambio con exito'}))
+              .catch((err)=> res.status(400).json(err))          
+      } catch (error) {
+          res.status(400).json(error)
+      }}
+    }) 
+  },
     deleteUsers:(req, res)=>{
     User.findById(req.params.id)
       .then((info) => {
