@@ -13,14 +13,10 @@ const SignupAdmin = () => {
   const { user1, isAuth } = useContext(AuthContext);  
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [tel, setTel] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [age, setAge] = useState("");
-  const [comunity, setComunity] = useState("");
-  const [specialty, setSpecialty] = useState("");
-  const [country, setCountry] = useState(""); 
-  const [tel, setTel] = useState("");
   const history = useHistory();
 
   const handleForm = async (event) =>{
@@ -36,13 +32,9 @@ const SignupAdmin = () => {
       role: "admin",
       first_name: firstName,
       last_name: lastName,
+      tel,
       email,
       password,
-      age,
-      comunity,
-      specialty,
-      country,
-      tel
     };
   
     const SIGNUP_URL = `http://localhost:8000/api/v1/signupadmin/${user1.id}`
@@ -57,12 +49,8 @@ const SignupAdmin = () => {
         setFirstName('')
         setLastName('')
         setEmail('')
-        setPassword('')
-        setAge('')
-        setComunity('')
-        setSpecialty('')
-        setCountry('')
         setTel('')
+        setPassword('')
         Swal.fire({
           icon: 'success',
           title: 'Administrador creado con exito',
@@ -113,54 +101,6 @@ const SignupAdmin = () => {
                   name="lastName"
                   id="inputLastname"
                   placeholder="Escribe tu apellido"
-                  required
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Especialidad</Form.Label>
-                <Form.Control
-                  value={specialty}
-                  onChange={(e) => setSpecialty(e.target.value)}
-                  type="string"
-                  name="specialty"
-                  id="exampleage"
-                  placeholder="Escribe tu especialidad"
-                  required
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Edad</Form.Label>
-                <Form.Control
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  type="number"
-                  name="age"
-                  id="exampleage"
-                  placeholder="Escribe tu edad"
-                  required
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Comunidad</Form.Label>
-                <Form.Control
-                  value={comunity}
-                  onChange={(e) => setComunity(e.target.value)}
-                  type="comunity"
-                  name="comunity"
-                  id="examplecomunity"
-                  placeholder="Comunidad que asistes"
-                  required
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>País</Form.Label>
-                <Form.Control
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                  type="text"
-                  id="country"
-                  name="inputcountry"
-                  placeholder="País de residencia"
                   required
                 />
               </Form.Group>

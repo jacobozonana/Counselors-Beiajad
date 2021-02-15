@@ -4,7 +4,6 @@ import AuthContextProvider  from './contexts/AuthContext'
 import Home from "./Pages/Home/Home";
 import Logout from "./Components/Users/Logout.jsx";
 import Signup from "./Components/Users/Signup.jsx";
-import ScheduleListByDoctor from "./Components/ScheduleList/ScheduleListByDoctor.jsx"; 
 import Faq from './Pages/Faq/Faq';
 import SignupDoctor from "./Components/Users/SignupDoctor.jsx";
 import SignupAdmin from "./Components/Users/SignupAdmin.jsx";
@@ -12,6 +11,7 @@ import UsersList from "./Components/UsersList/UsersList.jsx";
 import DoctorsList from "./Components/UsersList/DoctorsList.jsx";
 import AdminsList from "./Components/UsersList/AdminsList.jsx";
 import AllList from "./Components/UsersList/AllList.jsx";
+import Eprofile from './Components/Profile/Eprofile'
 
 
 function Routes() {
@@ -28,6 +28,7 @@ function Routes() {
         <Route exact path="/doctorslist" component={DoctorsList} />
         <Route exact path="/adminslist" component={AdminsList} />
         <Route exact path="/alllist" component={AllList} />
+        <Route exact path="/profile" component={Eprofile} />     
         <Route exact path="/faq" component={Faq} />
       </Switch>
       </AuthContextProvider>

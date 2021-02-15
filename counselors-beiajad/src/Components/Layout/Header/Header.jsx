@@ -30,7 +30,8 @@ const Header = () => {
                   </DropdownButton>
                   </Nav>
               </Navbar.Collapse>
-              <Nav.Link eventKey="disabled" disabled><h4 className="alineacion">Hola {user1.first_name} {user1.last_name}</h4></Nav.Link>                         
+              <Nav.Link eventKey="disabled" disabled><h4 className="alineacion">Hola {user1.first_name} {user1.last_name}</h4></Nav.Link>
+              <Nav.Link  href="/profile"><h4 className="edit"><i className="far fa-id-badge"></i></h4></Nav.Link>
               <Nav.Link  href="/logout"><h4 className="alineacion"><i className="fas fa-sign-out-alt"></i></h4></Nav.Link>
             </Navbar>
       ) :
@@ -48,6 +49,7 @@ const Header = () => {
               <Nav.Link  href="mailto:couselorsbeiajad@gmail.com"><h4 id="contact" className="alineacion"><i className="far fa-envelope"></i></h4></Nav.Link>                         
               <Nav.Link  href="https://api.whatsapp.com/send?phone=5491152470444"><h4 className="alineacion"><i className="fab fa-whatsapp"></i></h4></Nav.Link>                         
               <Nav.Link eventKey="disabled" disabled><h4 className="alineacion">Hola {user1.first_name} {user1.last_name}</h4></Nav.Link>                         
+              <Nav.Link  href="/profile"><h4 className="edit"><i className="far fa-id-badge"></i></h4></Nav.Link>
               <Nav.Link  href="/logout"><h4 className="alineacion"><i className="fas fa-sign-out-alt"></i></h4></Nav.Link>
             </Navbar>
       ) : 
@@ -65,6 +67,7 @@ const Header = () => {
         <Nav.Link  href="mailto:couselorsbeiajad@gmail.com"><h4 id="contact" className="alineacion"><i className="far fa-envelope"></i></h4></Nav.Link>                         
         <Nav.Link  href="https://api.whatsapp.com/send?phone=5491152470444"><h4 className="alineacion"><i className="fab fa-whatsapp"></i></h4></Nav.Link>                         
         <Nav.Link eventKey="disabled" disabled><h4 className="alineacion">Hola {user1.first_name} {user1.last_name}</h4></Nav.Link>                         
+        <Nav.Link  href="/profile"><h4 className="edit"><i className="far fa-id-badge"></i></h4></Nav.Link>
         <Nav.Link  href="/logout"><h4 className="alineacion"><i className="fas fa-sign-out-alt"></i></h4></Nav.Link>
       </Navbar>
       ) : (

@@ -29,7 +29,6 @@ X-Aplicar en los formularios de registro que deba repetir la contraseña para co
 
 -Pensar bien que informacion mostrar de los doctores ya que todos los doctores se van a poder buscar entre si
 
-
 -Aplicar el modo pago y se puede que existan los descuentos
 
 -Buscar servicio de confirmacion de cuenta y notificaciones de citas
@@ -49,7 +48,7 @@ X-Ordenar archivos y las rutas corespondientes de paginas (Hecho)
 
 Pendientes con Chapan y Dani
 hacer uncheck en las citas si atendio la cita o no.
-poder hacer comentario sobre los doctores.
+poder hacer comentario sobre los doctores. y sobre los pacientes
 X-validador para no hacer citas el mismo dia (Hecho)
 validador que no se puede cancelar la cita con un limite de tiempo
 cuando se genera la cita mandar mail y mensaje de texto de confirmacion

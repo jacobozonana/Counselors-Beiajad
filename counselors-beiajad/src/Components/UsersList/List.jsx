@@ -17,7 +17,7 @@ function AdminList(props) {
           Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
         },
       })
-      .then((data) => ( setData(data.data)))
+      .then((data) => (setData(data.data)))
       .catch((err) => console.log(err));
   }, []);
 

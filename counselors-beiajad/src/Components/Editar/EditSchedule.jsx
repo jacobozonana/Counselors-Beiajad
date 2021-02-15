@@ -307,14 +307,11 @@ function EditSchedule(props) {
         cancelButtonText: 'Cancelar',
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.patch(SCHPATCH, {
-        
+          axios.patch(SCHPATCH, {        
             date,
             time,
             note,
             doctor: doctor,
-            
-      
            },
            {
             headers: {
@@ -443,7 +440,7 @@ function EditSchedule(props) {
                     onChange={(e)=>{setNote(e.target.value)}}
                     />
                   </Form.Group>
-                  <h6>*cambia los datos que quieras</h6>
+                  <h6>cambia los datos que quieras</h6>
                 </Form>
                 </Modal.Body> 
                 <Modal.Footer>

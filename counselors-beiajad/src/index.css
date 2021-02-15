@@ -403,3 +403,12 @@ input:focus:invalid {
   width: 99%;
   padding-left: 20px;
 }
+.edit{
+  margin: 4px;
+  font-size: 30px;
+  color:#25a1b7;
+}
+.edit:hover{
+  font-size: 30px;
+  font-weight: bold;
+}

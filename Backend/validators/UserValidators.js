@@ -8,7 +8,7 @@ module.exports = {
             last_name: Joi.string().required(),
             age: Joi.number(),
             comunity: Joi.string(),
-            country: Joi.string().required(),
+            country: Joi.string(),
             tel: Joi.number().required(),
             specialty: Joi.string(),
             email: Joi.string().required(),
@@ -24,6 +24,7 @@ module.exports = {
             age: Joi.string(),
             specialty: Joi.string(),
             comunity: Joi.string(),
+            password: Joi.string(),
         }),
     }),
 };

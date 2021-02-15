@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
 
-const { Schema } = mongoose;
+mongoose.set('useFindAndModify', false);
 
+const { Schema } = mongoose;
 
 const userSchema = new Schema({
     is_active:{
@@ -31,7 +32,6 @@ const userSchema = new Schema({
     },
     country:{
         type: String,
-        required: true
     },
     tel:{
         type: Number,
