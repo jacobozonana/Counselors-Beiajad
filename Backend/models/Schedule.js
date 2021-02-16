@@ -1,44 +1,46 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
-
-const scheduleSchema = new Schema({
-    is_active:{
-        type: Boolean,
-        default: true
+const scheduleSchema = new Schema(
+  {
+    is_active: {
+      type: Boolean,
+      default: true,
     },
-    date:{
-        type: Date,
-        required: true
+    date: {
+      type: Date,
+      required: true,
     },
-    time:{
-        type: String,
-        required: true
+    time: {
+      type: String,
+      required: true,
     },
-    note:{
-        type: String,
+    note: {
+      type: String,
     },
-    user: [{
+    user: [
+      {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'User',
-      }],
-    doctor: [{
-       type: mongoose.Schema.Types.ObjectId,
-       default: 'Sin doctor',
-       required: true,
-       ref: 'User',
-     }]  
-},
-   {
+        ref: "User",
+      },
+    ],
+    doctor: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        default: "Sin doctor",
+        required: true,
+        ref: "User",
+      },
+    ],
+  },
+  {
     timestamps: true,
-    versionKey: false
-   }
+    versionKey: false,
+  }
 );
 
+const Schedule = mongoose.model("Schedule", scheduleSchema);
 
-
-const Schedule = mongoose.model('Schedule', scheduleSchema);
-
-module.exports = Schedule
+module.exports = Schedule;

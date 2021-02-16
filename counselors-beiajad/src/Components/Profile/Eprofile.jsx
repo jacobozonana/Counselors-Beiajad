@@ -1,28 +1,25 @@
-import React, { useContext } from 'react'
+import React, { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import Profile from './Profile'
+import Profile from "./Profile";
 import Header from "../Layout/Header/Header";
-import Footer from '../Layout/Footer/Footer'
+import Footer from "../Layout/Footer/Footer";
 
 function Eprofile() {
-
   const { isAuth } = useContext(AuthContext);
-  
+
   return (
     <>
-    {isAuth ? (      
-        <>    
+      {isAuth ? (
+        <>
           <div className="headerSchedule">
-          <Header/>
+            <Header />
           </div>
           <Profile lista="user" />
           <Footer />
         </>
-    ) : (
-      undefined
-     )}
+      ) : undefined}
     </>
-  )
+  );
 }
 
-export default Eprofile
+export default Eprofile;

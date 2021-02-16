@@ -1,17 +1,17 @@
-import React,{useContext} from "react";
+import React, { useContext } from "react";
 import { Redirect } from "react-router-dom";
-import { AuthContext } from '../../contexts/AuthContext';
-import Swal from 'sweetalert2'
+import { AuthContext } from "../../contexts/AuthContext";
+import Swal from "sweetalert2";
 
 const Logout = () => {
-  const { logoutUser } = useContext(AuthContext)
+  const { logoutUser } = useContext(AuthContext);
   Swal.fire({
-    icon: 'success',
-    title: 'Hasta pronto',
+    icon: "success",
+    title: "Hasta pronto",
     timer: 3000,
     timerProgressBar: true,
-  })
-  logoutUser()
+  });
+  logoutUser();
 
   return <Redirect to="/" />;
 };

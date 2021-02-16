@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const NODE_ENV = process.env.NODE_ENV || 'staging'
+const NODE_ENV = process.env.NODE_ENV || "staging";
 
 dbData = {
   dbUser: process.env.DB_USER,
@@ -11,17 +11,16 @@ dbData = {
 const config = {
   //Servidor en produccion
   production: {
-    db_url: `mongodb+srv://${dbData.dbUser}:${dbData.dbPassword}@${dbData.dbHost}/${dbData.dbName}?retryWrites=true&w=majority`
+    db_url: `mongodb+srv://${dbData.dbUser}:${dbData.dbPassword}@${dbData.dbHost}/${dbData.dbName}?retryWrites=true&w=majority`,
   },
   //Probando local
   staging: {
-    db_url: `mongodb+srv://${dbData.dbUser}:${dbData.dbPassword}@${dbData.dbHost}/${dbData.dbName}?retryWrites=true&w=majority`
+    db_url: `mongodb+srv://${dbData.dbUser}:${dbData.dbPassword}@${dbData.dbHost}/${dbData.dbName}?retryWrites=true&w=majority`,
   },
   //Entorno igual a produccion con datos prueba
   test: {
-    db_url: `mongodb+srv://${dbData.dbUser}:${dbData.dbPassword}@${dbData.dbHost}/${dbData.dbName}?retryWrites=true&w=majority`
+    db_url: `mongodb+srv://${dbData.dbUser}:${dbData.dbPassword}@${dbData.dbHost}/${dbData.dbName}?retryWrites=true&w=majority`,
   },
-  
 };
-console.log(NODE_ENV)
+console.log(NODE_ENV);
 module.exports = config[NODE_ENV];
