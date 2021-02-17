@@ -65,16 +65,15 @@ const Header = () => {
                 Hola {user1.first_name} {user1.last_name}
               </h4>
             </Nav.Link>
-            <Nav.Link href="/profile">
-              <h4 className="edit">
-                <i className="far fa-id-badge"></i>
-              </h4>
-            </Nav.Link>
-            <Nav.Link href="/logout">
-              <h4 className="alineacion">
-                <i className="fas fa-sign-out-alt"></i>
-              </h4>
-            </Nav.Link>
+            <NavDropdown
+              title={<i className="far fa-user"></i>}
+              id="basic-nav-dropdown"
+              drop={"left"}
+            >
+              <NavDropdown.Item href="/profile">Mi cuenta</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="/logout">Cerrar sesion</NavDropdown.Item>
+            </NavDropdown>
           </Navbar>
         ) : user1.role === "doctor" ? (
           <Navbar sticky="top" bg="light" expand="lg">
@@ -114,16 +113,15 @@ const Header = () => {
                 Hola {user1.first_name} {user1.last_name}
               </h4>
             </Nav.Link>
-            <Nav.Link href="/profile">
-              <h4 className="edit">
-                <i className="far fa-id-badge"></i>
-              </h4>
-            </Nav.Link>
-            <Nav.Link href="/logout">
-              <h4 className="alineacion">
-                <i className="fas fa-sign-out-alt"></i>
-              </h4>
-            </Nav.Link>
+            <NavDropdown
+              title={<i className="far fa-user"></i>}
+              id="basic-nav-dropdown"
+              drop={"left"}
+            >
+              <NavDropdown.Item href="/profile">Mi cuenta</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="/logout">Cerrar sesion</NavDropdown.Item>
+            </NavDropdown>
           </Navbar>
         ) : user1.role === "user" ? (
           <Navbar sticky="top" bg="light" expand="lg">
@@ -163,16 +161,15 @@ const Header = () => {
                 Hola {user1.first_name} {user1.last_name}
               </h4>
             </Nav.Link>
-            <Nav.Link href="/profile">
-              <h4 className="edit">
-                <i className="far fa-id-badge"></i>
-              </h4>
-            </Nav.Link>
-            <Nav.Link href="/logout">
-              <h4 className="alineacion">
-                <i className="fas fa-sign-out-alt"></i>
-              </h4>
-            </Nav.Link>
+            <NavDropdown
+              title={<i className="far fa-user"></i>}
+              id="basic-nav-dropdown"
+              drop={"left"}
+            >
+              <NavDropdown.Item href="/profile">Mi cuenta</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="/logout">Cerrar sesion</NavDropdown.Item>
+            </NavDropdown>
           </Navbar>
         ) : undefined
       ) : (
