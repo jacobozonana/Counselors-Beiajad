@@ -137,7 +137,7 @@ module.exports = {
       if (role !== "admin" && role !== "user")
         res.status(400).json({ message: "No tienes acceso" });
       else {
-        User.findById(req.params.id2).then((info) => {
+        User.findById(req.params.id2).then(async (info) => {
           let role = info.role;
           if (role !== "user")
             res
@@ -145,9 +145,17 @@ module.exports = {
               .json({ message: "El ID que desea editar no es usuario" });
           else {
             const { body } = req;
-            User.findByIdAndUpdate(req.params.id2, body, { new: true })
-              .then((resDB) => res.status(200).json(resDB))
-              .catch((err) => res.status(400).json(err));
+            try {
+              const emailExist = await UserService.findOneByEmail(body.email);
+              if (emailExist) res.status(400).json({ message: "Email taken" });
+              else {
+                User.findByIdAndUpdate(req.params.id2, body, { new: true })
+                  .then((resDB) => res.status(200).json(resDB))
+                  .catch((err) => res.status(400).json(err));
+              }
+            } catch (error) {
+              res.status(400).json(error);
+            }
           }
         });
       }
@@ -159,7 +167,7 @@ module.exports = {
       if (role !== "admin" && role !== "doctor")
         res.status(400).json({ message: "No tienes acceso" });
       else {
-        User.findById(req.params.id2).then((info) => {
+        User.findById(req.params.id2).then(async (info) => {
           let role = info.role;
           if (role !== "doctor")
             res
@@ -167,9 +175,17 @@ module.exports = {
               .json({ message: "El ID que desea editar no es doctor" });
           else {
             const { body } = req;
-            User.findByIdAndUpdate(req.params.id2, body, { new: true })
-              .then((resDB) => res.status(200).json(resDB))
-              .catch((err) => res.status(400).json(err));
+            try {
+              const emailExist = await UserService.findOneByEmail(body.email);
+              if (emailExist) res.status(400).json({ message: "Email taken" });
+              else {
+                User.findByIdAndUpdate(req.params.id2, body, { new: true })
+                  .then((resDB) => res.status(200).json(resDB))
+                  .catch((err) => res.status(400).json(err));
+              }
+            } catch (error) {
+              res.status(400).json(error);
+            }
           }
         });
       }
@@ -181,7 +197,7 @@ module.exports = {
       if (role !== "admin")
         res.status(400).json({ message: "No tienes acceso" });
       else {
-        User.findById(req.params.id2).then((info) => {
+        User.findById(req.params.id2).then(async (info) => {
           let role = info.role;
           if (role !== "admin")
             res
@@ -189,9 +205,17 @@ module.exports = {
               .json({ message: "El ID que desea editar no es administrador" });
           else {
             const { body } = req;
-            User.findByIdAndUpdate(req.params.id2, body, { new: true })
-              .then((resDB) => res.status(200).json(resDB))
-              .catch((err) => res.status(400).json(err));
+            try {
+              const emailExist = await UserService.findOneByEmail(body.email);
+              if (emailExist) res.status(400).json({ message: "Email taken" });
+              else {
+                User.findByIdAndUpdate(req.params.id2, body, { new: true })
+                  .then((resDB) => res.status(200).json(resDB))
+                  .catch((err) => res.status(400).json(err));
+              }
+            } catch (error) {
+              res.status(400).json(error);
+            }
           }
         });
       }
