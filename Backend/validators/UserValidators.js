@@ -18,10 +18,12 @@ module.exports = {
   change: celebrate({
     [Segments.BODY]: Joi.object().keys({
       role: Joi.string(),
+      first_name: Joi.string(),
+      last_name: Joi.string(),
       tel: Joi.number(),
       country: Joi.string(),
       email: Joi.string(),
-      age: Joi.string(),
+      age: Joi.number(),
       specialty: Joi.string(),
       comunity: Joi.string(),
       password: Joi.string(),

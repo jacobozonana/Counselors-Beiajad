@@ -2,13 +2,14 @@ import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Container, ListGroup, Row, Col } from "react-bootstrap";
 import axios from "axios";
-import EditUser from "../Editar/EditUser";
+import EditProfile from "../Editar/EditProfile";
 import EditPassword from "../Editar/EditPasword";
 import "../../index.css";
 
 function Profile(props) {
   const { isAuth, user1 } = useContext(AuthContext);
   const [data, setData] = useState([]);
+  const [route, setRoute] = useState("");
   const URL_GET_INFO = `http://localhost:8000/api/v1/${props.lista}/${user1.id}`;
 
   useEffect(() => {
@@ -22,6 +23,22 @@ function Profile(props) {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    verify();
+  }, [data]);
+
+  const verify = () => {
+    if (data.role === "user") {
+      setRoute("editusers");
+    }
+    if (data.role === "doctor") {
+      setRoute("editdoctors");
+    }
+    if (data.role === "admin") {
+      setRoute("editadmins");
+    }
+  };
+
   return (
     <>
       {isAuth ? (
@@ -29,8 +46,8 @@ function Profile(props) {
           <>
             <h1 className="mb-4 reg">Mi cuenta</h1>
             <Container>
-              <EditUser
-                route="editusers"
+              <EditProfile
+                route={route}
                 id={data._id}
                 age={data.age}
                 comunity={data.comunity}
@@ -117,8 +134,8 @@ function Profile(props) {
           <>
             <h1 className="mb-4 reg">Mi cuenta</h1>
             <Container>
-              <EditUser
-                route="editusers"
+              <EditProfile
+                route={route}
                 id={data._id}
                 age={data.age}
                 comunity={data.comunity}
@@ -195,8 +212,8 @@ function Profile(props) {
           <>
             <h1 className="mb-4 reg">Mi cuenta</h1>
             <Container>
-              <EditUser
-                route="editusers"
+              <EditProfile
+                route={route}
                 id={data._id}
                 age={data.age}
                 comunity={data.comunity}

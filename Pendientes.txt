@@ -1,5 +1,7 @@
 X-!!! IMPORTANTE ANTES DE TODO ARREGLAR LAS URL DE LA API PARA QUE FUNCIONE CORRRECTAMENTE !!!! (Hecho)
 
+X-Ordenar archivos y las rutas corespondientes de paginas (Hecho)
+
 X-arreglar la pagina de schedule que pasa si no estas logueado (jacobo sabe lo de history) (Hecho, se pone undefined, y la pagina sale en blanco si no estas logueado)
 
 X-footer (usar bien fontawesome) (Hecho)
@@ -25,7 +27,11 @@ X-Cambiar el header y el cuerpo de pagina segun el usuario logueado
 X-Aplicar en los formularios de registro que deba repetir la contraseña para confirmar y tambien 
  Supported elements de bootstrap (Hecho)
               
--hacer pagina de perfil de usuario, doctor y administrador pudiendo eliminar e editar su cuenta
+X-hacer pagina de perfil de usuario, doctor y administrador editar su cuenta(Hecho)
+
+X-Como cambiar contraseñas (Hecho) 
+
+-Hacer un boton para eliminar la cuenta del usuario en su perfil
 
 -Pensar bien que informacion mostrar de los doctores ya que todos los doctores se van a poder buscar entre si
 
@@ -37,13 +43,10 @@ X-Aplicar en los formularios de registro que deba repetir la contraseña para co
 
 -poner chat
 
--Como cambiar contraseñas 
-
 -Que te saque de la sesion cuando se venza el token
 
 -Preguntar sobre el tema de subir archivos e imagenes a la api
 
-X-Ordenar archivos y las rutas corespondientes de paginas (Hecho)
 
 
 Pendientes con Chapan y Dani

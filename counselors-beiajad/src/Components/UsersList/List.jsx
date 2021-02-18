@@ -3,6 +3,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { MDBDataTableV5 } from "mdbreact";
 import axios from "axios";
 import DeleteUser from "../Delete/DeleteUser";
+import EditUser from "../Editar/EditUser";
 import "../../index.css";
 
 function AdminList(props) {
@@ -161,13 +162,23 @@ function AdminList(props) {
                   cou: user.country,
                   tel: user.tel,
                   del: <DeleteUser id={user._id} />,
-                  edi: <DeleteUser id={user._id} />,
+                  edi: (
+                    <EditUser
+                      id={user._id}
+                      role={user.role}
+                      first_name={user.first_name}
+                      last_name={user.last_name}
+                      specialty={user.specialty}
+                      email={user.email}
+                      age={user.age}
+                      comunity={user.comunity}
+                      country={user.country}
+                      tel={user.tel}
+                    />
+                  ),
                 })),
               }}
             />
-            <div className="clearboth">
-              {data.length === 0 && <span>No hay resultados!</span>}
-            </div>
           </>
         ) : user1.role === "doctor" ? (
           <>
