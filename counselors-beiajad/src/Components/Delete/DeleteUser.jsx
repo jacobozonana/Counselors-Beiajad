@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 function DeleteUser(props) {
   const { isAuth, user1 } = useContext(AuthContext);
   const [schedule, setSchedule] = useState([]);
-  const URLGETUSERDATES = `http://localhost:8000/api/v1/schedulesbyuser/${user1.id}/${props.id}`;
+  const URLGETUSERDATES = `http://localhost:8000/api/v1/${props.route1}/${user1.id}/${props.id}`;
 
   useEffect(() => {
     axios
@@ -38,13 +38,15 @@ function DeleteUser(props) {
   };
 
   const DeleteUser = () => {
-    const URLDELETEUSER = `http://localhost:8000/api/v1/deleteusers/${user1.id}/${props.id}`;
+    const URLDELETEUSER = `http://localhost:8000/api/v1/${props.route}/${user1.id}/${props.id}`;
     axios
       .delete(URLDELETEUSER, {
         headers: {
           Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
         },
       })
+
+      .then( )
       .catch((error) => {
         console.log(error);
       });

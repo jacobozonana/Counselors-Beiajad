@@ -47,7 +47,11 @@ X-Como cambiar contraseñas (Hecho)
 
 -Preguntar sobre el tema de subir archivos e imagenes a la api
 
+-Arreglar el delete user que salga la alerta hasta que se eliminide de verdad
 
+-regresar las listas a reactstrap y los buscadores y hacer un mejor css del buscador
+
+-
 
 Pendientes con Chapan y Dani
 hacer uncheck en las citas si atendio la cita o no.

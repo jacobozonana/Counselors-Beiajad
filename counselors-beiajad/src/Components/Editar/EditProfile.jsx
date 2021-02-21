@@ -3,34 +3,24 @@ import { Form, Button, Modal, Col, Row } from "react-bootstrap";
 import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import EditPassword from "./EditPasword";
 import "../../index.css";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 
 function EditSchedule(props) {
   const { user1, isAuth } = useContext(AuthContext);
-  const [data, setData] = useState([]);
+  const [first_name, setFirst_name] = useState(props.first_name);
+  const [last_name, setLast_name] = useState(props.last_name);
   const [age, setAge] = useState(props.age);
   const [comunity, setComunity] = useState(props.comunity);
   const [country, setCountry] = useState(props.country);
   const [tel, setTel] = useState(props.tel);
   const [specialty, setSpecialty] = useState(props.specialty);
   const [email, setEmail] = useState(props.email);
-  const USERGET = `http://localhost:8000/api/v1/user/${user1.id}`;
   const USERPATCH = `http://localhost:8000/api/v1/${props.route}/${user1.id}/${props.id}`;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  useEffect(() => {
-    axios
-      .get(USERGET, {
-        headers: {
-          Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
-        },
-      })
-      .then((data) => setData(data.data))
-      .catch((err) => console.log(err));
-  }, []);
 
   const editUser = () => {
     Swal.fire({
@@ -47,6 +37,8 @@ function EditSchedule(props) {
           .patch(
             USERPATCH,
             {
+              first_name,
+              last_name,
               age,
               comunity,
               country,
@@ -96,6 +88,28 @@ function EditSchedule(props) {
               </Modal.Header>
               <Modal.Body>
                 <Form>
+                  <Row>
+                    <Col>
+                      <Form.Group>
+                        <Form.Label>Nombre</Form.Label>
+                        <Form.Control
+                          placeholder={props.first_name}
+                          onChange={(e) => setFirst_name(e.target.value)}
+                          type="text"
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col>
+                      <Form.Group>
+                        <Form.Label>Apellido</Form.Label>
+                        <Form.Control
+                          placeholder={props.last_name}
+                          onChange={(e) => setLast_name(e.target.value)}
+                          type="text"
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
                   <Row>
                     <Col>
                       <Form.Group>
@@ -153,9 +167,10 @@ function EditSchedule(props) {
                           type="email"
                         />
                       </Form.Group>
+                      <EditPassword id={props.id} />
+                      <h6>modifica los datos que quieras</h6>
                     </Col>
                   </Row>
-                  <h6>cambia los datos que quieras</h6>
                 </Form>
               </Modal.Body>
               <Modal.Footer>
@@ -185,6 +200,28 @@ function EditSchedule(props) {
               </Modal.Header>
               <Modal.Body>
                 <Form>
+                  <Row>
+                    <Col>
+                      <Form.Group>
+                        <Form.Label>Nombre</Form.Label>
+                        <Form.Control
+                          placeholder={props.first_name}
+                          onChange={(e) => setFirst_name(e.target.value)}
+                          type="text"
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col>
+                      <Form.Group>
+                        <Form.Label>Apellido</Form.Label>
+                        <Form.Control
+                          placeholder={props.last_name}
+                          onChange={(e) => setLast_name(e.target.value)}
+                          type="text"
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
                   <Row>
                     <Col>
                       <Form.Group>
@@ -229,9 +266,10 @@ function EditSchedule(props) {
                           type="email"
                         />
                       </Form.Group>
+                      <EditPassword id={props.id} />
+                      <h6>modifica los datos que quieras</h6>
                     </Col>
                   </Row>
-                  <h6>cambia los datos que quieras</h6>
                 </Form>
               </Modal.Body>
               <Modal.Footer>
@@ -264,14 +302,26 @@ function EditSchedule(props) {
                   <Row>
                     <Col>
                       <Form.Group>
-                        <Form.Label>Email</Form.Label>
+                        <Form.Label>Nombre</Form.Label>
                         <Form.Control
-                          placeholder={props.email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          type="email"
+                          placeholder={props.first_name}
+                          onChange={(e) => setFirst_name(e.target.value)}
+                          type="text"
                         />
                       </Form.Group>
                     </Col>
+                    <Col>
+                      <Form.Group>
+                        <Form.Label>Apellido</Form.Label>
+                        <Form.Control
+                          placeholder={props.last_name}
+                          onChange={(e) => setLast_name(e.target.value)}
+                          type="text"
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
                     <Col>
                       <Form.Group>
                         <Form.Label>Teléfono</Form.Label>
@@ -283,7 +333,20 @@ function EditSchedule(props) {
                       </Form.Group>
                     </Col>
                   </Row>
-                  <h6>cambia los datos que quieras</h6>
+                  <Row>
+                    <Col>
+                      <Form.Group>
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                          placeholder={props.email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          type="email"
+                        />
+                      </Form.Group>
+                      <EditPassword id={props.id} />
+                      <h6>modifica los datos que quieras</h6>
+                    </Col>
+                  </Row>
                 </Form>
               </Modal.Body>
               <Modal.Footer>

@@ -86,7 +86,7 @@ function EditPassword() {
     <>
       {isAuth ? (
         <div className="calendar1">
-          <Button variant="info" onClick={handleShow}>
+          <Button variant="outline-danger" onClick={handleShow}>
             {<i className="fas fa-key"></i>} Cambio de contraseña
           </Button>
           <Modal show={show} onHide={handleClose}>

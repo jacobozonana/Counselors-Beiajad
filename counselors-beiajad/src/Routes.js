@@ -10,7 +10,6 @@ import SignupAdmin from "./Components/Users/SignupAdmin.jsx";
 import UsersList from "./Components/UsersList/UsersList.jsx";
 import DoctorsList from "./Components/UsersList/DoctorsList.jsx";
 import AdminsList from "./Components/UsersList/AdminsList.jsx";
-import AllList from "./Components/UsersList/AllList.jsx";
 import Eprofile from "./Components/Profile/Eprofile";
 
 function Routes() {
@@ -26,7 +25,6 @@ function Routes() {
           <Route exact path="/userslist" component={UsersList} />
           <Route exact path="/doctorslist" component={DoctorsList} />
           <Route exact path="/adminslist" component={AdminsList} />
-          <Route exact path="/alllist" component={AllList} />
           <Route exact path="/profile" component={Eprofile} />
           <Route exact path="/faq" component={Faq} />
         </Switch>

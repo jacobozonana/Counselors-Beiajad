@@ -54,9 +54,6 @@ const Header = () => {
                   <Dropdown.Item href="/userslist">
                     <h4 className="alineacion">Lista de Usuarios</h4>
                   </Dropdown.Item>
-                  <Dropdown.Item href="/alllist">
-                    <h4 className="alineacion">Lista completa</h4>
-                  </Dropdown.Item>
                 </DropdownButton>
               </Nav>
             </Navbar.Collapse>

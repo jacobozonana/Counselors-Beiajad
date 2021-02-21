@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Container, ListGroup, Row, Col } from "react-bootstrap";
+import { Container, ListGroup, Row, Col, Button } from "react-bootstrap";
 import axios from "axios";
 import EditProfile from "../Editar/EditProfile";
-import EditPassword from "../Editar/EditPasword";
 import "../../index.css";
 
 function Profile(props) {
@@ -46,15 +45,6 @@ function Profile(props) {
           <>
             <h1 className="mb-4 reg">Mi cuenta</h1>
             <Container>
-              <EditProfile
-                route={route}
-                id={data._id}
-                age={data.age}
-                comunity={data.comunity}
-                country={data.country}
-                tel={data.tel}
-                email={data.email}
-              />
               <ListGroup>
                 <ListGroup.Item>
                   <Row>
@@ -127,22 +117,27 @@ function Profile(props) {
                   </Row>
                 </ListGroup.Item>
               </ListGroup>
-              <EditPassword id={data._id} />
             </Container>
+            <div className="seccion1">
+              <Container className="themed-container" fluid={true}>
+                <EditProfile
+                  route={route}
+                  id={data._id}
+                  first_name={data.first_name}
+                  last_name={data.last_name}
+                  comunity={data.comunity}
+                  age={data.age}
+                  country={data.country}
+                  tel={data.tel}
+                  email={data.email}
+                />
+              </Container>
+            </div>
           </>
         ) : user1.role === "doctor" ? (
           <>
             <h1 className="mb-4 reg">Mi cuenta</h1>
             <Container>
-              <EditProfile
-                route={route}
-                id={data._id}
-                age={data.age}
-                comunity={data.comunity}
-                country={data.country}
-                tel={data.tel}
-                email={data.email}
-              />
               <ListGroup>
                 <ListGroup.Item>
                   <Row>
@@ -205,22 +200,26 @@ function Profile(props) {
                   </Row>
                 </ListGroup.Item>
               </ListGroup>
-              <EditPassword id={data._id} />
             </Container>
+            <div className="seccion1">
+              <Container className="themed-container" fluid={true}>
+                <EditProfile
+                  route={route}
+                  id={data._id}
+                  first_name={data.first_name}
+                  last_name={data.last_name}
+                  country={data.country}
+                  specialty={data.specialty}
+                  tel={data.tel}
+                  email={data.email}
+                />
+              </Container>
+            </div>
           </>
         ) : user1.role === "admin" ? (
           <>
             <h1 className="mb-4 reg">Mi cuenta</h1>
             <Container>
-              <EditProfile
-                route={route}
-                id={data._id}
-                age={data.age}
-                comunity={data.comunity}
-                country={data.country}
-                tel={data.tel}
-                email={data.email}
-              />
               <ListGroup>
                 <ListGroup.Item>
                   <Row>
@@ -264,8 +263,19 @@ function Profile(props) {
                   </Row>
                 </ListGroup.Item>
               </ListGroup>
-              <EditPassword id={data._id} />
             </Container>
+            <div className="seccion1">
+              <Container className="themed-container" fluid={true}>
+                <EditProfile
+                  route={route}
+                  id={data._id}
+                  first_name={data.first_name}
+                  last_name={data.last_name}
+                  tel={data.tel}
+                  email={data.email}
+                />
+              </Container>
+            </div>
           </>
         ) : undefined
       ) : undefined}
