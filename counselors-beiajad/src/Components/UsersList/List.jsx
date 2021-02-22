@@ -80,6 +80,7 @@ function AdminList(props) {
   //        user.last_name.toLowerCase().includes(lastName.toLowerCase())
   //    ));
   // }, [lastName, users]);
+  //-----------------------------------------------------------------------
 
   const a = data.sort(function (a, b) {
     return a.first_name - b.first_name;
@@ -133,7 +134,11 @@ function AdminList(props) {
                         />
                       </td>
                       <td>
-                        {/* <DeleteUser id={user._id} route={"deleteadmins"} /> */}
+                        <DeleteUser
+                          id={user._id}
+                          route1={"schedulesbyuser"}
+                          route={"deleteadmins"}
+                        />
                       </td>
                     </tr>
                   ))}
@@ -258,11 +263,11 @@ function AdminList(props) {
                         />
                       </td>
                       <td>
-                        {/* <DeleteUser
+                        <DeleteUser
                           id={user._id}
                           route={"deleteusers"}
-                          route1={"user"}
-                        /> */}
+                          route1={"schedulesbyuser"}
+                        />
                       </td>
                     </tr>
                   ))}
@@ -393,55 +398,6 @@ function AdminList(props) {
                       <td>{user.specialty}</td>
                       <td>{user.email}</td>
                       <td>{user.tel}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-              <div className="clearboth">
-                {data.length === 0 && <span>No hay resultados!</span>}
-              </div>
-            </>
-          ) : list === "usuarios" ? (
-            <>
-              <h1>{props.titulo}</h1>
-              <div>
-                <label>Busqueda</label>
-                <input
-                  className="buscador"
-                  style={{ marginLeft: 5 }}
-                  type="text"
-                  value={searchText}
-                  onChange={(e) => handleChange(e.target.value)}
-                />
-              </div>
-              <Table responsive hover size="sm">
-                <thead>
-                  <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Email</th>
-                    <th>Telefono</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.map((user, i) => (
-                    <tr key={i}>
-                      <td>{user.first_name}</td>
-                      <td>{user.last_name}</td>
-                      <td>{user.email}</td>
-                      <td>{user.tel}</td>
-                      <EditUser
-                        id={user._id}
-                        first_name={user.first_name}
-                        last_name={user.last_name}
-                        email={user.email}
-                        tel={user.tel}
-                      />
-                      <td>
-                        {/* <DeleteUser id={user._id} /> */}
-                      </td>
                     </tr>
                   ))}
                 </tbody>

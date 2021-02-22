@@ -76,7 +76,7 @@ function EditUser(props) {
       }
     });
   };
-console.log(email)
+
   return (
     <>
       {isAuth ? (
