@@ -133,7 +133,7 @@ function AdminList(props) {
                         />
                       </td>
                       <td>
-                        <DeleteUser id={user._id} route={"deleteadmins"} />
+                        {/* <DeleteUser id={user._id} route={"deleteadmins"} /> */}
                       </td>
                     </tr>
                   ))}
@@ -258,11 +258,11 @@ function AdminList(props) {
                         />
                       </td>
                       <td>
-                        <DeleteUser
+                        {/* <DeleteUser
                           id={user._id}
                           route={"deleteusers"}
                           route1={"user"}
-                        />
+                        /> */}
                       </td>
                     </tr>
                   ))}
@@ -440,7 +440,7 @@ function AdminList(props) {
                         tel={user.tel}
                       />
                       <td>
-                        <DeleteUser id={user._id} />
+                        {/* <DeleteUser id={user._id} /> */}
                       </td>
                     </tr>
                   ))}

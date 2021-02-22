@@ -17,8 +17,8 @@ function EditUser(props) {
   const [country, setCountry] = useState(props.country);
   const [tel, setTel] = useState(props.tel);
   const [specialty, setSpecialty] = useState(props.specialty);
-  const [email, setEmail] = useState(props.email);
-  const USERPATCH = `http://localhost:8000/api/v1/${route}/${user1.id}/${props.id}`;
+  const [email, setEmail] = useState(undefined);
+  const USERPATCH = `http://localhost:8000/api/v1/${props.route}/${user1.id}/${props.id}`;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -76,7 +76,7 @@ function EditUser(props) {
       }
     });
   };
-
+console.log(email)
   return (
     <>
       {isAuth ? (

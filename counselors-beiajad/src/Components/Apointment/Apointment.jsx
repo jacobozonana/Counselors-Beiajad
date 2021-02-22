@@ -425,7 +425,7 @@ function Apointment() {
               <Modal.Body>
                 <Form>
                   <Row>
-                    <Col>
+                    <Col xs={6}>
                       <Form.Group>
                         <DropdownButton
                           variant="outline-info"

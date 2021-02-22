@@ -222,6 +222,7 @@ function EditSchedule(props) {
     setBotones(["10:00", "11:00", "12:00", "13:00", "14:00", "15:00"]);
     setBorbot([""]);
     setApa("btn btn-info boton");
+    setTime("Hora");
 
     if (selectedDay.month < 10) {
       if (selectedDay.day < 10) {

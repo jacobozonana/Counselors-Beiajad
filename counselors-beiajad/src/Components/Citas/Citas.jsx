@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { MDBDataTableV5 } from "mdbreact";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Table } from "react-bootstrap";
 import DeleteSchedule from "../Delete/DeleteSchedule";
 import axios from "axios";
 import EditSchedule from "../Editar/EditSchedule";
@@ -40,84 +39,57 @@ function Citas() {
       {isAuth ? (
         user1.role === "user" ? (
           <>
-            <MDBDataTableV5
-              small
-              hover
-              entriesOptions={[3, 5, 15]}
-              entries={3}
-              pagesAmount={4}
-              pagingTop
-              searchTop
-              searchBottom={false}
-              data={{
-                columns: [
-                  {
-                    label: "Fecha",
-                    field: "dat",
-                    width: 10,
-                  },
-                  {
-                    label: "Hora",
-                    field: "tim",
-                    width: 10,
-                  },
-                  {
-                    label: "Nombre Dr.",
-                    field: "docn",
-                    width: 10,
-                  },
-                  {
-                    label: "Apellido Dr.",
-                    field: "docl",
-                    width: 10,
-                  },
-                  {
-                    label: "Nota",
-                    field: "not",
-                    sort: "disabled",
-                    width: 10,
-                  },
-                  {
-                    label: "Editar",
-                    field: "edi",
-                    sort: "disabled",
-                    width: 10,
-                  },
-                  {
-                    label: "Cancelar",
-                    field: "del",
-                    sort: "disabled",
-                    width: 10,
-                  },
-                ],
-                rows: IdUser.map((date, i) => ({
-                  dat: date.date.split("T")[0],
-                  tim: date.time,
-                  docn: date.doctor[0].first_name,
-                  docl: date.doctor[0].last_name,
-                  not: (
-                    <Button
-                      variant="warning"
-                      onClick={() => (handleShow(), setNoteonmodal(date.note))}
-                    >
-                      <i className="far fa-sticky-note"></i>
-                    </Button>
-                  ),
-                  edi: (
-                    <EditSchedule
-                      id={date._id}
-                      datee={date.date}
-                      timee={date.time}
-                      notee={date.note}
-                      doctore={date.doctor[0]._id}
-                      doctorefn={date.doctor[0].first_name}
-                      doctoreln={date.doctor[0].last_name}
-                    />
-                  ),
-                  del: <DeleteSchedule id={date._id} />,
-                })),
-              }}
-            />
+            <Table responsive hover size="sm">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                  <th>Nombre Dr.</th>
+                  <th>Apellido Dr.</th>
+                  <th>Nota</th>
+                  <th>Editar</th>
+                  <th>Cancelar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {IdUser.map((date, i) => (
+                  <tr key={i}>
+                    <td>{date.date.split("T")[0]}</td>
+                    <td>{date.time}</td>
+                    <td>{date.doctor[0].first_name}</td>
+                    <td>{date.doctor[0].last_name}</td>
+                    <td>
+                      {
+                        <Button
+                          variant="warning"
+                          onClick={() => (
+                            handleShow(), setNoteonmodal(date.note)
+                          )}
+                        >
+                          <i className="far fa-sticky-note"></i>
+                        </Button>
+                      }
+                    </td>
+                    <td>
+                      {
+                        <EditSchedule
+                          id={date._id}
+                          datee={date.date}
+                          timee={date.time}
+                          notee={date.note}
+                          doctore={date.doctor[0]._id}
+                          doctorefn={date.doctor[0].first_name}
+                          doctoreln={date.doctor[0].last_name}
+                        />
+                      }
+                    </td>
+                    <td>
+                      <DeleteSchedule id={date._id} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>Nota</Modal.Title>

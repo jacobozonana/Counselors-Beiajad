@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Form, Button, Modal, Col, Row } from "react-bootstrap";
 import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
@@ -16,7 +16,7 @@ function EditSchedule(props) {
   const [country, setCountry] = useState(props.country);
   const [tel, setTel] = useState(props.tel);
   const [specialty, setSpecialty] = useState(props.specialty);
-  const [email, setEmail] = useState(props.email);
+  const [email, setEmail] = useState(undefined);
   const USERPATCH = `http://localhost:8000/api/v1/${props.route}/${user1.id}/${props.id}`;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
