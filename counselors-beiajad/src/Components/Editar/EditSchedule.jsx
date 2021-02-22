@@ -511,9 +511,6 @@ function EditSchedule(props) {
                 </Form>
               </Modal.Body>
               <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                  Cerrar
-                </Button>
                 <Button
                   type="submit"
                   onClick={() => {

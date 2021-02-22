@@ -82,11 +82,6 @@ function AdminList(props) {
   // }, [lastName, users]);
   //-----------------------------------------------------------------------
 
-  const a = data.sort(function (a, b) {
-    return a.first_name - b.first_name;
-  });
-  console.log(a);
-
   return (
     <>
       {isAuth ? (

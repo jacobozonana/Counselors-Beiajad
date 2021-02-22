@@ -135,15 +135,12 @@ function EditPassword() {
               </Form>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Cerrar
-              </Button>
               <Button
                 type="submit"
                 onClick={() => {
                   editUser();
                 }}
-                className="btn btn-info boton"
+                className="btn btn-danger boton"
               >
                 Siguiente
               </Button>
