@@ -9,6 +9,7 @@ import "../../index.css";
 function Citas() {
   const { user1, isAuth } = useContext(AuthContext);
   const [schedule, setSchedule] = useState([]);
+  const [order, setOrder] = useState("date");
   const URL_GET_USER = `http://localhost:8000/api/v1/schedulesbyuser/${user1.id}/${user1.id}`;
   const [show, setShow] = useState(false);
   const [noteonmodal, setNoteonmodal] = useState("");
@@ -34,6 +35,23 @@ function Citas() {
     }
   });
 
+  const sortJSON = (json, key, orden) => {
+    return json.sort(function (a, b) {
+      var x = a[key],
+        y = b[key];
+
+      if (orden === "asc") {
+        return x < y ? -1 : x > y ? 1 : 0;
+      }
+
+      if (orden === "desc") {
+        return x > y ? -1 : x < y ? 1 : 0;
+      }
+    });
+  };
+
+  sortJSON(schedule, order, "asc");
+
   return (
     <>
       {isAuth ? (
@@ -42,10 +60,27 @@ function Citas() {
             <Table responsive hover size="sm">
               <thead>
                 <tr>
-                  <th>Fecha</th>
-                  <th>Hora</th>
-                  <th>Nombre Dr.</th>
-                  <th>Apellido Dr.</th>
+                  <th onClick={() => setOrder("date")} variant="link" size="sm">
+                    Fecha
+                  </th>
+                  <th onClick={() => setOrder("time")} variant="link" size="sm">
+                    {" "}
+                    Hora
+                  </th>
+                  <th
+                    onClick={() => setOrder("first_name")}
+                    variant="link"
+                    size="sm"
+                  >
+                    Nombre Dr.
+                  </th>
+                  <th
+                    onClick={() => setOrder("last_name")}
+                    variant="link"
+                    size="sm"
+                  >
+                    Apellido Dr.
+                  </th>
                   <th>Nota</th>
                   <th>Editar</th>
                   <th>Cancelar</th>

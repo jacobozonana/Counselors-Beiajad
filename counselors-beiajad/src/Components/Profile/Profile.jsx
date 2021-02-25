@@ -119,7 +119,7 @@ function Profile(props) {
               </ListGroup>
             </Container>
             <div className="seccion1">
-              <Container className="themed-container" fluid={true}>
+              <Container className="themed-container margin" fluid={true}>
                 <EditProfile
                   route={route}
                   id={data._id}
@@ -202,7 +202,7 @@ function Profile(props) {
               </ListGroup>
             </Container>
             <div className="seccion1">
-              <Container className="themed-container" fluid={true}>
+              <Container className="themed-container margin" fluid={true}>
                 <EditProfile
                   route={route}
                   id={data._id}
@@ -265,7 +265,7 @@ function Profile(props) {
               </ListGroup>
             </Container>
             <div className="seccion1">
-              <Container className="themed-container" fluid={true}>
+              <Container className="themed-container margin" fluid={true}>
                 <EditProfile
                   route={route}
                   id={data._id}

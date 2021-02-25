@@ -118,6 +118,7 @@ function ScheduleList(props) {
   const { user1, isAuth } = useContext(AuthContext);
   const [schedule, setSchedule] = useState([]);
   const [data, setData] = useState([]);
+  const [order, setOrder] = useState("date");
   const [selectedDay, setSelectedDay] = useState(defaultValue);
   const [searchText, setSearchText] = useState("Citas por dia");
   const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"]; // excluye datos del arreglo del filtro
@@ -202,13 +203,30 @@ function ScheduleList(props) {
     setSearchText(null);
     setSearchText("Citas por dia");
   };
-  console.log(data);
+
+  const sortJSON = (json, key, orden) => {
+    return json.sort(function (a, b) {
+      var x = a[key],
+        y = b[key];
+
+      if (orden === "asc") {
+        return x < y ? -1 : x > y ? 1 : 0;
+      }
+
+      if (orden === "desc") {
+        return x > y ? -1 : x < y ? 1 : 0;
+      }
+    });
+  };
+
+  sortJSON(data, order, "asc");
+
   return (
     <>
       {isAuth ? (
         user1.role === "admin" ? (
           <>
-            <Container>
+            <Container className="margin">
               <DatePicker
                 value={selectedDay}
                 onChange={
@@ -231,13 +249,55 @@ function ScheduleList(props) {
             <Table responsive hover size="sm">
               <thead>
                 <tr>
-                  <th>Fecha</th>
-                  <th>Hora</th>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th>Telefono</th>
-                  <th>Apellido Dr.</th>
-                  <th>Nombre Dr.</th>
+                  <th 
+                    onClick={() => setOrder("date")} 
+                    variant="link" 
+                    size="sm"
+                  >
+                    Fecha
+                  </th>
+                  <th
+                    onClick={() => setOrder("time")}
+                    variant="link"
+                    size="sm"
+                  >
+                    Hora
+                  </th>
+                  <th
+                    onClick={() => setOrder("first_name")}
+                    variant="link"
+                    size="sm"
+                  >
+                    Nombre
+                  </th>
+                  <th
+                    onClick={() => setOrder("last_name")}
+                    variant="link"
+                    size="sm"
+                  >
+                    Apellido
+                  </th>
+                  <th 
+                    onClick={() => setOrder("tel")} 
+                    variant="link" 
+                    size="sm"
+                    >
+                    Telefono
+                  </th>
+                  <th
+                    onClick={() => setOrder("first_name")}
+                    variant="link"
+                    size="sm"
+                  >
+                    Apellido Dr.
+                  </th>
+                  <th
+                    onClick={() => setOrder("last_name")}
+                    variant="link"
+                    size="sm"
+                  >
+                    Nombre Dr.
+                  </th>
                   <th>Nota</th>
                   <th>Editar</th>
                   <th>Borrar</th>
@@ -290,7 +350,7 @@ function ScheduleList(props) {
           </>
         ) : user1.role === "doctor" ? (
           <>
-            <Container className="centrar">
+            <Container className="margin">
               <DatePicker
                 value={selectedDay}
                 onChange={
@@ -313,11 +373,41 @@ function ScheduleList(props) {
             <Table responsive hover size="sm">
               <thead>
                 <tr>
-                  <th>Fecha</th>
-                  <th>Hora</th>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th>Telefono</th>                  
+                  <th 
+                    onClick={() => setOrder("date")} 
+                    variant="link" 
+                    size="sm"
+                  >
+                    Fecha
+                  </th>
+                  <th 
+                    onClick={() => setOrder("time")} 
+                    variant="link" 
+                    size="sm"
+                  >
+                    Hora
+                  </th>
+                  <th
+                    onClick={() => setOrder("first_name")}
+                    variant="link"
+                    size="sm"
+                  >
+                    Nombre
+                  </th>
+                  <th
+                    onClick={() => setOrder("last_name")}
+                    variant="link"
+                    size="sm"
+                  >
+                    Apellido
+                  </th>
+                  <th 
+                    onClick={() => setOrder("tel")} 
+                    variant="link" 
+                    size="sm"
+                  >
+                    Telefono
+                  </th>
                   <th>Nota</th>
                 </tr>
               </thead>
@@ -328,7 +418,7 @@ function ScheduleList(props) {
                     <td>{date.time}</td>
                     <td>{date.user[0].first_name}</td>
                     <td>{date.user[0].last_name}</td>
-                    <td>{date.user[0].tel}</td>                   
+                    <td>{date.user[0].tel}</td>
                     <td>
                       <Button
                         variant="warning"
@@ -338,11 +428,11 @@ function ScheduleList(props) {
                       >
                         <i className="far fa-sticky-note"></i>
                       </Button>
-                    </td>                   
+                    </td>
                   </tr>
                 ))}
               </tbody>
-            </Table>            
+            </Table>
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>Nota</Modal.Title>

@@ -31,6 +31,8 @@ X-hacer pagina de perfil de usuario, doctor y administrador editar su cuenta(Hec
 
 X-Como cambiar contraseñas (Hecho) 
 
+X-Arreglar el delete user que salga la alerta hasta que se eliminide de verdad(Hecho)
+
 -Hacer un boton para eliminar la cuenta del usuario en su perfil
 
 -Pensar bien que informacion mostrar de los doctores ya que todos los doctores se van a poder buscar entre si
@@ -47,21 +49,17 @@ X-Como cambiar contraseñas (Hecho)
 
 -Preguntar sobre el tema de subir archivos e imagenes a la api
 
--Arreglar el delete user que salga la alerta hasta que se eliminide de verdad
 
--regresar las listas a reactstrap y los buscadores y hacer un mejor css del buscador
-
--
 
 Pendientes con Chapan y Dani
-hacer uncheck en las citas si atendio la cita o no.
-poder hacer comentario sobre los doctores. y sobre los pacientes
 X-validador para no hacer citas el mismo dia (Hecho)
-validador que no se puede cancelar la cita con un limite de tiempo
-cuando se genera la cita mandar mail y mensaje de texto de confirmacion
-y recordatorios de citas mismo dia y misma semana
-doctor que puedo bloquear ciertos horarios y dias
-despues del swal poner history .push para redireccionar
+X-despues del swal poner history .push para redireccionar(Hecho)
+-hacer uncheck en las citas si atendio la cita o no.
+-poder hacer comentario sobre los doctores. y sobre los pacientes
+-validador que no se puede cancelar la cita con un limite de tiempo
+-cuando se genera la cita mandar mail y mensaje de texto de confirmacion
+-y recordatorios de citas mismo dia y misma semana
+-doctor que puedo bloquear ciertos horarios y dias
 .env para el front las URL tambien del front
 
 sendgrid

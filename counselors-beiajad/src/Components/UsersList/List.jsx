@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Table } from "react-bootstrap";
+import { Table, InputGroup, FormControl, Button } from "react-bootstrap";
 import axios from "axios";
 import DeleteUser from "../Delete/DeleteUser";
 import EditUser from "../Editar/EditUser";
@@ -9,6 +9,7 @@ import "../../index.css";
 function AdminList(props) {
   const { isAuth, user1 } = useContext(AuthContext);
   const [data, setData] = useState([]);
+  const [order, setOrder] = useState("first_name");
   const [list, setList] = useState(props.lista);
   const [users, setUsers] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -82,6 +83,23 @@ function AdminList(props) {
   // }, [lastName, users]);
   //-----------------------------------------------------------------------
 
+  const sortJSON = (json, key, orden) => {
+    return json.sort(function (a, b) {
+      var x = a[key],
+        y = b[key];
+
+      if (orden === "asc") {
+        return x < y ? -1 : x > y ? 1 : 0;
+      }
+
+      if (orden === "desc") {
+        return x > y ? -1 : x < y ? 1 : 0;
+      }
+    });
+  };
+
+  sortJSON(data, order, "asc");
+
   return (
     <>
       {isAuth ? (
@@ -90,22 +108,45 @@ function AdminList(props) {
             <>
               <h1>{props.titulo}</h1>
               <div>
-                <label>Busqueda</label>
                 <input
-                  className="buscador"
-                  style={{ marginLeft: 5 }}
+                  className="w3-input w3-border w3-animate-input"
                   type="text"
+                  placeholder="Busqueda"
                   value={searchText}
                   onChange={(e) => handleChange(e.target.value)}
-                />
+                ></input>
               </div>
               <Table responsive hover size="sm">
                 <thead>
                   <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Email</th>
-                    <th>Telefono</th>
+                    <th
+                      onClick={() => setOrder("first_name")}
+                      variant="link"
+                      size="sm"
+                    >
+                      Nombre
+                    </th>
+                    <th
+                      onClick={() => setOrder("last_name")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Apellido
+                    </th>
+                    <th
+                      onClick={() => setOrder("email")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Email
+                    </th>
+                    <th
+                      onClick={() => setOrder("tel")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Telefono
+                    </th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                   </tr>
@@ -147,24 +188,59 @@ function AdminList(props) {
             <>
               <h1>{props.titulo}</h1>
               <div>
-                <label>Busqueda</label>
                 <input
-                  className="buscador"
-                  style={{ marginLeft: 5 }}
+                  className="w3-input w3-border w3-animate-input"
                   type="text"
+                  placeholder="Busqueda"
                   value={searchText}
                   onChange={(e) => handleChange(e.target.value)}
-                />
+                ></input>
               </div>
               <Table responsive hover size="sm">
                 <thead>
                   <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Pais</th>
-                    <th>Especiaidad</th>
-                    <th>Email</th>
-                    <th>Telefono</th>
+                    <th
+                      onClick={() => setOrder("first_name")}
+                      variant="link"
+                      size="sm"
+                    >
+                      Nombre
+                    </th>
+                    <th
+                      onClick={() => setOrder("last_name")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Apellido
+                    </th>
+                    <th
+                      onClick={() => setOrder("country")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Pais
+                    </th>
+                    <th
+                      onClick={() => setOrder("specialty")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Especiaidad
+                    </th>
+                    <th
+                      onClick={() => setOrder("email")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Email
+                    </th>
+                    <th
+                      onClick={() => setOrder("tel")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Telefono
+                    </th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                   </tr>
@@ -210,25 +286,66 @@ function AdminList(props) {
             <>
               <h1>{props.titulo}</h1>
               <div>
-                <label>Busqueda</label>
                 <input
-                  className="buscador"
-                  style={{ marginLeft: 5 }}
+                  className="w3-input w3-border w3-animate-input"
                   type="text"
+                  placeholder="Busqueda"
                   value={searchText}
                   onChange={(e) => handleChange(e.target.value)}
-                />
+                ></input>
               </div>
               <Table responsive hover size="sm">
                 <thead>
                   <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Edad</th>
-                    <th>Pais</th>
-                    <th>Comunidad</th>
-                    <th>Email</th>
-                    <th>Telefono</th>
+                    <th
+                      onClick={() => setOrder("first_name")}
+                      variant="link"
+                      size="sm"
+                    >
+                      Nombre
+                    </th>
+                    <th
+                      onClick={() => setOrder("last_name")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Apellido
+                    </th>
+                    <th
+                      onClick={() => setOrder("age")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Edad
+                    </th>
+                    <th
+                      onClick={() => setOrder("country")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Pais
+                    </th>
+                    <th
+                      onClick={() => setOrder("comunity")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Comunidad
+                    </th>
+                    <th
+                      onClick={() => setOrder("email")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Email
+                    </th>
+                    <th
+                      onClick={() => setOrder("tel")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Telefono
+                    </th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                   </tr>
@@ -278,24 +395,59 @@ function AdminList(props) {
             <>
               <h1>{props.titulo}</h1>
               <div>
-                <label>Busqueda</label>
                 <input
-                  className="buscador"
-                  style={{ marginLeft: 5 }}
+                  className="w3-input w3-border w3-animate-input"
                   type="text"
+                  placeholder="Busqueda"
                   value={searchText}
                   onChange={(e) => handleChange(e.target.value)}
-                />
+                ></input>
               </div>
               <Table responsive hover size="sm">
                 <thead>
                   <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Pais</th>
-                    <th>Especiaidad</th>
-                    <th>Email</th>
-                    <th>Telefono</th>
+                    <th
+                      onClick={() => setOrder("first_name")}
+                      variant="link"
+                      size="sm"
+                    >
+                      Nombre
+                    </th>
+                    <th
+                      onClick={() => setOrder("last_name")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Apellido
+                    </th>
+                    <th
+                      onClick={() => setOrder("country")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Pais
+                    </th>
+                    <th
+                      onClick={() => setOrder("specialty")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Especialidad
+                    </th>
+                    <th
+                      onClick={() => setOrder("email")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Email
+                    </th>
+                    <th
+                      onClick={() => setOrder("tel")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Telefono
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -319,25 +471,66 @@ function AdminList(props) {
             <>
               <h1>{props.titulo}</h1>
               <div>
-                <label>Busqueda</label>
                 <input
-                  className="buscador"
-                  style={{ marginLeft: 5 }}
+                  className="w3-input w3-border w3-animate-input"
                   type="text"
+                  placeholder="Busqueda"
                   value={searchText}
                   onChange={(e) => handleChange(e.target.value)}
-                />
+                ></input>
               </div>
               <Table responsive hover size="sm">
                 <thead>
                   <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Edad</th>
-                    <th>Pais</th>
-                    <th>Comunidad</th>
-                    <th>Email</th>
-                    <th>Telefono</th>
+                    <th
+                      onClick={() => setOrder("first_name")}
+                      variant="link"
+                      size="sm"
+                    >
+                      Nombre
+                    </th>
+                    <th
+                      onClick={() => setOrder("last_name")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Apellido
+                    </th>
+                    <th
+                      onClick={() => setOrder("age")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Edad
+                    </th>
+                    <th
+                      onClick={() => setOrder("country")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Pais
+                    </th>
+                    <th
+                      onClick={() => setOrder("comunity")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Comunidad
+                    </th>
+                    <th
+                      onClick={() => setOrder("email")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Email
+                    </th>
+                    <th
+                      onClick={() => setOrder("tel")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Telefono
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -364,24 +557,59 @@ function AdminList(props) {
             <>
               <h1>{props.titulo}</h1>
               <div>
-                <label>Busqueda</label>
                 <input
-                  className="buscador"
-                  style={{ marginLeft: 5 }}
+                  className="w3-input w3-border w3-animate-input"
                   type="text"
+                  placeholder="Busqueda"
                   value={searchText}
                   onChange={(e) => handleChange(e.target.value)}
-                />
+                ></input>
               </div>
               <Table responsive hover size="sm">
                 <thead>
                   <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Pais</th>
-                    <th>Especiaidad</th>
-                    <th>Email</th>
-                    <th>Telefono</th>
+                    <th
+                      onClick={() => setOrder("first_name")}
+                      variant="link"
+                      size="sm"
+                    >
+                      Nombre
+                    </th>
+                    <th
+                      onClick={() => setOrder("last_name")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Apellido
+                    </th>
+                    <th
+                      onClick={() => setOrder("country")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Pais
+                    </th>
+                    <th
+                      onClick={() => setOrder("specialty")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Especialidad
+                    </th>
+                    <th
+                      onClick={() => setOrder("email")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Email
+                    </th>
+                    <th
+                      onClick={() => setOrder("tel")}
+                      variant="light"
+                      size="sm"
+                    >
+                      Telefono
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
