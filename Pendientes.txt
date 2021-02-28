@@ -33,7 +33,7 @@ X-Como cambiar contraseñas (Hecho)
 
 X-Arreglar el delete user que salga la alerta hasta que se eliminide de verdad(Hecho)
 
--Hacer un boton para eliminar la cuenta del usuario en su perfil
+X-Hacer un boton para eliminar la cuenta del usuario en su perfil(Hecho)
 
 -Pensar bien que informacion mostrar de los doctores ya que todos los doctores se van a poder buscar entre si
 
