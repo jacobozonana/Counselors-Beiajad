@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import DatePicker from "react-modern-calendar-datepicker";
 import axios from "axios";
-import Citas from "../Citas/Citas";
+import ScheduleListOfUser from "../ScheduleList/ScheduleListOfUser";
 import Swal from "sweetalert2";
 import "../../index.css";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
@@ -134,8 +134,8 @@ function Apointment() {
   const [note, setNote] = useState("Escribe aqui algun comentario a tu cita");
   const [user] = useState(user1.id);
   const [doctor, setDoctor] = useState(user1.id);
-  const [doctorName, setDoctorName] = useState("Doctor");
-  const [doctorLname, setDoctorLname] = useState("");
+  const [doctorName, setDoctorName] = useState("Escoge");
+  const [doctorLname, setDoctorLname] = useState("Doctor");
   const [usrdates, setUsrdates] = useState([]);
   const [usdat, setUsdat] = useState([]);
   const [selectedDay, setSelectedDay] = useState(defaultValue);
@@ -418,13 +418,12 @@ function Apointment() {
             <Button className="margin" variant="primary" onClick={handleShow}>
               Agendar cita
             </Button>
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} size="sm" onHide={handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Escoge tu cita</Modal.Title>
+                <Modal.Title>Cita</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <Form>
-                  <Row>
                     <Col xs={6}>
                       <Form.Group>
                         <DropdownButton
@@ -500,7 +499,6 @@ function Apointment() {
                         </DropdownButton>
                       </Form.Group>
                     </Col>
-                  </Row>
                   <Form.Group>
                     <textarea
                       className="note"
@@ -525,7 +523,7 @@ function Apointment() {
                 </Button>
               </Modal.Footer>
             </Modal>
-            <Citas />
+            <ScheduleListOfUser />
           </div>
         ) : undefined
       ) : undefined}

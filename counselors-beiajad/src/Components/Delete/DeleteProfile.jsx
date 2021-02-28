@@ -59,7 +59,7 @@ function DeleteUser(props) {
               timer: 3000,
               timerProgressBar: true,
             }).then(() => {
-              window.location.reload();
+              window.location.href = "/logout";
             })
           )
           .catch((error) => {
@@ -77,11 +77,9 @@ function DeleteUser(props) {
   return (
     <>
       {isAuth ? (
-        user1.role == "admin" ? (
-          <button onClick={Delete} className="btn btn-dark boton">
-            <i className="far fa-trash-alt"></i>
-          </button>
-        ) : undefined
+        <button onClick={Delete} className="btn btn-danger boton">
+          <i className="far fa-trash-alt"></i> Eliminar mi cuenta
+        </button>
       ) : undefined}
     </>
   );

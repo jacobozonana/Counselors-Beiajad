@@ -6,7 +6,7 @@ import axios from "axios";
 import EditSchedule from "../Editar/EditSchedule";
 import "../../index.css";
 
-function Citas() {
+function ScheduleListOfUser() {
   const { user1, isAuth } = useContext(AuthContext);
   const [schedule, setSchedule] = useState([]);
   const [order, setOrder] = useState("date");
@@ -138,4 +138,4 @@ function Citas() {
   );
 }
 
-export default Citas;
+export default ScheduleListOfUser;

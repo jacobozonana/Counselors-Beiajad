@@ -337,7 +337,7 @@ function EditSchedule(props) {
                           type="email"
                         />
                       </Form.Group>
-                      <EditPassword id={props.id} />
+                      <EditPassword id={props.id} />                      
                       <h6>modifica los datos que quieras</h6>
                     </Col>
                   </Row>

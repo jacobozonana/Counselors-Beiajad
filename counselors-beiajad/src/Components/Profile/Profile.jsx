@@ -3,6 +3,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { Container, ListGroup, Row, Col, Button } from "react-bootstrap";
 import axios from "axios";
 import EditProfile from "../Editar/EditProfile";
+import DeleteProfile from "../Delete/DeleteProfile";
 import "../../index.css";
 
 function Profile(props) {
@@ -131,6 +132,10 @@ function Profile(props) {
                   tel={data.tel}
                   email={data.email}
                 />
+                <DeleteProfile
+                  route1={"schedulesbyuser"}
+                  route={"deleteusers"}
+                />
               </Container>
             </div>
           </>
@@ -212,7 +217,7 @@ function Profile(props) {
                   specialty={data.specialty}
                   tel={data.tel}
                   email={data.email}
-                />
+                />                
               </Container>
             </div>
           </>
@@ -273,6 +278,10 @@ function Profile(props) {
                   last_name={data.last_name}
                   tel={data.tel}
                   email={data.email}
+                />
+                <DeleteProfile
+                  route1={"schedulesbyuser"}
+                  route={"deleteadmins"}
                 />
               </Container>
             </div>

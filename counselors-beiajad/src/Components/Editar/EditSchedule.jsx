@@ -414,13 +414,12 @@ function EditSchedule(props) {
             <Button variant="info" onClick={handleShow}>
               <i className="far fa-edit"></i>
             </Button>
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} size="sm" onHide={handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Edita tu cita</Modal.Title>
+                <Modal.Title>Cita</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <Form>
-                  <Row>
                     <Col>
                       <Form.Group>
                         <DropdownButton
@@ -496,7 +495,6 @@ function EditSchedule(props) {
                         </DropdownButton>
                       </Form.Group>
                     </Col>
-                  </Row>
                   <Form.Group>
                     <textarea
                       className="note"

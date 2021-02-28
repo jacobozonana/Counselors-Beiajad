@@ -13,10 +13,10 @@ function DeleteSchedule(props) {
       text: "Esta acción no se puede revertir",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Borrar",
-      cancelButtonText: "Cancelar",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#25a1b7",
+      confirmButtonText: "Cancelar cita",
+      cancelButtonText: "Conservar cita",
     }).then((result) => {
       if (result.isConfirmed) {
         axios
