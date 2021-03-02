@@ -8,7 +8,7 @@ function Footer() {
     <div className="footer">
       <Container className="themed-container" fluid={true}>
         <div className="footer-logo">
-          <a href="index.html">
+          <a href="/">
             <img
               src={Logo}
               className="d-inline-block align-top logo"
