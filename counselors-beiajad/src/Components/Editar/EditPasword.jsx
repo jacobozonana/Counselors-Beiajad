@@ -76,7 +76,6 @@ function EditPassword() {
                 title: "Oops...",
                 text: "Lo sentimos esta acción no se pudo completar",
               });
-              console.log(error.response.data.message);
             });
         }
       });

@@ -38,15 +38,11 @@ const SignupAdmin = () => {
 
       const SIGNUP_URL = `http://localhost:8000/api/v1/signupadmin/${user1.id}`;
       try {
-        await axios
-          .post(SIGNUP_URL, jsonSend, {
-            headers: {
-              Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
-            },
-          })
-          .catch((error) => {
-            console.log(error.response.data.message);
-          });
+        await axios.post(SIGNUP_URL, jsonSend, {
+          headers: {
+            Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+          },
+        });
         setFirstName("");
         setLastName("");
         setEmail("");

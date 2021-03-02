@@ -41,7 +41,7 @@ function DeleteUser(props) {
             })
             .then((data) => console.log(data.data))
             .catch((error) => {
-              console.log(error.response.data.message);
+              console.log(error);
             });
         }
         const URLDELETEUSER = `http://localhost:8000/api/v1/${props.route}/${user1.id}/${user1.id}`;

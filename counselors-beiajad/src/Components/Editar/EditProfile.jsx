@@ -69,7 +69,6 @@ function EditSchedule(props) {
               title: "Oops...",
               text: "Lo sentimos esta acción no se pudo completar",
             });
-            console.log(error.response.data.message);
           });
       }
     });
@@ -338,7 +337,7 @@ function EditSchedule(props) {
                           type="email"
                         />
                       </Form.Group>
-                      <EditPassword id={props.id} />
+                      <EditPassword id={props.id} />                      
                       <h6>modifica los datos que quieras</h6>
                     </Col>
                   </Row>

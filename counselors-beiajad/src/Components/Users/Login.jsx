@@ -25,9 +25,7 @@ const Login = () => {
     };
 
     try {
-      const res = await axios.post(LOGIN_URL, jsonSend).catch((error) => {
-        console.log(error.response.data.message);
-      });
+      const res = await axios.post(LOGIN_URL, jsonSend)
       loginUser(res.data.token);
       Swal.fire({
         icon: "success",
