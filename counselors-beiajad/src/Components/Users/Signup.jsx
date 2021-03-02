@@ -41,7 +41,9 @@ const Register = () => {
 
       const SIGNUP_URL = `http://localhost:8000/api/v1/signupuser/`;
       try {
-        await axios.post(SIGNUP_URL, jsonSend);
+        await axios.post(SIGNUP_URL, jsonSend).catch((error) => {
+          console.log(error.response.data.message);
+        });
         setFirstName("");
         setLastName("");
         setEmail("");

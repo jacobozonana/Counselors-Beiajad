@@ -60,7 +60,7 @@ function Apointment(props) {
               title: "Oops...",
               text: "Lo sentimos esta acción no se pudo completar",
             });
-            console.log(error);
+            console.log(error.response.data.message);
           });
       }
     });
@@ -69,7 +69,9 @@ function Apointment(props) {
   return (
     <>
       {isAuth ? (
-        user1.role === "admin" || user1.role === "user" || user1.role === "doctor" ? (
+        user1.role === "admin" ||
+        user1.role === "user" ||
+        user1.role === "doctor" ? (
           <div className="calendar1">
             <Button className="btn btn-primary boton" onClick={handleShow}>
               <i className="far fa-clipboard"></i>

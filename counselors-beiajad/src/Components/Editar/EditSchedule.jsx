@@ -376,6 +376,7 @@ function EditSchedule(props) {
               title: "Oops...",
               text: "Lo sentimos esta acción no se pudo completar",
             });
+            console.log(error.response.data.message);
           });
       }
     });
@@ -420,81 +421,81 @@ function EditSchedule(props) {
               </Modal.Header>
               <Modal.Body>
                 <Form>
-                    <Col>
-                      <Form.Group>
-                        <DropdownButton
-                          variant="outline-info"
-                          id="dropdown-basic-button"
-                          title={titleedbot}
-                        >
-                          {doctors.map((user, i) => (
-                            <Dropdown.Item
-                              onClick={() => {
-                                setDoctor(user._id);
-                                setDoctorName(user.first_name);
-                                setDoctorLname(user.last_name);
-                              }}
-                              key={i}
-                            >
-                              <h4 className="alineacion">
-                                {user.first_name} {user.last_name}
-                              </h4>
-                            </Dropdown.Item>
-                          ))}
-                        </DropdownButton>
-                      </Form.Group>
-                    </Col>
-                    <Col>
-                      <Form.Group>
-                        <DatePicker
-                          value={selectedDay}
-                          onChange={
-                            (setSelectedDay,
-                            (e) => {
-                              diaSeleccionado(e);
-                            })
-                          }
-                          colorPrimary="#25a1b7"
-                          calendarClassName="responsive-calendar" // added this
-                          locale={myCustomLocale} // custom locale object
-                          disabledDays={disabledDays} // here we pass them
-                          onDisabledDayError={handleDisabledSelect} // handle error
-                          shouldHighlightWeekends
-                          renderInput={renderCustomInput} // render a custom input
-                          ClassName="custom-today-day"
-                        />
-                      </Form.Group>
-                    </Col>
-                    <Col>
-                      <Form.Group>
-                        <DropdownButton
-                          variant="outline-info"
-                          id="dropdown-basic-button"
-                          title={time}
-                        >
-                          {sinHoras ? (
-                            <>
-                              <h6 className="CitaSeleccionada sinhoras">
-                                Ups! no hay horas disponibles.<br></br>Escoge
-                                otro dia por favor
-                              </h6>
-                            </>
-                          ) : (
-                            <>
-                              {botones.map((hora, i) => (
-                                <Dropdown.Item
-                                  onClick={() => escogeHora(hora, i)}
-                                  key={i}
-                                  className={apa}
-                                >
-                                  <h4 className="alineacion">{hora}</h4>
-                                </Dropdown.Item>
-                              ))}
-                            </>
-                          )}
-                        </DropdownButton>
-                      </Form.Group>
-                    </Col>
+                  <Col>
+                    <Form.Group>
+                      <DropdownButton
+                        variant="outline-info"
+                        id="dropdown-basic-button"
+                        title={titleedbot}
+                      >
+                        {doctors.map((user, i) => (
+                          <Dropdown.Item
+                            onClick={() => {
+                              setDoctor(user._id);
+                              setDoctorName(user.first_name);
+                              setDoctorLname(user.last_name);
+                            }}
+                            key={i}
+                          >
+                            <h4 className="alineacion">
+                              {user.first_name} {user.last_name}
+                            </h4>
+                          </Dropdown.Item>
+                        ))}
+                      </DropdownButton>
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group>
+                      <DatePicker
+                        value={selectedDay}
+                        onChange={
+                          (setSelectedDay,
+                          (e) => {
+                            diaSeleccionado(e);
+                          })
+                        }
+                        colorPrimary="#25a1b7"
+                        calendarClassName="responsive-calendar" // added this
+                        locale={myCustomLocale} // custom locale object
+                        disabledDays={disabledDays} // here we pass them
+                        onDisabledDayError={handleDisabledSelect} // handle error
+                        shouldHighlightWeekends
+                        renderInput={renderCustomInput} // render a custom input
+                        ClassName="custom-today-day"
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group>
+                      <DropdownButton
+                        variant="outline-info"
+                        id="dropdown-basic-button"
+                        title={time}
+                      >
+                        {sinHoras ? (
+                          <>
+                            <h6 className="CitaSeleccionada sinhoras">
+                              Ups! no hay horas disponibles.<br></br>Escoge otro
+                              dia por favor
+                            </h6>
+                          </>
+                        ) : (
+                          <>
+                            {botones.map((hora, i) => (
+                              <Dropdown.Item
+                                onClick={() => escogeHora(hora, i)}
+                                key={i}
+                                className={apa}
+                              >
+                                <h4 className="alineacion">{hora}</h4>
+                              </Dropdown.Item>
+                            ))}
+                          </>
+                        )}
+                      </DropdownButton>
+                    </Form.Group>
+                  </Col>
                   <Form.Group>
                     <textarea
                       className="note"

@@ -68,7 +68,7 @@ function DeleteUser(props) {
               title: "Oops...",
               text: "Lo sentimos esta acción no se pudo completar",
             });
-            console.log(error);
+            console.log(error.response.data.message);
           });
       }
     });
