@@ -3,7 +3,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { Button, Modal, Table } from "react-bootstrap";
 import DeleteSchedule from "../Delete/DeleteSchedule";
 import axios from "axios";
-import EditSchedule from "../Editar/EditSchedule";
+import EditSchedule from "../Edit/EditSchedule";
 import "../../index.css";
 
 function ScheduleListOfUser() {

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Container, ListGroup, Row, Col, Button } from "react-bootstrap";
 import axios from "axios";
-import EditProfile from "../Editar/EditProfile";
+import EditProfile from "../Edit/EditProfile";
 import DeleteProfile from "../Delete/DeleteProfile";
 import "../../index.css";
 

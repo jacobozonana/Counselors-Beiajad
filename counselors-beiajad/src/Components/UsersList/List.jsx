@@ -4,7 +4,7 @@ import { Table } from "react-bootstrap";
 import axios from "axios";
 import Comment from "../Comment/Comment";
 import DeleteUser from "../Delete/DeleteUser";
-import EditUser from "../Editar/EditUser";
+import EditUser from "../Edit/EditUser";
 import "../../index.css";
 
 function AdminList(props) {

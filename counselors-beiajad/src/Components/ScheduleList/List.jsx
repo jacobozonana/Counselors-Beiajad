@@ -3,7 +3,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { Modal, Button, Container, Table } from "react-bootstrap";
 import DatePicker from "react-modern-calendar-datepicker";
 import DeleteSchedule from "../Delete/DeleteSchedule";
-import EditSchedule from "../Editar/EditSchedule";
+import EditSchedule from "../Edit/EditSchedule";
 import axios from "axios";
 import "../../index.css";
 
