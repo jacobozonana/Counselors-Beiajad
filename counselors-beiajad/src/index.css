@@ -32,15 +32,22 @@ code {
   border: 2px solid #25a1b7;
   margin: 2px;
 }
-.note1 {
+.comment {
   border-radius: 5px;
   outline: none;
   width: 100%;
   height: 30px;
-  border: 2px solid #25a1b7;
+  border: 1px solid #157ffb;
   margin: 2px;
 }
-
+.comment1 {
+  border-radius: 5px;
+  outline: none;
+  width: 100%;
+  height: 70px;
+  border: 1px solid #157ffb;
+  margin: 2px;
+}
 .calendar1 {
   color: white;
 }
@@ -439,3 +446,11 @@ input:focus:invalid {
  .margin{
    margin: 20px;
  }
+ .bold{
+  font-weight: bold;
+ }
+.sticky{
+  position:sticky;
+  top:90%;
+  text-align: right;
+}

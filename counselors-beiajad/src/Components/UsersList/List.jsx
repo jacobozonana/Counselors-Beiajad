@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Table } from "react-bootstrap";
 import axios from "axios";
-import Comment from "../Comment/Comment";
+import BotComment from "../CommentsList.jsx/BotComment";
 import DeleteUser from "../Delete/DeleteUser";
 import EditUser from "../Edit/EditUser";
 import "../../index.css";
@@ -120,28 +120,32 @@ function AdminList(props) {
               <Table responsive hover size="sm">
                 <thead>
                   <tr>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("first_name")}
                       variant="link"
                       size="sm"
                     >
                       Nombre
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("last_name")}
                       variant="light"
                       size="sm"
                     >
                       Apellido
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("email")}
                       variant="light"
                       size="sm"
                     >
                       Email
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("tel")}
                       variant="light"
                       size="sm"
@@ -200,49 +204,55 @@ function AdminList(props) {
               <Table responsive hover size="sm">
                 <thead>
                   <tr>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("first_name")}
                       variant="link"
                       size="sm"
                     >
                       Nombre
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("last_name")}
                       variant="light"
                       size="sm"
                     >
                       Apellido
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("country")}
                       variant="light"
                       size="sm"
                     >
                       Pais
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("specialty")}
                       variant="light"
                       size="sm"
                     >
                       Especiaidad
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("email")}
                       variant="light"
                       size="sm"
                     >
                       Email
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("tel")}
                       variant="light"
                       size="sm"
                     >
                       Telefono
                     </th>
-                    <th className="texto">Comentar</th>
+                    <th className="texto">Comentarios</th>
                     <th className="texto">Editar</th>
                     <th className="texto">Eliminar</th>
                   </tr>
@@ -257,7 +267,7 @@ function AdminList(props) {
                       <td className="texto">{user.email}</td>
                       <td className="texto">{user.tel}</td>
                       <td className="texto">
-                        <Comment
+                        <BotComment
                           id={user._id}
                           first_name={user.first_name}
                           last_name={user.last_name}
@@ -306,56 +316,63 @@ function AdminList(props) {
               <Table responsive hover size="sm">
                 <thead>
                   <tr>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("first_name")}
                       variant="link"
                       size="sm"
                     >
                       Nombre
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("last_name")}
                       variant="light"
                       size="sm"
                     >
                       Apellido
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("age")}
                       variant="light"
                       size="sm"
                     >
                       Edad
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("country")}
                       variant="light"
                       size="sm"
                     >
                       Pais
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("comunity")}
                       variant="light"
                       size="sm"
                     >
                       Comunidad
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("email")}
                       variant="light"
                       size="sm"
                     >
                       Email
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("tel")}
                       variant="light"
                       size="sm"
                     >
                       Telefono
                     </th>
-                    <th className="texto">Comentar</th>
+                    <th className="texto">Comentarios</th>
                     <th className="texto">Editar</th>
                     <th className="texto">Eliminar</th>
                   </tr>
@@ -371,7 +388,7 @@ function AdminList(props) {
                       <td className="texto">{user.email}</td>
                       <td className="texto">{user.tel}</td>
                       <td className="texto">
-                        <Comment
+                        <BotComment
                           id={user._id}
                           first_name={user.first_name}
                           last_name={user.last_name}
@@ -423,42 +440,48 @@ function AdminList(props) {
               <Table responsive hover size="sm">
                 <thead>
                   <tr>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("first_name")}
                       variant="link"
                       size="sm"
                     >
                       Nombre
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("last_name")}
                       variant="light"
                       size="sm"
                     >
                       Apellido
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("country")}
                       variant="light"
                       size="sm"
                     >
                       Pais
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("specialty")}
                       variant="light"
                       size="sm"
                     >
                       Especialidad
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("email")}
                       variant="light"
                       size="sm"
                     >
                       Email
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("tel")}
                       variant="light"
                       size="sm"
@@ -499,56 +522,63 @@ function AdminList(props) {
               <Table responsive hover size="sm">
                 <thead>
                   <tr>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("first_name")}
                       variant="link"
                       size="sm"
                     >
                       Nombre
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("last_name")}
                       variant="light"
                       size="sm"
                     >
                       Apellido
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("age")}
                       variant="light"
                       size="sm"
                     >
                       Edad
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("country")}
                       variant="light"
                       size="sm"
                     >
                       Pais
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("comunity")}
                       variant="light"
                       size="sm"
                     >
                       Comunidad
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("email")}
                       variant="light"
                       size="sm"
                     >
                       Email
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("tel")}
                       variant="light"
                       size="sm"
                     >
                       Telefono
                     </th>
-                    <th className="texto">Comentar</th>
+                    <th className="texto">Comentarios</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -562,7 +592,7 @@ function AdminList(props) {
                       <td className="texto">{user.email}</td>
                       <td className="texto">{user.tel}</td>
                       <td className="texto">
-                        <Comment
+                        <BotComment
                           id={user._id}
                           first_name={user.first_name}
                           last_name={user.last_name}
@@ -593,49 +623,55 @@ function AdminList(props) {
               <Table responsive hover size="sm">
                 <thead>
                   <tr>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("first_name")}
                       variant="link"
                       size="sm"
                     >
                       Nombre
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("last_name")}
                       variant="light"
                       size="sm"
                     >
                       Apellido
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("country")}
                       variant="light"
                       size="sm"
                     >
                       Pais
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("specialty")}
                       variant="light"
                       size="sm"
                     >
                       Especialidad
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("email")}
                       variant="light"
                       size="sm"
                     >
                       Email
                     </th>
-                    <th className="texto"
+                    <th
+                      className="texto"
                       onClick={() => setOrder("tel")}
                       variant="light"
                       size="sm"
                     >
                       Telefono
                     </th>
-                    <th className="texto">Comentar</th>
+                    <th className="texto">Comentarios</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -648,7 +684,7 @@ function AdminList(props) {
                       <td className="texto">{user.email}</td>
                       <td className="texto">{user.tel}</td>
                       <td className="texto">
-                        <Comment
+                        <BotComment
                           id={user._id}
                           first_name={user.first_name}
                           last_name={user.last_name}

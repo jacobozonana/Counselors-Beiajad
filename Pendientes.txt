@@ -54,9 +54,9 @@ X-Hacer un boton para eliminar la cuenta del usuario en su perfil(Hecho)
 Pendientes con Chapan y Dani
 X-validador para no hacer citas el mismo dia (Hecho)
 X-despues del swal poner history .push para redireccionar(Hecho)
+X-poder hacer comentario sobre los doctores. y sobre los pacientes (Hecho)
 -hacer uncheck en las citas si atendio la cita o no.
--poder hacer comentario sobre los doctores. y sobre los pacientes
--validador que no se puede cancelar la cita con un limite de tiempo
+-validador que no se puede cancelar la cita con un limite de tiempo ( no lo creo conveniente )
 -cuando se genera la cita mandar mail y mensaje de texto de confirmacion
 -y recordatorios de citas mismo dia y misma semana
 -doctor que puedo bloquear ciertos horarios y dias

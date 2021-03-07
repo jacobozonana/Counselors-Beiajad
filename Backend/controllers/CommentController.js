@@ -21,7 +21,7 @@ module.exports = {
       if (role !== "admin" && role !== "doctor" && role !== "user")
         res.status(400).json({ message: "No tienes acceso" });
       else {
-        Comment.find({ doctor: req.params.id2 })
+        Comment.find({ author: req.params.id2 })
           .populate("author")
           .populate("about")
           .then((resDB) => res.status(200).json(resDB))
@@ -35,7 +35,7 @@ module.exports = {
       if (role !== "admin" && role !== "user")
         res.status(400).json({ message: "No tienes acceso" });
       else {
-        Comment.find({ user: req.params.id2 })
+        Comment.find({ about: req.params.id2 })
           .populate("author")
           .populate("about")
           .then((resDB) => res.status(200).json(resDB))
