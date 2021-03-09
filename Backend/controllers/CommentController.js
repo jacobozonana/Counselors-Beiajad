@@ -32,7 +32,7 @@ module.exports = {
   findAllCommentsByAbout: (req, res) => {
     User.findById(req.params.id).then((info) => {
       let role = info.role;
-      if (role !== "admin" && role !== "user")
+      if (role !== "admin" && role !== "user" && role !== "doctor")
         res.status(400).json({ message: "No tienes acceso" });
       else {
         Comment.find({ about: req.params.id2 })

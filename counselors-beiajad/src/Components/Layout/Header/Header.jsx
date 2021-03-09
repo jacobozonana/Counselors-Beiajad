@@ -39,6 +39,9 @@ const Header = () => {
                   <Dropdown.Item href="/">
                     <h4 className="alineacion">Citas</h4>
                   </Dropdown.Item>
+                  <Dropdown.Item href="/blocklist">
+                  <h4 className="alineacion">Horas libres</h4>
+                  </Dropdown.Item>
                   <Dropdown.Item href="/signupadmin">
                     <h4 className="alineacion">Alta administrador</h4>
                   </Dropdown.Item>
@@ -86,6 +89,9 @@ const Header = () => {
               <Nav className="mr-auto">
                 <Nav.Link href="/">
                   <h4 className="alineacion">Mis citas</h4>
+                </Nav.Link>
+                <Nav.Link href="/blocklist">
+                  <h4 className="alineacion">Mis horas libres</h4>
                 </Nav.Link>
                 <Nav.Link href="/userslist">
                   <h4 className="alineacion">Usuarios</h4>

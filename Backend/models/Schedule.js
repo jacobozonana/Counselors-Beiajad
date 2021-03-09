@@ -8,6 +8,10 @@ const scheduleSchema = new Schema(
       type: Boolean,
       default: true,
     },
+    type: {
+      type: Boolean,
+      default: true,
+    },
     date: {
       type: Date,
       required: true,

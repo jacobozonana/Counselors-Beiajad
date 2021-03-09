@@ -15,8 +15,8 @@ function DeleteSchedule(props) {
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#25a1b7",
-      confirmButtonText: "Cancelar cita",
-      cancelButtonText: "Conservar cita",
+      confirmButtonText: "Cancelar",
+      cancelButtonText: "Conservar",
     }).then((result) => {
       if (result.isConfirmed) {
         axios
@@ -50,7 +50,7 @@ function DeleteSchedule(props) {
   return (
     <>
       {isAuth ? (
-        user1.role === "admin" || user1.role === "user" ? (
+        user1.role === "admin" || user1.role === "user" || user1.role === "doctor" ? (
           <button onClick={Borrar} className="btn btn-dark boton">
             <i className="far fa-trash-alt"></i>
           </button>

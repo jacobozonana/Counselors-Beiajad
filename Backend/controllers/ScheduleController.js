@@ -32,7 +32,7 @@ module.exports = {
   findAllDatesByUser: (req, res) => {
     User.findById(req.params.id).then((info) => {
       let role = info.role;
-      if (role !== "admin" && role !== "user")
+      if (role !== "admin" && role !== "user" && role !== "doctor")
         res.status(400).json({ message: "No tienes acceso" });
       else {
         Schedule.find({ user: req.params.id2 })
@@ -53,7 +53,7 @@ module.exports = {
   create: (req, res) => {
     User.findById(req.params.id).then((info) => {
       let role = info.role;
-      if (role !== "admin" && role !== "user")
+      if (role !== "admin" && role !== "user" && role !== "doctor")
         res.status(400).json({ message: "No tienes acceso" });
       else {
         const { body } = req;
@@ -81,7 +81,7 @@ module.exports = {
   delete: (req, res) => {
     User.findById(req.params.id).then((info) => {
       let role = info.role;
-      if (role !== "admin" && role !== "user")
+      if (role !== "admin" && role !== "user" && role !== "doctor") 
         res.status(400).json({ message: "No tienes acceso" });
       else {
         Schedule.findByIdAndDelete(req.params.id2)

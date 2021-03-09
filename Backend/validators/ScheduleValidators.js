@@ -3,6 +3,7 @@ const { celebrate, Joi, Segments } = require("celebrate");
 module.exports = {
   create: celebrate({
     [Segments.BODY]: Joi.object().keys({
+      type: Joi.boolean().required(),
       date: Joi.date().required(),
       time: Joi.string().required(),
       note: Joi.string(),
@@ -12,6 +13,7 @@ module.exports = {
   }),
   change: celebrate({
     [Segments.BODY]: Joi.object().keys({
+      type: Joi.boolean(),
       date: Joi.string(),
       time: Joi.string(),
       note: Joi.string(),

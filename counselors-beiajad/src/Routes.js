@@ -10,6 +10,7 @@ import SignupAdmin from "./Components/Users/SignupAdmin.jsx";
 import UsersList from "./Components/UsersList/UsersList.jsx";
 import DoctorsList from "./Components/UsersList/DoctorsList.jsx";
 import AdminsList from "./Components/UsersList/AdminsList.jsx";
+import BlockList from "./Components/ScheduleList/BlockList";
 import Eprofile from "./Components/Profile/Eprofile";
 
 function Routes() {
@@ -23,6 +24,7 @@ function Routes() {
           <Route exact path="/signupdoctor" component={SignupDoctor} />
           <Route exact path="/signupadmin" component={SignupAdmin} />
           <Route exact path="/userslist" component={UsersList} />
+          <Route exact path="/blocklist" component={BlockList} />
           <Route exact path="/doctorslist" component={DoctorsList} />
           <Route exact path="/adminslist" component={AdminsList} />
           <Route exact path="/profile" component={Eprofile} />

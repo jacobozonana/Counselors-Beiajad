@@ -130,11 +130,8 @@ function Apointment() {
   const [doctors, setDoctors] = useState([]);
   const [date, setDate] = useState("Fecha");
   const [time, setTime] = useState("Hora");
-  const [note, setNote] = useState("Escribe aqui algun comentario a tu cita");
+  const [note, setNote] = useState("Escribe el motivo");
   const [user] = useState(user1.id);
-  const [doctor, setDoctor] = useState(user1.id);
-  const [doctorName, setDoctorName] = useState("Escoge");
-  const [doctorLname, setDoctorLname] = useState("Doctor");
   const [usrdates, setUsrdates] = useState([]);
   const [usdat, setUsdat] = useState([]);
   const [selectedDay, setSelectedDay] = useState(defaultValue);
@@ -151,22 +148,13 @@ function Apointment() {
   const [borbot, setBorbot] = useState([]);
   const [apa, setApa] = useState("btn btn-info boton apagado");
   const [sinHoras, setSinHoras] = useState(false);
-  const titleedbot = `${doctorName} ${doctorLname}`;
   const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"]; // excluye datos del arreglo del filtro
-  const SCHDOCGET = `http://localhost:8000/api/v1/schedulesbydoctor/${user1.id}/${doctor}`;
+  const SCHDOCGET = `http://localhost:8000/api/v1/schedulesbydoctor/${user1.id}/${user1.id}`;
   const SCHUSRGET = `http://localhost:8000/api/v1/schedulesbyuser/${user1.id}/${user1.id}`;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  //---------------All this its react-modern-calendar-datepicker config---------------------------------
-
-  const disabledDays = usdat;
-  const handleDisabledSelect = (disabledDay) => {
-    console.log("Tried selecting a disabled day", disabledDay);
-  };
-
-  // render regular HTML input element
   const renderCustomInput = ({ ref }) => (
     <input
       readOnly
@@ -217,7 +205,7 @@ function Apointment() {
       })
       .then((data) => setSchedule(data.data))
       .catch((err) => console.log(err));
-  }, [doctor]);
+  }, []);
 
   const diaSeleccionado = (selectedDay) => {
     setSinHoras(false);
@@ -332,29 +320,17 @@ function Apointment() {
   };
 
   const saveDate = () => {
-    Swal.fire({
-      title: `Tu cita con el Dr. ${doctorName} ${doctorLname}, sera programada para el ${fecha.replace(
-        "T",
-        " a las"
-      )}`,
-      icon: "info",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Confirmar cita",
-      cancelButtonText: "Cancelar",
-    }).then((result) => {
-      if (result.isConfirmed) {
+   
         axios
           .post(
             SCHPOST,
             {
-              type: true,
+              type: false,
               date,
               time,
               note,
               user: user,
-              doctor: doctor,
+              doctor: user1.id,
             },
             {
               headers: {
@@ -365,7 +341,7 @@ function Apointment() {
           .then(() => {
             Swal.fire({
               icon: "success",
-              title: "Nos vemos pronto",
+              title: "Listo!",
               confirmButtonText: `Ok`,
               timer: 3000,
               timerProgressBar: true,
@@ -381,8 +357,7 @@ function Apointment() {
             });
             console.log(error);
           });
-      }
-    });
+     
   };
 
   /*     
@@ -413,41 +388,17 @@ function Apointment() {
   return (
     <>
       {isAuth ? (
-        user1.role === "user" ? (
+        user1.role === "doctor" ? (
           <div className="calendar1">
             <Button className="margin" variant="primary" onClick={handleShow}>
-              Agendar cita
+              Quiero horas libres!
             </Button>
             <Modal show={show} size="sm" onHide={handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Cita</Modal.Title>
+                <Modal.Title>Escoge dia y hora</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <Form>
-                  <Col xs={6}>
-                    <Form.Group>
-                      <DropdownButton
-                        variant="outline-info"
-                        id="dropdown-basic-button"
-                        title={titleedbot}
-                      >
-                        {doctors.map((user, i) => (
-                          <Dropdown.Item
-                            onClick={() => {
-                              setDoctor(user._id);
-                              setDoctorName(user.first_name);
-                              setDoctorLname(user.last_name);
-                            }}
-                            key={i}
-                          >
-                            <h4 className="alineacion">
-                              {user.first_name} {user.last_name}
-                            </h4>
-                          </Dropdown.Item>
-                        ))}
-                      </DropdownButton>
-                    </Form.Group>
-                  </Col>
+                <Form>                  
                   <Col>
                     <Form.Group>
                       <DatePicker
@@ -461,8 +412,6 @@ function Apointment() {
                         colorPrimary="#25a1b7"
                         calendarClassName="responsive-calendar" // added this
                         locale={myCustomLocale} // custom locale object
-                        disabledDays={disabledDays} // here we pass them
-                        onDisabledDayError={handleDisabledSelect} // handle error
                         shouldHighlightWeekends
                         renderInput={renderCustomInput} // render a custom input
                         ClassName="custom-today-day"
@@ -479,8 +428,8 @@ function Apointment() {
                         {sinHoras ? (
                           <>
                             <h6 className="CitaSeleccionada sinhoras">
-                              Ups! no hay horas disponibles.<br></br>Escoge otro
-                              dia por favor
+                              Ups! El dia esta lleno.<br></br>Escoge
+                              otro dia por favor
                             </h6>
                           </>
                         ) : (
@@ -519,7 +468,7 @@ function Apointment() {
                   }}
                   className="btn btn-info boton"
                 >
-                  Siguiente
+                  Libre!
                 </Button>
               </Modal.Footer>
             </Modal>
