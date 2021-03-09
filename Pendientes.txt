@@ -60,7 +60,7 @@ X-poder hacer comentario sobre los doctores. y sobre los pacientes (Hecho)
 -cuando se genera la cita mandar mail y mensaje de texto de confirmacion
 -y recordatorios de citas mismo dia y misma semana
 -doctor que puedo bloquear ciertos horarios y dias
-.env para el front las URL tambien del front
+.env para el front las URL tambien del front..
 
 sendgrid
 jsPDF
