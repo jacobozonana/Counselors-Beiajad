@@ -142,7 +142,7 @@ function EditPassword() {
                 }}
                 className="btn btn-danger boton"
               >
-                Siguiente
+                Editar
               </Button>
             </Modal.Footer>
           </Modal>

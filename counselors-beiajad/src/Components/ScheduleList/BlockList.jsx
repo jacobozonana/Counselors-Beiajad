@@ -17,7 +17,6 @@ function BlockList() {
             <Header />
             <div className="seccion1">
               <Container className="themed-container margin" fluid={true}>
-                <BlockApointment />
                 <BList lista="schedules" log="" />
               </Container>
             </div>

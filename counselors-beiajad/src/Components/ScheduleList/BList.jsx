@@ -3,7 +3,6 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { Modal, Button, Container, Table } from "react-bootstrap";
 import DatePicker from "react-modern-calendar-datepicker";
 import DeleteSchedule from "../Delete/DeleteSchedule";
-import EditSchedule from "../Edit/EditSchedule";
 import axios from "axios";
 import "../../index.css";
 
@@ -254,7 +253,7 @@ function ScheduleList(props) {
                   </th>
                   <th onClick={() => setOrder("time")} variant="link" size="sm">
                     Hora
-                  </th>                 
+                  </th>
                   <th
                     onClick={() => setOrder("first_name")}
                     variant="link"
@@ -275,24 +274,26 @@ function ScheduleList(props) {
               </thead>
               <tbody>
                 {data.map((date, i) => {
-                  return date.type === false ? (
-                  <tr key={i}>
-                    <td>{date.date.split("T")[0]}</td>
-                    <td>{date.time}</td>                    
-                    <td>{date.doctor[0].first_name}</td>
-                    <td>{date.doctor[0].last_name}</td>
-                    <td>
-                      <Button
-                        variant="warning"
-                        onClick={() => (
-                          handleShow(), setNoteonmodal(date.note)
-                        )}
-                      >
-                        <i className="far fa-sticky-note"></i>
-                      </Button>
-                    </td>                   
-                    <td>{<DeleteSchedule id={date._id} />}</td>
-                  </tr>
+                  const fecha = new Date(date.date).valueOf();
+                  const now = Date.now();
+                  return date.type === false && fecha >= now ? (
+                    <tr key={i}>
+                      <td>{date.date.split("T")[0]}</td>
+                      <td>{date.time}</td>
+                      <td>{date.doctor[0].first_name}</td>
+                      <td>{date.doctor[0].last_name}</td>
+                      <td>
+                        <Button
+                          variant="warning"
+                          onClick={() => (
+                            handleShow(), setNoteonmodal(date.note)
+                          )}
+                        >
+                          <i className="far fa-sticky-note"></i>
+                        </Button>
+                      </td>
+                      <td>{<DeleteSchedule id={date._id} />}</td>
+                    </tr>
                   ) : undefined;
                 })}
               </tbody>
@@ -341,7 +342,9 @@ function ScheduleList(props) {
               </thead>
               <tbody>
                 {data.map((date, i) => {
-                  return date.type === false ? (
+                  const fecha = new Date(date.date).valueOf();
+                  const now = Date.now();
+                  return date.type === false && fecha >= now ? (
                     <tr key={i}>
                       <td>{date.date.split("T")[0]}</td>
                       <td>{date.time}</td>
@@ -354,8 +357,8 @@ function ScheduleList(props) {
                         >
                           <i className="far fa-sticky-note"></i>
                         </Button>
-                      </td>                      
-                    <td>{<DeleteSchedule id={date._id} />}</td>
+                      </td>
+                      <td>{<DeleteSchedule id={date._id} />}</td>
                     </tr>
                   ) : undefined;
                 })}

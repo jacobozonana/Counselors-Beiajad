@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 function DeleteUser(props) {
   const { isAuth, user1 } = useContext(AuthContext);
   const [schedule, setSchedule] = useState([]);
-  const URLGETUSERDATES = `http://localhost:8000/api/v1/${props.route1}/${user1.id}/${props.id}`;
+  const URLGETUSERDATES = `http://localhost:8000/api/v1/${props.route1}/${user1.id}/${user1.id}`;
 
   useEffect(() => {
     axios
@@ -51,7 +51,7 @@ function DeleteUser(props) {
               Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
             },
           })
-          .then((data) =>
+          .then(() =>
             Swal.fire({
               icon: "success",
               title: "Se elimino con exito",
@@ -73,7 +73,6 @@ function DeleteUser(props) {
       }
     });
   };
-
   return (
     <>
       {isAuth ? (

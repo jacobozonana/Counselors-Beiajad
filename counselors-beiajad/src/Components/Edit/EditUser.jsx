@@ -153,7 +153,7 @@ function EditUser(props) {
                       }}
                       className="btn btn-info boton"
                     >
-                      Siguiente
+                      Editar
                     </Button>
                   </Modal.Footer>
                 </Modal>
@@ -265,7 +265,7 @@ function EditUser(props) {
                       }}
                       className="btn btn-info boton"
                     >
-                      Siguiente
+                      Editar
                     </Button>
                   </Modal.Footer>
                 </Modal>
@@ -383,7 +383,7 @@ function EditUser(props) {
                       }}
                       className="btn btn-info boton"
                     >
-                      Siguiente
+                      Editar
                     </Button>
                   </Modal.Footer>
                 </Modal>

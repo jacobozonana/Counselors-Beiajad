@@ -24,10 +24,6 @@ function Profile(props) {
   }, []);
 
   useEffect(() => {
-    verify();
-  }, [data]);
-
-  const verify = () => {
     if (data.role === "user") {
       setRoute("editusers");
     }
@@ -37,7 +33,7 @@ function Profile(props) {
     if (data.role === "admin") {
       setRoute("editadmins");
     }
-  };
+  }, [data]);
 
   return (
     <>
@@ -133,8 +129,9 @@ function Profile(props) {
                   email={data.email}
                 />
                 <DeleteProfile
-                  route1={"schedulesbyuser"}
+                  id={data._id}
                   route={"deleteusers"}
+                  route1={"schedulesbyuser"}
                 />
               </Container>
             </div>
@@ -217,7 +214,7 @@ function Profile(props) {
                   specialty={data.specialty}
                   tel={data.tel}
                   email={data.email}
-                />                
+                />
               </Container>
             </div>
           </>
@@ -280,6 +277,7 @@ function Profile(props) {
                   email={data.email}
                 />
                 <DeleteProfile
+                  id={data._id}
                   route1={"schedulesbyuser"}
                   route={"deleteadmins"}
                 />

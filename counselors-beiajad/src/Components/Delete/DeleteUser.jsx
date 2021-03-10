@@ -77,7 +77,7 @@ function DeleteUser(props) {
   return (
     <>
       {isAuth ? (
-        user1.role == "admin" ? (
+        user1.role == "admin" || user1.role == "user" ? (
           <button onClick={Delete} className="btn btn-dark boton">
             <i className="far fa-trash-alt"></i>
           </button>

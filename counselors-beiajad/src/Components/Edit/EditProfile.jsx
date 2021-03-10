@@ -181,7 +181,7 @@ function EditSchedule(props) {
                   }}
                   className="btn btn-info boton"
                 >
-                  Siguiente
+                  Editar
                 </Button>
               </Modal.Footer>
             </Modal>
@@ -277,7 +277,7 @@ function EditSchedule(props) {
                   }}
                   className="btn btn-info boton"
                 >
-                  Siguiente
+                  Editar
                 </Button>
               </Modal.Footer>
             </Modal>
@@ -351,7 +351,7 @@ function EditSchedule(props) {
                   }}
                   className="btn btn-info boton"
                 >
-                  Siguiente
+                  Editar
                 </Button>
               </Modal.Footer>
             </Modal>

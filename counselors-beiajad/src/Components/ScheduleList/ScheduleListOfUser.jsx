@@ -27,14 +27,6 @@ function ScheduleListOfUser() {
       .catch((err) => console.log(err));
   }, []);
 
-  const IdUser = schedule.filter((a) => {
-    const fecha = new Date(a.date).valueOf();
-    const now = Date.now();
-    if (a.user[0]._id === user1.id && fecha >= now) {
-      return a;
-    }
-  });
-
   const sortJSON = (json, key, orden) => {
     return json.sort(function (a, b) {
       var x = a[key],
@@ -87,42 +79,46 @@ function ScheduleListOfUser() {
                 </tr>
               </thead>
               <tbody>
-                {IdUser.map((date, i) => (
-                  <tr key={i}>
-                    <td>{date.date.split("T")[0]}</td>
-                    <td>{date.time}</td>
-                    <td>{date.doctor[0].first_name}</td>
-                    <td>{date.doctor[0].last_name}</td>
-                    <td>
-                      {
-                        <Button
-                          variant="warning"
-                          onClick={() => (
-                            handleShow(), setNoteonmodal(date.note)
-                          )}
-                        >
-                          <i className="far fa-sticky-note"></i>
-                        </Button>
-                      }
-                    </td>
-                    <td>
-                      {
-                        <EditSchedule
-                          id={date._id}
-                          datee={date.date}
-                          timee={date.time}
-                          notee={date.note}
-                          doctore={date.doctor[0]._id}
-                          doctorefn={date.doctor[0].first_name}
-                          doctoreln={date.doctor[0].last_name}
-                        />
-                      }
-                    </td>
-                    <td>
-                      <DeleteSchedule id={date._id} />
-                    </td>
-                  </tr>
-                ))}
+                {schedule.map((date, i) => {
+                  const fecha = new Date(date.date).valueOf();
+                  const now = Date.now();
+                  return fecha >= now ? (
+                    <tr key={i}>
+                      <td>{date.date.split("T")[0]}</td>
+                      <td>{date.time}</td>
+                      <td>{date.doctor[0].first_name}</td>
+                      <td>{date.doctor[0].last_name}</td>
+                      <td>
+                        {
+                          <Button
+                            variant="warning"
+                            onClick={() => (
+                              handleShow(), setNoteonmodal(date.note)
+                            )}
+                          >
+                            <i className="far fa-sticky-note"></i>
+                          </Button>
+                        }
+                      </td>
+                      <td>
+                        {
+                          <EditSchedule
+                            id={date._id}
+                            datee={date.date}
+                            timee={date.time}
+                            notee={date.note}
+                            doctore={date.doctor[0]._id}
+                            doctorefn={date.doctor[0].first_name}
+                            doctoreln={date.doctor[0].last_name}
+                          />
+                        }
+                      </td>
+                      <td>
+                        <DeleteSchedule id={date._id} />
+                      </td>
+                    </tr>
+                  ) : undefined;
+                })}
               </tbody>
             </Table>
             <Modal show={show} onHide={handleClose}>

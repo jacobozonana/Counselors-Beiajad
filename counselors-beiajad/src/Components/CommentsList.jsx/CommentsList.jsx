@@ -8,7 +8,9 @@ function CommentsList(props) {
   return (
     <>
       {isAuth ? (
-        user1.role === "admin" ? (
+        user1.role === "admin"  ||
+        user1.role === "user" ||
+        user1.role === "doctor" ? (
           <>
             <List
               id={props.id}

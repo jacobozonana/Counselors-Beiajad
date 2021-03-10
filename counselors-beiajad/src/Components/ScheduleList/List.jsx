@@ -304,7 +304,10 @@ function ScheduleList(props) {
                 </tr>
               </thead>
               <tbody>
-                {data.map((date, i) => (
+                {data.map((date, i) => {   
+                  const fecha = new Date(date.date).valueOf();
+                  const now = Date.now();
+                  return date.type === true && fecha >= now ? (
                   <tr key={i}>
                     <td>{date.date.split("T")[0]}</td>
                     <td>{date.time}</td>
@@ -338,7 +341,8 @@ function ScheduleList(props) {
                     </td>
                     <td>{<DeleteSchedule id={date._id} />}</td>
                   </tr>
-                ))}
+                 ) : undefined;
+                })}
               </tbody>
             </Table>
             <Modal show={show} onHide={handleClose}>
@@ -412,7 +416,10 @@ function ScheduleList(props) {
                 </tr>
               </thead>
               <tbody>
-                {data.map((date, i) => (
+                {data.map((date, i) => {
+                   const fecha = new Date(date.date).valueOf();
+                   const now = Date.now();
+                  return date.type === true && fecha >= now ? (
                   <tr key={i}>
                     <td>{date.date.split("T")[0]}</td>
                     <td>{date.time}</td>
@@ -430,7 +437,8 @@ function ScheduleList(props) {
                       </Button>
                     </td>
                   </tr>
-                ))}
+                 ) : undefined;
+                })}
               </tbody>
             </Table>
             <Modal show={show} onHide={handleClose}>
