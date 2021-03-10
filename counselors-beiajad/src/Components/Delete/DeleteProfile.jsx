@@ -6,7 +6,11 @@ import Swal from "sweetalert2";
 function DeleteUser(props) {
   const { isAuth, user1 } = useContext(AuthContext);
   const [schedule, setSchedule] = useState([]);
+  const [usercombau, setUsercombau] = useState([]);
+  const [usercombab, setUsercombab] = useState([]);
   const URLGETUSERDATES = `http://localhost:8000/api/v1/${props.route1}/${user1.id}/${user1.id}`;
+  const URLGETUSERCOMBAU = `http://localhost:8000/api/v1/${props.route2}/${user1.id}/${user1.id}`;
+  const URLGETUSERCOMBAB = `http://localhost:8000/api/v1/${props.route3}/${user1.id}/${user1.id}`;
 
   useEffect(() => {
     axios
@@ -16,6 +20,24 @@ function DeleteUser(props) {
         },
       })
       .then((data) => setSchedule(data.data))
+      .catch((err) => console.log(err));
+
+    axios
+      .get(URLGETUSERCOMBAU, {
+        headers: {
+          Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+        },
+      })
+      .then((data) => setUsercombau(data.data))
+      .catch((err) => console.log(err));
+
+    axios
+      .get(URLGETUSERCOMBAB, {
+        headers: {
+          Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+        },
+      })
+      .then((data) => setUsercombab(data.data))
       .catch((err) => console.log(err));
   }, []);
 
@@ -44,6 +66,35 @@ function DeleteUser(props) {
               console.log(error);
             });
         }
+
+        for (let i = 0; i < usercombau.length; i++) {
+          const URLDELETECOMMENTS = `http://localhost:8000/api/v1/comment/${user1.id}/${usercombau[i]._id}`;
+          axios
+            .delete(URLDELETECOMMENTS, {
+              headers: {
+                Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+              },
+            })
+            .then((data) => console.log(data.data))
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+
+        for (let i = 0; i < usercombab.length; i++) {
+          const URLDELETECOMMENT = `http://localhost:8000/api/v1/comment/${user1.id}/${usercombab[i]._id}`;
+          axios
+            .delete(URLDELETECOMMENT, {
+              headers: {
+                Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+              },
+            })
+            .then((data) => console.log(data.data))
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+
         const URLDELETEUSER = `http://localhost:8000/api/v1/${props.route}/${user1.id}/${user1.id}`;
         axios
           .delete(URLDELETEUSER, {

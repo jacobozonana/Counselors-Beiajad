@@ -55,11 +55,11 @@ Pendientes con Chapan y Dani
 X-validador para no hacer citas el mismo dia (Hecho)
 X-despues del swal poner history .push para redireccionar(Hecho)
 X-poder hacer comentario sobre los doctores. y sobre los pacientes (Hecho)
+X-doctor que puedo bloquear ciertos horarios y dias (Hecho falta mejorar para que se puedan bloquear varias horas en el mismo post)
 -hacer uncheck en las citas si atendio la cita o no.
 -validador que no se puede cancelar la cita con un limite de tiempo ( no lo creo conveniente )
 -cuando se genera la cita mandar mail y mensaje de texto de confirmacion
 -y recordatorios de citas mismo dia y misma semana
--doctor que puedo bloquear ciertos horarios y dias
 .env para el front las URL tambien del front..
 
 sendgrid

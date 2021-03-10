@@ -19,12 +19,10 @@ function CommentsList(props) {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(URL_GET_COMMENTS);
-
   return (
     <>
       {isAuth ? (
-        user1.role === "admin"  ||
+        user1.role === "admin" ||
         user1.role === "user" ||
         user1.role === "doctor" ? (
           <>

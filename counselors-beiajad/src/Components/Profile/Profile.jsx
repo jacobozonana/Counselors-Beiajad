@@ -129,9 +129,10 @@ function Profile(props) {
                   email={data.email}
                 />
                 <DeleteProfile
-                  id={data._id}
                   route={"deleteusers"}
                   route1={"schedulesbyuser"}
+                  route2={"commentsbyauthor"}
+                  route3={"commentsbyabout"}
                 />
               </Container>
             </div>
@@ -277,9 +278,10 @@ function Profile(props) {
                   email={data.email}
                 />
                 <DeleteProfile
-                  id={data._id}
                   route1={"schedulesbyuser"}
                   route={"deleteadmins"}
+                  route2={"commentsbyauthor"}
+                  route3={"commentsbyabout"}
                 />
               </Container>
             </div>

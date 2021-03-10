@@ -179,6 +179,8 @@ function AdminList(props) {
                           id={user._id}
                           route1={"schedulesbyuser"}
                           route={"deleteadmins"}
+                          route2={"commentsbyauthor"}
+                          route3={"commentsbyabout"}
                         />
                       </td>
                     </tr>
@@ -291,6 +293,8 @@ function AdminList(props) {
                           id={user._id}
                           route={"deletedoctors"}
                           route1={"schedulesbydoctor"}
+                          route2={"commentsbyauthor"}
+                          route3={"commentsbyabout"}
                         />
                       </td>
                     </tr>
@@ -413,6 +417,8 @@ function AdminList(props) {
                           id={user._id}
                           route={"deleteusers"}
                           route1={"schedulesbyuser"}
+                          route2={"commentsbyauthor"}
+                          route3={"commentsbyabout"}
                         />
                       </td>
                     </tr>

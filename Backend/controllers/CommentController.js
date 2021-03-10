@@ -81,11 +81,13 @@ module.exports = {
   delete: (req, res) => {
     User.findById(req.params.id).then((info) => {
       let role = info.role;
-      if (role !== "admin")
+      if (role !== "admin" && role !== "user")
         res.status(400).json({ message: "No tienes acceso" });
       else {
         Comment.findByIdAndDelete(req.params.id2)
-          .then((resDB) => res.status(200).json({ message: "Cita borrada" }))
+          .then((resDB) =>
+            res.status(200).json({ message: "Comentario borrado" })
+          )
           .catch((err) => res.status(400).json(err));
       }
     });
