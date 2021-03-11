@@ -454,3 +454,6 @@ input:focus:invalid {
   top:90%;
   text-align: right;
 }
+.float{
+  float: right;
+}

@@ -51,10 +51,9 @@ const SignupAdmin = () => {
         Swal.fire({
           icon: "success",
           title: "Administrador creado con exito",
-          text: "Inicia sesión",
-          timer: 3000,
+          timer: 1000,
           timerProgressBar: true,
-        }).then(history.push("/"));
+        }).then(history.push("/adminslist"));
       } catch (error) {
         console.log(error);
         Swal.fire({

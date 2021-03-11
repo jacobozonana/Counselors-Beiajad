@@ -31,33 +31,21 @@ const Header = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-                <DropdownButton
-                  variant="outline-danger"
-                  id="dropdown-basic-button"
-                  title="Back office"
-                >
-                  <Dropdown.Item href="/">
-                    <h4 className="alineacion">Citas</h4>
-                  </Dropdown.Item>
-                  <Dropdown.Item href="/blocklist">
+                <Nav.Link href="/">
+                  <h4 className="alineacion">Citas</h4>
+                </Nav.Link>
+                <Nav.Link href="/blocklist">
                   <h4 className="alineacion">Horas libres</h4>
-                  </Dropdown.Item>
-                  <Dropdown.Item href="/signupadmin">
-                    <h4 className="alineacion">Alta administrador</h4>
-                  </Dropdown.Item>
-                  <Dropdown.Item href="/signupdoctor">
-                    <h4 className="alineacion">Alta doctor</h4>
-                  </Dropdown.Item>
-                  <Dropdown.Item href="/adminslist">
-                    <h4 className="alineacion">Lista de administradores</h4>
-                  </Dropdown.Item>
-                  <Dropdown.Item href="/doctorslist">
-                    <h4 className="alineacion">Lista de doctores</h4>
-                  </Dropdown.Item>
-                  <Dropdown.Item href="/userslist">
-                    <h4 className="alineacion">Lista de Usuarios</h4>
-                  </Dropdown.Item>
-                </DropdownButton>
+                </Nav.Link>
+                <Nav.Link href="/adminslist">
+                  <h4 className="alineacion">Administradores</h4>
+                </Nav.Link>
+                <Nav.Link href="/doctorslist">
+                  <h4 className="alineacion">Doctores</h4>
+                </Nav.Link>
+                <Nav.Link href="/userslist">
+                  <h4 className="alineacion">Usuarios</h4>
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
             <Nav.Link eventKey="disabled" disabled>

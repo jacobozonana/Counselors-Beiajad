@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Table } from "react-bootstrap";
+import { Table, Button, Col, Row } from "react-bootstrap";
 import axios from "axios";
 import BotComment from "../CommentsList.jsx/BotComment";
 import DeleteUser from "../Delete/DeleteUser";
@@ -107,16 +107,23 @@ function AdminList(props) {
         user1.role === "admin" ? (
           list === "admins" ? (
             <>
-              <h1>{props.titulo}</h1>
-              <div>
-                <input
-                  className="w3-input w3-border w3-animate-input"
-                  type="text"
-                  placeholder="Busqueda"
-                  value={searchText}
-                  onChange={(e) => handleChange(e.target.value)}
-                ></input>
-              </div>
+              <Row>
+                <Col>
+                  <h1>{props.titulo}</h1>
+                </Col>
+                <Col>
+                  <Button href="/signupadmin" className="float">
+                    Nuevo
+                  </Button>
+                </Col>
+              </Row>
+              <input
+                className="w3-input w3-border w3-animate-input"
+                type="text"
+                placeholder="Busqueda"
+                value={searchText}
+                onChange={(e) => handleChange(e.target.value)}
+              ></input>
               <Table responsive hover size="sm">
                 <thead>
                   <tr>
@@ -193,16 +200,23 @@ function AdminList(props) {
             </>
           ) : list === "doctors" ? (
             <>
-              <h1>{props.titulo}</h1>
-              <div>
-                <input
-                  className="w3-input w3-border w3-animate-input"
-                  type="text"
-                  placeholder="Busqueda"
-                  value={searchText}
-                  onChange={(e) => handleChange(e.target.value)}
-                ></input>
-              </div>
+              <Row>
+                <Col>
+                  <h1>{props.titulo}</h1>
+                </Col>
+                <Col>
+                  <Button href="/signupdoctor" className="float">
+                    Nuevo
+                  </Button>
+                </Col>
+              </Row>
+              <input
+                className="w3-input w3-border w3-animate-input"
+                type="text"
+                placeholder="Busqueda"
+                value={searchText}
+                onChange={(e) => handleChange(e.target.value)}
+              ></input>
               <Table responsive hover size="sm">
                 <thead>
                   <tr>
@@ -308,15 +322,13 @@ function AdminList(props) {
           ) : list === "usuarios" ? (
             <>
               <h1>{props.titulo}</h1>
-              <div>
-                <input
-                  className="w3-input w3-border w3-animate-input"
-                  type="text"
-                  placeholder="Busqueda"
-                  value={searchText}
-                  onChange={(e) => handleChange(e.target.value)}
-                ></input>
-              </div>
+              <input
+                className="w3-input w3-border w3-animate-input"
+                type="text"
+                placeholder="Busqueda"
+                value={searchText}
+                onChange={(e) => handleChange(e.target.value)}
+              ></input>
               <Table responsive hover size="sm">
                 <thead>
                   <tr>

@@ -57,10 +57,9 @@ const SignupDoctor = () => {
         Swal.fire({
           icon: "success",
           title: "Doctor creado con exito",
-          text: "Inicia sesión",
-          timer: 3000,
+          timer: 1000,
           timerProgressBar: true,
-        }).then(history.push("/"));
+        }).then(history.push("/doctorslist"));
       } catch (error) {
         console.log(error);
         Swal.fire({
