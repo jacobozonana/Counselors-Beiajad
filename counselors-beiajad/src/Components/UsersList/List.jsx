@@ -112,7 +112,11 @@ function AdminList(props) {
                   <h1>{props.titulo}</h1>
                 </Col>
                 <Col>
-                  <Button href="/signupadmin" className="float">
+                  <Button
+                    href="/signupadmin"
+                    variant="success"
+                    className="float"
+                  >
                     Nuevo
                   </Button>
                 </Col>
@@ -205,7 +209,11 @@ function AdminList(props) {
                   <h1>{props.titulo}</h1>
                 </Col>
                 <Col>
-                  <Button href="/signupdoctor" className="float">
+                  <Button
+                    href="/signupdoctor"
+                    variant="success"
+                    className="float"
+                  >
                     Nuevo
                   </Button>
                 </Col>
