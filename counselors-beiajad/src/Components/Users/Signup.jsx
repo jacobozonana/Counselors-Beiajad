@@ -54,7 +54,7 @@ const Register = () => {
           icon: "success",
           title: "Usuario creado con exito",
           text: "Inicia sesión",
-          timer: 3000,
+          timer: 1000,
           timerProgressBar: true,
         }).then(history.push("/"));
       } catch (error) {

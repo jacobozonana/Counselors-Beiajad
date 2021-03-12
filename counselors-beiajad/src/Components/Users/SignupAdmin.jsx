@@ -60,7 +60,7 @@ const SignupAdmin = () => {
           icon: "error",
           title: "No se puede crear administrador",
           text: "Algo salio mal",
-          timer: 3000,
+          timer: 1000,
           timerProgressBar: true,
         });
       }

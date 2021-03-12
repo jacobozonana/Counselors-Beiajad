@@ -367,7 +367,7 @@ function Apointment() {
               icon: "success",
               title: "Nos vemos pronto",
               confirmButtonText: `Ok`,
-              timer: 3000,
+              timer: 1000,
               timerProgressBar: true,
             }).then(() => {
               window.location.reload();

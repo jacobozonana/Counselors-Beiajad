@@ -8,7 +8,7 @@ const Logout = () => {
   Swal.fire({
     icon: "success",
     title: "Hasta pronto",
-    timer: 3000,
+    timer: 1000,
     timerProgressBar: true,
   });
   logoutUser();

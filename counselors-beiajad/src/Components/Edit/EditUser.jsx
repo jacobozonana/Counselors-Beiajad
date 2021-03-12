@@ -59,7 +59,7 @@ function EditUser(props) {
               icon: "success",
               title: "Se edito con exito",
               confirmButtonText: `Ok`,
-              timer: 3000,
+              timer: 1000,
               timerProgressBar: true,
             }).then(() => {
               window.location.reload();

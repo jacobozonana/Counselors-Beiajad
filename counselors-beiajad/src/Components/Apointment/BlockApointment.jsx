@@ -343,7 +343,7 @@ function Apointment() {
               icon: "success",
               title: "Listo!",
               confirmButtonText: `Ok`,
-              timer: 3000,
+              timer: 1000,
               timerProgressBar: true,
             }).then(() => {
               window.location.reload();

@@ -30,7 +30,7 @@ function DeleteSchedule(props) {
               icon: "success",
               title: "Se elimino con exito",
               confirmButtonText: `Ok`,
-              timer: 3000,
+              timer: 1000,
               timerProgressBar: true,
             }).then(() => {
               window.location.reload();

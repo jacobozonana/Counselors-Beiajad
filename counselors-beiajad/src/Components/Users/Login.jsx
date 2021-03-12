@@ -30,7 +30,7 @@ const Login = () => {
       Swal.fire({
         icon: "success",
         title: "Bienvenido",
-        timer: 3000,
+        timer: 1000,
         timerProgressBar: true,
       }).then(history.push("/"));
     } catch (error) {
