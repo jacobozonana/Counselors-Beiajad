@@ -433,6 +433,8 @@ function EditSchedule(props) {
                                 setDoctor(user._id);
                                 setDoctorName(user.first_name);
                                 setDoctorLname(user.last_name);
+                                setDate("Fecha")
+                                setTime("Hora")
                               }}
                               key={i}
                             >
