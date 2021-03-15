@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 import "../../index.css";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 
-function Apointment() {
+function BlockApointment() {
   //---------------All this its react-modern-calendar-datepicker config---------------------------------
   const myCustomLocale = {
     // months list by order
@@ -283,10 +283,6 @@ function Apointment() {
   };
 
   useEffect(() => {
-    verify();
-  }, [data]);
-
-  const verify = () => {
     data.map((info) => borbot.push(info.time));
     const disponibles = botones.filter((item) => !borbot.includes(item));
 
@@ -296,13 +292,9 @@ function Apointment() {
     } else {
       setBotones(disponibles);
     }
-  };
+  }, [data]);
 
   useEffect(() => {
-    udates();
-  }, [usrdates]);
-
-  const udates = () => {
     let usdates = [];
     usrdates.map((info) => usdates.push(info.date));
     let year = usdates.map((v) => parseInt(v.slice(0, 4)));
@@ -318,47 +310,89 @@ function Apointment() {
       });
       setUsdat(datos);
     }
-  };
+  }, [usrdates]);
 
   const saveDate = () => {
-   
-        axios
-          .post(
-            SCHPOST,
-            {
-              type: false,
-              date,
-              time,
-              note,
-              user: user,
-              doctor: user1.id,
+    axios
+      .post(
+        SCHPOST,
+        {
+          type: false,
+          date,
+          time,
+          note,
+          user: user,
+          doctor: user1.id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+          },
+        }
+      )
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Listo!",
+          confirmButtonText: `Ok`,
+          timer: 1000,
+          timerProgressBar: true,
+        }).then(() => {
+          window.location.reload();
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Lo sentimos esta acción no se pudo completar",
+        });
+        console.log(error);
+      });
+  };
+
+  const saveDay = () => {
+    for (let i = 0; i < botones.length; i++) {
+      const SCHPOST1 = `http://localhost:8000/api/v1/schedule/${user1.id}`;
+      let x = date.slice(0, 11);
+      const date1 = `${x}${botones[i]}`;
+      axios
+        .post(
+          SCHPOST1,
+          {
+            type: false,
+            date: date1,
+            time: botones[i],
+            note,
+            user: user,
+            doctor: user1.id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
             },
-            {
-              headers: {
-                Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
-              },
-            }
-          )
-          .then(() => {
-            Swal.fire({
-              icon: "success",
-              title: "Listo!",
-              confirmButtonText: `Ok`,
-              timer: 1000,
-              timerProgressBar: true,
-            }).then(() => {
-              window.location.reload();
-            });
-          })
-          .catch((error) => {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Lo sentimos esta acción no se pudo completar",
-            });
-            console.log(error);
+          }
+        )
+        .then(() => {
+          Swal.fire({
+            icon: "success",
+            title: "Listo!",
+            confirmButtonText: `Ok`,
+            timer: 1000,
+            timerProgressBar: true,
+          }).then(() => {
+            window.location.reload();
           });
-     
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Lo sentimos esta acción no se pudo completar",
+          });
+          console.log(error);
+        });
+    }
   };
 
   /*     
@@ -399,7 +433,7 @@ function Apointment() {
                 <Modal.Title>Escoge dia y hora</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <Form>                  
+                <Form>
                   <Col>
                     <Form.Group>
                       <DatePicker
@@ -429,8 +463,8 @@ function Apointment() {
                         {sinHoras ? (
                           <>
                             <h6 className="CitaSeleccionada sinhoras">
-                              Ups! El dia esta lleno.<br></br>Escoge
-                              otro dia por favor
+                              Ups! El dia esta lleno.<br></br>Escoge otro dia
+                              por favor
                             </h6>
                           </>
                         ) : (
@@ -465,11 +499,21 @@ function Apointment() {
                 <Button
                   type="submit"
                   onClick={() => {
+                    saveDay();
+                  }}
+                  variant="outline-danger"
+                  className="boton"
+                >
+                  Dia Libre!
+                </Button>
+                <Button
+                  type="submit"
+                  onClick={() => {
                     saveDate();
                   }}
                   className="btn btn-info boton"
                 >
-                  Libre!
+                  Hora Libre!
                 </Button>
               </Modal.Footer>
             </Modal>
@@ -481,4 +525,4 @@ function Apointment() {
   );
 }
 
-export default Apointment;
+export default BlockApointment;

@@ -15,7 +15,7 @@ function DeleteSchedule(props) {
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#25a1b7",
-      confirmButtonText: "Cancelar cita",
+      confirmButtonText: "Cancelar",
       cancelButtonText: "Conservar",
     }).then((result) => {
       if (result.isConfirmed) {
