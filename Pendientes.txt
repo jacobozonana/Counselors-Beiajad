@@ -35,11 +35,11 @@ X-Arreglar el delete user que salga la alerta hasta que se eliminide de verdad(H
 
 X-Hacer un boton para eliminar la cuenta del usuario en su perfil(Hecho)
 
+X-Buscar servicio de confirmacion de cuenta y notificaciones de citas (Hecho)
+
 -Pensar bien que informacion mostrar de los doctores ya que todos los doctores se van a poder buscar entre si
 
 -Aplicar el modo pago y se puede que existan los descuentos
-
--Buscar servicio de confirmacion de cuenta y notificaciones de citas
 
 -meter css en la pagina de faq
 
@@ -55,10 +55,11 @@ Pendientes con Chapan y Dani
 X-validador para no hacer citas el mismo dia (Hecho)
 X-despues del swal poner history .push para redireccionar(Hecho)
 X-poder hacer comentario sobre los doctores. y sobre los pacientes (Hecho)
-X-doctor que puedo bloquear ciertos horarios y dias (Hecho falta mejorar para que se puedan bloquear varias horas en el mismo post)
+X-doctor que puedo bloquear ciertos horarios y dias (Hecho)
+X-cuando se genera la cita mandar mail de confirmacion (Hecho)
 -hacer uncheck en las citas si atendio la cita o no.
 -validador que no se puede cancelar la cita con un limite de tiempo ( no lo creo conveniente )
--cuando se genera la cita mandar mail y mensaje de texto de confirmacion
+-cuando se genera la cita mandar mensaje de texto de confirmacion
 -y recordatorios de citas mismo dia y misma semana
 .env para el front las URL tambien del front..
 

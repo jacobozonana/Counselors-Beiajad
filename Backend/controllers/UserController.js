@@ -1,5 +1,5 @@
 const { User } = require("../models");
-const { UserService } = require("../services");
+const { UserService, MailService } = require("../services");
 const { comparePasswords, createToken } = require("../utils");
 const bcrypt = require("bcrypt");
 const SALT_WORK_FACTOR = 10;
@@ -65,9 +65,14 @@ module.exports = {
       if (emailExist) res.status(400).json({ message: "Email taken" });
       else {
         const newUser = new User(body);
-        const user = await newUser.save();
+        const user = await newUser.save();       
         user.password = undefined;
         res.status(201).json(user);
+        MailService.sendmail(
+          body.email,
+          "Bienvenido",
+          `<h1>Bienvenido ${user.first_name} ${user.last_name} tu cuenta se creo con exito</h1>`
+        );
       }
     } catch (error) {
       res.status(400).json(error);
@@ -88,6 +93,11 @@ module.exports = {
             const user = await newUser.save();
             user.password = undefined;
             res.status(201).json(user);
+            MailService.sendmail(
+              body.email,
+              "Bienvenido",
+              `<h1>Bienvenido ${user.first_name} ${user.last_name} tu cuenta se creo con exito</h1>`
+            );
           }
         } catch (error) {
           res.status(400).json(error);
@@ -110,6 +120,11 @@ module.exports = {
             const user = await newUser.save();
             user.password = undefined;
             res.status(201).json(user);
+            MailService.sendmail(
+              body.email,
+              "Bienvenido",
+              `<h1>Bienvenido ${user.first_name} ${user.last_name} tu cuenta se creo con exito</h1>`
+            );
           }
         } catch (error) {
           res.status(400).json(error);
