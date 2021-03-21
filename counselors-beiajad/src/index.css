@@ -431,29 +431,48 @@ input:focus:invalid {
   font-weight: bold;
 }
 .dropdown-toggle {
- color:#25a1b7;
+  color: #25a1b7;
 }
 .dropdown-toggle:hover {
   font-weight: bold;
-  color:#25a1b7;
- }
- .w3-input{
-   width: 10%;
-   max-width: 20%;
-   outline-color:#25a1b7;
-   margin-bottom: 10px;
- }
- .margin{
-   margin: 20px;
- }
- .bold{
+  color: #25a1b7;
+}
+.w3-input {
+  width: 10%;
+  max-width: 20%;
+  outline-color: #25a1b7;
+  margin-bottom: 10px;
+}
+.margin {
+  margin: 20px;
+}
+.bold {
   font-weight: bold;
- }
-.sticky{
-  position:sticky;
-  top:90%;
+}
+.sticky {
+  position: sticky;
+  top: 90%;
   text-align: right;
 }
-.float{
+.float {
   float: right;
+}
+.margin {
+  margin: 10px;
+}
+.hours {
+  border-radius: 5px;
+  outline: none;
+  width: 100%;
+  height: 30px;
+  border: 1px solid #25a1b7;
+  margin: 1px;
+}
+.hours1 {
+  margin-top: 4px;
+  margin-left: 5px;
+  font-size: 14px;
+}
+.floatl {
+  float: left;
 }

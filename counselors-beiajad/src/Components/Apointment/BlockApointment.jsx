@@ -1,13 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import {
-  Dropdown,
-  DropdownButton,
-  Form,
-  Button,
-  Modal,
-  Col,
-} from "react-bootstrap";
+import { Form, Button, Modal, Col } from "react-bootstrap";
 import DatePicker from "react-modern-calendar-datepicker";
 import axios from "axios";
 import ScheduleListOfUser from "../ScheduleList/ScheduleListOfUser";
@@ -125,18 +118,18 @@ function BlockApointment() {
 
   const { user1, isAuth } = useContext(AuthContext);
   const DOCGET = `http://localhost:8000/api/v1/doctors/${user1.id}`;
-  const SCHPOST = `http://localhost:8000/api/v1/schedule/${user1.id}`;
   const [schedule, setSchedule] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [date, setDate] = useState("Fecha");
   const [time, setTime] = useState("Hora");
-  const [note, setNote] = useState("Escribe el motivo");
+  const [note, setNote] = useState("Escribe la razón");
   const [user] = useState(user1.id);
   const [usrdates, setUsrdates] = useState([]);
   const [usdat, setUsdat] = useState([]);
   const [selectedDay, setSelectedDay] = useState(defaultValue);
   const [fecha, setFecha] = useState("");
   const [data, setData] = useState([]);
+  const [display, setDisplay] = useState("off");
   const [botones, setBotones] = useState([
     "10:00",
     "11:00",
@@ -146,6 +139,7 @@ function BlockApointment() {
     "15:00",
   ]);
   const [borbot, setBorbot] = useState([]);
+  const [hours, setHours] = useState([]);
   const [apa, setApa] = useState("btn btn-info boton apagado");
   const [sinHoras, setSinHoras] = useState(false);
   const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"]; // excluye datos del arreglo del filtro
@@ -212,7 +206,9 @@ function BlockApointment() {
     setBotones(["10:00", "11:00", "12:00", "13:00", "14:00", "15:00"]);
     setBorbot([""]);
     setApa("btn btn-info boton");
+    setDisplay("");
     setTime("Hora");
+    setHours([]);
 
     if (selectedDay.month < 10) {
       if (selectedDay.day < 10) {
@@ -257,14 +253,6 @@ function BlockApointment() {
         );
       }
     }
-  };
-
-  const escogeHora = (horario) => {
-    setTime(horario);
-    let x = date.slice(0, 11);
-    let y = fecha.slice(0, 11);
-    setDate(`${x}${horario}`);
-    setFecha(`${y}  ${horario} hrs`);
   };
 
   const filterData = (value) => {
@@ -313,42 +301,47 @@ function BlockApointment() {
   }, [usrdates]);
 
   const saveDate = () => {
-    axios
-      .post(
-        SCHPOST,
-        {
-          type: false,
-          date,
-          time,
-          note,
-          user: user,
-          doctor: user1.id,
-        },
-        {
-          headers: {
-            Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+    for (let i = 0; i < hours.length; i++) {
+      const SCHPOST1 = `http://localhost:8000/api/v1/schedule/${user1.id}`;
+      let x = date.slice(0, 11);
+      const date1 = `${x}${hours[i]}`;
+      axios
+        .post(
+          SCHPOST1,
+          {
+            type: false,
+            date: date1,
+            time: hours[i],
+            note,
+            user: user,
+            doctor: user1.id,
           },
-        }
-      )
-      .then(() => {
-        Swal.fire({
-          icon: "success",
-          title: "Listo!",
-          confirmButtonText: `Ok`,
-          timer: 1000,
-          timerProgressBar: true,
-        }).then(() => {
-          window.location.reload();
+          {
+            headers: {
+              Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+            },
+          }
+        )
+        .then(() => {
+          Swal.fire({
+            icon: "success",
+            title: "Listo!",
+            confirmButtonText: `Ok`,
+            timer: 1000,
+            timerProgressBar: true,
+          }).then(() => {
+            window.location.reload();
+          });
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Lo sentimos esta acción no se pudo completar",
+          });
+          console.log(error);
         });
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Lo sentimos esta acción no se pudo completar",
-        });
-        console.log(error);
-      });
+    }
   };
 
   const saveDay = () => {
@@ -395,31 +388,6 @@ function BlockApointment() {
     }
   };
 
-  /*     
-        ESTE CODIGOS SIRVE PARA HACER COMPARACIONES DE HORARIOS DESDE MONOG DB CON CAMBIO DE HORARIO LOCAL
-
-        ----------------------------------
-        LO QUE ESTAMOS HACIENDO ACA ES UNA VEZ OBTENIDO LA FECHA LA CORTABAMOS Y AGRAGABAMOS LA HORA ELEGIDA 
-        POR EL USUARIO Y  LO SIGUIENE FUE AGREGAR COMO STRING LO RESTANTE PARA PODER IGUALARLO CON LA FECHA DE 
-        LA API
-
-        let x = date.slice(0, 11)
-        setDate2(`${x}${horario}:00.000Z`)
-       ------------------------------------
-
-        let citaApi = new Date(info.date).valueOf()
-        
-        let pick = new Date(date2).valueOf()
-
-        let horario = 1000 * 60 * 60 * 6; // aqui sumo 6 horas para México
-
-        let escogida = pick+horario // aqui suma las horas de mexico
-
-        console.log(citaApi + "cita de api");
-        console.log(escogida + "escogida para comparar") 
-      
-  */
-
   return (
     <>
       {isAuth ? (
@@ -430,7 +398,7 @@ function BlockApointment() {
             </Button>
             <Modal show={show} size="sm" onHide={handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Escoge dia y hora</Modal.Title>
+                <Modal.Title>Escoge dia y horas</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <Form>
@@ -455,32 +423,57 @@ function BlockApointment() {
                   </Col>
                   <Col>
                     <Form.Group>
-                      <DropdownButton
-                        variant="outline-info"
-                        id="dropdown-basic-button"
-                        title={time}
-                      >
-                        {sinHoras ? (
-                          <>
-                            <h6 className="CitaSeleccionada sinhoras">
-                              Ups! El dia esta lleno.<br></br>Escoge otro dia
-                              por favor
-                            </h6>
-                          </>
-                        ) : (
-                          <>
+                      {sinHoras ? (
+                        <>
+                          <h6 className="CitaSeleccionada sinhoras">
+                            Ups! El dia esta lleno.<br></br>Escoge otro dia por
+                            favor
+                          </h6>
+                        </>
+                      ) : (
+                        <>
+                          <div className={display}>
                             {botones.map((hora, i) => (
-                              <Dropdown.Item
-                                onClick={() => escogeHora(hora, i)}
+                              <Button
+                                variant="outline-info"
+                                className="margin"
+                                size="sm"
                                 key={i}
-                                className={apa}
+                                onClick={() => {
+                                  setHours((hours) =>
+                                    hours.filter((item) => item !== hora)
+                                  );
+                                  setHours((hours) => hours.concat(hora));
+                                }}
                               >
-                                <h4 className="alineacion">{hora}</h4>
-                              </Dropdown.Item>
+                                {hora}
+                              </Button>
                             ))}
-                          </>
-                        )}
-                      </DropdownButton>
+                            <div className="hours">
+                              <p className="hours1">{`${hours} `}</p>
+                            </div>
+                            <div className="floatl">
+                              <Form.Text className="text-muted">
+                                Horas seleccionadas
+                              </Form.Text>
+                            </div>
+
+                            <div className="float">
+                              <Button
+                                variant="outline-dark"
+                                size="sm"
+                                onClick={() => {
+                                  setHours([]);
+                                  setDate("Fecha");
+                                  setDisplay("off");
+                                }}
+                              >
+                                Reset
+                              </Button>
+                            </div>
+                          </div>
+                        </>
+                      )}
                     </Form.Group>
                   </Col>
                   <Form.Group>
@@ -504,7 +497,7 @@ function BlockApointment() {
                   variant="outline-danger"
                   className="boton"
                 >
-                  Dia Libre!
+                  Todo el día libre!
                 </Button>
                 <Button
                   type="submit"
@@ -513,10 +506,11 @@ function BlockApointment() {
                   }}
                   className="btn btn-info boton"
                 >
-                  Hora Libre!
+                  Horas líbres!
                 </Button>
               </Modal.Footer>
             </Modal>
+
             <ScheduleListOfUser />
           </div>
         ) : undefined
