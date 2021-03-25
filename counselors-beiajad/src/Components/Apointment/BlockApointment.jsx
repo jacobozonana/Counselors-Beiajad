@@ -302,7 +302,7 @@ function BlockApointment() {
 
   const saveDate = () => {
     for (let i = 0; i < hours.length; i++) {
-      const SCHPOST1 = `http://localhost:8000/api/v1/schedule/${user1.id}`;
+      const SCHPOST1 = `http://localhost:8000/api/v1/scheduleblock/${user1.id}`;
       let x = date.slice(0, 11);
       const date1 = `${x}${hours[i]}`;
       axios
@@ -346,7 +346,7 @@ function BlockApointment() {
 
   const saveDay = () => {
     for (let i = 0; i < botones.length; i++) {
-      const SCHPOST1 = `http://localhost:8000/api/v1/schedule/${user1.id}`;
+      const SCHPOST1 = `http://localhost:8000/api/v1/scheduleblock/${user1.id}`;
       let x = date.slice(0, 11);
       const date1 = `${x}${botones[i]}`;
       axios

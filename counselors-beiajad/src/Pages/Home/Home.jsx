@@ -10,8 +10,23 @@ import Seccion2 from "../../Components/Seccion2/Seccion2";
 import Footer from "../../Components/Layout/Footer/Footer";
 import "../../index.css";
 
+import { jsPDF } from "jspdf";
+
+
+
+
 function Home() {
   const { user1, isAuth } = React.useContext(AuthContext);
+
+  const pdf = () => {
+    const doc = new jsPDF();
+    const text = "Hello"
+  
+  doc.text(text, 10, 10);
+  doc.text(text, 10, 30);
+  doc.save("Prueba.pdf");
+  
+  };
 
   return (
     <>
@@ -62,6 +77,7 @@ function Home() {
                 Habla de forma segura y privada con una consultora psicológica
                 de confianza cuando lo necesites.
               </h4>
+              <button onClick={pdf}>pdf</button>
             </Container>
           </div>
           <Seccion2 />

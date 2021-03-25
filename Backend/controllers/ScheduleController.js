@@ -81,6 +81,22 @@ module.exports = {
       }
     });
   },
+  createb: (req, res) => {
+    User.findById(req.params.id).then((info) => {
+      const role = info.role;
+      const user = info;
+      if (role !== "admin" && role !== "user" && role !== "doctor")
+        res.status(400).json({ message: "No tienes acceso" });
+      else {
+        const { body } = req;
+        const newSchedule = new Schedule(body);
+        newSchedule
+          .save()
+          .then((resDB) => res.status(201).json(resDB))
+          .catch((Error) => console.log(Error));
+      }
+    });
+  },
   change: (req, res) => {
     User.findById(req.params.id).then((info) => {
       let role = info.role;
