@@ -65,16 +65,26 @@ doc.autoTable({
     doc.addImage(img, "JPEG", 160, 15, 20, 20);
     doc.save("Prueba.pdf");
   
-    };
+    };   
 
-    
+
+  
+  
+
+   
+
+
 
   return (
     <>
       {isAuth ? (
         user1.role === "user" ? (
           <>
-          <Button onClick={pdf}>PDF</Button>
+          <div id="test">
+            <div>TEST</div>
+            <div>TEST2</div>
+          </div>
+          <Button variant="outline-danger" onClick={pdf}><i class="fas fa-file-pdf"></i></Button>
             <Table responsive hover size="sm">
               <thead>
                 <tr>
