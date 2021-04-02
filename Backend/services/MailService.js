@@ -5,14 +5,13 @@ module.exports = {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
       to: recipient,
-      from: "beiajadcounselors@gmail.com",
-      subject: subject,
-      text: text,
+      from: "BeiajadCounselors@gmail.com",
+      subject: subject,      
       html: text,
     };
     sgMail.send(msg);
     try {
-      // console.log("Email sent");
+      console.log("Email sent");
     } catch (error) {
       console.error(error);
     }

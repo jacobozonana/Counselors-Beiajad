@@ -65,13 +65,36 @@ module.exports = {
       if (emailExist) res.status(400).json({ message: "Email taken" });
       else {
         const newUser = new User(body);
-        const user = await newUser.save();       
+        const user = await newUser.save();
         user.password = undefined;
         res.status(201).json(user);
         MailService.sendmail(
           body.email,
-          "Bienvenido",
-          `<h1>Bienvenido ${user.first_name} ${user.last_name} tu cuenta se creo con exito</h1>`
+          "Bienvenid@",
+          ` 
+          <!DOCTYPE html>
+            <html>
+              <head>
+                <style>
+                  h1 {
+                      text-align: center;
+                     }
+                  .img-container {
+                                  display: block;
+                                  margin-left: auto;
+                                  margin-right: auto;
+                                  height: 90px;
+                                  width: auto;
+                                  border-radius: 30%;
+                                 }
+                </style>
+              </head>
+              <body>
+                <img class="img-container" alt="Logo" src="http://drive.google.com/uc?export=view&id=1ZStbt9J-8SQhcCB71hT744TO5PRLb1Mt" />              
+                <h1>Hola ${user.first_name} ${user.last_name}, tu cuenta se creo con exito</h1>
+              </body>
+            </html>
+          `
         );
       }
     } catch (error) {
@@ -95,8 +118,31 @@ module.exports = {
             res.status(201).json(user);
             MailService.sendmail(
               body.email,
-              "Bienvenido",
-              `<h1>Bienvenido ${user.first_name} ${user.last_name} tu cuenta se creo con exito</h1>`
+              "Bienvenid@",
+          ` 
+          <!DOCTYPE html>
+            <html>
+              <head>
+                <style>
+                  h1 {
+                      text-align: center;
+                     }
+                  .img-container {
+                                  display: block;
+                                  margin-left: auto;
+                                  margin-right: auto;
+                                  height: 90px;
+                                  width: auto;
+                                  border-radius: 30%;
+                                 }
+                </style>
+              </head>
+              <body>
+                <img class="img-container" alt="Logo" src="http://drive.google.com/uc?export=view&id=1ZStbt9J-8SQhcCB71hT744TO5PRLb1Mt" />              
+                <h1>Hola ${user.first_name} ${user.last_name}, tu cuenta se creo con exito</h1>
+              </body>
+            </html>
+          `
             );
           }
         } catch (error) {
@@ -122,8 +168,31 @@ module.exports = {
             res.status(201).json(user);
             MailService.sendmail(
               body.email,
-              "Bienvenido",
-              `<h1>Bienvenido ${user.first_name} ${user.last_name} tu cuenta se creo con exito</h1>`
+              "Bienvenid@",
+              ` 
+              <!DOCTYPE html>
+                <html>
+                  <head>
+                    <style>
+                      h1 {
+                          text-align: center;
+                         }
+                      .img-container {
+                                      display: block;
+                                      margin-left: auto;
+                                      margin-right: auto;
+                                      height: 90px;
+                                      width: auto;
+                                      border-radius: 30%;
+                                     }
+                    </style>
+                  </head>
+                  <body>
+                    <img class="img-container" alt="Logo" src="http://drive.google.com/uc?export=view&id=1ZStbt9J-8SQhcCB71hT744TO5PRLb1Mt" />              
+                    <h1>Hola ${user.first_name} ${user.last_name}, tu cuenta se creo con exito</h1>
+                  </body>
+                </html>
+              `
             );
           }
         } catch (error) {
