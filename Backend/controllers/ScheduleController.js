@@ -60,9 +60,6 @@ module.exports = {
       else {
         const { body } = req;
         const newSchedule = new Schedule(body);
-        const longdate = newSchedule.date
-        const shortdate = longdate.toLocaleDateString();
-        console.log(shortdate)
         newSchedule
           .save()
           .then(
@@ -94,10 +91,16 @@ module.exports = {
                     </head>
                     <body>
                       <img class="img-container" alt="Logo" src="http://drive.google.com/uc?export=view&id=1ZStbt9J-8SQhcCB71hT744TO5PRLb1Mt" />              
-                      <h1>Listo ${user.first_name} ${user.last_name} tu cita se creo con exito</h1>
-                      <h3 class="date">Dia: ${newSchedule.date.toLocaleString().split(",")[0]}</h3>
+                      <h1>Listo ${user.first_name} ${
+                  user.last_name
+                } tu cita se creo con exito</h1>
+                      <h3 class="date">Dia: ${
+                        newSchedule.date.toLocaleString().split(",")[0]
+                      }</h3>
                       <h3 class="date">Hora: ${newSchedule.time}</h3>
-                      <h3 class="date">Doctor: ${info.first_name} ${info.last_name} </h3>
+                      <h3 class="date">Doctor: ${info.first_name} ${
+                  info.last_name
+                } </h3>
                     </body>
                   </html>
             `
@@ -111,7 +114,6 @@ module.exports = {
   createb: (req, res) => {
     User.findById(req.params.id).then((info) => {
       const role = info.role;
-      const user = info;
       if (role !== "admin" && role !== "user" && role !== "doctor")
         res.status(400).json({ message: "No tienes acceso" });
       else {
@@ -162,7 +164,9 @@ module.exports = {
                   </head>
                   <body>
                     <img class="img-container" alt="Logo" src="http://drive.google.com/uc?export=view&id=1ZStbt9J-8SQhcCB71hT744TO5PRLb1Mt" />              
-                    <h1>Listo ${user.first_name} ${user.last_name} tu cita se edito con exito</h1>
+                    <h1>Listo ${user.first_name} ${
+                  user.last_name
+                } tu cita se edito con exito</h1>
                     <h3>Dia: ${body.date.split("T")[0]}</h3>
                     <h3>Hora: ${body.time}</h3>
                     <h3>Doctor: ${info.first_name} ${info.last_name} </h3>

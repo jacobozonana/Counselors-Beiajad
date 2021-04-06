@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json({ extended: true }));
+app.use(express.json({limit: '50mb'}));
 
 mongoose
   .connect(config.db_url, { useNewUrlParser: true, useUnifiedTopology: true })
