@@ -1,16 +1,17 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Button, Modal, Table, Form, Col } from "react-bootstrap";
-import DeleteSchedule from "../Delete/DeleteSchedule";
-import axios from "axios";
-import EditSchedule from "../Edit/EditSchedule";
-import "../../index.css";
 import { jsPDF } from "jspdf";
-import "jspdf-autotable";
+import DeleteSchedule from "../Delete/DeleteSchedule";
+import Note from "../Note/Note";
+import EditSchedule from "../Edit/EditSchedule";
+import axios from "axios";
 import encode from "nodejs-base64-encode";
 import Swal from "sweetalert2";
 import img from "../../contexts/ImgContext";
 import exportFromJSON from "export-from-json";
+import "jspdf-autotable";
+import "../../index.css";
 
 function ScheduleListOfUser() {
   const { user1, isAuth } = useContext(AuthContext);
@@ -20,7 +21,6 @@ function ScheduleListOfUser() {
   const URL_GET_USER = `http://localhost:8000/api/v1/schedulesbyuser/${user1.id}/${user1.id}`;
   const URLSENDREPORT = `http://localhost:8000/api/v1/sendreport/`;
   const [show, setShow] = useState(false);
-  const [noteonmodal, setNoteonmodal] = useState("");
   const [attachment, setAttachment] = useState("");
   const [email, setEmail] = useState("Correo electronico");
   const handleClose = () => setShow(false);
@@ -93,7 +93,7 @@ function ScheduleListOfUser() {
         });
       })
       .catch((error) => {
-        let message = error.response.data.message
+        let message = error.response.data.message;
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -116,16 +116,6 @@ function ScheduleListOfUser() {
     doc.save("MisCitas.pdf");
   };
   /// AQUI TERMINA LOS REPORTES PDF
-
-  const note = (note) => {
-    Swal.fire({
-      showCloseButton: "true",
-      showConfirmButton: false,
-      allowEscapeKey: true,
-      title: "Nota",
-      text: note,
-    });
-  };
 
   const data = dataxls;
   const fileName = "MisCitas";
@@ -254,18 +244,7 @@ function ScheduleListOfUser() {
                       <td>{date.time}</td>
                       <td>{date.doctor[0].first_name}</td>
                       <td>{date.doctor[0].last_name}</td>
-                      <td>
-                        {
-                          <Button
-                            variant="warning"
-                            onClick={() => (
-                              note(date.note), setNoteonmodal(date.note)
-                            )}
-                          >
-                            <i className="far fa-sticky-note"></i>
-                          </Button>
-                        }
-                      </td>
+                      <td>{<Note note={date.note} />}</td>
                       <td>
                         {
                           <EditSchedule

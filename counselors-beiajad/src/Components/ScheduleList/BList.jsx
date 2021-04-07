@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Modal, Button, Container, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import DatePicker from "react-modern-calendar-datepicker";
 import DeleteSchedule from "../Delete/DeleteSchedule";
+import Note from "../Note/Note";
 import axios from "axios";
 import "../../index.css";
 
@@ -122,10 +123,7 @@ function ScheduleList(props) {
   const [searchText, setSearchText] = useState("Horas por dia");
   const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"]; // excluye datos del arreglo del filtro
   const URL_GET_SCHEDULE = `http://localhost:8000/api/v1/${props.lista}/${user1.id}/${props.log}`;
-  const [show, setShow] = useState(false);
-  const [noteonmodal, setNoteonmodal] = useState("");
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+
   //---------------All this its react-modern-calendar-datepicker config---------------------------------
 
   // render regular HTML input element
@@ -282,28 +280,13 @@ function ScheduleList(props) {
                       <td>{date.time}</td>
                       <td>{date.doctor[0].first_name}</td>
                       <td>{date.doctor[0].last_name}</td>
-                      <td>
-                        <Button
-                          variant="warning"
-                          onClick={() => (
-                            handleShow(), setNoteonmodal(date.note)
-                          )}
-                        >
-                          <i className="far fa-sticky-note"></i>
-                        </Button>
-                      </td>
+                      <td>{<Note note={date.note} />}</td>
                       <td>{<DeleteSchedule id={date._id} />}</td>
                     </tr>
                   ) : undefined;
                 })}
               </tbody>
             </Table>
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Nota</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>{noteonmodal}</Modal.Body>
-            </Modal>
           </>
         ) : user1.role === "doctor" ? (
           <>
@@ -348,28 +331,13 @@ function ScheduleList(props) {
                     <tr key={i}>
                       <td>{date.date.split("T")[0]}</td>
                       <td>{date.time}</td>
-                      <td>
-                        <Button
-                          variant="warning"
-                          onClick={() => (
-                            handleShow(), setNoteonmodal(date.note)
-                          )}
-                        >
-                          <i className="far fa-sticky-note"></i>
-                        </Button>
-                      </td>
+                      <td>{<Note note={date.note} />}</td>
                       <td>{<DeleteSchedule id={date._id} />}</td>
                     </tr>
                   ) : undefined;
                 })}
               </tbody>
             </Table>
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Nota</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>{noteonmodal}</Modal.Body>
-            </Modal>
           </>
         ) : undefined
       ) : undefined}

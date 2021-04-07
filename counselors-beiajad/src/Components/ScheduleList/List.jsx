@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Modal, Button, Container, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import DatePicker from "react-modern-calendar-datepicker";
 import DeleteSchedule from "../Delete/DeleteSchedule";
 import EditSchedule from "../Edit/EditSchedule";
+import Note from "../Note/Note";
 import axios from "axios";
 import "../../index.css";
 
@@ -123,10 +124,7 @@ function ScheduleList(props) {
   const [searchText, setSearchText] = useState("Citas por dia");
   const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"]; // excluye datos del arreglo del filtro
   const URL_GET_SCHEDULE = `http://localhost:8000/api/v1/${props.lista}/${user1.id}/${props.log}`;
-  const [show, setShow] = useState(false);
-  const [noteonmodal, setNoteonmodal] = useState("");
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+
   //---------------All this its react-modern-calendar-datepicker config---------------------------------
 
   // render regular HTML input element
@@ -249,18 +247,10 @@ function ScheduleList(props) {
             <Table responsive hover size="sm">
               <thead>
                 <tr>
-                  <th 
-                    onClick={() => setOrder("date")} 
-                    variant="link" 
-                    size="sm"
-                  >
+                  <th onClick={() => setOrder("date")} variant="link" size="sm">
                     Fecha
                   </th>
-                  <th
-                    onClick={() => setOrder("time")}
-                    variant="link"
-                    size="sm"
-                  >
+                  <th onClick={() => setOrder("time")} variant="link" size="sm">
                     Hora
                   </th>
                   <th
@@ -277,11 +267,7 @@ function ScheduleList(props) {
                   >
                     Apellido
                   </th>
-                  <th 
-                    onClick={() => setOrder("tel")} 
-                    variant="link" 
-                    size="sm"
-                    >
+                  <th onClick={() => setOrder("tel")} variant="link" size="sm">
                     Telefono
                   </th>
                   <th
@@ -304,53 +290,38 @@ function ScheduleList(props) {
                 </tr>
               </thead>
               <tbody>
-                {data.map((date, i) => {   
+                {data.map((date, i) => {
                   const fecha = new Date(date.date).valueOf();
                   const now = Date.now();
                   return date.type === true && fecha >= now ? (
-                  <tr key={i}>
-                    <td>{date.date.split("T")[0]}</td>
-                    <td>{date.time}</td>
-                    <td>{date.user[0].first_name}</td>
-                    <td>{date.user[0].last_name}</td>
-                    <td>{date.user[0].tel}</td>
-                    <td>{date.doctor[0].first_name}</td>
-                    <td>{date.doctor[0].last_name}</td>
-                    <td>
-                      <Button
-                        variant="warning"
-                        onClick={() => (
-                          handleShow(), setNoteonmodal(date.note)
-                        )}
-                      >
-                        <i className="far fa-sticky-note"></i>
-                      </Button>
-                    </td>
-                    <td>
-                      {
-                        <EditSchedule
-                          id={date._id}
-                          datee={date.date}
-                          timee={date.time}
-                          notee={date.note}
-                          doctore={date.doctor[0]._id}
-                          doctorefn={date.doctor[0].first_name}
-                          doctoreln={date.doctor[0].last_name}
-                        />
-                      }
-                    </td>
-                    <td>{<DeleteSchedule id={date._id} />}</td>
-                  </tr>
-                 ) : undefined;
+                    <tr key={i}>
+                      <td>{date.date.split("T")[0]}</td>
+                      <td>{date.time}</td>
+                      <td>{date.user[0].first_name}</td>
+                      <td>{date.user[0].last_name}</td>
+                      <td>{date.user[0].tel}</td>
+                      <td>{date.doctor[0].first_name}</td>
+                      <td>{date.doctor[0].last_name}</td>
+                      <td>{<Note note={date.note} />}</td>
+                      <td>
+                        {
+                          <EditSchedule
+                            id={date._id}
+                            datee={date.date}
+                            timee={date.time}
+                            notee={date.note}
+                            doctore={date.doctor[0]._id}
+                            doctorefn={date.doctor[0].first_name}
+                            doctoreln={date.doctor[0].last_name}
+                          />
+                        }
+                      </td>
+                      <td>{<DeleteSchedule id={date._id} />}</td>
+                    </tr>
+                  ) : undefined;
                 })}
               </tbody>
             </Table>
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Nota</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>{noteonmodal}</Modal.Body>
-            </Modal>
           </>
         ) : user1.role === "doctor" ? (
           <>
@@ -377,18 +348,10 @@ function ScheduleList(props) {
             <Table responsive hover size="sm">
               <thead>
                 <tr>
-                  <th 
-                    onClick={() => setOrder("date")} 
-                    variant="link" 
-                    size="sm"
-                  >
+                  <th onClick={() => setOrder("date")} variant="link" size="sm">
                     Fecha
                   </th>
-                  <th 
-                    onClick={() => setOrder("time")} 
-                    variant="link" 
-                    size="sm"
-                  >
+                  <th onClick={() => setOrder("time")} variant="link" size="sm">
                     Hora
                   </th>
                   <th
@@ -405,11 +368,7 @@ function ScheduleList(props) {
                   >
                     Apellido
                   </th>
-                  <th 
-                    onClick={() => setOrder("tel")} 
-                    variant="link" 
-                    size="sm"
-                  >
+                  <th onClick={() => setOrder("tel")} variant="link" size="sm">
                     Telefono
                   </th>
                   <th>Nota</th>
@@ -417,36 +376,21 @@ function ScheduleList(props) {
               </thead>
               <tbody>
                 {data.map((date, i) => {
-                   const fecha = new Date(date.date).valueOf();
-                   const now = Date.now();
+                  const fecha = new Date(date.date).valueOf();
+                  const now = Date.now();
                   return date.type === true && fecha >= now ? (
-                  <tr key={i}>
-                    <td>{date.date.split("T")[0]}</td>
-                    <td>{date.time}</td>
-                    <td>{date.user[0].first_name}</td>
-                    <td>{date.user[0].last_name}</td>
-                    <td>{date.user[0].tel}</td>
-                    <td>
-                      <Button
-                        variant="warning"
-                        onClick={() => (
-                          handleShow(), setNoteonmodal(date.note)
-                        )}
-                      >
-                        <i className="far fa-sticky-note"></i>
-                      </Button>
-                    </td>
-                  </tr>
-                 ) : undefined;
+                    <tr key={i}>
+                      <td>{date.date.split("T")[0]}</td>
+                      <td>{date.time}</td>
+                      <td>{date.user[0].first_name}</td>
+                      <td>{date.user[0].last_name}</td>
+                      <td>{date.user[0].tel}</td>
+                      <td>{<Note note={date.note} />}</td>
+                    </tr>
+                  ) : undefined;
                 })}
               </tbody>
             </Table>
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Nota</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>{noteonmodal}</Modal.Body>
-            </Modal>
           </>
         ) : undefined
       ) : undefined}
