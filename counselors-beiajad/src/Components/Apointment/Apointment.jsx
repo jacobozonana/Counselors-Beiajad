@@ -340,6 +340,8 @@ function Apointment() {
       )}`,
       icon: "info",
       showCancelButton: true,
+      reverseButtons: true,
+      allowEscapeKey: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Confirmar cita",
@@ -365,20 +367,24 @@ function Apointment() {
           )
           .then(() => {
             Swal.fire({
+              allowEscapeKey: true,
               icon: "success",
               title: "Nos vemos pronto",
               confirmButtonText: `Ok`,
               timer: 1000,
               timerProgressBar: true,
+              allowEscapeKey: true,
             }).then(() => {
               window.location.reload();
             });
           })
           .catch((error) => {
+            let message = error.response.data.message
             Swal.fire({
+              allowEscapeKey: true,
               icon: "error",
               title: "Oops...",
-              text: "Lo sentimos esta acción no se pudo completar",
+              text: "Lo sentimos esta acción no se pudo completar " + message,
             });
             console.log(error);
           });

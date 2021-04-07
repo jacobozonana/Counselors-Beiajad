@@ -27,6 +27,7 @@ const SignupDoctor = () => {
       Swal.fire({
         icon: "error",
         title: "Verifica tu contraseña",
+        allowEscapeKey: true,
       });
     } else {
       const jsonSend = {
@@ -59,15 +60,18 @@ const SignupDoctor = () => {
           title: "Doctor creado con exito",
           timer: 1000,
           timerProgressBar: true,
+          allowEscapeKey: true,
         }).then(history.push("/doctorslist"));
       } catch (error) {
         console.log(error);
+        let message = error.response.data.message
         Swal.fire({
           icon: "error",
-          title: "No se puede crear doctor",
-          text: "Algo salio mal",
+          title: "No se puede crear doctor ",
+          text: "Algo salio mal" + message,
           timer: 1000,
           timerProgressBar: true,
+          allowEscapeKey: true,
         });
       }
     }

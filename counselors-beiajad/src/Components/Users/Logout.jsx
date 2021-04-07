@@ -10,6 +10,7 @@ const Logout = () => {
     title: "Hasta pronto",
     timer: 1000,
     timerProgressBar: true,
+    allowEscapeKey: true,
   });
   logoutUser();
 

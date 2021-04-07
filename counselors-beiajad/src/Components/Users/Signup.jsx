@@ -26,6 +26,7 @@ const Register = () => {
       Swal.fire({
         icon: "error",
         title: "Verifica tu contraseña",
+        allowEscapeKey: true,
       });
     } else {
       const jsonSend = {
@@ -56,11 +57,15 @@ const Register = () => {
           text: "Inicia sesión",
           timer: 1000,
           timerProgressBar: true,
+          allowEscapeKey: true,
         }).then(history.push("/"));
       } catch (error) {
+        let message = error.response.data.message;
         Swal.fire({
           icon: "error",
           title: "Algo salio mal",
+          text: message,
+          allowEscapeKey: true,
         });
       }
     }

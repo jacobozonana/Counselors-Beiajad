@@ -37,6 +37,7 @@ const AuthContextProvider = (props) => {
       Swal.fire({
         icon: "warning",
         title: "Tu sesión caducó",
+        allowEscapeKey: true,
       }).then(() => {
         window.location.href = "/";
       });

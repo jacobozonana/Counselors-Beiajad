@@ -25,6 +25,7 @@ const SignupAdmin = () => {
       Swal.fire({
         icon: "error",
         title: "Verifica tu contraseña",
+        allowEscapeKey: true,
       });
     } else {
       const jsonSend = {
@@ -53,15 +54,18 @@ const SignupAdmin = () => {
           title: "Administrador creado con exito",
           timer: 1000,
           timerProgressBar: true,
+          allowEscapeKey: true,
         }).then(history.push("/adminslist"));
       } catch (error) {
         console.log(error);
+        let message = error.response.data.message
         Swal.fire({
           icon: "error",
           title: "No se puede crear administrador",
-          text: "Algo salio mal",
+          text: "Algo salio mal " + message,
           timer: 1000,
           timerProgressBar: true,
+          allowEscapeKey: true,
         });
       }
     }

@@ -324,6 +324,7 @@ function BlockApointment() {
         )
         .then(() => {
           Swal.fire({
+            allowEscapeKey: true,
             icon: "success",
             title: "Listo!",
             confirmButtonText: `Ok`,
@@ -334,10 +335,12 @@ function BlockApointment() {
           });
         })
         .catch((error) => {
+          let message = error.response.data.message
           Swal.fire({
+            allowEscapeKey: true,
             icon: "error",
             title: "Oops...",
-            text: "Lo sentimos esta acción no se pudo completar",
+            text: "Lo sentimos esta acción no se pudo completar " + message,
           });
           console.log(error);
         });
@@ -368,6 +371,7 @@ function BlockApointment() {
         )
         .then(() => {
           Swal.fire({
+            allowEscapeKey: true,
             icon: "success",
             title: "Listo!",
             confirmButtonText: `Ok`,
@@ -378,10 +382,12 @@ function BlockApointment() {
           });
         })
         .catch((error) => {
+          let message = error.response.data.message
           Swal.fire({
+            allowEscapeKey: true,
             icon: "error",
             title: "Oops...",
-            text: "Lo sentimos esta acción no se pudo completar",
+            text: "Lo sentimos esta acción no se pudo completar  " + message,
           });
           console.log(error);
         });

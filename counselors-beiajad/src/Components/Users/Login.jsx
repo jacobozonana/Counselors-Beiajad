@@ -27,16 +27,21 @@ const Login = () => {
     try {
       const res = await axios.post(LOGIN_URL, jsonSend)
       loginUser(res.data.token);
+      console.log(res.data)
       Swal.fire({
         icon: "success",
         title: "Bienvenido",
         timer: 1000,
         timerProgressBar: true,
+        allowEscapeKey: true,
       }).then(history.push("/"));
     } catch (error) {
+      let message = error.response.data.message
       Swal.fire({
         icon: "error",
         title: "Error en iniciar sesion",
+        text: message,
+        allowEscapeKey: true,
       });
     }
   };

@@ -338,6 +338,8 @@ function EditSchedule(props) {
       )} ${time} hrs.`,
       icon: "warning",
       showCancelButton: true,
+      reverseButtons: true,
+      allowEscapeKey: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Confirmar Cita",
@@ -366,15 +368,18 @@ function EditSchedule(props) {
               confirmButtonText: `Ok`,
               timer: 1000,
               timerProgressBar: true,
+              allowEscapeKey: true,
             }).then(() => {
               window.location.reload();
             });
           })
           .catch((error) => {
+            let message = error.response.data.message
             Swal.fire({
               icon: "error",
               title: "Oops...",
-              text: "Lo sentimos esta acción no se pudo completar",
+              text: "Lo sentimos esta acción no se pudo completar " + message,
+              allowEscapeKey: true,
             });
           });
       }

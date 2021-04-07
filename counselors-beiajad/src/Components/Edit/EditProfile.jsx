@@ -27,6 +27,8 @@ function EditSchedule(props) {
       title: `Tu informacion sera editada`,
       icon: "warning",
       showCancelButton: true,
+      allowEscapeKey: true,
+      reverseButtons: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       cancelButtonText: "Cancelar",
@@ -59,15 +61,19 @@ function EditSchedule(props) {
               confirmButtonText: `Ok`,
               timer: 1000,
               timerProgressBar: true,
+              allowEscapeKey: true,
             }).then(() => {
               window.location.reload();
             });
           })
           .catch((error) => {
+            let message = error.response.data.message
+            console.log(error.response)
             Swal.fire({
               icon: "error",
               title: "Oops...",
-              text: "Lo sentimos esta acción no se pudo completar",
+              text: "Lo sentimos esta acción no se pudo completar " + message,
+              allowEscapeKey: true,
             });
           });
       }

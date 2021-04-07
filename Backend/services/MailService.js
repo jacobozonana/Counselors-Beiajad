@@ -11,7 +11,7 @@ module.exports = {
     };
     try {
       await sgMail.send(msg);
-      console.log("Email sent");
+      // console.log("Email sent");
     } catch (error) {
       console.error(error);
     }
@@ -58,7 +58,7 @@ module.exports = {
     };
     try {
       await sgMail.send(msg);
-      console.log("Email sent");
+      // console.log("Email sent");
       res.status(200).json({ message: "Email sent" });
     } catch (error) {
       console.error(error);

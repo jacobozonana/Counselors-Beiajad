@@ -10,10 +10,12 @@ import "jspdf-autotable";
 import encode from "nodejs-base64-encode";
 import Swal from "sweetalert2";
 import img from "../../contexts/ImgContext";
+import exportFromJSON from "export-from-json";
 
 function ScheduleListOfUser() {
   const { user1, isAuth } = useContext(AuthContext);
   const [schedule, setSchedule] = useState([]);
+  const [dataxls, setDataxls] = useState([]);
   const [order, setOrder] = useState("date");
   const URL_GET_USER = `http://localhost:8000/api/v1/schedulesbyuser/${user1.id}/${user1.id}`;
   const URLSENDREPORT = `http://localhost:8000/api/v1/sendreport/`;
@@ -85,15 +87,18 @@ function ScheduleListOfUser() {
           confirmButtonText: `Ok`,
           timer: 1000,
           timerProgressBar: true,
+          allowEscapeKey: true,
         }).then(() => {
           window.location.reload();
         });
       })
       .catch((error) => {
+        let message = error.response.data.message
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Lo sentimos esta acción no se pudo completar",
+          text: "Lo sentimos esta acción no se pudo completar " + message,
+          allowEscapeKey: true,
         });
         console.log(error);
       });
@@ -112,6 +117,43 @@ function ScheduleListOfUser() {
   };
   /// AQUI TERMINA LOS REPORTES PDF
 
+  const note = (note) => {
+    Swal.fire({
+      showCloseButton: "true",
+      showConfirmButton: false,
+      allowEscapeKey: true,
+      title: "Nota",
+      text: note,
+    });
+  };
+
+  const data = dataxls;
+  const fileName = "MisCitas";
+  const exportType = "xls";
+
+  const xls = () => {
+    exportFromJSON({ data, fileName, exportType });
+  };
+
+  useEffect(() => {
+    let date = schedule.map((v) => v.date.slice(0, 10));
+    let time = schedule.map((v) => v.time);
+    let docfna = schedule.map((v) => v.doctor[0].first_name);
+    let doclna = schedule.map((v) => v.doctor[0].last_name);
+
+    let datos = [];
+
+    for (var i = 0; i < date.length; i++) {
+      datos.push({
+        Fecha: date[i],
+        Hora: time[i],
+        NombreDr: docfna[i],
+        ApellidoDr: doclna[i],
+      });
+      setDataxls(datos);
+    }
+  }, [schedule]);
+
   return (
     <>
       {isAuth ? (
@@ -125,7 +167,7 @@ function ScheduleListOfUser() {
               <i className="fas fa-file-pdf"></i>
             </Button>
             <Button
-              className="btn btn-primary rounded-circle boton"
+              variant="outline-primary rounded-circle boton"
               onClick={handleShow}
             >
               <i className="fas fa-envelope-open-text"></i>
@@ -165,6 +207,13 @@ function ScheduleListOfUser() {
                 </Button>
               </Modal.Footer>
             </Modal>
+            <Button
+              variant="outline-success rounded-circle boton"
+              onClick={xls}
+            >
+              {" "}
+              <i class="far fa-file-excel"></i>
+            </Button>
             {/* ///AQUI TERMINA LOS REPORTES PDF */}
             <Table id="table" responsive hover size="sm">
               <thead>
@@ -210,7 +259,7 @@ function ScheduleListOfUser() {
                           <Button
                             variant="warning"
                             onClick={() => (
-                              handleShow(), setNoteonmodal(date.note)
+                              note(date.note), setNoteonmodal(date.note)
                             )}
                           >
                             <i className="far fa-sticky-note"></i>
@@ -238,12 +287,6 @@ function ScheduleListOfUser() {
                 })}
               </tbody>
             </Table>
-            {/* <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Nota</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>{noteonmodal}</Modal.Body>
-            </Modal> */}
           </>
         ) : undefined
       ) : undefined}

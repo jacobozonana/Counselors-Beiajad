@@ -63,12 +63,10 @@ X-cuando se genera la cita mandar mail de confirmacion (Hecho)
 -y recordatorios de citas mismo dia y misma semana
 .env para el front las URL tambien del front..
 
-sendgrid
-jsPDF
-jspdf autotable
-import { jsPDF } from "jspdf";
-import "jspdf-autotable";
-import autoTable from "jspdf-autotable";
+X-sendgrid (Hecho)
+X-jsPDF (Hecho)
+X-jspdf autotable (Hecho)
+
 import ExportJsonExcel from "js-export-excel";
 
 para mandar emails
