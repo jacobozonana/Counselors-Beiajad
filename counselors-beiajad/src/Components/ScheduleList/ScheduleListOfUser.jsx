@@ -115,7 +115,6 @@ function ScheduleListOfUser() {
     doc.autoTable({ html: "#table" });
     doc.save("MisCitas.pdf");
   };
-  /// AQUI TERMINA LOS REPORTES PDF
 
   const data = dataxls;
   const fileName = "MisCitas";
@@ -143,6 +142,7 @@ function ScheduleListOfUser() {
       setDataxls(datos);
     }
   }, [schedule]);
+  /// AQUI TERMINA LOS REPORTES PDF
 
   return (
     <>
@@ -150,60 +150,62 @@ function ScheduleListOfUser() {
         user1.role === "user" ? (
           <>
             {/* ///DESDE AQUI EMPIEZA LOS REPORTES PDF */}
-            <Button
-              variant="outline-danger rounded-circle boton"
-              onClick={downloadPdf}
-            >
-              <i className="fas fa-file-pdf"></i>
-            </Button>
-            <Button
-              variant="outline-primary rounded-circle boton"
-              onClick={handleShow}
-            >
-              <i className="fas fa-envelope-open-text"></i>
-            </Button>
-            <Modal show={show} size="sm" onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>
-                  {" "}
-                  <h6>Exportar</h6>{" "}
-                </Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <Form>
-                  <Col>
-                    <Form.Group>
-                      <Form.Control
-                        onChange={(e) => setEmail(e.target.value)}
-                        type="email"
-                        name="email"
-                        id="exampleEmail"
-                        placeholder="Correo electronico"
-                        required
-                      />
-                    </Form.Group>
-                  </Col>
-                </Form>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button
-                  type="submit"
-                  onClick={() => {
-                    sendReport();
-                  }}
-                  className="btn btn-primary boton rounded-pill"
-                >
-                  Enviar
-                </Button>
-              </Modal.Footer>
-            </Modal>
-            <Button
-              variant="outline-success rounded-circle boton"
-              onClick={xls}
-            >
-              {" "}
-              <i class="far fa-file-excel"></i>
-            </Button>
+            <div className="float">
+              <Button
+                variant="outline-danger rounded-circle boton"
+                onClick={downloadPdf}
+              >
+                <i className="fas fa-file-pdf"></i>
+              </Button>
+              <Button
+                variant="outline-primary rounded-circle boton"
+                onClick={handleShow}
+              >
+                <i className="fas fa-envelope-open-text"></i>
+              </Button>
+              <Modal show={show} size="sm" onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>
+                    {" "}
+                    <h6>Exportar</h6>{" "}
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Form>
+                    <Col>
+                      <Form.Group>
+                        <Form.Control
+                          onChange={(e) => setEmail(e.target.value)}
+                          type="email"
+                          name="email"
+                          id="exampleEmail"
+                          placeholder="Correo electronico"
+                          required
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button
+                    type="submit"
+                    onClick={() => {
+                      sendReport();
+                    }}
+                    className="btn btn-primary boton rounded-pill"
+                  >
+                    Enviar
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+              <Button
+                variant="outline-success rounded-circle boton"
+                onClick={xls}
+              >
+                {" "}
+                <i class="far fa-file-excel"></i>
+              </Button>
+            </div>
             {/* ///AQUI TERMINA LOS REPORTES PDF */}
             <Table id="table" responsive hover size="sm">
               <thead>

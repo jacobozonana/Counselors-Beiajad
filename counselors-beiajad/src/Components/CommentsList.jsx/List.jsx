@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
 import Comment from "../Comment/Comment";
+import DeleteComment from "../Delete/DeleteComment";
 
 function CommentsList(props) {
   const { isAuth, user1 } = useContext(AuthContext);
@@ -33,14 +34,19 @@ function CommentsList(props) {
                 last_name={props.last_name}
               />
             </div>
-            {data.map((user, i) => (
+            {data.map((comment, i) => (
+              
               <div key={i}>
+
                 <h6>
-                  <i class="far fa-user-circle"></i> {user.author[0].first_name}
+                  <i className="far fa-user-circle"></i> {comment.author[0].first_name}
                 </h6>
-                <h6>{user.date.split("T")[0]}</h6>
-                <h6 className="bold">{user.subject}</h6>
-                <h6>{user.note}</h6>
+
+                <h6>{comment.date.split("T")[0]}</h6>
+                <h6 ><DeleteComment id={comment._id} /></h6 >
+
+                <h6 className="bold">{comment.subject}</h6>
+                <h6>{comment.note}</h6>
                 <br />
               </div>
             ))}

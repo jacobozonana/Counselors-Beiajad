@@ -27,7 +27,6 @@ const Login = () => {
     try {
       const res = await axios.post(LOGIN_URL, jsonSend)
       loginUser(res.data.token);
-      console.log(res.data)
       Swal.fire({
         icon: "success",
         title: "Bienvenido",

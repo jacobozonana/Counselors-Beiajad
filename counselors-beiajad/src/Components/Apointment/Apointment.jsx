@@ -422,7 +422,7 @@ function Apointment() {
       {isAuth ? (
         user1.role === "user" ? (
           <div className="calendar1">
-            <Button className="margin" variant="primary" onClick={handleShow}>
+            <Button className="margin floatl" variant="primary" onClick={handleShow}>
               Agendar cita
             </Button>
             <Modal show={show} size="sm" onHide={handleClose}>

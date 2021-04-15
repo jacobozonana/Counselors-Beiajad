@@ -335,7 +335,7 @@ function BlockApointment() {
           });
         })
         .catch((error) => {
-          let message = error.response.data.message
+          let message = error.response.data.message;
           Swal.fire({
             allowEscapeKey: true,
             icon: "error",
@@ -382,7 +382,7 @@ function BlockApointment() {
           });
         })
         .catch((error) => {
-          let message = error.response.data.message
+          let message = error.response.data.message;
           Swal.fire({
             allowEscapeKey: true,
             icon: "error",
@@ -399,7 +399,11 @@ function BlockApointment() {
       {isAuth ? (
         user1.role === "doctor" ? (
           <div className="calendar1">
-            <Button className="margin" variant="primary" onClick={handleShow}>
+            <Button
+              className="margin float nomargin"
+              variant="success"
+              onClick={handleShow}
+            >
               Quiero horas libres!
             </Button>
             <Modal show={show} size="sm" onHide={handleClose}>

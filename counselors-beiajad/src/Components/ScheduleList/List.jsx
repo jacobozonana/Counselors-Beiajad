@@ -1,12 +1,18 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Button, Container, Table } from "react-bootstrap";
+import { Button, Container, Table, Modal, Col, Form } from "react-bootstrap";
 import DatePicker from "react-modern-calendar-datepicker";
 import DeleteSchedule from "../Delete/DeleteSchedule";
 import EditSchedule from "../Edit/EditSchedule";
 import Note from "../Note/Note";
 import axios from "axios";
 import "../../index.css";
+import encode from "nodejs-base64-encode";
+import Swal from "sweetalert2";
+import img from "../../contexts/ImgContext";
+import exportFromJSON from "export-from-json";
+import "jspdf-autotable";
+import { jsPDF } from "jspdf";
 
 function ScheduleList(props) {
   //---------------All this its react-modern-calendar-datepicker config---------------------------------
@@ -118,12 +124,20 @@ function ScheduleList(props) {
 
   const { user1, isAuth } = useContext(AuthContext);
   const [schedule, setSchedule] = useState([]);
-  const [data, setData] = useState([]);
+  const [data1, setData1] = useState([]);
+  const [data2] = useState([]);
   const [order, setOrder] = useState("date");
   const [selectedDay, setSelectedDay] = useState(defaultValue);
   const [searchText, setSearchText] = useState("Citas por dia");
   const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"]; // excluye datos del arreglo del filtro
   const URL_GET_SCHEDULE = `http://localhost:8000/api/v1/${props.lista}/${user1.id}/${props.log}`;
+  const [attachment, setAttachment] = useState("");
+  const URLSENDREPORT = `http://localhost:8000/api/v1/sendreport/`;
+  const [email, setEmail] = useState("Correo electronico");
+  const [dataxls, setDataxls] = useState([]);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false);
 
   //---------------All this its react-modern-calendar-datepicker config---------------------------------
 
@@ -154,7 +168,7 @@ function ScheduleList(props) {
           Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
         },
       })
-      .then((data) => (setSchedule(data.data), setData(data.data)))
+      .then((data) => (setSchedule(data.data), setData1(data.data)))
       .catch((err) => console.log(err));
   }, []);
 
@@ -183,7 +197,7 @@ function ScheduleList(props) {
 
   const filterData = (value) => {
     const lowercasedValue = value.toLowerCase().trim();
-    if (lowercasedValue === "") setData(schedule);
+    if (lowercasedValue === "") setData1(schedule);
     else {
       const filteredData = schedule.filter((item) => {
         return Object.keys(item).some((key) =>
@@ -192,12 +206,12 @@ function ScheduleList(props) {
             : item[key].toString().toLowerCase().includes(lowercasedValue)
         );
       });
-      setData(filteredData);
+      setData1(filteredData);
     }
   };
 
   const Todas = () => {
-    setData(schedule);
+    setData1(schedule);
     setSearchText(null);
     setSearchText("Citas por dia");
   };
@@ -217,14 +231,179 @@ function ScheduleList(props) {
     });
   };
 
-  sortJSON(data, order, "asc");
+  sortJSON(data1, order, "asc");
+
+  /// DESDE AQUI EMPIEZA LOS REPORTES PDF
+  useEffect(() => {
+    const doc = new jsPDF();
+    doc.autoTable({
+      margin: { top: 50 },
+    });
+    doc.text("Mis Citas", 20, 30);
+    doc.addImage(img, "JPEG", 160, 15, 20, 20);
+    doc.autoTable({ html: "#table" });
+    var att = doc.output("arraybuffer");
+    var base64File = encode.encode(att, "base64");
+    setAttachment(base64File);
+  }, [email]);
+
+  const sendReport = () => {
+    axios
+      .post(
+        URLSENDREPORT,
+        {
+          email,
+          attachment,
+        },
+        {
+          headers: {
+            Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+          },
+        }
+      )
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Listo!",
+          confirmButtonText: `Ok`,
+          timer: 1000,
+          timerProgressBar: true,
+          allowEscapeKey: true,
+        }).then(() => {
+          window.location.reload();
+        });
+      })
+      .catch((error) => {
+        let message = error.response.data.message;
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Lo sentimos esta acción no se pudo completar " + message,
+          allowEscapeKey: true,
+        });
+        console.log(error);
+      });
+  };
+
+  const downloadPdf = () => {
+    const doc = new jsPDF();
+    const text = "Mis Citas";
+    doc.autoTable({
+      margin: { top: 50 },
+    });
+    doc.text(text, 20, 30);
+    doc.addImage(img, "JPEG", 160, 15, 20, 20);
+    doc.autoTable({ html: "#table" });
+    doc.save("MisCitas.pdf");
+  };
+
+  const data = dataxls;
+  const fileName = "MisCitas";
+  const exportType = "xls";
+
+  const xls = () => {
+    exportFromJSON({ data, fileName, exportType });
+  };
+
+  useEffect(() => {
+    data1.map((date) => {
+      const fecha = new Date(date.date).valueOf();
+      const now = Date.now();
+      if (fecha >= now) {
+        data2.push(date);
+      }
+    });
+
+    let inf = data2.filter((v) => v.type == true);
+    let date = inf.map((v) => v.date.split("T")[0]);
+    let usefna = inf.map((v) => v.user[0].first_name);
+    let uselna = inf.map((v) => v.user[0].last_name);
+    let tel = inf.map((v) => v.user[0].tel);
+    let time = inf.map((v) => v.time);
+    let docfna = inf.map((v) => v.doctor[0].first_name);
+    let doclna = inf.map((v) => v.doctor[0].last_name);
+
+    let datos = [];
+
+    for (var i = 0; i < date.length; i++) {
+      datos.push({
+        Fecha: date[i],
+        Hora: time[i],
+        Nombre: usefna[i],
+        Apellido: uselna[i],
+        Telefono: tel[i],
+        NombreDr: docfna[i],
+        ApellidoDr: doclna[i],
+      });
+      setDataxls(datos);
+    }
+  }, [data1]);
+  /// AQUI TERMINA LOS REPORTES PDF
 
   return (
     <>
       {isAuth ? (
         user1.role === "admin" ? (
           <>
-            <Container className="margin">
+            {/* ///DESDE AQUI EMPIEZA LOS REPORTES PDF */}
+            <div className="float">
+              <Button
+                variant="outline-danger rounded-circle boton"
+                onClick={downloadPdf}
+              >
+                <i className="fas fa-file-pdf"></i>
+              </Button>
+              <Button
+                variant="outline-primary rounded-circle boton"
+                onClick={handleShow}
+              >
+                <i className="fas fa-envelope-open-text"></i>
+              </Button>
+              <Modal show={show} size="sm" onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>
+                    {" "}
+                    <h6>Exportar</h6>{" "}
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Form>
+                    <Col>
+                      <Form.Group>
+                        <Form.Control
+                          onChange={(e) => setEmail(e.target.value)}
+                          type="email"
+                          name="email"
+                          id="exampleEmail"
+                          placeholder="Correo electronico"
+                          required
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button
+                    type="submit"
+                    onClick={() => {
+                      sendReport();
+                    }}
+                    className="btn btn-primary boton rounded-pill"
+                  >
+                    Enviar
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+              <Button
+                variant="outline-success rounded-circle boton"
+                onClick={xls}
+              >
+                {" "}
+                <i className="far fa-file-excel"></i>
+              </Button>
+            </div>
+            {/* ///AQUI TERMINA LOS REPORTES PDF */}
+            <div className="floatl">
               <DatePicker
                 value={selectedDay}
                 onChange={
@@ -240,11 +419,13 @@ function ScheduleList(props) {
                 renderInput={renderCustomInput} // render a custom input
                 calendarTodayClassName="custom-today-day"
               />
+            </div>
+            <Container className="margin">
               <Button className="alldat" variant="outline-info" onClick={Todas}>
                 Ver todas las citas
               </Button>
             </Container>
-            <Table responsive hover size="sm">
+            <Table id="table" responsive hover size="sm">
               <thead>
                 <tr>
                   <th onClick={() => setOrder("date")} variant="link" size="sm">
@@ -290,7 +471,7 @@ function ScheduleList(props) {
                 </tr>
               </thead>
               <tbody>
-                {data.map((date, i) => {
+                {data1.map((date, i) => {
                   const fecha = new Date(date.date).valueOf();
                   const now = Date.now();
                   return date.type === true && fecha >= now ? (
@@ -325,7 +506,65 @@ function ScheduleList(props) {
           </>
         ) : user1.role === "doctor" ? (
           <>
-            <Container className="margin">
+            {/* ///DESDE AQUI EMPIEZA LOS REPORTES PDF */}
+            <div className="float">
+              <Button
+                variant="outline-danger rounded-circle boton"
+                onClick={downloadPdf}
+              >
+                <i className="fas fa-file-pdf"></i>
+              </Button>
+              <Button
+                variant="outline-primary rounded-circle boton"
+                onClick={handleShow}
+              >
+                <i className="fas fa-envelope-open-text"></i>
+              </Button>
+              <Modal show={show} size="sm" onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>
+                    {" "}
+                    <h6>Exportar</h6>{" "}
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Form>
+                    <Col>
+                      <Form.Group>
+                        <Form.Control
+                          onChange={(e) => setEmail(e.target.value)}
+                          type="email"
+                          name="email"
+                          id="exampleEmail"
+                          placeholder="Correo electronico"
+                          required
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button
+                    type="submit"
+                    onClick={() => {
+                      sendReport();
+                    }}
+                    className="btn btn-primary boton rounded-pill"
+                  >
+                    Enviar
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+              <Button
+                variant="outline-success rounded-circle boton"
+                onClick={xls}
+              >
+                {" "}
+                <i className="far fa-file-excel"></i>
+              </Button>
+            </div>
+            {/* ///AQUI TERMINA LOS REPORTES PDF */}
+            <div className="floatl">
               <DatePicker
                 value={selectedDay}
                 onChange={
@@ -341,11 +580,13 @@ function ScheduleList(props) {
                 renderInput={renderCustomInput} // render a custom input
                 calendarTodayClassName="custom-today-day"
               />
+            </div>
+            <Container className="margin">
               <Button className="alldat" variant="outline-info" onClick={Todas}>
                 Ver todas las citas
               </Button>
             </Container>
-            <Table responsive hover size="sm">
+            <Table id="table" responsive hover size="sm">
               <thead>
                 <tr>
                   <th onClick={() => setOrder("date")} variant="link" size="sm">
@@ -375,7 +616,7 @@ function ScheduleList(props) {
                 </tr>
               </thead>
               <tbody>
-                {data.map((date, i) => {
+                {data1.map((date, i) => {
                   const fecha = new Date(date.date).valueOf();
                   const now = Date.now();
                   return date.type === true && fecha >= now ? (

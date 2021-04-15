@@ -476,3 +476,17 @@ input:focus:invalid {
 .floatl {
   float: left;
 }
+.nomargin {
+  margin: 0;
+}
+.del {
+  color: red;
+  background-color: transparent;
+  margin: 0;
+  border: none;
+  display:inline;
+  float:right;
+}
+.headerSchedule{
+  margin-bottom: 10px;
+}
