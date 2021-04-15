@@ -485,21 +485,13 @@ function ScheduleList(props) {
                 />
               </div>
               <div class="p-2">
-                <DatePicker
-                  value={selectedDay}
-                  onChange={
-                    (setSelectedDay,
-                    (e) => {
-                      toFind(e);
-                    })
-                  }
-                  colorPrimary="#25a1b7"
-                  calendarClassName="responsive-calendar" // added this
-                  locale={myCustomLocale} // custom locale object
-                  shouldHighlightWeekends
-                  renderInput={renderCustomInput} // render a custom input
-                  calendarTodayClassName="custom-today-day"
-                />
+                <Button
+                  className="alldat"
+                  variant="outline-info"
+                  onClick={Todas}
+                >
+                  Ver todas las horas libres
+                </Button>
               </div>
               <div class="p-2">
                 <div class="d-flex justify-content-end">
