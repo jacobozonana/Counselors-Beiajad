@@ -466,87 +466,109 @@ function ScheduleList(props) {
           </>
         ) : user1.role === "doctor" ? (
           <>
-            <BlockApointment />
-            {/* ///DESDE AQUI EMPIEZA LOS REPORTES PDF */}
-            <div className="float">
-              <Button
-                variant="outline-danger rounded-circle boton"
-                onClick={downloadPdf}
-              >
-                <i className="fas fa-file-pdf"></i>
-              </Button>
-              <Button
-                variant="outline-primary rounded-circle boton"
-                onClick={handleShow}
-              >
-                <i className="fas fa-envelope-open-text"></i>
-              </Button>
-              <Modal show={show} size="sm" onHide={handleClose}>
-                <Modal.Header closeButton>
-                  <Modal.Title>
+            <div class="d-flex justify-content-between">
+              <div class="p-2">
+                <DatePicker
+                  value={selectedDay}
+                  onChange={
+                    (setSelectedDay,
+                    (e) => {
+                      toFind(e);
+                    })
+                  }
+                  colorPrimary="#25a1b7"
+                  calendarClassName="responsive-calendar" // added this
+                  locale={myCustomLocale} // custom locale object
+                  shouldHighlightWeekends
+                  renderInput={renderCustomInput} // render a custom input
+                  calendarTodayClassName="custom-today-day"
+                />
+              </div>
+              <div class="p-2">
+                <DatePicker
+                  value={selectedDay}
+                  onChange={
+                    (setSelectedDay,
+                    (e) => {
+                      toFind(e);
+                    })
+                  }
+                  colorPrimary="#25a1b7"
+                  calendarClassName="responsive-calendar" // added this
+                  locale={myCustomLocale} // custom locale object
+                  shouldHighlightWeekends
+                  renderInput={renderCustomInput} // render a custom input
+                  calendarTodayClassName="custom-today-day"
+                />
+              </div>
+              <div class="p-2">
+                <div class="d-flex justify-content-end">
+                  <div class="p-2">
                     {" "}
-                    <h6>Exportar</h6>{" "}
-                  </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <Form>
-                    <Col>
-                      <Form.Group>
-                        <Form.Control
-                          onChange={(e) => setEmail(e.target.value)}
-                          type="email"
-                          name="email"
-                          id="exampleEmail"
-                          placeholder="Correo electronico"
-                          required
-                        />
-                      </Form.Group>
-                    </Col>
-                  </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button
-                    type="submit"
-                    onClick={() => {
-                      sendReport();
-                    }}
-                    className="btn btn-primary boton rounded-pill"
-                  >
-                    Enviar
-                  </Button>
-                </Modal.Footer>
-              </Modal>
-              <Button
-                variant="outline-success rounded-circle boton"
-                onClick={xls}
-              >
-                {" "}
-                <i className="far fa-file-excel"></i>
-              </Button>
+                    <BlockApointment />
+                  </div>
+                  <div class="p-2">
+                    {" "}
+                    {/* ///DESDE AQUI EMPIEZA LOS REPORTES PDF */}
+                    <Button
+                      variant="outline-danger rounded-circle boton"
+                      onClick={downloadPdf}
+                    >
+                      <i className="fas fa-file-pdf"></i>
+                    </Button>
+                    <Button
+                      variant="outline-primary rounded-circle boton"
+                      onClick={handleShow}
+                    >
+                      <i className="fas fa-envelope-open-text"></i>
+                    </Button>
+                    <Modal show={show} size="sm" onHide={handleClose}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>
+                          {" "}
+                          <h6>Exportar</h6>{" "}
+                        </Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        <Form>
+                          <Col>
+                            <Form.Group>
+                              <Form.Control
+                                onChange={(e) => setEmail(e.target.value)}
+                                type="email"
+                                name="email"
+                                id="exampleEmail"
+                                placeholder="Correo electronico"
+                                required
+                              />
+                            </Form.Group>
+                          </Col>
+                        </Form>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button
+                          type="submit"
+                          onClick={() => {
+                            sendReport();
+                          }}
+                          className="btn btn-primary boton rounded-pill"
+                        >
+                          Enviar
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+                    <Button
+                      variant="outline-success rounded-circle boton"
+                      onClick={xls}
+                    >
+                      {" "}
+                      <i className="far fa-file-excel"></i>
+                    </Button>
+                    {/* ///AQUI TERMINA LOS REPORTES PDF */}
+                  </div>
+                </div>
+              </div>
             </div>
-            {/* ///AQUI TERMINA LOS REPORTES PDF */}
-            <div className="floatl">
-              <DatePicker
-                value={selectedDay}
-                onChange={
-                  (setSelectedDay,
-                  (e) => {
-                    toFind(e);
-                  })
-                }
-                colorPrimary="#25a1b7"
-                calendarClassName="responsive-calendar" // added this
-                locale={myCustomLocale} // custom locale object
-                shouldHighlightWeekends
-                renderInput={renderCustomInput} // render a custom input
-                calendarTodayClassName="custom-today-day"
-              />
-            </div>
-            <Container className="margin">
-              <Button className="alldat" variant="outline-info" onClick={Todas}>
-                Ver todas las horas libres
-              </Button>
-            </Container>
             <Table id="table" responsive hover size="sm">
               <thead>
                 <tr>

@@ -70,7 +70,7 @@ function EditUser(props) {
             });
           })
           .catch((error) => {
-            let message = error.response.data.message
+            let message = error.response.data.message;
             Swal.fire({
               icon: "error",
               title: "Oops...",
@@ -88,7 +88,7 @@ function EditUser(props) {
         user1.role === "admin" ? (
           route === "editadmins" ? (
             <>
-              <div className="calendar1">
+              <div>
                 <Button variant="info" onClick={handleShow}>
                   <i className="far fa-edit"></i>
                 </Button>
@@ -166,7 +166,7 @@ function EditUser(props) {
             </>
           ) : route === "editdoctors" ? (
             <>
-              <div className="calendar1">
+              <div>
                 <Button variant="info" onClick={handleShow}>
                   <i className="far fa-edit"></i>
                 </Button>
@@ -278,7 +278,7 @@ function EditUser(props) {
             </>
           ) : route === "editusers" ? (
             <>
-              <div className="calendar1">
+              <div>
                 <Button variant="info" onClick={handleShow}>
                   <i className="far fa-edit"></i>
                 </Button>

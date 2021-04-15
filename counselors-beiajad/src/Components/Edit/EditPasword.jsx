@@ -75,7 +75,7 @@ function EditPassword() {
               });
             })
             .catch((error) => {
-              let message = error.response.data.message
+              let message = error.response.data.message;
               Swal.fire({
                 icon: "error",
                 title: "Oops...",
@@ -91,7 +91,7 @@ function EditPassword() {
   return (
     <>
       {isAuth ? (
-        <div className="calendar1">
+        <div>
           <Button variant="outline-danger" onClick={handleShow}>
             {<i className="fas fa-key"></i>} Cambio de contraseña
           </Button>

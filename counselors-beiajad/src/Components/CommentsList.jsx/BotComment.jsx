@@ -17,7 +17,7 @@ function BotComment(props) {
         user1.role === "admin" ||
         user1.role === "user" ||
         user1.role === "doctor" ? (
-          <div className="calendar1">
+          <div>
             <Button className="btn btn-primary boton" onClick={handleShow}>
               <i className="far fa-clipboard"></i>
             </Button>

@@ -398,10 +398,9 @@ function BlockApointment() {
     <>
       {isAuth ? (
         user1.role === "doctor" ? (
-          <div className="calendar1">
+          <div>
             <Button
-              className="margin float nomargin"
-              variant="success"
+              variant="success "
               onClick={handleShow}
             >
               Quiero horas libres!

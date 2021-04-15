@@ -46,7 +46,7 @@ function Apointment(props) {
         });
       })
       .catch((error) => {
-        let message = error.response.data.message
+        let message = error.response.data.message;
         Swal.fire({
           allowEscapeKey: true,
           icon: "error",
@@ -63,7 +63,7 @@ function Apointment(props) {
         user1.role === "admin" ||
         user1.role === "user" ||
         user1.role === "doctor" ? (
-          <div className="calendar1">
+          <div>
             <Button
               className="btn btn-primary rounded-circle boton"
               onClick={handleShow}
@@ -72,10 +72,15 @@ function Apointment(props) {
             </Button>
             <Modal show={show} size="sm" onHide={handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title> <h6>{props.first_name} {props.last_name}</h6> </Modal.Title>
+                <Modal.Title>
+                  {" "}
+                  <h6>
+                    {props.first_name} {props.last_name}
+                  </h6>{" "}
+                </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <Form>                 
+                <Form>
                   <Col>
                     <Form.Group>
                       <textarea

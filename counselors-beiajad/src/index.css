@@ -48,9 +48,6 @@ code {
   border: 1px solid #157ffb;
   margin: 2px;
 }
-.calendar1 {
-  color: white;
-}
 .CitaSeleccionada {
   color: black;
   padding-left: 5px;
@@ -484,9 +481,15 @@ input:focus:invalid {
   background-color: transparent;
   margin: 0;
   border: none;
-  display:inline;
-  float:right;
+  display: inline;
+  float: right;
 }
-.headerSchedule{
+.headerSchedule {
   margin-bottom: 10px;
+}
+.row{
+  margin-left: 0;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 0;
 }

@@ -67,8 +67,8 @@ function EditSchedule(props) {
             });
           })
           .catch((error) => {
-            let message = error.response.data.message
-            console.log(error.response)
+            let message = error.response.data.message;
+            console.log(error.response);
             Swal.fire({
               icon: "error",
               title: "Oops...",
@@ -84,7 +84,7 @@ function EditSchedule(props) {
     <>
       {isAuth ? (
         user1.role === "user" ? (
-          <div className="calendar1">
+          <div>
             <Button variant="info" onClick={handleShow}>
               {<i className="far fa-edit"></i>} Edita tu informacion
             </Button>
@@ -193,7 +193,7 @@ function EditSchedule(props) {
             </Modal>
           </div>
         ) : user1.role === "doctor" ? (
-          <div className="calendar1">
+          <div>
             <Button variant="info" onClick={handleShow}>
               {<i className="far fa-edit"></i>} Edita tu informacion
             </Button>
@@ -289,7 +289,7 @@ function EditSchedule(props) {
             </Modal>
           </div>
         ) : user1.role === "admin" ? (
-          <div className="calendar1">
+          <div>
             <Button variant="info" onClick={handleShow}>
               {<i className="far fa-edit"></i>} Edita tu informacion
             </Button>
@@ -343,7 +343,7 @@ function EditSchedule(props) {
                           type="email"
                         />
                       </Form.Group>
-                      <EditPassword id={props.id} />                      
+                      <EditPassword id={props.id} />
                       <h6>modifica los datos que quieras</h6>
                     </Col>
                   </Row>

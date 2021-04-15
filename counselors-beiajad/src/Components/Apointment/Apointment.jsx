@@ -379,7 +379,7 @@ function Apointment() {
             });
           })
           .catch((error) => {
-            let message = error.response.data.message
+            let message = error.response.data.message;
             Swal.fire({
               allowEscapeKey: true,
               icon: "error",
@@ -421,8 +421,12 @@ function Apointment() {
     <>
       {isAuth ? (
         user1.role === "user" ? (
-          <div className="calendar1">
-            <Button className="margin floatl" variant="primary" onClick={handleShow}>
+          <div>
+            <Button
+              className="margin floatl"
+              variant="primary"
+              onClick={handleShow}
+            >
               Agendar cita
             </Button>
             <Modal show={show} size="sm" onHide={handleClose}>
@@ -445,7 +449,7 @@ function Apointment() {
                               setDoctorName(user.first_name);
                               setDoctorLname(user.last_name);
                               setTime("Hora");
-                              setDate("Fecha")
+                              setDate("Fecha");
                             }}
                             key={i}
                           >
