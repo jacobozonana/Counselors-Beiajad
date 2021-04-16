@@ -8,6 +8,7 @@ import Header from "../../Components/Layout/Header/Header";
 import Seccion3 from "../../Components/Seccion3/Seccion3";
 import Seccion2 from "../../Components/Seccion2/Seccion2";
 import Footer from "../../Components/Layout/Footer/Footer";
+import Stripe from "../../Components/Stripe/Stripe";
 import "../../index.css";
 
 function Home() {
@@ -67,6 +68,7 @@ function Home() {
           <Seccion2 />
           <Seccion3 />
           <Footer />
+          <Stripe />
         </>
       )}
     </>
