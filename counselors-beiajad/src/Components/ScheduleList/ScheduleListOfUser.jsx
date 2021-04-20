@@ -203,7 +203,7 @@ function ScheduleListOfUser() {
                 onClick={xls}
               >
                 {" "}
-                <i class="far fa-file-excel"></i>
+                <i className="far fa-file-excel"></i>
               </Button>
             </div>
             {/* ///AQUI TERMINA LOS REPORTES PDF */}

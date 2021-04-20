@@ -5,12 +5,11 @@ const express = require("express");
 const app = express();
 app.use(express.static("."));
 
-const YOUR_DOMAIN = "http://localhost:8000/";
+const YOUR_DOMAIN = "http://localhost:3000/";
 
 module.exports = {
   pay: async (req, res) => {
-      const { amount, quantity } = req.body;
-      console.log(quantity)
+    const { body } = req;
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: [
@@ -18,12 +17,12 @@ module.exports = {
           price_data: {
             currency: "mxn",
             product_data: {
-              name: "Consulta para el dia .....",
+              name: body.item,
               images: ["https://i.imgur.com/EHyR2nP.png"],
             },
-            unit_amount: amount,
+            unit_amount: body.amount,
           },
-          quantity: 1,
+          quantity: body.quantity,
         },
       ],
       mode: "payment",

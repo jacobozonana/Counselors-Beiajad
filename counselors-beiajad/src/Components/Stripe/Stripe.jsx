@@ -1,46 +1,50 @@
 import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import axios from "axios";
 
+function Stripe(props) {
 const stripePromise = loadStripe(
   "pk_test_51Igu4wGzcAtJfG2jEuOZrsw0aDN0inDpktv8angrEEHB7YrqjQoqjyUvrI1oipzZGneTvBs7G9xRZYZSe3vff4s900MPYqkp8o"
 );
 
-const ProductDisplay = ({ handleClick }) => (
-  <section>
-    <div className="product">
-      <img
-        src="https://i.imgur.com/EHyR2nP.png"
-        alt="The cover of Stubborn Attachments"
-      />
-      <div className="description">
-        <h3>Stubborn Attachments</h3>
-        <h5>$20.00</h5>
-      </div>
-    </div>
-    <button
-      type="button"
-      id="checkout-button"
-      role="link"
-      onClick={handleClick}
-    >
-      Checkout
-    </button>
-  </section>
-);
-const Message = ({ message }) => (
-  <section>
-    <p>{message}</p>
-  </section>
-);
-
-function Stripe() {
   const [message, setMessage] = useState("");
+  const [item, setItem] = useState(props.item);
+  const [amount, setAmount] = useState(props.amount);
+  const [quantity, setQuantity] = useState(props.quantity);
+
+  const ProductDisplay = ({ handleClick }) => (
+    <section>
+      <div className="product">
+        <img
+          src="https://i.imgur.com/EHyR2nP.png"
+          alt="The cover of Stubborn Attachments"
+        />
+        <div className="description">
+          <h3>{item}</h3>
+          <h5>{amount}</h5>
+        </div>
+      </div>
+      <button
+        type="button"
+        id="checkout-button"
+        role="link"
+        onClick={handleClick}
+      >
+        Checkout
+      </button>
+    </section>
+  );
+  const Message = ({ message }) => (
+    <section>
+      <p>{message}</p>
+    </section>
+  );
+
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
     if (query.get("success")) {
       setMessage("Order placed! You will receive an email confirmation.");
+      console.log(item)
     }
     if (query.get("canceled")) {
       setMessage(
@@ -50,6 +54,15 @@ function Stripe() {
   }, []);
 
   const handleClick = async (event) => {
+    var datetokeep = { 
+      type: props.type,
+      date: props.date,
+      time: props.time,
+      note: props.note,
+      user: props.user,
+      doctor: props.doctor, 
+    };
+    localStorage.setItem("datetokeep", JSON.stringify(datetokeep));
     const stripe = await stripePromise;
     const response = await fetch(
       "http://localhost:8000/api/v1/create-checkout-session/",
@@ -60,8 +73,9 @@ function Stripe() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          amount: 5000,
-          quantity: "1",
+          amount,
+          quantity,
+          item,
         }),
       }
     );
@@ -76,16 +90,20 @@ function Stripe() {
       // using `result.error.message`.
     }
   };
+
+ 
+   
+
   return message ? (
     <>
       <div className="product">
-        <img
+        {/* <img
           src="https://i.imgur.com/EHyR2nP.png"
           alt="The cover of Stubborn Attachments"
-        />
+        /> */}
         <div className="description">
-          <h3>Stubborn Attachments</h3>
-          <h5>$20.00</h5>
+          <h3>{item}</h3>
+          <h5>{amount}</h5>
         </div>
       </div>
       <Message message={message} />

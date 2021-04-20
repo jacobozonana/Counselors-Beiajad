@@ -37,10 +37,10 @@ X-Hacer un boton para eliminar la cuenta del usuario en su perfil(Hecho)
 
 X-Buscar servicio de confirmacion de cuenta y notificaciones de citas (Hecho)
 
+X-Aplicar el modo pago (Hecho) y se puede que existan los descuentos (si se puede solo hay que hacer los ajustes en el portal de Stripe)
+
 -Pensar bien que informacion mostrar de los doctores ya que todos los doctores se van a poder buscar entre si
-
--Aplicar el modo pago y se puede que existan los descuentos
-
+ 
 -meter css en la pagina de faq
 
 -poner chat
@@ -61,7 +61,7 @@ X-cuando se genera la cita mandar mail de confirmacion (Hecho)
 -validador que no se puede cancelar la cita con un limite de tiempo ( no lo creo conveniente )
 -cuando se genera la cita mandar mensaje de texto de confirmacion
 -y recordatorios de citas mismo dia y misma semana
-.env para el front las URL tambien del front..
+X-.env para el front las URL tambien del front.. (Hecho, falta terminar las rautas pero ya funciona)
 
 X-sendgrid (Hecho)
 X-jsPDF (Hecho)
