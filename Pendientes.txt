@@ -57,11 +57,11 @@ X-despues del swal poner history .push para redireccionar(Hecho)
 X-poder hacer comentario sobre los doctores. y sobre los pacientes (Hecho)
 X-doctor que puedo bloquear ciertos horarios y dias (Hecho)
 X-cuando se genera la cita mandar mail de confirmacion (Hecho)
+X-.env para el front las URL tambien del front.. (Hecho)
 -hacer uncheck en las citas si atendio la cita o no.
 -validador que no se puede cancelar la cita con un limite de tiempo ( no lo creo conveniente )
 -cuando se genera la cita mandar mensaje de texto de confirmacion
 -y recordatorios de citas mismo dia y misma semana
-X-.env para el front las URL tambien del front.. (Hecho, falta terminar las rautas pero ya funciona)
 
 X-sendgrid (Hecho)
 X-jsPDF (Hecho)

@@ -2,11 +2,8 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
 import {
   Nav,
-  Dropdown,
-  DropdownButton,
   NavDropdown,
   Navbar,
-  Button,
 } from "react-bootstrap";
 import Logo from "../../../Counselor/Logo.jpg";
 import Login from "../../Users/Login";
@@ -89,12 +86,12 @@ const Header = () => {
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
-            <Nav.Link href="mailto:couselorsbeiajad@gmail.com">
+            <Nav.Link href={`mailto:${process.env.REACT_APP_MAIL}`}>
               <h4 id="contact" className="alineacion">
                 <i className="far fa-envelope"></i>
               </h4>
             </Nav.Link>
-            <Nav.Link href="https://api.whatsapp.com/send?phone=5491152470444">
+            <Nav.Link href={process.env.REACT_APP_WHATSAPP}>
               <h4 className="alineacion">
                 <i className="fab fa-whatsapp"></i>
               </h4>
@@ -137,12 +134,12 @@ const Header = () => {
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
-            <Nav.Link href="mailto:couselorsbeiajad@gmail.com">
+            <Nav.Link href={`mailto:${process.env.REACT_APP_MAIL}`}>
               <h4 id="contact" className="alineacion">
                 <i className="far fa-envelope"></i>
               </h4>
             </Nav.Link>
-            <Nav.Link href="https://api.whatsapp.com/send?phone=5491152470444">
+            <Nav.Link href={process.env.REACT_APP_WHATSAPP}>
               <h4 className="alineacion">
                 <i className="fab fa-whatsapp"></i>
               </h4>
@@ -179,12 +176,12 @@ const Header = () => {
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
-          <Nav.Link href="mailto:couselorsbeiajad@gmail.com">
+          <Nav.Link href={`mailto:${process.env.REACT_APP_MAIL}`}>
             <h4 id="contact" className="alineacion">
               <i className="far fa-envelope"></i>
             </h4>
           </Nav.Link>
-          <Nav.Link href="https://api.whatsapp.com/send?phone=5491152470444">
+          <Nav.Link href={process.env.REACT_APP_WHATSAPP}>
             <h4 className="alineacion">
               <i className="fab fa-whatsapp"></i>
             </h4>
