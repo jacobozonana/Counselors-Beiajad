@@ -1,11 +1,11 @@
 const stripe = require("stripe")(
-  "sk_test_51Igu4wGzcAtJfG2jyXDAHqWt3wGhWPz8s5gAK3V0zI9idIWKtff1uTI9ugWWaLPTawEDJugvcXR9SaP3XWEhnjsw008EL10EFg"
+  process.env.STRIPE_API_KEY
 );
 const express = require("express");
 const app = express();
 app.use(express.static("."));
 
-const YOUR_DOMAIN = "http://localhost:3000/";
+const YOUR_DOMAIN = process.env.YOUR_DOMAIN
 
 module.exports = {
   pay: async (req, res) => {
