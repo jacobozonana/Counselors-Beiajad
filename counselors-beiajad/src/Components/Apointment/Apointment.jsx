@@ -160,7 +160,7 @@ function Apointment() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const stripePromise = loadStripe(
-    "pk_test_51Igu4wGzcAtJfG2jEuOZrsw0aDN0inDpktv8angrEEHB7YrqjQoqjyUvrI1oipzZGneTvBs7G9xRZYZSe3vff4s900MPYqkp8o"
+    process.env.REACT_APP_STRIPE
   );
 
   //---------------All this its react-modern-calendar-datepicker config---------------------------------
@@ -250,7 +250,7 @@ function Apointment() {
     localStorage.setItem("datetokeep", JSON.stringify(datetokeep));
     const stripe = await stripePromise;
     const response = await fetch(
-      "${process.env.REACT_APP_API}create-checkout-session/",
+      `${process.env.REACT_APP_API}create-checkout-session/`,
       {
         method: "POST",
         headers: {
