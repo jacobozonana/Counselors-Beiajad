@@ -12,8 +12,8 @@ function EditPassword() {
   const [password, setPassword] = useState("");
   const [newpassword, setNewpassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const PASSWORDPATCH = `http://localhost:8000/api/v1/editpas/${user1.id}`;
-  const URL_GET_MAIL = `http://localhost:8000/api/v1/user/${user1.id}`;
+  const PASSWORDPATCH = `${process.env.REACT_APP_API}editpas/${user1.id}`;
+  const URL_GET_MAIL = `${process.env.REACT_APP_API}user/${user1.id}`;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

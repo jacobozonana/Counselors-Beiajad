@@ -41,7 +41,7 @@ const SignupDoctor = () => {
         tel,
       };
 
-      const SIGNUP_URL = `http://localhost:8000/api/v1/signupdoctor/${user1.id}`;
+      const SIGNUP_URL = `${process.env.REACT_APP_API}signupdoctor/${user1.id}`;
       try {
         await axios.post(SIGNUP_URL, jsonSend, {
           headers: {

@@ -10,7 +10,7 @@ function Profile(props) {
   const { isAuth, user1 } = useContext(AuthContext);
   const [data, setData] = useState([]);
   const [route, setRoute] = useState("");
-  const URL_GET_INFO = `http://localhost:8000/api/v1/${props.lista}/${user1.id}`;
+  const URL_GET_INFO = `${process.env.REACT_APP_API}${props.lista}/${user1.id}`;
 
   useEffect(() => {
     axios

@@ -21,10 +21,10 @@ function AdminList(props) {
   const [list, setList] = useState(props.lista);
   const [users, setUsers] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const URL_GET_ADMINS = `http://localhost:8000/api/v1/${props.lista}/${user1.id}`;
+  const URL_GET_ADMINS = `${process.env.REACT_APP_API}${props.lista}/${user1.id}`;
   const [attachment, setAttachment] = useState("");
   const [email, setEmail] = useState("Correo electronico");
-  const URLSENDREPORT = `http://localhost:8000/api/v1/sendreport/`;
+  const URLSENDREPORT = `${process.env.REACT_APP_API}sendreport/`;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

@@ -130,9 +130,9 @@ function ScheduleList(props) {
   const [selectedDay, setSelectedDay] = useState(defaultValue);
   const [searchText, setSearchText] = useState("Horas por dia");
   const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"]; // excluye datos del arreglo del filtro
-  const URL_GET_SCHEDULE = `http://localhost:8000/api/v1/${props.lista}/${user1.id}/${props.log}`;
+  const URL_GET_SCHEDULE = `${process.env.REACT_APP_API}${props.lista}/${user1.id}/${props.log}`;
   const [attachment, setAttachment] = useState("");
-  const URLSENDREPORT = `http://localhost:8000/api/v1/sendreport/`;
+  const URLSENDREPORT = `${process.env.REACT_APP_API}sendreport/`;
   const [email, setEmail] = useState("Correo electronico");
   const [dataxls, setDataxls] = useState([]);
   const handleClose = () => setShow(false);

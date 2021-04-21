@@ -125,8 +125,8 @@ function Apointment() {
   //-------------------------------------------------------------------------------------------------
 
   const { user1, isAuth } = useContext(AuthContext);
-  const DOCGET = `http://localhost:8000/api/v1/doctors/${user1.id}`;
-  const SCHPOST = `http://localhost:8000/api/v1/schedule/${user1.id}`;
+  const DOCGET = `${process.env.REACT_APP_API}doctors/${user1.id}`;
+  const SCHPOST = `${process.env.REACT_APP_API}schedule/${user1.id}`;
   const [schedule, setSchedule] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [date, setDate] = useState("Fecha");
@@ -154,8 +154,8 @@ function Apointment() {
   const [sinHoras, setSinHoras] = useState(false);
   const titleedbot = `${doctorName} ${doctorLname}`;
   const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"]; // excluye datos del arreglo del filtro
-  const SCHDOCGET = `http://localhost:8000/api/v1/schedulesbydoctor/${user1.id}/${doctor}`;
-  const SCHUSRGET = `http://localhost:8000/api/v1/schedulesbyuser/${user1.id}/${user1.id}`;
+  const SCHDOCGET = `${process.env.REACT_APP_API}schedulesbydoctor/${user1.id}/${doctor}`;
+  const SCHUSRGET = `${process.env.REACT_APP_API}schedulesbyuser/${user1.id}/${user1.id}`;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -250,7 +250,7 @@ function Apointment() {
     localStorage.setItem("datetokeep", JSON.stringify(datetokeep));
     const stripe = await stripePromise;
     const response = await fetch(
-      "http://localhost:8000/api/v1/create-checkout-session/",
+      "${process.env.REACT_APP_API}create-checkout-session/",
       {
         method: "POST",
         headers: {

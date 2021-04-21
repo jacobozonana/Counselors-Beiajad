@@ -40,7 +40,7 @@ const Register = () => {
         tel,
       };
 
-      const SIGNUP_URL = `http://localhost:8000/api/v1/signupuser/`;
+      const SIGNUP_URL = `${process.env.REACT_APP_API}signupuser/`;
       try {
         await axios.post(SIGNUP_URL, jsonSend);
         setFirstName("");

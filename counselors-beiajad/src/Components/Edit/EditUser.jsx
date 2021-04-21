@@ -18,7 +18,7 @@ function EditUser(props) {
   const [tel, setTel] = useState(props.tel);
   const [specialty, setSpecialty] = useState(props.specialty);
   const [email, setEmail] = useState(undefined);
-  const USERPATCH = `http://localhost:8000/api/v1/${props.route}/${user1.id}/${props.id}`;
+  const USERPATCH = `${process.env.REACT_APP_API}${props.route}/${user1.id}/${props.id}`;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

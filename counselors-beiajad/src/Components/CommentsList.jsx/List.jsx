@@ -7,7 +7,7 @@ import DeleteComment from "../Delete/DeleteComment";
 function CommentsList(props) {
   const { isAuth, user1 } = useContext(AuthContext);
   const [data, setData] = useState([]);
-  const URL_GET_COMMENTS = `http://localhost:8000/api/v1/commentsbyabout/${user1.id}/${props.id}`;
+  const URL_GET_COMMENTS = `${process.env.REACT_APP_API}commentsbyabout/${user1.id}/${props.id}`;
 
   useEffect(() => {
     axios

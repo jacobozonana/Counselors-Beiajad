@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 function DeleteSchedule(props) {
   const { isAuth, user1 } = useContext(AuthContext);
-  const URLDELETE = `http://localhost:8000/api/v1/schedule/${user1.id}/${props.id}`;
+  const URLDELETE = `${process.env.REACT_APP_API}schedule/${user1.id}/${props.id}`;
 
   const Borrar = () => {
     Swal.fire({

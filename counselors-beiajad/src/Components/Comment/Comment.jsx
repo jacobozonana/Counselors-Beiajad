@@ -8,7 +8,7 @@ import "react-modern-calendar-datepicker/lib/DatePicker.css";
 
 function Apointment(props) {
   const { user1, isAuth } = useContext(AuthContext);
-  const COMPOST = `http://localhost:8000/api/v1/comment/${user1.id}`;
+  const COMPOST = `${process.env.REACT_APP_API}comment/${user1.id}`;
   const [date] = useState(Date.now());
   const [subject, setSubject] = useState("Asunto");
   const [note, setNote] = useState("Escribe aqui tu comentario");

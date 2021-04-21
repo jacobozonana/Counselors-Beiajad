@@ -18,8 +18,8 @@ function ScheduleListOfUser() {
   const [schedule, setSchedule] = useState([]);
   const [dataxls, setDataxls] = useState([]);
   const [order, setOrder] = useState("date");
-  const URL_GET_USER = `http://localhost:8000/api/v1/schedulesbyuser/${user1.id}/${user1.id}`;
-  const URLSENDREPORT = `http://localhost:8000/api/v1/sendreport/`;
+  const URL_GET_USER = `${process.env.REACT_APP_API}schedulesbyuser/${user1.id}/${user1.id}`;
+  const URLSENDREPORT = `${process.env.REACT_APP_API}sendreport/`;
   const [show, setShow] = useState(false);
   const [attachment, setAttachment] = useState("");
   const [email, setEmail] = useState("Correo electronico");

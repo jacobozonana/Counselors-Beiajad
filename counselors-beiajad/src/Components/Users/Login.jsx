@@ -11,7 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { loginUser } = useContext(AuthContext);
-  const LOGIN_URL = `http://localhost:8000/api/v1/login/`;
+  const LOGIN_URL = `${process.env.REACT_APP_API}login/`;
   const history = useHistory();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);

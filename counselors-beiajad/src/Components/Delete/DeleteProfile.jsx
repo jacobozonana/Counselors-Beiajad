@@ -8,9 +8,9 @@ function DeleteUser(props) {
   const [schedule, setSchedule] = useState([]);
   const [usercombau, setUsercombau] = useState([]);
   const [usercombab, setUsercombab] = useState([]);
-  const URLGETUSERDATES = `http://localhost:8000/api/v1/${props.route1}/${user1.id}/${user1.id}`;
-  const URLGETUSERCOMBAU = `http://localhost:8000/api/v1/${props.route2}/${user1.id}/${user1.id}`;
-  const URLGETUSERCOMBAB = `http://localhost:8000/api/v1/${props.route3}/${user1.id}/${user1.id}`;
+  const URLGETUSERDATES = `${process.env.REACT_APP_API}${props.route1}/${user1.id}/${user1.id}`;
+  const URLGETUSERCOMBAU = `${process.env.REACT_APP_API}${props.route2}/${user1.id}/${user1.id}`;
+  const URLGETUSERCOMBAB = `${process.env.REACT_APP_API}${props.route3}/${user1.id}/${user1.id}`;
 
   useEffect(() => {
     axios
@@ -56,7 +56,7 @@ function DeleteUser(props) {
     }).then((result) => {
       if (result.isConfirmed) {
         for (let i = 0; i < schedule.length; i++) {
-          const URLDELETEDATES = `http://localhost:8000/api/v1/schedule/${user1.id}/${schedule[i]._id}`;
+          const URLDELETEDATES = `${process.env.REACT_APP_API}schedule/${user1.id}/${schedule[i]._id}`;
           axios
             .delete(URLDELETEDATES, {
               headers: {
@@ -70,7 +70,7 @@ function DeleteUser(props) {
         }
 
         for (let i = 0; i < usercombau.length; i++) {
-          const URLDELETECOMMENTS = `http://localhost:8000/api/v1/comment/${user1.id}/${usercombau[i]._id}`;
+          const URLDELETECOMMENTS = `${process.env.REACT_APP_API}comment/${user1.id}/${usercombau[i]._id}`;
           axios
             .delete(URLDELETECOMMENTS, {
               headers: {
@@ -84,7 +84,7 @@ function DeleteUser(props) {
         }
 
         for (let i = 0; i < usercombab.length; i++) {
-          const URLDELETECOMMENT = `http://localhost:8000/api/v1/comment/${user1.id}/${usercombab[i]._id}`;
+          const URLDELETECOMMENT = `${process.env.REACT_APP_API}comment/${user1.id}/${usercombab[i]._id}`;
           axios
             .delete(URLDELETECOMMENT, {
               headers: {
@@ -97,7 +97,7 @@ function DeleteUser(props) {
             });
         }
 
-        const URLDELETEUSER = `http://localhost:8000/api/v1/${props.route}/${user1.id}/${user1.id}`;
+        const URLDELETEUSER = `${process.env.REACT_APP_API}${props.route}/${user1.id}/${user1.id}`;
         axios
           .delete(URLDELETEUSER, {
             headers: {

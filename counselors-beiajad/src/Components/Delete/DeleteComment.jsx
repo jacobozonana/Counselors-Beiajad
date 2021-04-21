@@ -6,7 +6,7 @@ import "../../index.css";
 
 function DeleteComment(props) {
   const { isAuth, user1 } = useContext(AuthContext);
-  const URLDELETE = `http://localhost:8000/api/v1/comment/${user1.id}/${props.id}`;
+  const URLDELETE = `${process.env.REACT_APP_API}comment/${user1.id}/${props.id}`;
 
   const Borrar = () => {
     console.log("click");

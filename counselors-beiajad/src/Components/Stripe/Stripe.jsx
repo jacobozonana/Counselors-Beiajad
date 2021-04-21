@@ -65,7 +65,7 @@ const stripePromise = loadStripe(
     localStorage.setItem("datetokeep", JSON.stringify(datetokeep));
     const stripe = await stripePromise;
     const response = await fetch(
-      "http://localhost:8000/api/v1/create-checkout-session/",
+      `${process.env.REACT_APP_API}create-checkout-session/`,
       {
         method: "POST",
         headers: {

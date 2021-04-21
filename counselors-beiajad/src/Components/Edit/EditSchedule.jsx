@@ -150,10 +150,10 @@ function EditSchedule(props) {
   const [sinHoras, setSinHoras] = useState(false);
   const titleedbot = `${doctorName} ${doctorLname}`;
   const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"]; // excluye datos del arreglo del filtro
-  const SCHDOCGET = `http://localhost:8000/api/v1/schedulesbydoctor/${user1.id}/${doctor}`;
-  const SCHUSRGET = `http://localhost:8000/api/v1/schedulesbyuser/${user1.id}/${user1.id}`;
-  const DOCGET = `http://localhost:8000/api/v1/doctors/${user1.id}`;
-  const SCHPATCH = `http://localhost:8000/api/v1/schedule/${user1.id}/${props.id}`;
+  const SCHDOCGET = `${process.env.REACT_APP_API}schedulesbydoctor/${user1.id}/${doctor}`;
+  const SCHUSRGET = `${process.env.REACT_APP_API}schedulesbyuser/${user1.id}/${user1.id}`;
+  const DOCGET = `${process.env.REACT_APP_API}doctors/${user1.id}`;
+  const SCHPATCH = `${process.env.REACT_APP_API}schedule/${user1.id}/${props.id}`;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

@@ -117,7 +117,7 @@ function BlockApointment() {
   //-------------------------------------------------------------------------------------------------
 
   const { user1, isAuth } = useContext(AuthContext);
-  const DOCGET = `http://localhost:8000/api/v1/doctors/${user1.id}`;
+  const DOCGET = `${process.env.REACT_APP_API}doctors/${user1.id}`;
   const [schedule, setSchedule] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [date, setDate] = useState("Fecha");
@@ -143,8 +143,8 @@ function BlockApointment() {
   const [apa, setApa] = useState("btn btn-info boton apagado");
   const [sinHoras, setSinHoras] = useState(false);
   const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"]; // excluye datos del arreglo del filtro
-  const SCHDOCGET = `http://localhost:8000/api/v1/schedulesbydoctor/${user1.id}/${user1.id}`;
-  const SCHUSRGET = `http://localhost:8000/api/v1/schedulesbyuser/${user1.id}/${user1.id}`;
+  const SCHDOCGET = `${process.env.REACT_APP_API}schedulesbydoctor/${user1.id}/${user1.id}`;
+  const SCHUSRGET = `${process.env.REACT_APP_API}schedulesbyuser/${user1.id}/${user1.id}`;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -302,7 +302,7 @@ function BlockApointment() {
 
   const saveDate = () => {
     for (let i = 0; i < hours.length; i++) {
-      const SCHPOST1 = `http://localhost:8000/api/v1/scheduleblock/${user1.id}`;
+      const SCHPOST1 = `${process.env.REACT_APP_API}scheduleblock/${user1.id}`;
       let x = date.slice(0, 11);
       const date1 = `${x}${hours[i]}`;
       axios
@@ -349,7 +349,7 @@ function BlockApointment() {
 
   const saveDay = () => {
     for (let i = 0; i < botones.length; i++) {
-      const SCHPOST1 = `http://localhost:8000/api/v1/scheduleblock/${user1.id}`;
+      const SCHPOST1 = `${process.env.REACT_APP_API}scheduleblock/${user1.id}`;
       let x = date.slice(0, 11);
       const date1 = `${x}${botones[i]}`;
       axios
