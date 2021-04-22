@@ -314,7 +314,7 @@ function ScheduleList(props) {
       }
     });
 
-    let inf = data2.filter((v) => v.type == false);
+    let inf = data2.filter((v) => v.type === false);
     let date = inf.map((v) => v.date.split("T")[0]);
     let time = inf.map((v) => v.time);
     let docfna = inf.map((v) => v.doctor[0].first_name);
@@ -466,8 +466,8 @@ function ScheduleList(props) {
           </>
         ) : user1.role === "doctor" ? (
           <>
-            <div class="d-flex justify-content-between">
-              <div class="p-2">
+            <div className="d-flex justify-content-between">
+              <div className="p-2">
                 <DatePicker
                   value={selectedDay}
                   onChange={
@@ -484,7 +484,7 @@ function ScheduleList(props) {
                   calendarTodayClassName="custom-today-day"
                 />
               </div>
-              <div class="p-2">
+              <div className="p-2">
                 <Button
                   className="alldat"
                   variant="outline-info"
@@ -493,13 +493,13 @@ function ScheduleList(props) {
                   Ver todas las horas libres
                 </Button>
               </div>
-              <div class="p-2">
-                <div class="d-flex justify-content-end">
-                  <div class="p-2">
+              <div className="p-2">
+                <div className="d-flex justify-content-end">
+                  <div className="p-2">
                     {" "}
                     <BlockApointment />
                   </div>
-                  <div class="p-2">
+                  <div className="p-2">
                     {" "}
                     {/* ///DESDE AQUI EMPIEZA LOS REPORTES PDF */}
                     <Button

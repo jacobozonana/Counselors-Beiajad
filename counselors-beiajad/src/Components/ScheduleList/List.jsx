@@ -314,7 +314,7 @@ function ScheduleList(props) {
       }
     });
 
-    let inf = data2.filter((v) => v.type == true);
+    let inf = data2.filter((v) => v.type === true);
     let date = inf.map((v) => v.date.split("T")[0]);
     let usefna = inf.map((v) => v.user[0].first_name);
     let uselna = inf.map((v) => v.user[0].last_name);

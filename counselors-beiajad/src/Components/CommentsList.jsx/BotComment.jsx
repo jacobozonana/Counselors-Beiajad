@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Button, Modal, Col } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import "../../index.css";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import CommentsList from "./List";

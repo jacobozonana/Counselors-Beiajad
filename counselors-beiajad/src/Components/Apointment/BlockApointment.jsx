@@ -117,17 +117,17 @@ function BlockApointment() {
   //-------------------------------------------------------------------------------------------------
 
   const { user1, isAuth } = useContext(AuthContext);
-  const DOCGET = `${process.env.REACT_APP_API}doctors/${user1.id}`;
+  // const DOCGET = `${process.env.REACT_APP_API}doctors/${user1.id}`;
   const [schedule, setSchedule] = useState([]);
-  const [doctors, setDoctors] = useState([]);
+  // const [doctors, setDoctors] = useState([]);
   const [date, setDate] = useState("Fecha");
-  const [time, setTime] = useState("Hora");
+  // const [time, setTime] = useState("Hora");
   const [note, setNote] = useState("Escribe la razón");
   const [user] = useState(user1.id);
-  const [usrdates, setUsrdates] = useState([]);
-  const [usdat, setUsdat] = useState([]);
+  // const [usrdates, setUsrdates] = useState([]);
+  // const [usdat, setUsdat] = useState([]);
   const [selectedDay, setSelectedDay] = useState(defaultValue);
-  const [fecha, setFecha] = useState("");
+  // const [fecha, setFecha] = useState("");
   const [data, setData] = useState([]);
   const [display, setDisplay] = useState("off");
   const [botones, setBotones] = useState([
@@ -140,11 +140,11 @@ function BlockApointment() {
   ]);
   const [borbot, setBorbot] = useState([]);
   const [hours, setHours] = useState([]);
-  const [apa, setApa] = useState("btn btn-info boton apagado");
+  // const [apa, setApa] = useState("btn btn-info boton apagado");
   const [sinHoras, setSinHoras] = useState(false);
   const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"]; // excluye datos del arreglo del filtro
   const SCHDOCGET = `${process.env.REACT_APP_API}schedulesbydoctor/${user1.id}/${user1.id}`;
-  const SCHUSRGET = `${process.env.REACT_APP_API}schedulesbyuser/${user1.id}/${user1.id}`;
+  // const SCHUSRGET = `${process.env.REACT_APP_API}schedulesbyuser/${user1.id}/${user1.id}`;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -168,27 +168,27 @@ function BlockApointment() {
 
   //------------------------------------------------------------------------------------------------------
 
-  useEffect(() => {
-    axios
-      .get(SCHUSRGET, {
-        headers: {
-          Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
-        },
-      })
-      .then((data) => setUsrdates(data.data))
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(SCHUSRGET, {
+  //       headers: {
+  //         Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+  //       },
+  //     })
+  //     .then((data) => setUsrdates(data.data))
+  //     .catch((err) => console.log(err));
+  // }, []);
 
-  useEffect(() => {
-    axios
-      .get(DOCGET, {
-        headers: {
-          Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
-        },
-      })
-      .then((data) => setDoctors(data.data))
-      .catch((err) => console.log(err));
-  }, [usrdates]);
+  // useEffect(() => {
+  //   axios
+  //     .get(DOCGET, {
+  //       headers: {
+  //         Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+  //       },
+  //     })
+  //     .then((data) => setDoctors(data.data))
+  //     .catch((err) => console.log(err));
+  // }, [usrdates]);
 
   useEffect(() => {
     axios
@@ -205,9 +205,9 @@ function BlockApointment() {
     setSinHoras(false);
     setBotones(["10:00", "11:00", "12:00", "13:00", "14:00", "15:00"]);
     setBorbot([""]);
-    setApa("btn btn-info boton");
+    // setApa("btn btn-info boton");
     setDisplay("");
-    setTime("Hora");
+    // setTime("Hora");
     setHours([]);
 
     if (selectedDay.month < 10) {
@@ -218,9 +218,9 @@ function BlockApointment() {
         filterData(
           `${selectedDay.year}-0${selectedDay.month}-0${selectedDay.day}T`
         );
-        setFecha(
-          `0${selectedDay.day}/0${selectedDay.month}/${selectedDay.year}T     `
-        );
+        // setFecha(
+        //   `0${selectedDay.day}/0${selectedDay.month}/${selectedDay.year}T     `
+        // );
       } else {
         setDate(
           `${selectedDay.year}-0${selectedDay.month}-${selectedDay.day}T`
@@ -228,9 +228,9 @@ function BlockApointment() {
         filterData(
           `${selectedDay.year}-0${selectedDay.month}-${selectedDay.day}T`
         );
-        setFecha(
-          `${selectedDay.day}/0${selectedDay.month}/${selectedDay.year}T     `
-        );
+        // setFecha(
+        //   `${selectedDay.day}/0${selectedDay.month}/${selectedDay.year}T     `
+        // );
       }
     } else {
       if (selectedDay.day < 10) {
@@ -240,17 +240,17 @@ function BlockApointment() {
         filterData(
           `${selectedDay.year}-${selectedDay.month}-0${selectedDay.day}T`
         );
-        setFecha(
-          `0${selectedDay.day}/${selectedDay.month}/${selectedDay.year}T     `
-        );
+        // setFecha(
+        //   `0${selectedDay.day}/${selectedDay.month}/${selectedDay.year}T     `
+        // );
       } else {
         setDate(`${selectedDay.year}-${selectedDay.month}-${selectedDay.day}T`);
         filterData(
           `${selectedDay.year}-${selectedDay.month}-${selectedDay.day}T`
         );
-        setFecha(
-          `${selectedDay.day}/${selectedDay.month}/${selectedDay.year}T     `
-        );
+        // setFecha(
+        //   `${selectedDay.day}/${selectedDay.month}/${selectedDay.year}T     `
+        // );
       }
     }
   };
@@ -282,23 +282,23 @@ function BlockApointment() {
     }
   }, [data]);
 
-  useEffect(() => {
-    let usdates = [];
-    usrdates.map((info) => usdates.push(info.date));
-    let year = usdates.map((v) => parseInt(v.slice(0, 4)));
-    let month = usdates.map((v) => parseInt(v.slice(5, 7)));
-    let day = usdates.map((v) => parseInt(v.slice(8, 10)));
-    let datos = [];
+  // useEffect(() => {
+  //   let usdates = [];
+  //   usrdates.map((info) => usdates.push(info.date));
+  //   let year = usdates.map((v) => parseInt(v.slice(0, 4)));
+  //   let month = usdates.map((v) => parseInt(v.slice(5, 7)));
+  //   let day = usdates.map((v) => parseInt(v.slice(8, 10)));
+  //   let datos = [];
 
-    for (var i = 0; i < year.length; i++) {
-      datos.push({
-        year: year[i],
-        month: month[i],
-        day: day[i],
-      });
-      setUsdat(datos);
-    }
-  }, [usrdates]);
+  //   for (var i = 0; i < year.length; i++) {
+  //     datos.push({
+  //       year: year[i],
+  //       month: month[i],
+  //       day: day[i],
+  //     });
+  //     setUsdat(datos);
+  //   }
+  // }, [usrdates]);
 
   const saveDate = () => {
     for (let i = 0; i < hours.length; i++) {

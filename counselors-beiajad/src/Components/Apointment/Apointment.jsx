@@ -209,7 +209,6 @@ function Apointment() {
         })
         .then(() => {
           Swal.fire({
-            allowEscapeKey: true,
             icon: "success",
             title: "Tu cita ya esta agendada, nos vemos pronto!",
             confirmButtonText: `Ok`,

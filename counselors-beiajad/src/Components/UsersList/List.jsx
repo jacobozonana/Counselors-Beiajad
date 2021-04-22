@@ -117,7 +117,7 @@ function AdminList(props) {
   /// DESDE AQUI EMPIEZA LOS REPORTES PDF
   useEffect(() => {
     let list1 = list;
-    if (list1 == "admins") {
+    if (list1 === "admins") {
       const doc = new jsPDF();
       doc.autoTable({
         margin: { top: 50 },
@@ -125,10 +125,10 @@ function AdminList(props) {
       doc.text("Administradores", 20, 30);
       doc.addImage(img, "JPEG", 160, 15, 20, 20);
       doc.autoTable({ html: "#table" });
-      var att = doc.output("arraybuffer");
-      var base64File = encode.encode(att, "base64");
+      let att = doc.output("arraybuffer");
+      let base64File = encode.encode(att, "base64");
       setAttachment(base64File);
-    } else if (list1 == "doctors") {
+    } else if (list1 === "doctors") {
       const doc = new jsPDF();
       doc.autoTable({
         margin: { top: 50 },
@@ -136,10 +136,10 @@ function AdminList(props) {
       doc.text("Doctores", 20, 30);
       doc.addImage(img, "JPEG", 160, 15, 20, 20);
       doc.autoTable({ html: "#table" });
-      var att = doc.output("arraybuffer");
-      var base64File = encode.encode(att, "base64");
+      let att = doc.output("arraybuffer");
+      let base64File = encode.encode(att, "base64");
       setAttachment(base64File);
-    } else if (list1 == "usuarios") {
+    } else if (list1 === "usuarios") {
       const doc = new jsPDF();
       doc.autoTable({
         margin: { top: 50 },
@@ -147,8 +147,8 @@ function AdminList(props) {
       doc.text("Usuarios", 20, 30);
       doc.addImage(img, "JPEG", 160, 15, 20, 20);
       doc.autoTable({ html: "#table" });
-      var att = doc.output("arraybuffer");
-      var base64File = encode.encode(att, "base64");
+      let att = doc.output("arraybuffer");
+      let base64File = encode.encode(att, "base64");
       setAttachment(base64File);
     }
   }, [email]);
@@ -193,7 +193,7 @@ function AdminList(props) {
 
   const downloadPdf = () => {
     let list1 = list;
-    if (list1 == "admins") {
+    if (list1 === "admins") {
       const doc = new jsPDF();
       const text = "Administradores";
       doc.autoTable({
@@ -203,7 +203,7 @@ function AdminList(props) {
       doc.addImage(img, "JPEG", 160, 15, 20, 20);
       doc.autoTable({ html: "#table" });
       doc.save("Administradores.pdf");
-    } else if (list1 == "doctors") {
+    } else if (list1 === "doctors") {
       const doc = new jsPDF();
       const text = "Doctores";
       doc.autoTable({
@@ -213,7 +213,7 @@ function AdminList(props) {
       doc.addImage(img, "JPEG", 160, 15, 20, 20);
       doc.autoTable({ html: "#table" });
       doc.save("Doctores.pdf");
-    } else if (list1 == "usuarios") {
+    } else if (list1 === "usuarios") {
       const doc = new jsPDF();
       const text = "Usuarios";
       doc.autoTable({
@@ -236,7 +236,7 @@ function AdminList(props) {
 
   useEffect(() => {
     let list1 = list;
-    if (list1 == "admins") {
+    if (list1 === "admins") {
       let fname = data1.map((v) => v.first_name);
       let lname = data1.map((v) => v.last_name);
       let email = data1.map((v) => v.email);
@@ -253,7 +253,7 @@ function AdminList(props) {
         });
         setDataxls(datos);
       }
-    } else if (list1 == "doctors") {
+    } else if (list1 === "doctors") {
       let fname = data1.map((v) => v.first_name);
       let lname = data1.map((v) => v.last_name);
       let country = data1.map((v) => v.country);
@@ -263,7 +263,7 @@ function AdminList(props) {
 
       let datos = [];
 
-      for (var i = 0; i < fname.length; i++) {
+      for (let i = 0; i < fname.length; i++) {
         datos.push({
           Nombre: fname[i],
           Apellido: lname[i],
@@ -274,7 +274,7 @@ function AdminList(props) {
         });
         setDataxls(datos);
       }
-    } else if (list1 == "usuarios") {
+    } else if (list1 === "usuarios") {
       let fname = data1.map((v) => v.first_name);
       let lname = data1.map((v) => v.last_name);
       let age = data1.map((v) => v.age);
@@ -285,7 +285,7 @@ function AdminList(props) {
 
       let datos = [];
 
-      for (var i = 0; i < fname.length; i++) {
+      for (let i = 0; i < fname.length; i++) {
         datos.push({
           Nombre: fname[i],
           Apellido: lname[i],

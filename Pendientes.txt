@@ -153,3 +153,8 @@ PassWord:
   // };
 
   // <button onClick={pdf}>pdf</button>
+
+
+  Ocurrencias.
+  Poder mandar mensajes por correo desde la aplicacion al doctor y usuario
+  Hacer un formulacio de contacto con correo al administrador
