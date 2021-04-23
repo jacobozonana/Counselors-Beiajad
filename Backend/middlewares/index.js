@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
 
 module.exports = {
   verifyToken: (req, res, next) => {
@@ -13,5 +14,47 @@ module.exports = {
     } catch (err) {
       res.status(401).json({ message: "Auth error", err });
     }
+  },
+  storage: (req, res, next) => {
+    const storage = multer.diskStorage({
+      destination: function (req, file, cb) {
+        cb(null, "uploads/");
+      },
+      filename: function (req, file, cb) {
+        // console.log(file);
+        cb(null, file.originalname);
+      },
+    });
+    const upload = multer({ storage }).single("file");
+    upload(req, res, function (err) {
+      if (err) {
+        return res.send(err);
+      }
+      res.json(req.file);
+      // console.log("file uploaded to server");
+      // console.log(req.file);
+
+      const cloudinary = require("cloudinary").v2;
+      cloudinary.config({
+        cloud_name: process.env.CLOUD_NAME,
+        api_key: process.env.API_KEY_CLOUDINARY,
+        api_secret: process.env.API_SECRET_CLOUDINARY,
+      });
+      const path = req.file.path;
+      const uniqueFilename = new Date().toISOString();
+      cloudinary.uploader.upload(
+        path,
+        { public_id: `uploads/${uniqueFilename}`, tags: `uploads` }, // directory and tags are optional
+        function (err, image) {
+          if (err) return res.send(err);
+          // console.log("file uploaded to Cloudinary");
+          // remove file from server
+          const fs = require("fs");
+          fs.unlinkSync(path);
+          // return image details
+          // console.log(image);
+        }
+      );
+    });
   },
 };
