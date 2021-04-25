@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { CommentController } = require('../controllers');
 const { CommentValidator } = require('../validators')
-const { verifyToken } = require('../middlewares')
+const { verifyToken } = require('../middlewares/VerifyToken')
 
 router.get('/comments/:id/', verifyToken, CommentController.findAll)
 router.get('/commentsbyauthor/:id/:id2', verifyToken, CommentController.findAllCommentsByAuthor)

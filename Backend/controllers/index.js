@@ -1,11 +1,11 @@
 const UserController = require("./UserController");
 const ScheduleController = require("./ScheduleController");
 const CommentController = require("./CommentController");
-const ImageController = require("./ImageController");
+const FileController = require("./FileController");
 
 module.exports = {
   UserController,
   ScheduleController,
   CommentController,
-  ImageController,
+  FileController,
 };

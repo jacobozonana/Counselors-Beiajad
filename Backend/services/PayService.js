@@ -1,11 +1,5 @@
-const stripe = require("stripe")(
-  process.env.STRIPE_API_KEY
-);
-const express = require("express");
-const app = express();
-app.use(express.static("."));
-
-const YOUR_DOMAIN = process.env.YOUR_DOMAIN
+const stripe = require("stripe")(process.env.STRIPE_API_KEY);
+const YOUR_DOMAIN = process.env.YOUR_DOMAIN;
 
 module.exports = {
   pay: async (req, res) => {

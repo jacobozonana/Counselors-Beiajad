@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { UserController } = require('../controllers');
 const { UserValidator } = require('../validators')
-const { verifyToken } = require('../middlewares')
+const { verifyToken } = require('../middlewares/VerifyToken')
 
 router.get('/users/:id', verifyToken,  UserController.findAll)
 router.get('/user/:id', verifyToken, UserController.findOne)

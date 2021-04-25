@@ -249,7 +249,7 @@ function Apointment() {
     localStorage.setItem("datetokeep", JSON.stringify(datetokeep));
     const stripe = await stripePromise;
     const response = await fetch(
-      `${process.env.REACT_APP_API}create-checkout-session/`,
+      `${process.env.REACT_APP_API}paydate/`,
       {
         method: "POST",
         headers: {

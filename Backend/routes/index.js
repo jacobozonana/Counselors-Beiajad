@@ -7,6 +7,6 @@ router.use(require("./ScheduleRoutes"));
 router.use(require("./CommentRoutes"));
 router.use(require("./ReportRoutes"));
 router.use(require("./PayRoutes"));
-router.use(require("./UploadRoutes"));
+router.use(require("./FileRoutes"));
 
 module.exports = router;
