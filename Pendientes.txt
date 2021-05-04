@@ -47,7 +47,7 @@ X-Aplicar el modo pago (Hecho) y se puede que existan los descuentos (si se pued
 
 -Que te saque de la sesion cuando se venza el token
 
--Preguntar sobre el tema de subir archivos e imagenes a la api
+X-Preguntar sobre el tema de subir archivos e imagenes a la api(Hecho)
 
 
 
@@ -58,10 +58,10 @@ X-poder hacer comentario sobre los doctores. y sobre los pacientes (Hecho)
 X-doctor que puedo bloquear ciertos horarios y dias (Hecho)
 X-cuando se genera la cita mandar mail de confirmacion (Hecho)
 X-.env para el front las URL tambien del front.. (Hecho)
--hacer uncheck en las citas si atendio la cita o no.
+-hacer uncheck en las citas si atendio la cita o no. (No se hace)
 -validador que no se puede cancelar la cita con un limite de tiempo ( no lo creo conveniente )
--cuando se genera la cita mandar mensaje de texto de confirmacion
--y recordatorios de citas mismo dia y misma semana
+-cuando se genera la cita mandar mensaje de texto de confirmacion (No se hara solo el correo)
+-Recordatorios de citas mismo dia y misma semana de las citas, mandar correo en dias y horas preestablecidas
 
 X-sendgrid (Hecho)
 X-jsPDF (Hecho)

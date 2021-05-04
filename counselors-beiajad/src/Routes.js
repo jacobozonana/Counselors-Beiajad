@@ -12,6 +12,7 @@ import DoctorsList from "./Components/UsersList/DoctorsList.jsx";
 import AdminsList from "./Components/UsersList/AdminsList.jsx";
 import BlockList from "./Components/ScheduleList/BlockList";
 import Eprofile from "./Components/Profile/Eprofile";
+import UpFiles from "./Components/Files/UpFiles"
 
 function Routes() {
   return (
@@ -29,6 +30,7 @@ function Routes() {
           <Route exact path="/adminslist" component={AdminsList} />
           <Route exact path="/profile" component={Eprofile} />
           <Route exact path="/faq" component={Faq} />
+          <Route exact path="/files" component={UpFiles} />
         </Switch>
       </AuthContextProvider>
     </BrowserRouter>

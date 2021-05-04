@@ -9,6 +9,7 @@ module.exports = {
       note: Joi.string(),
       user: Joi.string().required(),
       doctor: Joi.string().required(),
+      id: Joi.string(),
     }),
   }),
   change: celebrate({

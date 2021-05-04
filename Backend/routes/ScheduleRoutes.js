@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const { ScheduleController } = require('../controllers');
-const { ScheduleValidator } = require('../validators')
-const { verifyToken } = require('../middlewares/VerifyToken')
+const { ScheduleValidator } = require('../validators');
+const { verifyToken } = require('../middlewares/VerifyToken');
 
 router.get('/schedules/:id/', verifyToken, ScheduleController.findAll)
 router.get('/schedulesbydoctor/:id/:id2', verifyToken, ScheduleController.findAllDatesByDoctor)

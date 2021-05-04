@@ -126,7 +126,6 @@ function Apointment() {
 
   const { user1, isAuth } = useContext(AuthContext);
   const DOCGET = `${process.env.REACT_APP_API}doctors/${user1.id}`;
-  const SCHPOST = `${process.env.REACT_APP_API}schedule/${user1.id}`;
   const [schedule, setSchedule] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [date, setDate] = useState("Fecha");
@@ -159,9 +158,7 @@ function Apointment() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const stripePromise = loadStripe(
-    process.env.REACT_APP_STRIPE
-  );
+  const stripePromise = loadStripe(process.env.REACT_APP_STRIPE);
 
   //---------------All this its react-modern-calendar-datepicker config---------------------------------
 
@@ -191,78 +188,61 @@ function Apointment() {
   //------------------------------------------------------------------------------------------------------
 
   //---------------All this its Stripe config-------------------------------------------------------------
-  const [item] = useState("Cita Especial para ti");
-  const [amount] = useState(100000);
-  const [quantity] = useState(1);
-
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
     if (query.get("success")) {
-      let jsonString = localStorage.getItem("datetokeep");
-      let retrievedObject = JSON.parse(jsonString);
-      axios
-        .post(SCHPOST, retrievedObject, {
-          headers: {
-            Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
-          },
-        })
-        .then(() => {
-          Swal.fire({
-            icon: "success",
-            title: "Tu cita ya esta agendada, nos vemos pronto!",
-            confirmButtonText: `Ok`,
-            timer: 2000,
-            timerProgressBar: true,
-            allowEscapeKey: true,
-          }).then(() => {
-            localStorage.removeItem("datetokeep");
-            window.location.href = "/";
-          });
-        })
-        .catch((error) => {
-          let message = error.response.data.message;
-          Swal.fire({
-            allowEscapeKey: true,
-            icon: "error",
-            title: "Oops...",
-            text: "Lo sentimos esta acción no se pudo completar " + message,
-          });
-          console.log(error);
-        });
+      Swal.fire({
+        icon: "success",
+        title: "Tu cita ya esta agendada, nos vemos pronto!",
+        confirmButtonText: `Ok`,
+        timer: 2000,
+        timerProgressBar: true,
+        allowEscapeKey: true,
+      }).then(() => {
+        window.location.href = "/";
+      });
     }
     if (query.get("canceled")) {
-      localStorage.removeItem("datetokeep");
-      window.location.href = "/";
+      Swal.fire({
+        allowEscapeKey: true,
+        timer: 2000,
+        icon: "error",
+        title: "Oops...!!!",
+        text: "Cuando quieras puedes volver a intentarlo",
+      }).then(() => {
+        window.location.href = "/";
+      });
     }
   }, []);
 
   const handleClick = async () => {
-    let datetokeep = {
-      type: true,
-      date,
-      time,
-      note,
-      user: user,
-      doctor: doctor,
-    };
-    localStorage.setItem("datetokeep", JSON.stringify(datetokeep));
     const stripe = await stripePromise;
-    const response = await fetch(
-      `${process.env.REACT_APP_API}paydate/`,
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+    const response = await fetch(`${process.env.REACT_APP_API}paydate/`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        amount: 100000,
+        quantity: 1,
+        item: `Cita para el dia ${date.slice(0, 10)} a las ${date.slice(
+          11,
+          16
+        )} horas `,
+        datetopay: {
+          id: user1.id,
+          date,
+          doctor: doctor,
+          note,
+          time,
+          type: true,
+          user,
         },
-        body: JSON.stringify({
-          amount,
-          quantity,
-          item,
-        }),
-      }
-    );
+      }),
+    });
     const session = await response.json();
     // When the customer clicks on the button, redirect them to Checkout.
     const result = await stripe.redirectToCheckout({
@@ -272,6 +252,7 @@ function Apointment() {
       // If `redirectToCheckout` fails due to a browser or network
       // error, display the localized error message to your customer
       // using `result.error.message`.
+      console.log(result.error);
     }
   };
 

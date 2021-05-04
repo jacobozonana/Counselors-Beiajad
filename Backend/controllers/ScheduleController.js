@@ -55,7 +55,7 @@ module.exports = {
     User.findById(req.params.id).then((info) => {
       const role = info.role;
       const user = info;
-      if (role !== "admin" && role !== "user" && role !== "doctor")
+      if (role !== "admin")
         res.status(400).json({ message: "No tienes acceso" });
       else {
         const { body } = req;
@@ -111,10 +111,69 @@ module.exports = {
       }
     });
   },
+  paytocreate: (req, res) => {
+    User.findById(req.id).then((info) => {
+      const role = info.role;
+      const user = info;
+      if (role !== "user")
+        res.status(400).json({ message: "No tienes acceso" });
+      else {
+        const newSchedule = new Schedule(req);
+        newSchedule
+          .save()
+          .then(
+            (resDB) => (resDB),
+            User.findById(newSchedule.doctor[0]).then((info) => {
+              MailService.sendmail(
+                user.email,
+                "Cita creada",
+                `  
+                <!DOCTYPE html>
+                  <html>
+                    <head>
+                      <style>
+                        h1 {
+                            text-align: center;
+                          }
+                        h3 {
+                            text-align: center;
+                          }  
+                        .img-container {
+                                        display: block;
+                                        margin-left: auto;
+                                        margin-right: auto;
+                                        height: 90px;
+                                        width: auto;
+                                        border-radius: 30%;
+                                      }
+                      </style>
+                    </head>
+                    <body>
+                      <img class="img-container" alt="Logo" src="http://drive.google.com/uc?export=view&id=1ZStbt9J-8SQhcCB71hT744TO5PRLb1Mt" />              
+                      <h1>Listo ${user.first_name} ${
+                  user.last_name
+                } tu cita se creo con exito</h1>
+                      <h3 class="date">Dia: ${
+                        newSchedule.date.toLocaleString().split(",")[0]
+                      }</h3>
+                      <h3 class="date">Hora: ${newSchedule.time}</h3>
+                      <h3 class="date">Doctor: ${info.first_name} ${
+                  info.last_name
+                } </h3>
+                    </body>
+                  </html>
+            `
+              );
+            })
+          )
+          .catch((Error) => console.log(Error));
+      }
+    });
+  },
   createb: (req, res) => {
     User.findById(req.params.id).then((info) => {
       const role = info.role;
-      if (role !== "admin" && role !== "user" && role !== "doctor")
+      if (role !== "doctor")
         res.status(400).json({ message: "No tienes acceso" });
       else {
         const { body } = req;
