@@ -14,10 +14,10 @@ const stripePromise = loadStripe(
   const ProductDisplay = ({ handleClick }) => (
     <section>
       <div className="product">
-        <img
+        {/* <img
           src="https://i.imgur.com/EHyR2nP.png"
           alt="The cover of Stubborn Attachments"
-        />
+        /> */}
         <div className="description">
           <h3>{item}</h3>
           <h5>{amount}</h5>
