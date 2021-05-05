@@ -1,13 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const { verifyToken } = require('../middlewares/VerifyToken');
-const { FileController } = require('../controllers');
+const { verifyToken } = require("../middlewares/VerifyToken");
+const { FileController } = require("../controllers");
 
-router.post('/upfile', FileController.upfile)
-router.get('/findfile', FileController.findfile)
-router.get('/findallfiles', FileController.findallfiles)
-router.delete('/delfile', FileController.delfile)
-
+router.post("/upfile", verifyToken, FileController.upFile);
+router.post("/upprofile", verifyToken, FileController.upProfilePhoto);
+router.post("/findfilesbyfolder", verifyToken, FileController.findFilesByFolder);
+router.get("/findallfiles", verifyToken, FileController.findallfiles);
+router.delete("/delfile", verifyToken, FileController.delfile);
 
 module.exports = router;

@@ -16,11 +16,30 @@ module.exports = {
       console.error(error);
     }
   },
-  sendreport: async (req, res) => {
-    const { email, attachment } = req.body;
+  sendfuturemail: async (future, email, subject, text) => {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
       to: email,
+      send_at: future,
+      from: "BeiajadCounselors@gmail.com",
+      subject: subject,
+      html: text,
+    };
+    try {
+      await sgMail.send(msg);
+      // console.log("Email sent");
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  sendreport: async (req, res) => {
+    const { email, attachment } = req.body;
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    const n = Date.now();
+    const future = Math.floor(Date.now() / 1000) + 60 * 1;
+    const msg = {
+      to: email,
+      send_at: future,
       from: "BeiajadCounselors@gmail.com",
       subject: "Reporte",
       attachments: [

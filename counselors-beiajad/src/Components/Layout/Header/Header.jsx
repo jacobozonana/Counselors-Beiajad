@@ -1,10 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
-import {
-  Nav,
-  NavDropdown,
-  Navbar,
-} from "react-bootstrap";
+import { Nav, NavDropdown, Navbar } from "react-bootstrap";
 import Logo from "../../../Counselor/Logo.jpg";
 import Login from "../../Users/Login";
 import "../../../index.css";
@@ -125,6 +121,9 @@ const Header = () => {
               <Nav className="mr-auto">
                 <Nav.Link href="/">
                   <h4 className="alineacion">Mis citas</h4>
+                </Nav.Link>
+                <Nav.Link href="/files">
+                  <h4 className="alineacion">Mis archivos</h4>
                 </Nav.Link>
                 <Nav.Link href="/doctorslist">
                   <h4 className="alineacion">Lista de doctores</h4>
