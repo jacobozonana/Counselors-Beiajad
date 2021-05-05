@@ -61,6 +61,8 @@ module.exports = {
         const { body } = req;
         const newSchedule = new Schedule(body);
         const future = Math.floor(Date.now() / 1000) + 60 * 1;
+        const fut =
+          Math.floor(new Date(newSchedule.date).valueOf() / 1000) - 60 * 60 * 4; // esta constante se usara, aqui ya en produccion poner la fecha que queremos el recordatorio, y si son mas recordatorios hay que mandar una funcion cada vez con la fecha solicitada
         newSchedule
           .save()
           .then(
@@ -109,7 +111,7 @@ module.exports = {
               MailService.sendfuturemail(
                 future,
                 user.email,
-                "Cita creada",
+                "Recordatorio para tu cita",
                 `  
                 <!DOCTYPE html>
                   <html>
@@ -133,9 +135,9 @@ module.exports = {
                     </head>
                     <body>
                       <img class="img-container" alt="Logo" src="http://drive.google.com/uc?export=view&id=1ZStbt9J-8SQhcCB71hT744TO5PRLb1Mt" />              
-                      <h1>Listo ${user.first_name} ${
+                      <h1>Hola ${user.first_name} ${
                   user.last_name
-                } tu cita se creo con exito</h1>
+                } te recordamos tu cita, te esperamos</h1>
                       <h3 class="date">Dia: ${
                         newSchedule.date.toLocaleString().split(",")[0]
                       }</h3>
@@ -163,7 +165,7 @@ module.exports = {
         const newSchedule = new Schedule(req);
         const future = Math.floor(Date.now() / 1000) + 60 * 1;
         const fut =
-          Math.floor(new Date(newSchedule.date).valueOf() / 1000) + 60 * 1; // esta constante se usara, aqui ya en produccion poner la fecha que queremos el recordatorio, y si son mas recordatorios hay que mandar una funcion cada vez con la fecha solicitada
+          Math.floor(new Date(newSchedule.date).valueOf() / 1000) - 60 * 60 * 4; // esta constante se usara, aqui ya en produccion poner la fecha que queremos el recordatorio, y si son mas recordatorios hay que mandar una funcion cada vez con la fecha solicitada
         newSchedule
           .save()
           .then(
@@ -172,7 +174,7 @@ module.exports = {
               MailService.sendfuturemail(
                 future,
                 user.email,
-                "Cita creada",
+                "Recordatorio para tu cita",
                 `  
                 <!DOCTYPE html>
                   <html>
@@ -196,9 +198,9 @@ module.exports = {
                     </head>
                     <body>
                       <img class="img-container" alt="Logo" src="http://drive.google.com/uc?export=view&id=1ZStbt9J-8SQhcCB71hT744TO5PRLb1Mt" />              
-                      <h1>Listo ${user.first_name} ${
+                      <h1>Hola ${user.first_name} ${
                   user.last_name
-                } tu cita se creo con exito</h1>
+                } te recordamos tu cita, te esperamos</h1>
                       <h3 class="date">Dia: ${
                         newSchedule.date.toLocaleString().split(",")[0]
                       }</h3>
