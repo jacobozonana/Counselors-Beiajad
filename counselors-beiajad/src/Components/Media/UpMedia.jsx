@@ -5,11 +5,11 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import "../../index.css";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
-import FilesList from "./FilesList";
+import MediaList from "./MediaList";
 
-function UpFiles() {
+function UpMedia() {
   const { user1, isAuth } = useContext(AuthContext);
-  const FILPOST = `${process.env.REACT_APP_API}upfile/`;
+  const FILPOST = `${process.env.REACT_APP_API}upmedia/`;
   const [file, setFile] = useState();
 
   const uploadFile = () => {
@@ -75,7 +75,7 @@ function UpFiles() {
                 </Button>
               </div>
             </Form>
-            <FilesList />
+            <MediaList />
           </div>
         ) : undefined
       ) : undefined}
@@ -83,4 +83,4 @@ function UpFiles() {
   );
 }
 
-export default UpFiles;
+export default UpMedia;

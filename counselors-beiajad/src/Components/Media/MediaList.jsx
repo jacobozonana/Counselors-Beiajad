@@ -2,10 +2,11 @@ import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
 
-function CommentsList(props) {
+function MediaList
+(props) {
   const { isAuth, user1 } = useContext(AuthContext);
   const [data, setData] = useState([]);
-  const URL_GET_FILES = `${process.env.REACT_APP_API}findfilesbyfolder`;
+  const URL_GET_FILES = `${process.env.REACT_APP_API}findmediabyfolder`;
 
   useEffect(() => {
     axios
@@ -45,4 +46,5 @@ function CommentsList(props) {
   );
 }
 
-export default CommentsList;
+export default MediaList
+;

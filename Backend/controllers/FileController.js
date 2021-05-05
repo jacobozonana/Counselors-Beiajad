@@ -1,5 +1,6 @@
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
+
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY_CLOUDINARY,
@@ -7,7 +8,7 @@ cloudinary.config({
 });
 
 module.exports = {
-  upFile: (req, res) => {
+  upMedia: (req, res) => {
     const storage = multer.diskStorage({
       destination: function (req, file, cb) {
         cb(null, "uploads/");
@@ -64,7 +65,7 @@ module.exports = {
       );
     });
   },
-  findFilesByFolder: (req, res) => {
+  findMediaByFolder: (req, res) => {
     const { route } = req.body;
     cloudinary.api.resources(
       {
@@ -77,13 +78,13 @@ module.exports = {
       }
     );
   },
-  findallfiles: (req, res) => {
+  findAllMedia: (req, res) => {
     cloudinary.api.resources(function (err, result) {
       if (err) return res.send(err);
       res.status(200).json(result);
     });
   },
-  delfile: (req, res) => {
+  delMedia: (req, res) => {
     const { public_id } = req.body;
     cloudinary.api.delete_resources(public_id, function (err, result) {
       if (err) return res.send(err);
