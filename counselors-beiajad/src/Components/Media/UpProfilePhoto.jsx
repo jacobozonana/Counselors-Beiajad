@@ -5,7 +5,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import "../../index.css";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
-import FilesList from "./FilesList";
 
 function UpProfilePhoto() {
   const { user1, isAuth } = useContext(AuthContext);
@@ -15,13 +14,9 @@ function UpProfilePhoto() {
   const uploadFile = () => {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("route", `${user1.id}/profile`);
+    formData.append("user", user1.id);
     axios
-      .post(FILPOST, formData, {
-        headers: {
-          Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
-        },
-      })
+      .post(FILPOST, formData)
       .then((res) => {
         console.log(res);
         Swal.fire({
@@ -36,7 +31,7 @@ function UpProfilePhoto() {
         });
       })
       .catch((error) => {
-        let message = error.response.data.message;
+        let message = error;
         Swal.fire({
           allowEscapeKey: true,
           icon: "error",
@@ -55,27 +50,29 @@ function UpProfilePhoto() {
         user1.role === "doctor" ? (
           <div>
             <Form>
-              <div className="mb-3">
-                <Form.File id="formcheck-api-regular">
-                  <Form.File.Label>Escoge tu archivo</Form.File.Label>
-                  <Form.File.Input
-                    onChange={(e) => {
-                      setFile(e.target.files[0]);
+              <div class="d-flex flex-row bd-highlight">
+                <div class="p-2 bd-highlight">
+                  <Form.File id="formcheck-api-regular">
+                    <Form.File.Input
+                      onChange={(e) => {
+                        setFile(e.target.files[0]);
+                      }}
+                    />
+                  </Form.File>
+                </div>
+                <div class="p-2 bd-highlight">
+                  <Button
+                    onClick={() => {
+                      uploadFile();
                     }}
-                  />
-                </Form.File>
-                <Button
-                  type=""
-                  onClick={() => {
-                    uploadFile();
-                  }}
-                  className="btn btn-primary boton rounded-pill"
-                >
-                  Subir!!
-                </Button>
+                    className="btn btn-info boton rounded-pill"
+                  >
+                    Editar
+                  </Button>
+                </div>
               </div>
+              <div className="mb-3"></div>
             </Form>
-            <FilesList />
           </div>
         ) : undefined
       ) : undefined}

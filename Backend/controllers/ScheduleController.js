@@ -165,7 +165,7 @@ module.exports = {
         const newSchedule = new Schedule(req);
         const future = Math.floor(Date.now() / 1000) + 60 * 1;
         const fut =
-          Math.floor(new Date(newSchedule.date).valueOf() / 1000) - 60 * 60 * 4; // esta constante se usara, aqui ya en produccion poner la fecha que queremos el recordatorio, y si son mas recordatorios hay que mandar una funcion cada vez con la fecha solicitada
+          Math.floor(new Date(newSchedule.date).valueOf() / 1000) - 60 * 60 * 4; // esta constante se usara, aqui ya en produccion poner la fecha que queremos el recordatorio, y si son mas recordatorios hay que mandar una funcion cada vez con la fecha solicitada la api permite maximo 72 horas de anticipacion, mas horas ya no lo manda
         newSchedule
           .save()
           .then(

@@ -30,6 +30,9 @@ const Header = () => {
                 <Nav.Link href="/blocklist">
                   <h4 className="alineacion">Horas libres</h4>
                 </Nav.Link>
+                <Nav.Link href="/files">
+                  <h4 className="alineacion">Mis fotos</h4>
+                </Nav.Link>
                 <Nav.Link href="/adminslist">
                   <h4 className="alineacion">Administradores</h4>
                 </Nav.Link>
@@ -73,6 +76,9 @@ const Header = () => {
                 </Nav.Link>
                 <Nav.Link href="/blocklist">
                   <h4 className="alineacion">Mis horas libres</h4>
+                </Nav.Link>
+                <Nav.Link href="/files">
+                  <h4 className="alineacion">Mis fotos</h4>
                 </Nav.Link>
                 <Nav.Link href="/userslist">
                   <h4 className="alineacion">Usuarios</h4>
@@ -123,7 +129,7 @@ const Header = () => {
                   <h4 className="alineacion">Mis citas</h4>
                 </Nav.Link>
                 <Nav.Link href="/files">
-                  <h4 className="alineacion">Mis archivos</h4>
+                  <h4 className="alineacion">Mis fotos</h4>
                 </Nav.Link>
                 <Nav.Link href="/doctorslist">
                   <h4 className="alineacion">Lista de doctores</h4>

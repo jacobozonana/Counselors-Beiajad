@@ -18,6 +18,7 @@ const Register = () => {
   const [country, setCountry] = useState("");
   const [tel, setTel] = useState("");
   const history = useHistory();
+  const [file, setFile] = useState();
 
   const handleForm = async (event) => {
     event.preventDefault();
@@ -41,8 +42,22 @@ const Register = () => {
       };
 
       const SIGNUP_URL = `${process.env.REACT_APP_API}signupuser/`;
+      const FILPOST = `${process.env.REACT_APP_API}upprofile/`;
+
       try {
-        await axios.post(SIGNUP_URL, jsonSend);
+        await axios.post(SIGNUP_URL, jsonSend).then((data) => {
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("user", data.data._id);
+          axios
+            .post(FILPOST, formData)
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        });
         setFirstName("");
         setLastName("");
         setEmail("");
@@ -51,6 +66,7 @@ const Register = () => {
         setComunity("");
         setCountry("");
         setTel("");
+        setFile();
         Swal.fire({
           icon: "success",
           title: "Usuario creado con exito",
@@ -138,7 +154,7 @@ const Register = () => {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Tel</Form.Label>
+            <Form.Label>Telefono</Form.Label>
             <Form.Control
               value={tel}
               onChange={(e) => setTel(e.target.value)}
@@ -148,6 +164,17 @@ const Register = () => {
               placeholder="Teléfono"
               required
             />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Foto</Form.Label>
+            <Form.File>
+              <Form.File.Input
+                onChange={(e) => {
+                  setFile(e.target.files[0]);
+                }}
+                required
+              />
+            </Form.File>
           </Form.Group>
           <Form.Group>
             <Form.Label>Email</Form.Label>

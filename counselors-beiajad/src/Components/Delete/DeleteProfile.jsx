@@ -8,9 +8,11 @@ function DeleteUser(props) {
   const [schedule, setSchedule] = useState([]);
   const [usercombau, setUsercombau] = useState([]);
   const [usercombab, setUsercombab] = useState([]);
+  const [media, setMedia] = useState([]);
   const URLGETUSERDATES = `${process.env.REACT_APP_API}${props.route1}/${user1.id}/${user1.id}`;
   const URLGETUSERCOMBAU = `${process.env.REACT_APP_API}${props.route2}/${user1.id}/${user1.id}`;
   const URLGETUSERCOMBAB = `${process.env.REACT_APP_API}${props.route3}/${user1.id}/${user1.id}`;
+  const URL_GET_MEDIA = `${process.env.REACT_APP_API}findmediabytag/${user1.id}`;
 
   useEffect(() => {
     axios
@@ -38,6 +40,15 @@ function DeleteUser(props) {
         },
       })
       .then((data) => setUsercombab(data.data))
+      .catch((err) => console.log(err));
+
+    axios
+      .get(URL_GET_MEDIA, {
+        headers: {
+          Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+        },
+      })
+      .then((data) => setMedia(data.data.resources))
       .catch((err) => console.log(err));
   }, []);
 
@@ -97,6 +108,34 @@ function DeleteUser(props) {
             });
         }
 
+        for (let i = 0; i < media.length; i++) {
+          const URLDELETEMEDIA = `${process.env.REACT_APP_API}delmedia/${
+            media[i].public_id.split("/")[1]
+          }`;
+          axios
+            .delete(URLDELETEMEDIA, {
+              headers: {
+                Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+              },
+            })
+            .then((data) => console.log(data.data))
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+
+        const URLDELETEPROFILE = `${process.env.REACT_APP_API}delmedia/profile${user1.id}`;
+        axios
+          .delete(URLDELETEPROFILE, {
+            headers: {
+              Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+            },
+          })
+          .then((data) => console.log(data.data))
+          .catch((error) => {
+            console.log(error);
+          });
+
         const URLDELETEUSER = `${process.env.REACT_APP_API}${props.route}/${user1.id}/${user1.id}`;
         axios
           .delete(URLDELETEUSER, {
@@ -117,7 +156,7 @@ function DeleteUser(props) {
             })
           )
           .catch((error) => {
-            let message = error.response.data.message
+            let message = error.response.data.message;
             Swal.fire({
               icon: "error",
               title: "Oops...",

@@ -9,8 +9,10 @@ import "../../index.css";
 function Profile(props) {
   const { isAuth, user1 } = useContext(AuthContext);
   const [data, setData] = useState([]);
+  const [photo, setPhoto] = useState({});
   const [route, setRoute] = useState("");
   const URL_GET_INFO = `${process.env.REACT_APP_API}${props.lista}/${user1.id}`;
+  const URL_GET_MEDIA = `${process.env.REACT_APP_API}findonemedia/profile${user1.id}`;
 
   useEffect(() => {
     axios
@@ -20,6 +22,14 @@ function Profile(props) {
         },
       })
       .then((data) => setData(data.data))
+      .catch((err) => console.log(err));
+    axios
+      .get(URL_GET_MEDIA, {
+        headers: {
+          Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+        },
+      })
+      .then((data) => setPhoto(data.data))
       .catch((err) => console.log(err));
   }, []);
 
@@ -40,9 +50,16 @@ function Profile(props) {
       {isAuth ? (
         user1.role === "user" ? (
           <>
-            <h1 className="mb-4 reg">Mi cuenta</h1>
+            <h1 className="mb-4 reg">
+              <img
+                loading="lazy"
+                src={`https://res.cloudinary.com/jacobozonana/image/upload/c_crop,g_face,h_1000,w_1000/r_max/c_scale,w_90/v${photo.version}/counselor/profile${user1.id}.png`}
+                alt=""
+              />{" "}
+              Mi cuenta
+            </h1>
             <Container>
-              <ListGroup>
+              <ListGroup variant="flush">
                 <ListGroup.Item>
                   <Row>
                     <Col>
@@ -139,9 +156,16 @@ function Profile(props) {
           </>
         ) : user1.role === "doctor" ? (
           <>
-            <h1 className="mb-4 reg">Mi cuenta</h1>
+            <h1 className="mb-4 reg">
+              <img
+                loading="lazy"
+                src={`https://res.cloudinary.com/jacobozonana/image/upload/c_crop,g_face,h_1000,w_1000/r_max/c_scale,w_90/v${photo.version}/counselor/profile${user1.id}.png`}
+                alt=""
+              />{" "}
+              Mi cuenta
+            </h1>{" "}
             <Container>
-              <ListGroup>
+              <ListGroup variant="flush">
                 <ListGroup.Item>
                   <Row>
                     <Col>
@@ -221,9 +245,16 @@ function Profile(props) {
           </>
         ) : user1.role === "admin" ? (
           <>
-            <h1 className="mb-4 reg">Mi cuenta</h1>
+            <h1 className="mb-4 reg">
+              <img
+                loading="lazy"
+                src={`https://res.cloudinary.com/jacobozonana/image/upload/c_crop,g_face,h_1000,w_1000/r_max/c_scale,w_90/v${photo.version}/counselor/profile${user1.id}.png`}
+                alt=""
+              />{" "}
+              Mi cuenta
+            </h1>{" "}
             <Container>
-              <ListGroup>
+              <ListGroup variant="flush">
                 <ListGroup.Item>
                   <Row>
                     <Col>

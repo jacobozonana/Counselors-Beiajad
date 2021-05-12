@@ -5,9 +5,10 @@ const { verifyToken } = require("../middlewares/VerifyToken");
 const { FileController } = require("../controllers");
 
 router.post("/upmedia", verifyToken, FileController.upMedia);
-router.post("/upprofile", verifyToken, FileController.upProfilePhoto);
-router.post("/findmediabyfolder", verifyToken, FileController.findMediaByFolder);
+router.post("/upprofile", FileController.upProfilePhoto);
+router.get("/findonemedia/:id", verifyToken, FileController.findOne);
 router.get("/findallmedia", verifyToken, FileController.findAllMedia);
-router.delete("/delmedia", verifyToken, FileController.delMedia);
+router.get("/findmediabytag/:tag", verifyToken, FileController.findMediaByTag);
+router.delete("/delmedia/:id", verifyToken, FileController.delMedia);
 
 module.exports = router;

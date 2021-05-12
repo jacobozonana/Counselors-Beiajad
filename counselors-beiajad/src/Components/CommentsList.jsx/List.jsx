@@ -35,16 +35,19 @@ function CommentsList(props) {
               />
             </div>
             {data.map((comment, i) => (
-              
               <div key={i}>
-
                 <h6>
-                  <i className="far fa-user-circle"></i> {comment.author[0].first_name}
+                  <img
+                    loading="lazy"
+                    src={`https://res.cloudinary.com/jacobozonana/image/upload/c_crop,g_face,h_1000,w_1000/r_max/c_scale,w_40/counselor/profile${comment.author[0]._id}.png`}
+                    alt=""
+                  />{" "}
+                  {comment.author[0].first_name}
                 </h6>
-
                 <h6>{comment.date.split("T")[0]}</h6>
-                <h6 ><DeleteComment id={comment._id} /></h6 >
-
+                <h6>
+                  <DeleteComment id={comment._id} />
+                </h6>
                 <h6 className="bold">{comment.subject}</h6>
                 <h6>{comment.note}</h6>
                 <br />

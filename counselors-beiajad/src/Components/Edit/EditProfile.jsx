@@ -7,7 +7,7 @@ import EditPassword from "./EditPasword";
 import "../../index.css";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 
-function EditSchedule(props) {
+function EditProfile(props) {
   const { user1, isAuth } = useContext(AuthContext);
   const [first_name, setFirst_name] = useState(props.first_name);
   const [last_name, setLast_name] = useState(props.last_name);
@@ -18,9 +18,11 @@ function EditSchedule(props) {
   const [specialty, setSpecialty] = useState(props.specialty);
   const [email, setEmail] = useState(undefined);
   const USERPATCH = `${process.env.REACT_APP_API}${props.route}/${user1.id}/${props.id}`;
+  const FILPOST = `${process.env.REACT_APP_API}upprofile/`;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [file, setFile] = useState();
 
   const editUser = () => {
     Swal.fire({
@@ -54,7 +56,19 @@ function EditSchedule(props) {
               },
             }
           )
-          .then(() => {
+          .then((data) => {
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("user", data.data._id);
+            axios
+              .post(FILPOST, formData)
+              .then((res) => {
+                console.log(res);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+
             Swal.fire({
               icon: "success",
               title: "Se edito con exito",
@@ -137,8 +151,6 @@ function EditSchedule(props) {
                         />
                       </Form.Group>
                     </Col>
-                  </Row>
-                  <Row>
                     <Col>
                       <Form.Group>
                         <Form.Label>Pais</Form.Label>
@@ -173,6 +185,24 @@ function EditSchedule(props) {
                           type="email"
                         />
                       </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <Form.Group>
+                        <Form.Label>Foto</Form.Label>
+                        <Form.File>
+                          <Form.File.Input
+                            onChange={(e) => {
+                              setFile(e.target.files[0]);
+                            }}
+                          />
+                        </Form.File>
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
                       <EditPassword id={props.id} />
                       <h6>modifica los datos que quieras</h6>
                     </Col>
@@ -258,8 +288,6 @@ function EditSchedule(props) {
                         />
                       </Form.Group>
                     </Col>
-                  </Row>
-                  <Row>
                     <Col>
                       <Form.Group>
                         <Form.Label>Email</Form.Label>
@@ -268,6 +296,20 @@ function EditSchedule(props) {
                           onChange={(e) => setEmail(e.target.value)}
                           type="email"
                         />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <Form.Group>
+                        <Form.Label>Foto</Form.Label>
+                        <Form.File>
+                          <Form.File.Input
+                            onChange={(e) => {
+                              setFile(e.target.files[0]);
+                            }}
+                          />
+                        </Form.File>
                       </Form.Group>
                       <EditPassword id={props.id} />
                       <h6>modifica los datos que quieras</h6>
@@ -332,8 +374,6 @@ function EditSchedule(props) {
                         />
                       </Form.Group>
                     </Col>
-                  </Row>
-                  <Row>
                     <Col>
                       <Form.Group>
                         <Form.Label>Email</Form.Label>
@@ -342,6 +382,20 @@ function EditSchedule(props) {
                           onChange={(e) => setEmail(e.target.value)}
                           type="email"
                         />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <Form.Group>
+                        <Form.Label>Foto</Form.Label>
+                        <Form.File>
+                          <Form.File.Input
+                            onChange={(e) => {
+                              setFile(e.target.files[0]);
+                            }}
+                          />
+                        </Form.File>
                       </Form.Group>
                       <EditPassword id={props.id} />
                       <h6>modifica los datos que quieras</h6>
@@ -368,4 +422,4 @@ function EditSchedule(props) {
   );
 }
 
-export default EditSchedule;
+export default EditProfile;

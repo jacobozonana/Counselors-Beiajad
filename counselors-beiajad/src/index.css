@@ -487,9 +487,14 @@ input:focus:invalid {
 .headerSchedule {
   margin-bottom: 10px;
 }
-.row{
+.row {
   margin-left: 0;
   margin-right: 0;
   padding-right: 0;
   padding-left: 0;
+}
+.deletemedia {
+  font-size: 5px;
+  padding: 0;
+  margin: 0;
 }
