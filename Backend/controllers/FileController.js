@@ -80,11 +80,22 @@ module.exports = {
       res.status(200).json(result);
     });
   },
-  findMediaByTag: (req, res) => {
+  findMediaByTag1: (req, res) => {
+    // esta funcion solo encuentra imagenes con el tag, no otro tipo de archivo
     cloudinary.api.resources_by_tag(req.params.tag, function (err, result) {
       if (err) return res.send(err);
       res.status(200).json(result);
     });
+  },
+  findMediaByTag: (req, res) => {
+    cloudinary.search
+      .expression(req.params.tag)
+      .with_field("context")
+      .with_field("tags")
+      .max_results(10)
+      .execute()
+      .then((resDB) => res.status(200).json(resDB))
+      .catch((Error) => console.log(Error));
   },
   delMedia: (req, res) => {
     cloudinary.api.delete_resources(
