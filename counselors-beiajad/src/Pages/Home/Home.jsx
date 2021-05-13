@@ -9,6 +9,7 @@ import Seccion3 from "../../Components/Seccion3/Seccion3";
 import Seccion2 from "../../Components/Seccion2/Seccion2";
 import Footer from "../../Components/Layout/Footer/Footer";
 import "../../index.css";
+import Whatsapp from "../../Components/Whatsapp/Whatsapp";
 
 function Home() {
   const { user1, isAuth } = React.useContext(AuthContext);
@@ -25,6 +26,7 @@ function Home() {
               </Container>
             </div>
             <Footer />
+            <Whatsapp />
           </>
         ) : user1.role === "user" ? (
           <>
@@ -35,6 +37,7 @@ function Home() {
               </Container>
             </div>
             <Footer />
+            <Whatsapp />
           </>
         ) : user1.role === "doctor" ? (
           <>
@@ -45,6 +48,7 @@ function Home() {
               </Container>
             </div>
             <Footer />
+            <Whatsapp />
           </>
         ) : undefined
       ) : (
@@ -67,6 +71,7 @@ function Home() {
           <Seccion2 />
           <Seccion3 />
           <Footer />
+          <Whatsapp />
         </>
       )}
     </>

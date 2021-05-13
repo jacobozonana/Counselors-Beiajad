@@ -8,6 +8,7 @@ import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import MediaList from "./MediaList";
 import Header from "../Layout/Header/Header";
 import Footer from "../Layout/Footer/Footer";
+import Whatsapp from "../Whatsapp/Whatsapp";
 
 function UpMedia() {
   const { user1, isAuth } = useContext(AuthContext);
@@ -108,6 +109,7 @@ function UpMedia() {
             </div>
             <MediaList />
             <Footer />
+            <Whatsapp />
           </div>
         ) : undefined
       ) : undefined}

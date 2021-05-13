@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import BList from "./BList";
 import Header from "../Layout/Header/Header";
 import Footer from "../Layout/Footer/Footer";
+import Whatsapp from "../Whatsapp/Whatsapp";
 
 function BlockList() {
   const { isAuth, user1 } = useContext(AuthContext);
@@ -20,6 +21,7 @@ function BlockList() {
               </Container>
             </div>
             <Footer />
+            <Whatsapp />
           </>
         ) : user1.role === "doctor" ? (
           <>
@@ -30,6 +32,7 @@ function BlockList() {
               </Container>
             </div>
             <Footer />
+            <Whatsapp />
           </>
         ) : undefined
       ) : undefined}

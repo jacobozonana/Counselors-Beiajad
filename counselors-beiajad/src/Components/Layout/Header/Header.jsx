@@ -93,11 +93,6 @@ const Header = () => {
                 <i className="far fa-envelope"></i>
               </h4>
             </Nav.Link>
-            <Nav.Link href={process.env.REACT_APP_WHATSAPP}>
-              <h4 className="alineacion">
-                <i className="fab fa-whatsapp"></i>
-              </h4>
-            </Nav.Link>
             <Nav.Link eventKey="disabled" disabled>
               <h4 className="alineacion">
                 Hola {user1.first_name} {user1.last_name}
@@ -144,11 +139,6 @@ const Header = () => {
                 <i className="far fa-envelope"></i>
               </h4>
             </Nav.Link>
-            <Nav.Link href={process.env.REACT_APP_WHATSAPP}>
-              <h4 className="alineacion">
-                <i className="fab fa-whatsapp"></i>
-              </h4>
-            </Nav.Link>
             <Nav.Link eventKey="disabled" disabled>
               <h4 className="alineacion">
                 Hola {user1.first_name} {user1.last_name}
@@ -184,11 +174,6 @@ const Header = () => {
           <Nav.Link href={`mailto:${process.env.REACT_APP_MAIL}`}>
             <h4 id="contact" className="alineacion">
               <i className="far fa-envelope"></i>
-            </h4>
-          </Nav.Link>
-          <Nav.Link href={process.env.REACT_APP_WHATSAPP}>
-            <h4 className="alineacion">
-              <i className="fab fa-whatsapp"></i>
             </h4>
           </Nav.Link>
           <Login />

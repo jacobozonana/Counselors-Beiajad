@@ -5,6 +5,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import Header from "../Layout/Header/Header";
 import Footer from "../Layout/Footer/Footer";
+import Whatsapp from '../Whatsapp/Whatsapp'
 import "../../index.css";
 
 const Register = () => {
@@ -218,6 +219,7 @@ const Register = () => {
         </Form>
       </Container>
       <Footer />
+      <Whatsapp />
     </>
   );
 };

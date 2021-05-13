@@ -68,7 +68,7 @@ function Apointment(props) {
               className="btn btn-primary rounded-circle boton"
               onClick={handleShow}
             >
-              <i class="fas fa-feather-alt"></i>
+              <i className="fas fa-feather-alt"></i>
             </Button>
             <Modal show={show} size="sm" onHide={handleClose}>
               <Modal.Header closeButton>

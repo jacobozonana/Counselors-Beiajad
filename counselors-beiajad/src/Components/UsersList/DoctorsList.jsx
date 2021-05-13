@@ -3,6 +3,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import List from './List'
 import Header from "../Layout/Header/Header";
 import Footer from '../Layout/Footer/Footer'
+import Whatsapp from '../Whatsapp/Whatsapp';
 
 function UsersList() {
 
@@ -18,6 +19,7 @@ function UsersList() {
           </div>
           <List lista="doctors" titulo="Doctores" />
           <Footer />
+          <Whatsapp />
         </>
     ) : (
       undefined
