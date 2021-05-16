@@ -42,6 +42,9 @@ const Header = () => {
                 <Nav.Link href="/userslist">
                   <h4 className="alineacion">Usuarios</h4>
                 </Nav.Link>
+                <Nav.Link href="/contactlist">
+                  <h4 className="alineacion">Contactos</h4>
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
             <Nav.Link eventKey="disabled" disabled>
@@ -88,11 +91,6 @@ const Header = () => {
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
-            <Nav.Link href={`mailto:${process.env.REACT_APP_MAIL}`}>
-              <h4 id="contact" className="alineacion">
-                <i className="far fa-envelope"></i>
-              </h4>
-            </Nav.Link>
             <Nav.Link eventKey="disabled" disabled>
               <h4 className="alineacion">
                 Hola {user1.first_name} {user1.last_name}
@@ -132,13 +130,11 @@ const Header = () => {
                 <Nav.Link href="/faq">
                   <h4 className="alineacion">Preguntas frecuentes</h4>
                 </Nav.Link>
+                <Nav.Link href="/contact">
+                  <h4 className="alineacion">Contactanos</h4>
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
-            <Nav.Link href={`mailto:${process.env.REACT_APP_MAIL}`}>
-              <h4 id="contact" className="alineacion">
-                <i className="far fa-envelope"></i>
-              </h4>
-            </Nav.Link>
             <Nav.Link eventKey="disabled" disabled>
               <h4 className="alineacion">
                 Hola {user1.first_name} {user1.last_name}
@@ -169,13 +165,11 @@ const Header = () => {
               <Nav.Link href="/register">
                 <h4 className="alineacion">Registrate</h4>
               </Nav.Link>
+              <Nav.Link href="/contact">
+                  <h4 className="alineacion">Contactanos</h4>
+                </Nav.Link>
             </Nav>
           </Navbar.Collapse>
-          <Nav.Link href={`mailto:${process.env.REACT_APP_MAIL}`}>
-            <h4 id="contact" className="alineacion">
-              <i className="far fa-envelope"></i>
-            </h4>
-          </Nav.Link>
           <Login />
         </Navbar>
       )}

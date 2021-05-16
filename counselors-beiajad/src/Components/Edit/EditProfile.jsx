@@ -37,59 +37,103 @@ function EditProfile(props) {
       confirmButtonText: "Confirmar cambios",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
-          .patch(
-            USERPATCH,
-            {
-              first_name,
-              last_name,
-              age,
-              comunity,
-              country,
-              tel,
-              specialty,
-              email,
-            },
-            {
-              headers: {
-                Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+        if (file == null) {
+          axios
+            .patch(
+              USERPATCH,
+              {
+                first_name,
+                last_name,
+                age,
+                comunity,
+                country,
+                tel,
+                specialty,
+                email,
               },
-            }
-          )
-          .then((data) => {
-            const formData = new FormData();
-            formData.append("file", file);
-            formData.append("user", data.data._id);
-            axios
-              .post(FILPOST, formData)
-              .then((res) => {
-                console.log(res);
-              })
-              .catch((error) => {
-                console.log(error);
+              {
+                headers: {
+                  Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+                },
+              }
+            )
+            .then(() => {
+              Swal.fire({
+                icon: "success",
+                title: "Se edito con exito",
+                confirmButtonText: `Ok`,
+                timer: 1000,
+                timerProgressBar: true,
+                allowEscapeKey: true,
+              }).then(() => {
+                window.location.reload();
               });
+            })
+            .catch((error) => {
+              let message = error.response.data.message;
+              console.log(error.response);
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Lo sentimos esta acción no se pudo completar " + message,
+                allowEscapeKey: true,
+              });
+            });
+        } else {
+          axios
+            .patch(
+              USERPATCH,
+              {
+                first_name,
+                last_name,
+                age,
+                comunity,
+                country,
+                tel,
+                specialty,
+                email,
+              },
+              {
+                headers: {
+                  Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
+                },
+              }
+            )
+            .then((data) => {
+              const formData = new FormData();
+              formData.append("file", file);
+              formData.append("user", data.data._id);
+              axios
+                .post(FILPOST, formData)
+                .then((res) => {
+                  console.log(res);
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
 
-            Swal.fire({
-              icon: "success",
-              title: "Se edito con exito",
-              confirmButtonText: `Ok`,
-              timer: 1000,
-              timerProgressBar: true,
-              allowEscapeKey: true,
-            }).then(() => {
-              window.location.reload();
+              Swal.fire({
+                icon: "success",
+                title: "Se edito con exito",
+                confirmButtonText: `Ok`,
+                timer: 1000,
+                timerProgressBar: true,
+                allowEscapeKey: true,
+              }).then(() => {
+                window.location.reload();
+              });
+            })
+            .catch((error) => {
+              let message = error.response.data.message;
+              console.log(error.response);
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Lo sentimos esta acción no se pudo completar " + message,
+                allowEscapeKey: true,
+              });
             });
-          })
-          .catch((error) => {
-            let message = error.response.data.message;
-            console.log(error.response);
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Lo sentimos esta acción no se pudo completar " + message,
-              allowEscapeKey: true,
-            });
-          });
+        }
       }
     });
   };

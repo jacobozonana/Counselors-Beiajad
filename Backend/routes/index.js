@@ -8,5 +8,6 @@ router.use(require("./CommentRoutes"));
 router.use(require("./ReportRoutes"));
 router.use(require("./PayRoutes"));
 router.use(require("./FileRoutes"));
+router.use(require("./ContactRoutes"));
 
 module.exports = router;

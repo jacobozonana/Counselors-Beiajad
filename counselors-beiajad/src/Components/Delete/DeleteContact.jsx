@@ -6,7 +6,7 @@ import "../../index.css";
 
 function DeleteComment(props) {
   const { isAuth, user1 } = useContext(AuthContext);
-  const URLDELETE = `${process.env.REACT_APP_API}comment/${user1.id}/${props.id}`;
+  const URLDELETE = `${process.env.REACT_APP_API}contact/${user1.id}/${props.id}`;
 
   const Borrar = () => {
     Swal.fire({
@@ -18,7 +18,7 @@ function DeleteComment(props) {
       allowEscapeKey: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#25a1b7",
-      confirmButtonText: "Borrar Comentario",
+      confirmButtonText: "Borrar Registro",
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -57,8 +57,8 @@ function DeleteComment(props) {
     <>
       {isAuth ? (
         user1.role === "admin" ? (
-          <button onClick={Borrar} className="del" variant="outline-danger">
-            <i className="fas fa-times"></i>
+            <button onClick={Borrar} className="btn btn-dark boton">
+            <i className="far fa-trash-alt"></i>
           </button>
         ) : undefined
       ) : undefined}

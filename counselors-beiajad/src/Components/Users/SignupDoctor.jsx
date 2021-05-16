@@ -7,7 +7,6 @@ import Footer from "../Layout/Footer/Footer";
 import axios from "axios";
 import Swal from "sweetalert2";
 import "../../index.css";
-import Whatsapp from "../Whatsapp/Whatsapp";
 
 const SignupDoctor = () => {
   const { user1, isAuth } = useContext(AuthContext);
@@ -189,7 +188,6 @@ const SignupDoctor = () => {
               </Form>
             </Container>
             <Footer />
-            <Whatsapp />
           </>
         ) : undefined
       ) : undefined}

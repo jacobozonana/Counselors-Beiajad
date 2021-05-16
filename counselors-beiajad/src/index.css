@@ -185,11 +185,11 @@ code {
 }
 .alineacion {
   margin: 4px;
-  font-size: 20px;
+  font-size: 18px;
   color: #25a1b7;
 }
 .alineacion:hover {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
 }
 .faq {
@@ -502,4 +502,21 @@ input:focus:invalid {
   position: fixed;
   right: 1px;
   top: 100%;
+}
+.comment2{
+  border-radius: 5px;
+  outline: none;
+  width: 100%;
+  height: 70px;
+  border: 1px solid limegreen;
+  margin: 2px;
+}
+.imgcontact {
+  margin-top: 50px;
+  height: auto;
+  width: 100%;
+}
+.mailcontact{  
+    text-align: center;
+    margin-top: 20px;
 }
