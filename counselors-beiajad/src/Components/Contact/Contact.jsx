@@ -110,7 +110,6 @@ const Contact = () => {
           <Form.Group>
             <textarea
               className="comment2"
-              placeholder={note}
               onChange={(e) => {
                 setNote(e.target.value);
               }}

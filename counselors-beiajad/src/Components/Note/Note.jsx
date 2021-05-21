@@ -11,7 +11,7 @@ function Note(props) {
     <>
       <Button
         variant="warning"
-        onClick={() => (handleShow(), setNoteonmodal(props.note))}
+        onClick={() => ((handleShow(), setNoteonmodal(props.note)))}
       >
         <i className="far fa-sticky-note"></i>
       </Button>

@@ -168,7 +168,7 @@ function ScheduleList(props) {
           Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
         },
       })
-      .then((data) => (setSchedule(data.data), setData1(data.data)))
+      .then((data) => ((setSchedule(data.data), setData1(data.data))))
       .catch((err) => console.log(err));
   }, []);
 
