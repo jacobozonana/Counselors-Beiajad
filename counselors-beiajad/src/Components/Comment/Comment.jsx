@@ -65,7 +65,7 @@ function Apointment(props) {
         user1.role === "doctor" ? (
           <div>
             <Button
-              className="btn btn-primary rounded-circle boton"
+              className="btn btn-primary rounded-circle"
               onClick={handleShow}
             >
               <i className="fas fa-feather-alt"></i>
@@ -109,7 +109,7 @@ function Apointment(props) {
                   onClick={() => {
                     saveComment();
                   }}
-                  className="btn btn-primary boton rounded-pill"
+                  className="btn btn-primary rounded-pill"
                 >
                   Comentar
                 </Button>

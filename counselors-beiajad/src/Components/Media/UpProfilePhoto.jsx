@@ -65,7 +65,7 @@ function UpProfilePhoto() {
                     onClick={() => {
                       uploadFile();
                     }}
-                    className="btn btn-info boton rounded-pill"
+                    className="btn btn-info rounded-pill"
                   >
                     Editar
                   </Button>

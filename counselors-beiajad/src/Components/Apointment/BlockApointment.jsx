@@ -130,7 +130,7 @@ function BlockApointment() {
   const [fecha, setFecha] = useState("");
   const [data, setData] = useState([]);
   const [display, setDisplay] = useState("off");
-  const [botones, setBotones] = useState([
+  const [es, setes] = useState([
     "10:00",
     "11:00",
     "12:00",
@@ -140,7 +140,7 @@ function BlockApointment() {
   ]);
   const [borbot, setBorbot] = useState([]);
   const [hours, setHours] = useState([]);
-  const [apa, setApa] = useState("btn btn-info boton apagado");
+  const [apa, setApa] = useState("btn btn-info  apagado");
   const [sinHoras, setSinHoras] = useState(false);
   const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"]; // excluye datos del arreglo del filtro
   const SCHDOCGET = `${process.env.REACT_APP_API}schedulesbydoctor/${user1.id}/${user1.id}`;
@@ -203,9 +203,9 @@ function BlockApointment() {
 
   const diaSeleccionado = (selectedDay) => {
     setSinHoras(false);
-    setBotones(["10:00", "11:00", "12:00", "13:00", "14:00", "15:00"]);
+    setes(["10:00", "11:00", "12:00", "13:00", "14:00", "15:00"]);
     setBorbot([""]);
-    setApa("btn btn-info boton");
+    setApa("btn btn-info ");
     setDisplay("");
     setTime("Hora");
     setHours([]);
@@ -272,13 +272,13 @@ function BlockApointment() {
 
   useEffect(() => {
     data.map((info) => borbot.push(info.time));
-    const disponibles = botones.filter((item) => !borbot.includes(item));
+    const disponibles = es.filter((item) => !borbot.includes(item));
 
     if (disponibles.length === 0) {
-      setBotones(disponibles);
+      setes(disponibles);
       setSinHoras(true);
     } else {
-      setBotones(disponibles);
+      setes(disponibles);
     }
   }, [data]);
 
@@ -348,17 +348,17 @@ function BlockApointment() {
   };
 
   const saveDay = () => {
-    for (let i = 0; i < botones.length; i++) {
+    for (let i = 0; i < es.length; i++) {
       const SCHPOST1 = `${process.env.REACT_APP_API}scheduleblock/${user1.id}`;
       let x = date.slice(0, 11);
-      const date1 = `${x}${botones[i]}`;
+      const date1 = `${x}${es[i]}`;
       axios
         .post(
           SCHPOST1,
           {
             type: false,
             date: date1,
-            time: botones[i],
+            time: es[i],
             note,
             user: user,
             doctor: user1.id,
@@ -442,7 +442,7 @@ function BlockApointment() {
                       ) : (
                         <>
                           <div className={display}>
-                            {botones.map((hora, i) => (
+                            {es.map((hora, i) => (
                               <Button
                                 variant="outline-info"
                                 className="margin"
@@ -504,7 +504,6 @@ function BlockApointment() {
                     saveDay();
                   }}
                   variant="outline-danger"
-                  className="boton"
                 >
                   Todo el día libre!
                 </Button>
@@ -513,7 +512,7 @@ function BlockApointment() {
                   onClick={() => {
                     saveDate();
                   }}
-                  className="btn btn-info boton"
+                  className="btn btn-info"
                 >
                   Horas líbres!
                 </Button>

@@ -146,7 +146,7 @@ function EditPassword() {
                 onClick={() => {
                   editUser();
                 }}
-                className="btn btn-danger boton"
+                className="btn btn-danger"
               >
                 Editar
               </Button>

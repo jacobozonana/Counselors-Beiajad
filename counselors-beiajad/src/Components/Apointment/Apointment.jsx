@@ -140,7 +140,7 @@ function Apointment() {
   const [selectedDay, setSelectedDay] = useState(defaultValue);
   const [fecha, setFecha] = useState("");
   const [data, setData] = useState([]);
-  const [botones, setBotones] = useState([
+  const [es, setes] = useState([
     "10:00",
     "11:00",
     "12:00",
@@ -149,7 +149,7 @@ function Apointment() {
     "15:00",
   ]);
   const [borbot, setBorbot] = useState([]);
-  const [apa, setApa] = useState("btn btn-info boton apagado");
+  const [apa, setApa] = useState("btn btn-info  apagado");
   const [sinHoras, setSinHoras] = useState(false);
   const titleedbot = `${doctorName} ${doctorLname}`;
   const excludeColumns = ["_id", "is_active", "createdAt", "updatedAt"]; // excluye datos del arreglo del filtro
@@ -293,9 +293,9 @@ function Apointment() {
 
   const diaSeleccionado = (selectedDay) => {
     setSinHoras(false);
-    setBotones(["10:00", "11:00", "12:00", "13:00", "14:00", "15:00"]);
+    setes(["10:00", "11:00", "12:00", "13:00", "14:00", "15:00"]);
     setBorbot([""]);
-    setApa("btn btn-info boton");
+    setApa("btn btn-info ");
     setTime("Hora");
 
     if (selectedDay.month < 10) {
@@ -372,13 +372,13 @@ function Apointment() {
 
   const verify = () => {
     data.map((info) => borbot.push(info.time));
-    const disponibles = botones.filter((item) => !borbot.includes(item));
+    const disponibles = es.filter((item) => !borbot.includes(item));
 
     if (disponibles.length === 0) {
-      setBotones(disponibles);
+      setes(disponibles);
       setSinHoras(true);
     } else {
-      setBotones(disponibles);
+      setes(disponibles);
     }
   };
 
@@ -553,7 +553,7 @@ function Apointment() {
                           </>
                         ) : (
                           <>
-                            {botones.map((hora, i) => (
+                            {es.map((hora, i) => (
                               <Dropdown.Item
                                 onClick={() => escogeHora(hora, i)}
                                 key={i}
@@ -585,7 +585,7 @@ function Apointment() {
                   onClick={() => {
                     saveDate();
                   }}
-                  className="btn btn-info boton"
+                  className="btn btn-info"
                 >
                   Siguiente
                 </Button>

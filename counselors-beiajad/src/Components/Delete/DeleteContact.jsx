@@ -57,7 +57,7 @@ function DeleteComment(props) {
     <>
       {isAuth ? (
         user1.role === "admin" ? (
-            <button onClick={Borrar} className="btn btn-dark boton">
+            <button onClick={Borrar} className="btn btn-dark">
             <i className="far fa-trash-alt"></i>
           </button>
         ) : undefined

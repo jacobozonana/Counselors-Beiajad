@@ -71,10 +71,6 @@ code {
   position: absolute;
   top: 200px;
 }
-.boton {
-  margin: 2px;
-  font-size: 20px;
-}
 .sinhoras {
   animation: blinkingText 1.5s infinite;
 }

@@ -56,7 +56,7 @@ function DeleteSchedule(props) {
     <>
       {isAuth ? (
         user1.role === "admin" || user1.role === "user" || user1.role === "doctor" ? (
-          <button onClick={Borrar} className="btn btn-dark boton">
+          <button onClick={Borrar} className="btn btn-dark">
             <i className="far fa-trash-alt"></i>
           </button>
         ) : undefined

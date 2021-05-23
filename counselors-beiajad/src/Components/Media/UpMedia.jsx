@@ -99,7 +99,7 @@ function UpMedia() {
                       onClick={() => {
                         uploadFile();
                       }}
-                      className="btn btn-primary boton rounded-pill float"
+                      className="btn btn-primary  rounded-pill float"
                     >
                       Subir!!
                     </Button>

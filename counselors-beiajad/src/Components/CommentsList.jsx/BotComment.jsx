@@ -18,7 +18,7 @@ function BotComment(props) {
         user1.role === "user" ||
         user1.role === "doctor" ? (
           <div>
-            <Button className="btn btn-primary boton" onClick={handleShow}>
+            <Button className="btn btn-primary" onClick={handleShow}>
               <i className="far fa-clipboard"></i>
             </Button>
             <Modal show={show} size="sm" onHide={handleClose}>

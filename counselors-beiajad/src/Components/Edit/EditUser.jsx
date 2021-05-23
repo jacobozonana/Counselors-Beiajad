@@ -156,7 +156,7 @@ function EditUser(props) {
                       onClick={() => {
                         editUser();
                       }}
-                      className="btn btn-info boton"
+                      className="btn btn-info"
                     >
                       Editar
                     </Button>
@@ -268,7 +268,7 @@ function EditUser(props) {
                       onClick={() => {
                         editUser();
                       }}
-                      className="btn btn-info boton"
+                      className="btn btn-info"
                     >
                       Editar
                     </Button>
@@ -386,7 +386,7 @@ function EditUser(props) {
                       onClick={() => {
                         editUser();
                       }}
-                      className="btn btn-info boton"
+                      className="btn btn-info"
                     >
                       Editar
                     </Button>

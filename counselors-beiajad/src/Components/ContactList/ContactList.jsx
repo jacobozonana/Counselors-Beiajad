@@ -191,13 +191,13 @@ function AdminList() {
             {/* ///DESDE AQUI EMPIEZA LOS REPORTES PDF */}
             <div className="float">
               <Button
-                variant="outline-danger rounded-circle boton"
+                variant="outline-danger rounded-circle"
                 onClick={downloadPdf}
               >
                 <i className="fas fa-file-pdf"></i>
               </Button>
               <Button
-                variant="outline-primary rounded-circle boton"
+                variant="outline-primary rounded-circle"
                 onClick={handleShow}
               >
                 <i className="fas fa-envelope-open-text"></i>
@@ -231,14 +231,14 @@ function AdminList() {
                     onClick={() => {
                       sendReport();
                     }}
-                    className="btn btn-primary boton rounded-pill"
+                    className="btn btn-primary rounded-pill"
                   >
                     Enviar
                   </Button>
                 </Modal.Footer>
               </Modal>
               <Button
-                variant="outline-success rounded-circle boton"
+                variant="outline-success rounded-circle"
                 onClick={xls}
               >
                 {" "}

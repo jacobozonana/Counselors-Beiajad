@@ -171,7 +171,7 @@ function DeleteUser(props) {
   return (
     <>
       {isAuth ? (
-        <button onClick={Delete} className="btn btn-danger boton">
+        <button onClick={Delete} className="btn btn-danger">
           <i className="far fa-trash-alt"></i> Eliminar mi cuenta
         </button>
       ) : undefined}

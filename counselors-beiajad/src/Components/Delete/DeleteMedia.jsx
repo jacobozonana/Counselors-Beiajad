@@ -56,7 +56,7 @@ function DeleteMedia(props) {
     <>
       {isAuth ? (
         user1.role === "admin" || user1.role === "user" || user1.role === "doctor" ? (
-          <button onClick={Borrar} className="btn btn-outline-danger boton float deletemedia">
+          <button onClick={Borrar} className="btn btn-outline-danger float deletemedia">
             <i className="far fa-trash-alt"></i>
           </button>
         ) : undefined
