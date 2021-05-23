@@ -156,4 +156,6 @@ PassWord:
 
 
   Ocurrencias.
-  Hacer un formulacio de contacto con correo al administrador
+  X-Hacer un formulacio de contacto con correo al administrador(Hecho)
+  X-Hacer la pagina responsiva a mobiles(Hecho)
+  X-Poner el Whatsapp como antes en mobiles para que mande al Whatsapp directo(Hecho)
