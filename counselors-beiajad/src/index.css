@@ -485,3 +485,20 @@ input:focus:invalid {
 .actual{
   margin-bottom: 9px;
 }
+.whatsapp {
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:10px;
+  background-color:#FFF;
+  color:#25d366;
+  border-radius:50px;
+  text-align:center;
+  font-size:30px;
+  z-index:100;
+}
+
+.whatsapp-icon {
+  margin-top:13px;
+}
