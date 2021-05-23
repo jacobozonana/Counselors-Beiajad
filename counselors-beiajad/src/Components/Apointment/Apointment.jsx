@@ -527,7 +527,6 @@ function Apointment() {
                           })
                         }
                         colorPrimary="#25a1b7"
-                        calendarClassName="responsive-calendar" // added this
                         locale={myCustomLocale} // custom locale object
                         disabledDays={disabledDays} // here we pass them
                         onDisabledDayError={handleDisabledSelect} // handle error

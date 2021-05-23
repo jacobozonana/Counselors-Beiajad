@@ -413,7 +413,6 @@ function ScheduleList(props) {
                   })
                 }
                 colorPrimary="#25a1b7"
-                calendarClassName="responsive-calendar" // added this
                 locale={myCustomLocale} // custom locale object
                 shouldHighlightWeekends
                 renderInput={renderCustomInput} // render a custom input
@@ -574,7 +573,6 @@ function ScheduleList(props) {
                   })
                 }
                 colorPrimary="#25a1b7"
-                calendarClassName="responsive-calendar" // added this
                 locale={myCustomLocale} // custom locale object
                 shouldHighlightWeekends
                 renderInput={renderCustomInput} // render a custom input
