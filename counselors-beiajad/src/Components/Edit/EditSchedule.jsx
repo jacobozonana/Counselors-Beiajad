@@ -125,12 +125,12 @@ function EditSchedule(props) {
   const { user1, isAuth } = useContext(AuthContext);
   const [schedule, setSchedule] = useState([]);
   const [doctors, setDoctors] = useState([]);
-  const [date, setDate] = useState(props.datee);
-  const [time, setTime] = useState(props.timee);
+  const [date, setDate] = useState("Fecha");
+  const [time, setTime] = useState("Hora");
   const [note, setNote] = useState(props.notee);
-  const [doctor, setDoctor] = useState(props.doctore);
-  const [doctorName, setDoctorName] = useState(props.doctorefn);
-  const [doctorLname, setDoctorLname] = useState(props.doctoreln);
+  const [doctor, setDoctor] = useState(user1.id);
+  const [doctorName, setDoctorName] = useState("Escoge");
+  const [doctorLname, setDoctorLname] = useState("Doctor");
   const [usrdates, setUsrdates] = useState([]);
   const [usdat, setUsdat] = useState([]);
   const [selectedDay, setSelectedDay] = useState(defaultValue);
@@ -157,11 +157,6 @@ function EditSchedule(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   //---------------All this its react-modern-calendar-datepicker config---------------------------------
-
-  const disabledDays = usdat;
-  const handleDisabledSelect = (disabledDay) => {
-    console.log("Tried selecting a disabled day", disabledDay);
-  };
 
   // render regular HTML input element
   const renderCustomInput = ({ ref }) => (
@@ -330,6 +325,27 @@ function EditSchedule(props) {
   };
 
   const editDate = () => {
+    if (
+      doctor === user1.id ||
+      date === "Fecha" ||
+      time === "Hora" ||
+      date === "Fecha10:00" ||
+      date === "Fecha11:00" ||
+      date === "Fecha12:00" ||
+      date === "Fecha13:00" ||
+      date === "Fecha14:00" ||
+      date === "Fecha15:00"
+    ) {
+      return Swal.fire({
+        allowEscapeKey: true,
+        icon: "info",
+        title: "Informacion incompleta",
+        text: "Escoge todos los campos",
+        confirmButtonText: `Ok`,
+        timerProgressBar: true,
+        allowEscapeKey: true,
+      });
+    }
     Swal.fire({
       title: `Tu cita sera reprogramada con el Dr. ${doctorName} ${doctorLname}, para el ${date.slice(
         0,
@@ -410,6 +426,8 @@ function EditSchedule(props) {
       
   */
 
+        console.log(botones)
+
   return (
     <>
       {isAuth ? (
@@ -420,9 +438,19 @@ function EditSchedule(props) {
             </Button>
             <Modal show={show} size="sm" onHide={handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Cita</Modal.Title>
+                <Modal.Title>Edicion de cita</Modal.Title>
               </Modal.Header>
               <Modal.Body>
+                <div className="actual">
+                  <h6 className="nomargin">Cita actual:</h6>
+      <p className="nomargin">Dr. {props.doctorefn} {props.doctoreln}</p>
+      <p className="nomargin">Fecha: {props.datee.slice(
+        0,
+        10
+      )}</p>
+      <p className="nomargin">{props.timee} hrs.</p>
+                </div>
+                
                 <Form>
                   <Col>
                     <Form.Group>
@@ -463,8 +491,6 @@ function EditSchedule(props) {
                         colorPrimary="#25a1b7"
                         calendarClassName="responsive-calendar" // added this
                         locale={myCustomLocale} // custom locale object
-                        disabledDays={disabledDays} // here we pass them
-                        onDisabledDayError={handleDisabledSelect} // handle error
                         shouldHighlightWeekends
                         renderInput={renderCustomInput} // render a custom input
                         ClassName="custom-today-day"
@@ -511,7 +537,6 @@ function EditSchedule(props) {
                       }}
                     />
                   </Form.Group>
-                  <h6>cambia los datos que quieras</h6>
                 </Form>
               </Modal.Body>
               <Modal.Footer>

@@ -520,3 +520,6 @@ input:focus:invalid {
     text-align: center;
     margin-top: 20px;
 }
+.actual{
+  margin-bottom: 9px;
+}
