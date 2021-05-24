@@ -73,7 +73,7 @@ const Header = () => {
                 <Navbar.Brand href="/">
                   <img
                     src={Logo}
-                    className="d-inline-block align-top logo"
+                    className="d-inline-block align-top logom"
                     alt="Counselors-Beiajad"
                   />
                 </Navbar.Brand>
@@ -175,7 +175,7 @@ const Header = () => {
                 <Navbar.Brand href="/">
                   <img
                     src={Logo}
-                    className="d-inline-block align-top logo"
+                    className="d-inline-block align-top logom"
                     alt="Counselors-Beiajad"
                   />
                 </Navbar.Brand>
@@ -271,7 +271,7 @@ const Header = () => {
                 <Navbar.Brand href="/">
                   <img
                     src={Logo}
-                    className="d-inline-block align-top logo"
+                    className="d-inline-block align-top logom"
                     alt="Counselors-Beiajad"
                   />
                 </Navbar.Brand>
@@ -341,10 +341,9 @@ const Header = () => {
           ) : (
             <Navbar bg="light" expand="lg">
               <Navbar.Brand href="/">
-                <img src={Logo} className="logo" alt="Counselors-Beiajad" />
+                <img src={Logo} className="logom" alt="Counselors-Beiajad" />
               </Navbar.Brand>
               <Login />
-
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">

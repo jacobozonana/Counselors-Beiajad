@@ -169,7 +169,7 @@ code {
   margin: 0;
 }
 .logo {
-  height: 90px;
+  height: 60px;
   width: auto;
   border-radius: 30%;
 }
@@ -501,4 +501,9 @@ input:focus:invalid {
 
 .whatsapp-icon {
   margin-top:13px;
+}
+.logom {
+  height: 40px;
+  width: auto;
+  border-radius: 30%;
 }
