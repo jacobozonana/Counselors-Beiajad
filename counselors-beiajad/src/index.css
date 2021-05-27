@@ -341,6 +341,35 @@ abbr[title] {
   margin-top: 90px;
   background-color: #f8f9fa;
 }
+.responsive-calendar {
+  /* by setting font-size, all the elements will correspond */
+  font-size: 5px !important; /* default to 10px */
+}
+
+@media (max-width: 1500px) {
+  .responsive-calendar {
+    font-size: 9px !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .responsive-calendar {
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .responsive-calendar {
+    font-size: 10px !important;
+  }
+}
+
+/* Large screens */
+@media (min-width: 2500px) {
+  .responsive-calendar {
+    font-size: 12px !important;
+  }
+}
 select {
   background-color: #25a1b7;
   color: #ffffff;
