@@ -274,10 +274,11 @@ abbr[title] {
   padding: 0 0 30px 40px;
 }
 .footer {
-  position:absolute;
-  bottom:0;
-  width:100%;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   background-color: #f8f9fa;
+  opacity: .7;
 }
 .responsive-calendar {
   /* by setting font-size, all the elements will correspond */
@@ -483,5 +484,9 @@ input:focus:invalid {
 }
 .delete{
   margin:4px;
+}
+.head{
+  position: fixed;
+  top: 0;
 }
 

@@ -6,15 +6,6 @@ import "../../../index.css";
 function Footer() {
   return (
     <div className="footer">
-      <div className="center">
-        <a href="/">
-          <img
-            src={Logo}
-            className="d-inline-block align-top logo"
-            alt="Counselors-Beiajad"
-          />
-        </a>
-      </div>
       <div class="d-flex justify-content-center">
         <div class="p-2 bd-highlight">
           <a href="/">
@@ -47,14 +38,6 @@ function Footer() {
             <i className="fab fa-youtube social" />
           </a>
         </div>
-      </div>
-      <div className="footer-copyright">
-        <p>
-          Copyright © 2020. All Rights Reserved.{" "}
-          <a href="/" target="_blank">
-            Counselors-Beiajad
-          </a>
-        </p>
       </div>
     </div>
   );
