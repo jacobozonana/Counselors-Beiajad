@@ -304,14 +304,14 @@ abbr[title] {
 }
 .pregunta {
   text-align: center;
-  padding: 35px 10px 15px 15px;
+  padding: 35px 15px 15px 15px;
 }
 .respuesta {
   text-align: justify;
   padding: 5px 55px 15px 55px;
 }
 .reg {
-  margin: 20px 5px 0 125px;
+  text-align: center;
   /* EL margen de abajo no aplica por la clase mb-4*/
 }
 .form-regis {
@@ -343,24 +343,24 @@ abbr[title] {
 }
 .responsive-calendar {
   /* by setting font-size, all the elements will correspond */
-  font-size: 5px !important; /* default to 10px */
+  font-size: 9px !important; /* default to 10px */
 }
 
 @media (max-width: 1500px) {
   .responsive-calendar {
-    font-size: 9px !important;
+    font-size: 8px !important;
   }
 }
 
 @media (max-width: 1200px) {
   .responsive-calendar {
-    font-size: 10px !important;
+    font-size: 7px !important;
   }
 }
 
 @media (max-width: 768px) {
   .responsive-calendar {
-    font-size: 10px !important;
+    font-size: 6px !important;
   }
 }
 
@@ -409,10 +409,6 @@ input:focus:invalid {
   background: url(./Imagenes/exclamation-solid.svg) no-repeat 95% 50%
     rgb(255, 227, 227);
   background-size: 7px;
-}
-.row {
-  width: 99%;
-  padding-left: 20px;
 }
 .edit {
   margin: 4px;

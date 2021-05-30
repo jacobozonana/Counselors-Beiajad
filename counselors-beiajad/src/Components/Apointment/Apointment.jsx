@@ -492,11 +492,7 @@ function Apointment() {
                 <Form>
                   <Col xs={6}>
                     <Form.Group>
-                      <DropdownButton
-                        variant="outline-info"
-                        id="dropdown-basic-button"
-                        title={titleedbot}
-                      >
+                      <DropdownButton variant="outline-info" title={titleedbot}>
                         {doctors.map((user, i) => (
                           <Dropdown.Item
                             onClick={() => {
@@ -527,7 +523,7 @@ function Apointment() {
                           })
                         }
                         colorPrimary="#25a1b7"
-                         calendarClassName="responsive-calendar" // added this
+                        calendarClassName="responsive-calendar" // added this
                         locale={myCustomLocale} // custom locale object
                         disabledDays={disabledDays} // here we pass them
                         onDisabledDayError={handleDisabledSelect} // handle error
@@ -539,11 +535,7 @@ function Apointment() {
                   </Col>
                   <Col>
                     <Form.Group>
-                      <DropdownButton
-                        variant="outline-info"
-                        id="dropdown-basic-button"
-                        title={time}
-                      >
+                      <DropdownButton variant="outline-info" title={time}>
                         {sinHoras ? (
                           <>
                             <h6 className="CitaSeleccionada sinhoras">

@@ -13,6 +13,7 @@ import exportFromJSON from "export-from-json";
 import "jspdf-autotable";
 import { jsPDF } from "jspdf";
 import BlockApointment from "../Apointment/BlockApointment";
+import useWindowWidthAndHeight from "../useWindowWidthAndHeight/useWindowWidthAndHeight";
 
 function ScheduleList(props) {
   //---------------All this its react-modern-calendar-datepicker config---------------------------------
@@ -123,6 +124,7 @@ function ScheduleList(props) {
   //-------------------------------------------------------------------------------------------------
 
   const { user1, isAuth } = useContext(AuthContext);
+  const [width, height] = useWindowWidthAndHeight();
   const [schedule, setSchedule] = useState([]);
   const [data1, setData1] = useState([]);
   const [data2] = useState([]);
@@ -168,7 +170,7 @@ function ScheduleList(props) {
           Authorization: `Bearer: ${localStorage.getItem("app_token")}`,
         },
       })
-      .then((data) => ((setSchedule(data.data), setData1(data.data))))
+      .then((data) => (setSchedule(data.data), setData1(data.data)))
       .catch((err) => console.log(err));
   }, []);
 
@@ -388,10 +390,7 @@ function ScheduleList(props) {
                   </Button>
                 </Modal.Footer>
               </Modal>
-              <Button
-                variant="outline-success rounded-circle"
-                onClick={xls}
-              >
+              <Button variant="outline-success rounded-circle" onClick={xls}>
                 {" "}
                 <i className="far fa-file-excel"></i>
               </Button>
@@ -466,129 +465,279 @@ function ScheduleList(props) {
           </>
         ) : user1.role === "doctor" ? (
           <>
-            <div className="d-flex justify-content-between">
-              <div className="p-2">
-                <DatePicker
-                  value={selectedDay}
-                  onChange={
-                    (setSelectedDay,
-                    (e) => {
-                      toFind(e);
-                    })
-                  }
-                  colorPrimary="#25a1b7"
-                  calendarClassName="responsive-calendar" // added this
-                  locale={myCustomLocale} // custom locale object
-                  shouldHighlightWeekends
-                  renderInput={renderCustomInput} // render a custom input
-                  calendarTodayClassName="custom-today-day"
-                />
-              </div>
-              <div className="p-2">
-                <Button
-                  className="alldat"
-                  variant="outline-info"
-                  onClick={Todas}
-                >
-                  Ver todas las horas libres
-                </Button>
-              </div>
-              <div className="p-2">
-                <div className="d-flex justify-content-end">
-                  <div className="p-2">
-                    {" "}
-                    <BlockApointment />
-                  </div>
-                  <div className="p-2">
-                    {" "}
-                    {/* ///DESDE AQUI EMPIEZA LOS REPORTES PDF */}
-                    <Button
-                      variant="outline-danger rounded-circle "
-                      onClick={downloadPdf}
-                    >
-                      <i className="fas fa-file-pdf"></i>
-                    </Button>
-                    <Button
-                      variant="outline-primary rounded-circle "
-                      onClick={handleShow}
-                    >
-                      <i className="fas fa-envelope-open-text"></i>
-                    </Button>
-                    <Modal show={show} size="sm" onHide={handleClose}>
-                      <Modal.Header closeButton>
-                        <Modal.Title>
+            {width > 1000 ? (
+              <>
+                <>
+                  <div className="d-flex justify-content-between">
+                    <div className="p-2">
+                      <DatePicker
+                        value={selectedDay}
+                        onChange={
+                          (setSelectedDay,
+                          (e) => {
+                            toFind(e);
+                          })
+                        }
+                        colorPrimary="#25a1b7"
+                        calendarClassName="responsive-calendar" // added this
+                        locale={myCustomLocale} // custom locale object
+                        shouldHighlightWeekends
+                        renderInput={renderCustomInput} // render a custom input
+                        calendarTodayClassName="custom-today-day"
+                      />
+                    </div>
+                    <div className="p-2">
+                      <Button
+                        className="alldat"
+                        variant="outline-info"
+                        onClick={Todas}
+                      >
+                        Ver todas las horas libres
+                      </Button>
+                    </div>
+                    <div className="p-2">
+                      <div className="d-flex justify-content-end">
+                        <div className="p-2">
                           {" "}
-                          <h6>Exportar</h6>{" "}
-                        </Modal.Title>
-                      </Modal.Header>
-                      <Modal.Body>
-                        <Form>
-                          <Col>
-                            <Form.Group>
-                              <Form.Control
-                                onChange={(e) => setEmail(e.target.value)}
-                                type="email"
-                                name="email"
-                                id="exampleEmail"
-                                placeholder="Correo electronico"
-                                required
-                              />
-                            </Form.Group>
-                          </Col>
-                        </Form>
-                      </Modal.Body>
-                      <Modal.Footer>
-                        <Button
-                          type="submit"
-                          onClick={() => {
-                            sendReport();
-                          }}
-                          className="btn btn-primary rounded-pill"
-                        >
-                          Enviar
-                        </Button>
-                      </Modal.Footer>
-                    </Modal>
-                    <Button
-                      variant="outline-success rounded-circle"
-                      onClick={xls}
-                    >
-                      {" "}
-                      <i className="far fa-file-excel"></i>
-                    </Button>
-                    {/* ///AQUI TERMINA LOS REPORTES PDF */}
+                          <BlockApointment />
+                        </div>
+                        <div className="p-2">
+                          {" "}
+                          {/* ///DESDE AQUI EMPIEZA LOS REPORTES PDF */}
+                          <Button
+                            variant="outline-danger rounded-circle "
+                            onClick={downloadPdf}
+                          >
+                            <i className="fas fa-file-pdf"></i>
+                          </Button>
+                          <Button
+                            variant="outline-primary rounded-circle "
+                            onClick={handleShow}
+                          >
+                            <i className="fas fa-envelope-open-text"></i>
+                          </Button>
+                          <Modal show={show} size="sm" onHide={handleClose}>
+                            <Modal.Header closeButton>
+                              <Modal.Title>
+                                {" "}
+                                <h6>Exportar</h6>{" "}
+                              </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                              <Form>
+                                <Col>
+                                  <Form.Group>
+                                    <Form.Control
+                                      onChange={(e) => setEmail(e.target.value)}
+                                      type="email"
+                                      name="email"
+                                      id="exampleEmail"
+                                      placeholder="Correo electronico"
+                                      required
+                                    />
+                                  </Form.Group>
+                                </Col>
+                              </Form>
+                            </Modal.Body>
+                            <Modal.Footer>
+                              <Button
+                                type="submit"
+                                onClick={() => {
+                                  sendReport();
+                                }}
+                                className="btn btn-primary rounded-pill"
+                              >
+                                Enviar
+                              </Button>
+                            </Modal.Footer>
+                          </Modal>
+                          <Button
+                            variant="outline-success rounded-circle"
+                            onClick={xls}
+                          >
+                            {" "}
+                            <i className="far fa-file-excel"></i>
+                          </Button>
+                          {/* ///AQUI TERMINA LOS REPORTES PDF */}
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <Table id="table" responsive hover size="sm">
-              <thead>
-                <tr>
-                  <th onClick={() => setOrder("date")} variant="link" size="sm">
-                    Fecha
-                  </th>
-                  <th onClick={() => setOrder("time")} variant="link" size="sm">
-                    Hora
-                  </th>
-                  <th>Nota</th>
-                  <th>Cancelar</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data1.map((date, i) => {
-                  const fecha = new Date(date.date).valueOf();
-                  const now = Date.now();
-                  return date.type === false && fecha >= now ? (
-                    <tr key={i}>
-                      <td>{date.date.split("T")[0]}</td>
-                      <td>{date.time}</td>
-                      <td>{<Note note={date.note} />}</td>
-                      <td>{<DeleteSchedule id={date._id} />}</td>
-                    </tr>
-                  ) : undefined;
-                })}
-              </tbody>
-            </Table>
+                  <Table id="table" responsive hover size="sm">
+                    <thead>
+                      <tr>
+                        <th
+                          onClick={() => setOrder("date")}
+                          variant="link"
+                          size="sm"
+                        >
+                          Fecha
+                        </th>
+                        <th
+                          onClick={() => setOrder("time")}
+                          variant="link"
+                          size="sm"
+                        >
+                          Hora
+                        </th>
+                        <th>Nota</th>
+                        <th>Cancelar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data1.map((date, i) => {
+                        const fecha = new Date(date.date).valueOf();
+                        const now = Date.now();
+                        return date.type === false && fecha >= now ? (
+                          <tr key={i}>
+                            <td>{date.date.split("T")[0]}</td>
+                            <td>{date.time}</td>
+                            <td>{<Note note={date.note} />}</td>
+                            <td>{<DeleteSchedule id={date._id} />}</td>
+                          </tr>
+                        ) : undefined;
+                      })}
+                    </tbody>
+                  </Table>
+                </>
+              </>
+            ) : (
+              <>
+                <>
+                  <div className="d-flex flex-column bd-highlight mb-3">
+                    <div className="p-2">
+                      <DatePicker
+                        value={selectedDay}
+                        onChange={
+                          (setSelectedDay,
+                          (e) => {
+                            toFind(e);
+                          })
+                        }
+                        colorPrimary="#25a1b7"
+                        calendarClassName="responsive-calendar" // added this
+                        locale={myCustomLocale} // custom locale object
+                        shouldHighlightWeekends
+                        renderInput={renderCustomInput} // render a custom input
+                        calendarTodayClassName="custom-today-day"
+                      />
+                    </div>
+                    <div className="p-2">
+                      <Button
+                        className="alldat"
+                        variant="outline-info"
+                        onClick={Todas}
+                      >
+                        Ver todas las horas libres
+                      </Button>
+                    </div>
+                    <div className="p-2">
+                      <div className="d-flex justify-content-end">
+                        <div className="p-2">
+                          {" "}
+                          <BlockApointment />
+                        </div>
+                        <div className="p-2">
+                          {" "}
+                          {/* ///DESDE AQUI EMPIEZA LOS REPORTES PDF */}
+                          <Button
+                            variant="outline-danger rounded-circle "
+                            onClick={downloadPdf}
+                          >
+                            <i className="fas fa-file-pdf"></i>
+                          </Button>
+                          <Button
+                            variant="outline-primary rounded-circle "
+                            onClick={handleShow}
+                          >
+                            <i className="fas fa-envelope-open-text"></i>
+                          </Button>
+                          <Modal show={show} size="sm" onHide={handleClose}>
+                            <Modal.Header closeButton>
+                              <Modal.Title>
+                                {" "}
+                                <h6>Exportar</h6>{" "}
+                              </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                              <Form>
+                                <Col>
+                                  <Form.Group>
+                                    <Form.Control
+                                      onChange={(e) => setEmail(e.target.value)}
+                                      type="email"
+                                      name="email"
+                                      id="exampleEmail"
+                                      placeholder="Correo electronico"
+                                      required
+                                    />
+                                  </Form.Group>
+                                </Col>
+                              </Form>
+                            </Modal.Body>
+                            <Modal.Footer>
+                              <Button
+                                type="submit"
+                                onClick={() => {
+                                  sendReport();
+                                }}
+                                className="btn btn-primary rounded-pill"
+                              >
+                                Enviar
+                              </Button>
+                            </Modal.Footer>
+                          </Modal>
+                          <Button
+                            variant="outline-success rounded-circle"
+                            onClick={xls}
+                          >
+                            {" "}
+                            <i className="far fa-file-excel"></i>
+                          </Button>
+                          {/* ///AQUI TERMINA LOS REPORTES PDF */}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <Table id="table" responsive hover size="sm">
+                    <thead>
+                      <tr>
+                        <th
+                          onClick={() => setOrder("date")}
+                          variant="link"
+                          size="sm"
+                        >
+                          Fecha
+                        </th>
+                        <th
+                          onClick={() => setOrder("time")}
+                          variant="link"
+                          size="sm"
+                        >
+                          Hora
+                        </th>
+                        <th>Nota</th>
+                        <th>Cancelar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data1.map((date, i) => {
+                        const fecha = new Date(date.date).valueOf();
+                        const now = Date.now();
+                        return date.type === false && fecha >= now ? (
+                          <tr key={i}>
+                            <td>{date.date.split("T")[0]}</td>
+                            <td>{date.time}</td>
+                            <td>{<Note note={date.note} />}</td>
+                            <td>{<DeleteSchedule id={date._id} />}</td>
+                          </tr>
+                        ) : undefined;
+                      })}
+                    </tbody>
+                  </Table>
+                </>
+              </>
+            )}
           </>
         ) : undefined
       ) : undefined}

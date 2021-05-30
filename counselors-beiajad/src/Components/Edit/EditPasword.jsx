@@ -104,6 +104,7 @@ function EditPassword() {
                 <Row>
                   <Col>
                     <Form.Group>
+                    <Form.Label>Contraseña actual</Form.Label>
                       <Form.Control
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -115,6 +116,7 @@ function EditPassword() {
                       />
                     </Form.Group>
                     <Form.Group>
+                    <Form.Label>Nueva Contraseña</Form.Label>
                       <Form.Control
                         value={newpassword}
                         onChange={(e) => setNewpassword(e.target.value)}
@@ -126,6 +128,7 @@ function EditPassword() {
                       />
                     </Form.Group>
                     <Form.Group>
+                    <Form.Label>Verifica nueva contraseña</Form.Label>
                       <Form.Control
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}

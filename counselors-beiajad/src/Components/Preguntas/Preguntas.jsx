@@ -75,7 +75,7 @@ function Preguntas() {
   return (
     <>
       <Container className="themed-container" fluid={true}>
-        <h1 className="h1">Peguntas Frecuentes</h1>
+        <h1 className="mb-4 reg">Peguntas Frecuentes</h1>
 
         <Row>
           <Col md="12" lg={{ size: 6 }}>

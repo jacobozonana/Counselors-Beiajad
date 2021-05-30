@@ -190,7 +190,7 @@ const Register = () => {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Contraseña nueva</Form.Label>
+            <Form.Label>Contraseña</Form.Label>
             <Form.Control
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -202,7 +202,7 @@ const Register = () => {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Confirma la contraseña nueva</Form.Label>
+            <Form.Label>Confirma la contraseña</Form.Label>
             <Form.Control
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}

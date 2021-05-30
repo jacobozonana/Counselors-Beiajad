@@ -50,14 +50,14 @@ function Profile(props) {
       {isAuth ? (
         user1.role === "user" ? (
           <>
-            <h1 className="mb-4 reg">
+            <h1 className="reg">
               <img
                 loading="lazy"
                 src={`https://res.cloudinary.com/jacobozonana/image/upload/c_crop,g_face,h_1000,w_1000/r_max/c_scale,w_90/v${photo.version}/counselor/profile${user1.id}.png`}
                 alt=""
               />{" "}
-              Mi cuenta
             </h1>
+            <h1 className="reg">Mi Cuenta</h1>
             <Container>
               <ListGroup variant="flush">
                 <ListGroup.Item>
