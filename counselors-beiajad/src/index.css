@@ -469,10 +469,10 @@ input:focus:invalid {
   margin: 8px;
 }
 .social{
-  font-size: 18px;
+  font-size: 13px;
   background-color: #25a1b7;
   color: #FFF;
-  padding: 10px;
+  padding: 15px;
 }
 .social:hover{
   background-color: #157ffb;
