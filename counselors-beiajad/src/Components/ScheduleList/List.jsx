@@ -347,161 +347,370 @@ function ScheduleList(props) {
       {isAuth ? (
         user1.role === "admin" ? (
           <>
-            {/* ///DESDE AQUI EMPIEZA LOS REPORTES PDF */}
-            <div className="float">
-              <Button
-                variant="outline-danger rounded-circle"
-                onClick={downloadPdf}
-              >
-                <i className="fas fa-file-pdf"></i>
-              </Button>
-              <Button
-                variant="outline-primary rounded-circle"
-                onClick={handleShow}
-              >
-                <i className="fas fa-envelope-open-text"></i>
-              </Button>
-              <Modal show={show} size="sm" onHide={handleClose}>
-                <Modal.Header closeButton>
-                  <Modal.Title>
-                    {" "}
-                    <h6>Exportar</h6>{" "}
-                  </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <Form>
-                    <Col>
-                      <Form.Group>
-                        <Form.Control
-                          onChange={(e) => setEmail(e.target.value)}
-                          type="email"
-                          name="email"
-                          id="exampleEmail"
-                          placeholder="Correo electronico"
-                          required
-                        />
-                      </Form.Group>
-                    </Col>
-                  </Form>
-                </Modal.Body>
-                <Modal.Footer>
+            {width > 1000 ? (
+              <>
+                {/* ///DESDE AQUI EMPIEZA LOS REPORTES PDF */}
+                <div className="float">
                   <Button
-                    type="submit"
-                    onClick={() => {
-                      sendReport();
-                    }}
-                    className="btn btn-primary rounded-pill"
+                    variant="outline-danger rounded-circle"
+                    onClick={downloadPdf}
                   >
-                    Enviar
+                    <i className="fas fa-file-pdf"></i>
                   </Button>
-                </Modal.Footer>
-              </Modal>
-              <Button variant="outline-success rounded-circle" onClick={xls}>
-                {" "}
-                <i className="far fa-file-excel"></i>
-              </Button>
-            </div>
-            {/* ///AQUI TERMINA LOS REPORTES PDF */}
-            <div className="floatl">
-              <DatePicker
-                value={selectedDay}
-                onChange={
-                  (setSelectedDay,
-                  (e) => {
-                    toFind(e);
-                  })
-                }
-                colorPrimary="#25a1b7"
-                calendarClassName="responsive-calendar" // added this
-                locale={myCustomLocale} // custom locale object
-                shouldHighlightWeekends
-                renderInput={renderCustomInput} // render a custom input
-                calendarTodayClassName="custom-today-day"
-              />
-            </div>
-            <Container>
-              <Button className="alldat" variant="outline-info" onClick={Todas}>
-                Ver todas las citas
-              </Button>
-            </Container>
-            <Table id="table" responsive hover size="sm">
-              <thead>
-                <tr>
-                  <th onClick={() => setOrder("date")} variant="link" size="sm">
-                    Fecha
-                  </th>
-                  <th onClick={() => setOrder("time")} variant="link" size="sm">
-                    Hora
-                  </th>
-                  <th
-                    onClick={() => setOrder("first_name")}
-                    variant="link"
-                    size="sm"
+                  <Button
+                    variant="outline-primary rounded-circle"
+                    onClick={handleShow}
                   >
-                    Nombre
-                  </th>
-                  <th
-                    onClick={() => setOrder("last_name")}
-                    variant="link"
-                    size="sm"
+                    <i className="fas fa-envelope-open-text"></i>
+                  </Button>
+                  <Modal show={show} size="sm" onHide={handleClose}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>
+                        {" "}
+                        <h6>Exportar</h6>{" "}
+                      </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <Form>
+                        <Col>
+                          <Form.Group>
+                            <Form.Control
+                              onChange={(e) => setEmail(e.target.value)}
+                              type="email"
+                              name="email"
+                              id="exampleEmail"
+                              placeholder="Correo electronico"
+                              required
+                            />
+                          </Form.Group>
+                        </Col>
+                      </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button
+                        type="submit"
+                        onClick={() => {
+                          sendReport();
+                        }}
+                        className="btn btn-primary rounded-pill"
+                      >
+                        Enviar
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
+                  <Button
+                    variant="outline-success rounded-circle"
+                    onClick={xls}
                   >
-                    Apellido
-                  </th>
-                  <th onClick={() => setOrder("tel")} variant="link" size="sm">
-                    Telefono
-                  </th>
-                  <th
-                    onClick={() => setOrder("first_name")}
-                    variant="link"
-                    size="sm"
+                    {" "}
+                    <i className="far fa-file-excel"></i>
+                  </Button>
+                </div>
+                {/* ///AQUI TERMINA LOS REPORTES PDF */}
+                <div className="floatl">
+                  <DatePicker
+                    value={selectedDay}
+                    onChange={
+                      (setSelectedDay,
+                      (e) => {
+                        toFind(e);
+                      })
+                    }
+                    colorPrimary="#25a1b7"
+                    calendarClassName="responsive-calendar" // added this
+                    locale={myCustomLocale} // custom locale object
+                    shouldHighlightWeekends
+                    renderInput={renderCustomInput} // render a custom input
+                    calendarTodayClassName="custom-today-day"
+                  />
+                </div>
+                <Container>
+                  <Button
+                    className="alldat"
+                    variant="outline-info"
+                    onClick={Todas}
                   >
-                    Apellido Dr.
-                  </th>
-                  <th
-                    onClick={() => setOrder("last_name")}
-                    variant="link"
-                    size="sm"
-                  >
-                    Nombre Dr.
-                  </th>
-                  <th>Nota</th>
-                  <th>Editar</th>
-                  <th>Borrar</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data1.map((date, i) => {
-                  const fecha = new Date(date.date).valueOf();
-                  const now = Date.now();
-                  return date.type === true && fecha >= now ? (
-                    <tr key={i}>
-                      <td>{date.date.split("T")[0]}</td>
-                      <td>{date.time}</td>
-                      <td>{date.user[0].first_name}</td>
-                      <td>{date.user[0].last_name}</td>
-                      <td>{date.user[0].tel}</td>
-                      <td>{date.doctor[0].first_name}</td>
-                      <td>{date.doctor[0].last_name}</td>
-                      <td>{<Note note={date.note} />}</td>
-                      <td>
-                        {
-                          <EditSchedule
-                            id={date._id}
-                            datee={date.date}
-                            timee={date.time}
-                            notee={date.note}
-                            doctore={date.doctor[0]._id}
-                            doctorefn={date.doctor[0].first_name}
-                            doctoreln={date.doctor[0].last_name}
-                          />
-                        }
-                      </td>
-                      <td>{<DeleteSchedule id={date._id} />}</td>
+                    Ver todas las citas
+                  </Button>
+                </Container>
+                <Table id="table" responsive hover size="sm">
+                  <thead>
+                    <tr>
+                      <th
+                        onClick={() => setOrder("date")}
+                        variant="link"
+                        size="sm"
+                      >
+                        Fecha
+                      </th>
+                      <th
+                        onClick={() => setOrder("time")}
+                        variant="link"
+                        size="sm"
+                      >
+                        Hora
+                      </th>
+                      <th
+                        onClick={() => setOrder("first_name")}
+                        variant="link"
+                        size="sm"
+                      >
+                        Nombre
+                      </th>
+                      <th
+                        onClick={() => setOrder("last_name")}
+                        variant="link"
+                        size="sm"
+                      >
+                        Apellido
+                      </th>
+                      <th
+                        onClick={() => setOrder("tel")}
+                        variant="link"
+                        size="sm"
+                      >
+                        Telefono
+                      </th>
+                      <th
+                        onClick={() => setOrder("first_name")}
+                        variant="link"
+                        size="sm"
+                      >
+                        Apellido Dr.
+                      </th>
+                      <th
+                        onClick={() => setOrder("last_name")}
+                        variant="link"
+                        size="sm"
+                      >
+                        Nombre Dr.
+                      </th>
+                      <th>Nota</th>
+                      <th>Editar</th>
+                      <th>Borrar</th>
                     </tr>
-                  ) : undefined;
-                })}
-              </tbody>
-            </Table>
+                  </thead>
+                  <tbody>
+                    {data1.map((date, i) => {
+                      const fecha = new Date(date.date).valueOf();
+                      const now = Date.now();
+                      return date.type === true && fecha >= now ? (
+                        <tr key={i}>
+                          <td>{date.date.split("T")[0]}</td>
+                          <td>{date.time}</td>
+                          <td>{date.user[0].first_name}</td>
+                          <td>{date.user[0].last_name}</td>
+                          <td>{date.user[0].tel}</td>
+                          <td>{date.doctor[0].first_name}</td>
+                          <td>{date.doctor[0].last_name}</td>
+                          <td>{<Note note={date.note} />}</td>
+                          <td>
+                            {
+                              <EditSchedule
+                                id={date._id}
+                                datee={date.date}
+                                timee={date.time}
+                                notee={date.note}
+                                doctore={date.doctor[0]._id}
+                                doctorefn={date.doctor[0].first_name}
+                                doctoreln={date.doctor[0].last_name}
+                              />
+                            }
+                          </td>
+                          <td>{<DeleteSchedule id={date._id} />}</td>
+                        </tr>
+                      ) : undefined;
+                    })}
+                  </tbody>
+                </Table>
+              </>
+            ) : (
+              <>
+                <div class="d-flex flex-column bd-highlight mb-3">
+                  <div class="p-2 bd-highlight">
+                    <div>
+                      <DatePicker
+                        value={selectedDay}
+                        onChange={
+                          (setSelectedDay,
+                          (e) => {
+                            toFind(e);
+                          })
+                        }
+                        colorPrimary="#25a1b7"
+                        calendarClassName="responsive-calendar" // added this
+                        locale={myCustomLocale} // custom locale object
+                        shouldHighlightWeekends
+                        renderInput={renderCustomInput} // render a custom input
+                        calendarTodayClassName="custom-today-day"
+                      />
+                    </div>
+                  </div>
+                  <div class="p-2 bd-highlight">
+                    <Container>
+                      <Button
+                        className="alldat"
+                        variant="outline-info"
+                        onClick={Todas}
+                      >
+                        Ver todas las citas
+                      </Button>
+                    </Container>
+                  </div>
+                  <div class="p-2 bd-highlight">
+                    {" "}
+                    {/* ///DESDE AQUI EMPIEZA LOS REPORTES PDF */}
+                    <div>
+                      <Button
+                        variant="outline-danger rounded-circle"
+                        onClick={downloadPdf}
+                      >
+                        <i className="fas fa-file-pdf"></i>
+                      </Button>
+                      <Button
+                        variant="outline-primary rounded-circle"
+                        onClick={handleShow}
+                      >
+                        <i className="fas fa-envelope-open-text"></i>
+                      </Button>
+                      <Modal show={show} size="sm" onHide={handleClose}>
+                        <Modal.Header closeButton>
+                          <Modal.Title>
+                            {" "}
+                            <h6>Exportar</h6>{" "}
+                          </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                          <Form>
+                            <Col>
+                              <Form.Group>
+                                <Form.Control
+                                  onChange={(e) => setEmail(e.target.value)}
+                                  type="email"
+                                  name="email"
+                                  id="exampleEmail"
+                                  placeholder="Correo electronico"
+                                  required
+                                />
+                              </Form.Group>
+                            </Col>
+                          </Form>
+                        </Modal.Body>
+                        <Modal.Footer>
+                          <Button
+                            type="submit"
+                            onClick={() => {
+                              sendReport();
+                            }}
+                            className="btn btn-primary rounded-pill"
+                          >
+                            Enviar
+                          </Button>
+                        </Modal.Footer>
+                      </Modal>
+                      <Button
+                        variant="outline-success rounded-circle"
+                        onClick={xls}
+                      >
+                        {" "}
+                        <i className="far fa-file-excel"></i>
+                      </Button>
+                    </div>
+                    {/* ///AQUI TERMINA LOS REPORTES PDF */}
+                  </div>
+                </div>
+                <Table id="table" responsive hover size="sm">
+                  <thead>
+                    <tr>
+                      <th
+                        onClick={() => setOrder("date")}
+                        variant="link"
+                        size="sm"
+                      >
+                        Fecha
+                      </th>
+                      <th
+                        onClick={() => setOrder("time")}
+                        variant="link"
+                        size="sm"
+                      >
+                        Hora
+                      </th>
+                      <th
+                        onClick={() => setOrder("first_name")}
+                        variant="link"
+                        size="sm"
+                      >
+                        Nombre
+                      </th>
+                      <th
+                        onClick={() => setOrder("last_name")}
+                        variant="link"
+                        size="sm"
+                      >
+                        Apellido
+                      </th>
+                      <th
+                        onClick={() => setOrder("tel")}
+                        variant="link"
+                        size="sm"
+                      >
+                        Telefono
+                      </th>
+                      <th
+                        onClick={() => setOrder("first_name")}
+                        variant="link"
+                        size="sm"
+                      >
+                        Apellido Dr.
+                      </th>
+                      <th
+                        onClick={() => setOrder("last_name")}
+                        variant="link"
+                        size="sm"
+                      >
+                        Nombre Dr.
+                      </th>
+                      <th>Nota</th>
+                      <th>Editar</th>
+                      <th>Borrar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data1.map((date, i) => {
+                      const fecha = new Date(date.date).valueOf();
+                      const now = Date.now();
+                      return date.type === true && fecha >= now ? (
+                        <tr key={i}>
+                          <td>{date.date.split("T")[0]}</td>
+                          <td>{date.time}</td>
+                          <td>{date.user[0].first_name}</td>
+                          <td>{date.user[0].last_name}</td>
+                          <td>{date.user[0].tel}</td>
+                          <td>{date.doctor[0].first_name}</td>
+                          <td>{date.doctor[0].last_name}</td>
+                          <td>{<Note note={date.note} />}</td>
+                          <td>
+                            {
+                              <EditSchedule
+                                id={date._id}
+                                datee={date.date}
+                                timee={date.time}
+                                notee={date.note}
+                                doctore={date.doctor[0]._id}
+                                doctorefn={date.doctor[0].first_name}
+                                doctoreln={date.doctor[0].last_name}
+                              />
+                            }
+                          </td>
+                          <td>{<DeleteSchedule id={date._id} />}</td>
+                        </tr>
+                      ) : undefined;
+                    })}
+                  </tbody>
+                </Table>
+              </>
+            )}
           </>
         ) : user1.role === "doctor" ? (
           <>
@@ -684,60 +893,60 @@ function ScheduleList(props) {
                   <div class="p-2 bd-highlight">
                     {" "}
                     {/* ///DESDE AQUI EMPIEZA LOS REPORTES PDF */}
-                      <Button
-                        variant="outline-danger rounded-circle"
-                        onClick={downloadPdf}
-                      >
-                        <i className="fas fa-file-pdf"></i>
-                      </Button>
-                      <Button
-                        variant="outline-primary rounded-circle"
-                        onClick={handleShow}
-                      >
-                        <i className="fas fa-envelope-open-text"></i>
-                      </Button>
-                      <Modal show={show} size="sm" onHide={handleClose}>
-                        <Modal.Header closeButton>
-                          <Modal.Title>
-                            {" "}
-                            <h6>Exportar</h6>{" "}
-                          </Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                          <Form>
-                            <Col>
-                              <Form.Group>
-                                <Form.Control
-                                  onChange={(e) => setEmail(e.target.value)}
-                                  type="email"
-                                  name="email"
-                                  id="exampleEmail"
-                                  placeholder="Correo electronico"
-                                  required
-                                />
-                              </Form.Group>
-                            </Col>
-                          </Form>
-                        </Modal.Body>
-                        <Modal.Footer>
-                          <Button
-                            type="submit"
-                            onClick={() => {
-                              sendReport();
-                            }}
-                            className="btn btn-primary rounded-pill"
-                          >
-                            Enviar
-                          </Button>
-                        </Modal.Footer>
-                      </Modal>
-                      <Button
-                        variant="outline-success rounded-circle"
-                        onClick={xls}
-                      >
-                        {" "}
-                        <i className="far fa-file-excel"></i>
-                      </Button>
+                    <Button
+                      variant="outline-danger rounded-circle"
+                      onClick={downloadPdf}
+                    >
+                      <i className="fas fa-file-pdf"></i>
+                    </Button>
+                    <Button
+                      variant="outline-primary rounded-circle"
+                      onClick={handleShow}
+                    >
+                      <i className="fas fa-envelope-open-text"></i>
+                    </Button>
+                    <Modal show={show} size="sm" onHide={handleClose}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>
+                          {" "}
+                          <h6>Exportar</h6>{" "}
+                        </Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        <Form>
+                          <Col>
+                            <Form.Group>
+                              <Form.Control
+                                onChange={(e) => setEmail(e.target.value)}
+                                type="email"
+                                name="email"
+                                id="exampleEmail"
+                                placeholder="Correo electronico"
+                                required
+                              />
+                            </Form.Group>
+                          </Col>
+                        </Form>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button
+                          type="submit"
+                          onClick={() => {
+                            sendReport();
+                          }}
+                          className="btn btn-primary rounded-pill"
+                        >
+                          Enviar
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+                    <Button
+                      variant="outline-success rounded-circle"
+                      onClick={xls}
+                    >
+                      {" "}
+                      <i className="far fa-file-excel"></i>
+                    </Button>
                     {/* ///AQUI TERMINA LOS REPORTES PDF */}
                   </div>
                 </div>
