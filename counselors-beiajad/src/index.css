@@ -338,7 +338,7 @@ abbr[title] {
   padding: 0 0 30px 40px;
 }
 .footer {
-  margin-top: 90px;
+
   background-color: #f8f9fa;
 }
 .responsive-calendar {
@@ -432,9 +432,6 @@ input:focus:invalid {
   outline-color: #25a1b7;
   margin-bottom: 10px;
 }
-.margin {
-  margin: 20px;
-}
 .bold {
   font-weight: bold;
 }
@@ -445,9 +442,6 @@ input:focus:invalid {
 }
 .float {
   float: right;
-}
-.margin {
-  margin: 10px;
 }
 .hours {
   border-radius: 5px;

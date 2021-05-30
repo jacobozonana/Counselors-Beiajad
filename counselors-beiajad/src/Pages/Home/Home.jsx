@@ -32,7 +32,7 @@ function Home() {
           <>
             <Header />
             <div className="seccion1">
-              <Container className="themed-container margin" fluid={true}>
+              <Container className="themed-container" fluid={true}>
                 <Apointment />
               </Container>
             </div>
@@ -43,7 +43,7 @@ function Home() {
           <>
             <Header />
             <div className="seccion1">
-              <Container className="themed-container margin" fluid={true}>
+              <Container className="themed-container" fluid={true}>
                 <ScheduleListByDoctor />
               </Container>
             </div>

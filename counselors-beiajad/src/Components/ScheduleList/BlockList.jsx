@@ -16,7 +16,7 @@ function BlockList() {
           <>
             <Header />
             <div className="seccion1">
-              <Container className="themed-container margin" fluid={true}>
+              <Container className="themed-container" fluid={true}>
                 <BList lista="schedules" log="" />
               </Container>
             </div>
@@ -27,7 +27,7 @@ function BlockList() {
           <>
             <Header />
             <div className="seccion1">
-              <Container className="themed-container margin" fluid={true}>
+              <Container className="themed-container" fluid={true}>
                 <BList lista="schedulesbydoctor" log={user1.id} />
               </Container>
             </div>

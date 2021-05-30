@@ -419,7 +419,7 @@ function ScheduleList(props) {
                 calendarTodayClassName="custom-today-day"
               />
             </div>
-            <Container className="margin">
+            <Container>
               <Button className="alldat" variant="outline-info" onClick={Todas}>
                 Ver todas las citas
               </Button>
@@ -582,7 +582,7 @@ function ScheduleList(props) {
                     calendarTodayClassName="custom-today-day"
                   />
                 </div>
-                <Container className="margin">
+                <Container>
                   <Button
                     className="alldat"
                     variant="outline-info"
@@ -671,7 +671,7 @@ function ScheduleList(props) {
                     />
                   </div>
                   <div class="p-2 bd-highlight">
-                    <Container className="margin">
+                    <Container>
                       <Button
                         className="alldat"
                         variant="outline-info"

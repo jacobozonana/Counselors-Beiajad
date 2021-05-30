@@ -6,8 +6,7 @@ import "../../../index.css";
 function Footer() {
   return (
     <div className="footer">
-      <Container className="themed-container" fluid={true}>
-        <div className="footer-logo">
+      <div className="footer-logo">
           <a href="/">
             <img
               src={Logo}
@@ -17,6 +16,8 @@ function Footer() {
           </a>
         </div>
 
+      <Container className="themed-container" fluid={true}>
+        
         <Row>
           <Col>
             <ul className="footer-follow">
