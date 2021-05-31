@@ -68,8 +68,8 @@ const SignupDoctor = () => {
         Swal.fire({
           icon: "error",
           title: "No se puede crear doctor ",
-          text: "Algo salio mal" + message,
-          timer: 1000,
+          text: "Algo salio mal, " + message,
+          timer: 3000,
           timerProgressBar: true,
           allowEscapeKey: true,
         });

@@ -62,8 +62,8 @@ const SignupAdmin = () => {
         Swal.fire({
           icon: "error",
           title: "No se puede crear administrador",
-          text: "Algo salio mal " + message,
-          timer: 1000,
+          text: "Algo salio mal, " + message,
+          timer: 3000,
           timerProgressBar: true,
           allowEscapeKey: true,
         });

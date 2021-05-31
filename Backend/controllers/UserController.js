@@ -62,7 +62,7 @@ module.exports = {
     const { body } = req;
     try {
       const emailExist = await UserService.findOneByEmail(body.email);
-      if (emailExist) res.status(400).json({ message: "Correo ocupado escoge otro correo" });
+      if (emailExist) res.status(400).json({ message: "Correo ocupado escoge otro" });
       else {
         const newUser = new User(body);
         const user = await newUser.save();
@@ -110,7 +110,7 @@ module.exports = {
         const { body } = req;
         try {
           const emailExist = await UserService.findOneByEmail(body.email);
-          if (emailExist) res.status(400).json({ message: "Correo ocupado escoge otro correo" });
+          if (emailExist) res.status(400).json({ message: "Correo ocupado escoge otro" });
           else {
             const newUser = new User(body);
             const user = await newUser.save();
@@ -160,7 +160,7 @@ module.exports = {
         const { body } = req;
         try {
           const emailExist = await UserService.findOneByEmail(body.email);
-          if (emailExist) res.status(400).json({ message: "Correo ocupado escoge otro correo" });
+          if (emailExist) res.status(400).json({ message: "Correo ocupado escoge otro" });
           else {
             const newUser = new User(body);
             const user = await newUser.save();
@@ -205,12 +205,12 @@ module.exports = {
     const { email, password } = req.body;
     try {
       const user = await UserService.findOneByEmail(email);
-      if (!user) res.status(400).json({ message: "Email not valid" });
+      if (!user) res.status(400).json({ message: "Email no valido" });
       const isValid = comparePasswords(password, user.password);
-      if (!isValid) res.status(400).json({ message: "Password incorrect" });
+      if (!isValid) res.status(400).json({ message: "Contraseña incorrecta" });
       const token = createToken(user);
-      if (!token) res.status(500).json({ message: "Error creating token" });
-      res.status(200).json({ message: "successful login", token });
+      if (!token) res.status(500).json({ message: "Error al crear token" });
+      res.status(200).json({ message: "Acceso correcto", token });
     } catch (error) {
       res.status(400).json(error);
     }
@@ -231,7 +231,7 @@ module.exports = {
             const { body } = req;
             try {
               const emailExist = await UserService.findOneByEmail(body.email);
-              if (emailExist) res.status(400).json({ message: "Email taken" });
+              if (emailExist) res.status(400).json({ message: "Correo ocupado escoge otro" });
               else {
                 User.findByIdAndUpdate(req.params.id2, body, { new: true })
                   .then((resDB) => res.status(200).json(resDB))
@@ -261,7 +261,7 @@ module.exports = {
             const { body } = req;
             try {
               const emailExist = await UserService.findOneByEmail(body.email);
-              if (emailExist) res.status(400).json({ message: "Email taken" });
+              if (emailExist) res.status(400).json({ message: "Correo ocupado escoge otro" });
               else {
                 User.findByIdAndUpdate(req.params.id2, body, { new: true })
                   .then((resDB) => res.status(200).json(resDB))
@@ -291,7 +291,7 @@ module.exports = {
             const { body } = req;
             try {
               const emailExist = await UserService.findOneByEmail(body.email);
-              if (emailExist) res.status(400).json({ message: "Email taken" });
+              if (emailExist) res.status(400).json({ message: "Correo ocupado escoge otro" });
               else {
                 User.findByIdAndUpdate(req.params.id2, body, { new: true })
                   .then((resDB) => res.status(200).json(resDB))
@@ -373,7 +373,7 @@ module.exports = {
     try {
       const user = await UserService.findOneByEmail(email);
       const isValid = comparePasswords(password, user.password);
-      if (!isValid) res.status(400).json({ message: "Password incorrect" });
+      if (!isValid) res.status(400).json({ message: "Contraseña incorrecta" });
       const hash = bcrypt.hashSync(newpassword, SALT_WORK_FACTOR);
       User.findByIdAndUpdate(req.params.id, { password: hash }, { new: true })
         .then(() =>
