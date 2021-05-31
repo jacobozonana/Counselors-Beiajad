@@ -57,7 +57,7 @@ function Home() {
           <div id="start" className="seccion1">
             <Container className="themed-container" fluid={true}>
               <h4 className="texto1">
-                Estabilidad emocional para tu vida diarias
+                Estabilidad emocional para tu vida diaria
               </h4>
               <Button href="/register" variant="info">
                 Comienza ahora
@@ -66,7 +66,7 @@ function Home() {
                 Habla de forma segura y privada con una consultora psicológica
                 de confianza cuando lo necesites.
               </h4>
-              <h1>prueba</h1>
+              <h1>{process.env.REACT_APP_PRUEBA}</h1>
             </Container>
           </div>
           <Seccion2 />
