@@ -66,7 +66,6 @@ function Home() {
                 Habla de forma segura y privada con una consultora psicológica
                 de confianza cuando lo necesites.
               </h4>
-              <h1>{process.env.REACT_APP_PRUEBA}HOLA</h1>
             </Container>
           </div>
           <Seccion2 />
