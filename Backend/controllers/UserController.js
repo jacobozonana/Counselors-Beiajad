@@ -62,7 +62,7 @@ module.exports = {
     const { body } = req;
     try {
       const emailExist = await UserService.findOneByEmail(body.email);
-      if (emailExist) res.status(400).json({ message: "Escoge otro correo" });
+      if (emailExist) res.status(400).json({ message: "Correo ocupado escoge otro correo" });
       else {
         const newUser = new User(body);
         const user = await newUser.save();
@@ -110,7 +110,7 @@ module.exports = {
         const { body } = req;
         try {
           const emailExist = await UserService.findOneByEmail(body.email);
-          if (emailExist) res.status(400).json({ message: "Email taken" });
+          if (emailExist) res.status(400).json({ message: "Correo ocupado escoge otro correo" });
           else {
             const newUser = new User(body);
             const user = await newUser.save();
@@ -160,7 +160,7 @@ module.exports = {
         const { body } = req;
         try {
           const emailExist = await UserService.findOneByEmail(body.email);
-          if (emailExist) res.status(400).json({ message: "Email taken" });
+          if (emailExist) res.status(400).json({ message: "Correo ocupado escoge otro correo" });
           else {
             const newUser = new User(body);
             const user = await newUser.save();
