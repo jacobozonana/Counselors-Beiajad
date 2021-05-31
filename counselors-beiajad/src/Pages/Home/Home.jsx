@@ -66,6 +66,7 @@ function Home() {
                 Habla de forma segura y privada con una consultora psicológica
                 de confianza cuando lo necesites.
               </h4>
+              <h1>prueba</h1>
             </Container>
           </div>
           <Seccion2 />
