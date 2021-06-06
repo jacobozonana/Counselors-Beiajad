@@ -3,6 +3,10 @@ const ScheduleController = require("./ScheduleController");
 const CommentController = require("./CommentController");
 const FileController = require("./FileController");
 const ContactController = require("./ContactController");
+const ProductController = require("./ProductController");
+const CartItemController = require("./CartItemController");
+
+
 
 module.exports = {
   UserController,
@@ -10,4 +14,6 @@ module.exports = {
   CommentController,
   FileController,
   ContactController,
+  ProductController,
+  CartItemController,
 };
